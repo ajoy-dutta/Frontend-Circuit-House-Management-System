@@ -3,6 +3,7 @@ import homeImage from '../../assets/home.jpg';
 import homeImage2 from '../../assets/home2.jpeg'; 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import HonourBoard from './HonourBoard';
 
 // Slick Slider settings
 const sliderSettings = {
@@ -48,6 +49,11 @@ const Home = () => {
           {/* You can add more slides here */}
         </Slider>
       </div>
+
+      <div>
+        <HonourBoard />
+      </div>
+
     </div>
   );
 };
