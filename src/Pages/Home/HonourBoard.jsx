@@ -25,8 +25,8 @@ const HonourBoard = () => {
         <div className="mt-8 p-8">
             <div className="overflow-x-auto shadow-md sm:rounded-lg">
             <table className="min-w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <caption className=" text-white uppercase bg-gray-50 dark:bg-gray-800 test-lg text-center font-bold border-b dark:border-gray-700 py-2">District Commissioner (DC) Honour Board</caption>
-                <thead className="text-sm text-gray-500 uppercase bg-gray-50 dark:bg-gray-800 dark:text-gray-400">
+            <caption className=" text-black uppercase bg-blue-200 dark:bg-blue-400 test-xl text-center font-bold border-b dark:border-gray-400 py-2">District Commissioner (DC) Honour Board</caption>
+                <thead className="text-sm text-black uppercase bg-blue-300 dark:bg-blue-300 dark:text-black">
                 <tr>
                     <th scope="col" className="px-6 py-3">
                     ID
@@ -47,7 +47,7 @@ const HonourBoard = () => {
                 </thead>
                 <tbody>
                 {honourlist.map((item) => (
-                    <tr key={item.id} className="bg-white border-b dark:bg-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 text-gray-800">
+                    <tr key={item.id} className="bg-white border-b dark:bg-gray-100 dark:border-gray-700 hover:bg-gray-300  text-gray-800">
                     <td className="px-6 py-4">{item.id}</td>
                     <td className="px-6 py-4">{item.name}</td>
                     <td className="px-6 py-4">{item.batch}</td>
