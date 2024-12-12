@@ -173,7 +173,7 @@ const Room = () => {
                     </button>
                     </div>
                     <div className="flex justify-center pt-2 space-x-2">
-                        <button className="hover:bg-gray-400 hover:text-white text-black text-black text-sm font-semibold py-2 px-4 rounded border border-black">Details </button>
+                        <button className="onClick =hover:bg-gray-400 hover:text-white text-black text-black text-sm font-semibold py-2 px-4 rounded border border-black">Details </button>
                         <button className="hover:bg-gray-400 hover:text-white text-black text-sm font-semibold py-1 px-4 rounded border border-black">Book <FontAwesomeIcon icon={faArrowRight} /></button>
                     </div>
                     </div>

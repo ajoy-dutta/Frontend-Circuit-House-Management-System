@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import './navbar.css';
+import Login from '../../Pages/authentication/Login';
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const show = false;
+  const [showLoginForm, setShowLoginForm] = useState(false);
+  console.log("showLoginForm",showLoginForm);
 
  
 
@@ -79,24 +83,27 @@ const Navbar = () => {
       <div className="navbar-end">
         <ul className="hidden font-semibold text-lg lg:flex menu-horizontal px-1 gap-10">
           {navOptions}
-        </ul>
-        {/* <ul>
-          {user ? (
+          {show  ? (
             <>
-              <button onClick={handleLogOut} className="h-10 btn gard-bg ml-3">
+              <button  className="btn ml-24">
                 Sign Out
               </button>
             </>
           ) : (
             <>
-              <li>
-                <Link to="/signin">
-                  <button className="h-10 btn gard-bg ml-3">Sign In</button>
+              <li className='relative'>
+                <Link to="#">
+                  <button  onClick={() => setShowLoginForm(!showLoginForm)} className="btn py-2 px-4 ml-24">Sign In</button>
+                  {showLoginForm && (
+                    <div className="absolute top-full mt-2 p-4 bg-gradient-to-r from-blue-300 to-blue-400 shadow-lg z-10 w-80">
+                      <Login setShowLoginForm={setShowLoginForm} />
+                    </div>
+                  )}
                 </Link>
               </li>
             </>
           )}
-        </ul> */}
+        </ul>
       </div>
     </div>
   );
