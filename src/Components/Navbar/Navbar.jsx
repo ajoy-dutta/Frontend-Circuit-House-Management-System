@@ -95,14 +95,12 @@ const Navbar = () => {
           ) : (
             <>
               <li className='relative'>
-                <Link to="#">
                   <button  onClick={() => setShowLoginForm(!showLoginForm)} className="btn py-2 px-4 ml-24">Sign In</button>
                   {showLoginForm && (
-                    <div className="absolute top-full mt-2 p-4 bg-gradient-to-r from-blue-300 to-blue-400 shadow-lg z-10 w-80">
+                    <div className="absolute top-full p-4 shadow-lg z-10 w-80 bg-teal-50 mb-4 rounded-lg">
                       <Login setShowLoginForm={setShowLoginForm} />
                     </div>
                   )}
-                </Link>
               </li>
             </>
           )}

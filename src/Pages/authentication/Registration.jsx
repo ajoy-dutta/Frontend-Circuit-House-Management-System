@@ -1,16 +1,20 @@
-import axios from 'axios';
-import { useState } from 'react';
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
-//   const [showForm, setShowForm] = useState(true); // Show form by default
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
-    confirm_password:"",
+    confirm_password: "",
+    profile_picture: null,
   });
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate(); 
 
-  // Handle form field changes
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -19,42 +23,71 @@ const Registration = () => {
     }));
   };
 
-  // Submit the form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post("http://127.0.0.1:8000/register/", formData);
+    if (formData.password !== formData.confirm_password) {
+      setErrorMessage("Passwords do not match!");
+      return;
+    }
 
-      // Update the registration list with the newly added user
-      setShowForm(false);
+    setLoading(true);
+    try {
+      await axios.post("http://127.0.0.1:8000/register/", formData);
       alert("Registration Successful");
+
+      // Reset form data after successful login
+      setFormData({
+        username: "",
+        email:"",
+        password: "",
+        confirm_password: "",
+        profile_picture: "",
+      });
+
+      navigate("/");
+
     } catch (error) {
       console.error("Error during registration:", error);
-      alert("Registration Failed");
+      setErrorMessage("Registration failed. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="registration-container">
-        <form onSubmit={handleSubmit} className="p-4">
-        <h2 className="text-center font-semibold text-lg">Register</h2>
-      
+    <div className="min-h-screen flex items-center justify-center">
+      <form
+        onSubmit={handleSubmit}
+        className="w-1/2 p-6 shadow-xl mb-4 rounded-lg bg-teal-50"
+      >
+        <h2 className="text-center font-semibold text-lg mb-4">Sign Up</h2>
+
+        {errorMessage && (
+          <p className="text-red-500 text-sm text-center">{errorMessage}</p>
+        )}
+
         <div className="mb-4">
-          <label className="block font-semibold mb-2 text-sm">Name:</label>
+          <label htmlFor="name" className="block font-semibold mb-2 text-sm">
+            Name:
+          </label>
           <input
+            id="name"
             type="text"
-            name="name"
-            value={formData.name}
+            name="username"
+            value={formData.username}
             onChange={handleChange}
             className="w-full px-4 py-1 border rounded"
             required
           />
         </div>
-      
+
         <div className="mb-4">
-          <label className="block font-semibold mb-2 text-sm">Email:</label>
+          <label htmlFor="email" className="block font-semibold mb-2 text-sm">
+            Email:
+          </label>
           <input
+            id="email"
             type="email"
             name="email"
             value={formData.email}
@@ -63,10 +96,13 @@ const Registration = () => {
             required
           />
         </div>
-      
+
         <div className="mb-4">
-          <label className="block font-semibold mb-2 text-sm">Password:</label>
+          <label htmlFor="password" className="block font-semibold mb-2 text-sm">
+            Password:
+          </label>
           <input
+            id="password"
             type="password"
             name="password"
             value={formData.password}
@@ -77,8 +113,14 @@ const Registration = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block font-semibold mb-2 text-sm">Confirm Password:</label>
+          <label
+            htmlFor="confirm_password"
+            className="block font-semibold mb-2 text-sm"
+          >
+            Confirm Password:
+          </label>
           <input
+            id="confirm_password"
             type="password"
             name="confirm_password"
             value={formData.confirm_password}
@@ -87,12 +129,13 @@ const Registration = () => {
             required
           />
         </div>
-      
+
         <button
           type="submit"
           className="bg-gradient-to-r from-teal-600 to-blue-700 text-white text-sm font-semibold py-2 w-full rounded"
+          disabled={loading}
         >
-          Register
+          {loading ? "Registering..." : "Register"}
         </button>
       </form>
     </div>
