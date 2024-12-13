@@ -10,6 +10,7 @@ import Root from './Components/Root/Root';
 import Room from './Pages/Room/Room';
 import ErrorPage from './Pages/Errorpage/ErrorPage';
 import Login from './Pages/authentication/Login';
+import Registration from './Pages/authentication/Registration';
 
 
 const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/register", // Add the registration route
+        element: <Registration />,
       },
     ],
   },

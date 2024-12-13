@@ -1,21 +1,14 @@
 import axios from 'axios';
 import { useState } from 'react';
-import Registration from './Registration';
+import { Link } from 'react-router-dom';
 
 const Login = ({ setShowLoginForm }) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [showRegisterForm, setShowRegisterForm] = useState(false); // No need for `let` here, `useState` already returns the setter.
-
-//   const toggleRegisterForm = () => {
-//     setShowLoginForm(false); // Hide the login form
-//     setShowRegisterForm(true); // Show the registration form
-//     console.log("RF",showRegisterForm)
-//   };
-
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -26,34 +19,52 @@ const Login = ({ setShowLoginForm }) => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage(""); // Clear any previous error message
+    setErrorMessage(""); 
+
+    console.log("Button clicked");
 
     try {
+      setLoading(true); // Set loading to true to show the button is being processed
       const response = await axios.post("http://127.0.0.1:8000/token/", formData);
+      console.log("Response received:", response); 
 
-      // Assuming the API returns a success response and token
-      if (response.data.token) {
+      if (response.data.access) { 
         alert("Login Successful!");
-        localStorage.setItem("token", response.data.token); // Store token in localStorage
+        localStorage.setItem("token", response.data.access); 
+
+        // Reset form data after successful login
+        setFormData({
+          username: "",
+          password: "",
+        });
+
       }
     } catch (error) {
       console.error("Error during login:", error);
-      setErrorMessage("Invalid email or password."); // Set an error message
+      setErrorMessage("Invalid username or password."); // Set an error message
+    } finally {
+      setLoading(false); 
     }
   };
 
   return (
-    <div className="absolute  p-4 bg-gradient-to-r from-blue-300 to-blue-400 shadow-lg mb-4 rounded-lg">
+    <div className="">
       <form onSubmit={handleSubmit} className="p-4">
-        <h2 className='text-center font-semibold text-lg'>Sign In</h2>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <div className='mb-4'>
-          <label className="block font-semibold mb-2 text-sm">Username:</label>
+        <h2 className="text-center font-semibold text-lg mb-4">Sign In</h2>
+
+        {errorMessage && (
+          <p className="text-red-500 text-sm text-center">{errorMessage}</p>
+        )}
+
+        <div className="mb-4">
+          <label htmlFor="username" className="block font-semibold mb-2 text-sm">
+            Username:
+          </label>
           <input
-            type="username"
+            id="username"
+            type="text"
             name="username"
             value={formData.username}
             onChange={handleChange}
@@ -61,9 +72,13 @@ const Login = ({ setShowLoginForm }) => {
             required
           />
         </div>
-        <div className='mb-4'>
-          <label className="block font-semibold mb-2 text-sm">Password:</label>
+
+        <div className="mb-4">
+          <label htmlFor="password" className="block font-semibold mb-2 text-sm">
+            Password:
+          </label>
           <input
+            id="password"
             type="password"
             name="password"
             value={formData.password}
@@ -72,21 +87,22 @@ const Login = ({ setShowLoginForm }) => {
             required
           />
         </div>
-        <button type="submit" className="bg-gradient-to-r from-teal-600 to-blue-700 text-white text-sm font-semibold py-2 w-full rounded">Sign In</button>
+
+        <button
+          type="submit"
+          className="bg-gradient-to-r from-teal-600 to-blue-700 text-white text-sm font-semibold py-2 w-full rounded"
+          disabled={loading}
+        >
+          {loading ? "Signing In..." : "Sign in"}
+        </button>
       </form>
 
-      <p className='text-sm font-semibold p-4'>
-            <span onClick ={() => { 
-        setShowLoginForm(false);
-        setShowRegisterForm(true); 
-        }} className='text-blue-700'>Sign Up</span>
+      <p className="text-sm font-semibold p-4">
+        Do not have an account?{" "}
+        <Link to="/register" onClick={() => setShowLoginForm(false)} className="text-blue-700 hover:underline">
+          Sign Up
+        </Link>
       </p>
-
-      {showRegisterForm && (
-        <div className="absolute top-full mt-2 p-4 bg-gradient-to-r from-blue-300 to-blue-400 shadow-lg z-10 w-80">
-          <Registration />
-        </div>
-      )}
     </div>
   );
 };
