@@ -7,7 +7,6 @@ import { useUser } from "../../Provider/UserProvider";
 const Navbar = () => {
   const { user, loading, error } = useUser();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const show = false;
   const [showLoginForm, setShowLoginForm] = useState(false);
   console.log("showLoginForm",showLoginForm);
 
