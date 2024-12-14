@@ -2,8 +2,10 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import './navbar.css';
 import Login from '../../Pages/authentication/Login';
+import { useUser } from "../../Provider/UserProvider";
 
 const Navbar = () => {
+  const { user, loading, error } = useUser();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const show = false;
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -36,7 +38,7 @@ const Navbar = () => {
       <li onClick={handleLinkClick}>
         <Link to="/profile">Profile</Link>
       </li>
-      <li handleLinkClick={handleLinkClick}>
+      <li onClick={handleLinkClick}>
         <Link to="/staff-approval">Staffs</Link>
       </li>
     </>
@@ -86,7 +88,7 @@ const Navbar = () => {
       <div className="navbar-end">
         <ul className="hidden font-semibold text-lg lg:flex menu-horizontal px-1 gap-10">
           {navOptions}
-          {show  ? (
+          {user  ? (
             <>
               <button  className="btn ml-24">
                 Sign Out
@@ -94,7 +96,7 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <li className=''>
+              <li className='relative'>
                   <button  onClick={() => setShowLoginForm(!showLoginForm)} className="btn px-4 ml-24">Sign In</button>
                   {showLoginForm && (
                     <div className="absolute top-full p-4 shadow-lg z-10 w-80 bg-teal-50 mb-4 rounded-lg">

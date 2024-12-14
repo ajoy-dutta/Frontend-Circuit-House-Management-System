@@ -6,12 +6,15 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from './Pages/Home/Home';
+import { UserProvider } from "./Provider/UserProvider";
 import Root from './Components/Root/Root';
 import Room from './Pages/Room/Room';
 import ErrorPage from './Pages/Errorpage/ErrorPage';
 import Login from './Pages/authentication/Login';
 import Registration from './Pages/authentication/Registration';
 import Profile from './Pages/Profile/Profile';
+import NDCApproval from './Pages/authentication/NDCApproval';
+import Navbar from './Components/Navbar/Navbar';
 
 
 const router = createBrowserRouter([
@@ -44,6 +47,11 @@ const router = createBrowserRouter([
         path: "/profile", // Add the registration route
         element: <Profile />,
       },
+
+      {
+        path: "/staff-approval", // Add the registration route
+        element: <NDCApproval />,
+      },
     ],
   },
 ]);
@@ -51,6 +59,8 @@ const router = createBrowserRouter([
 // Render your app with RouterProvider
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <UserProvider>
+  <RouterProvider router={router} />
+ </UserProvider>
+ </React.StrictMode>,
 );
