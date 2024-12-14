@@ -20,13 +20,12 @@ const NDCApproval = () => {
         fetchData();
     }, []);
 
-    // Approve staff function
     const handleApprove = async (id) => {
+        const isConfirmed = window.confirm("Are you sure you want to approve this user?");
+        if (!isConfirmed) return;
+        console.log("Approving staff with id:", id); // Debugging output
         try {
-            // Call API to update approval status
             await axios.put(`http://127.0.0.1:8000/approve_staff/${id}/`, { is_approved: true });
-
-            // Update the UI to reflect the changes
             setStaffList((prevStaffList) =>
                 prevStaffList.map((item) =>
                     item.id === id ? { ...item, is_approved: true } : item
@@ -36,7 +35,21 @@ const NDCApproval = () => {
             console.error('Error approving staff:', error);
         }
     };
-
+    const handleDelete=async(id) =>{
+        const token = localStorage.getItem("token");  // Retrieve the token from local storage or other storage method
+        const isConfirmed = window.confirm("Are you sure you want to delete this user?");
+        if (!isConfirmed) return; 
+        try{
+            console.log("id is found in delete",id)
+            await axios.delete(`http://127.0.0.1:8000/approve_staff/${id}/`);
+            setStaffList((prevStaffList) => prevStaffList.filter((item) => item.id !== id));
+        }
+        catch(error){
+            console.log("Error fetching data");
+        }
+    }
+    
+    
     return (
         <div className="mt-8 p-8 mb-4">
             <div className="overflow-x-auto shadow-md sm:rounded-lg">
@@ -76,15 +89,29 @@ const NDCApproval = () => {
                                     {item.is_approved ? 'Approved' : 'Pending'}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {!item.is_approved && (
-                                        <button
-                                            className="px-4 py-2 bg-green-500 text-white font-bold rounded hover:bg-green-600"
-                                            onClick={() => handleApprove(item.id)}
-                                        >
-                                            Approve
-                                        </button>
+                                    {!item.is_approved ? (
+                                        <>
+                                            {console.log(`Rendering Approve button for ID: ${item.id}`)}
+                                            <button
+                                                className="px-4 py-2 bg-green-500 text-white font-bold rounded hover:bg-green-600"
+                                                onClick={() => handleApprove(item.id)}
+                                            >
+                                                Approve
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            {console.log(`Rendering Delete button for ID: ${item.id}`)}
+                                            <button
+                                                className="px-4 py-2 bg-red-500 text-white font-bold rounded hover:bg-red-600"
+                                                onClick={() => handleDelete(item.id)}
+                                            >
+                                                Delete
+                                            </button>
+                                        </>
                                     )}
                                 </td>
+
                             </tr>
                         ))}
                     </tbody>
