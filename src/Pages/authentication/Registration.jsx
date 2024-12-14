@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { baseurl } from "../../BaseURL"
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -33,7 +34,7 @@ const Registration = () => {
 
     setLoading(true);
     try {
-      await axios.post("http://127.0.0.1:8000/register/", formData);
+      await axios.post(baseurl+ "/register/", formData);
       alert("Registration Successful");
 
       // Reset form data after successful login

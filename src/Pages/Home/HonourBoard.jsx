@@ -1,5 +1,6 @@
 import { useEffect, useState} from "react";
 import axios from 'axios'
+import { baseurl } from "../../BaseURL"
 
 const HonourBoard = () => {
     const [DChonourlist, SetDCHonourlist] = useState([]);
@@ -8,8 +9,7 @@ const HonourBoard = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get('http://127.0.0.1:8000/honour-board/');
-            
+            const response = await axios.get(`${baseurl}/honour-board/`);
             const dcData = response.data.filter(item => item.designation_type === 'DC');
             const ndData = response.data.filter(item => item.designation_type === 'NDC');
 

@@ -34,7 +34,7 @@ const Navbar = () => {
         <Link to="/contact">Food</Link>
       </li>
       <li onClick={handleLinkClick}>
-        <Link to="/about">Profile</Link>
+        <Link to="/profile">Profile</Link>
       </li>
     </>
   );
@@ -91,8 +91,8 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <li className='relative'>
-                  <button  onClick={() => setShowLoginForm(!showLoginForm)} className="btn py-2 px-4 ml-24">Sign In</button>
+              <li className=''>
+                  <button  onClick={() => setShowLoginForm(!showLoginForm)} className="btn px-4 ml-24">Sign In</button>
                   {showLoginForm && (
                     <div className="absolute top-full p-4 shadow-lg z-10 w-80 bg-teal-50 mb-4 rounded-lg">
                       <Login setShowLoginForm={setShowLoginForm} />

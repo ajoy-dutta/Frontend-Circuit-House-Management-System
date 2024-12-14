@@ -11,6 +11,7 @@ import Room from './Pages/Room/Room';
 import ErrorPage from './Pages/Errorpage/ErrorPage';
 import Login from './Pages/authentication/Login';
 import Registration from './Pages/authentication/Registration';
+import Profile from './Pages/Profile/Profile';
 
 
 const router = createBrowserRouter([
@@ -23,17 +24,25 @@ const router = createBrowserRouter([
         index: true, 
         element: <Home />, 
       },
+
       {
         path: "/room",
         element: <Room />,
       },
+
       {
         path: "/login",
         element: <Login />,
       },
+
       {
         path: "/register", // Add the registration route
         element: <Registration />,
+      },
+
+      {
+        path: "/profile", // Add the registration route
+        element: <Profile />,
       },
     ],
   },

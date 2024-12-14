@@ -32,7 +32,7 @@ const Login = ({ setShowLoginForm }) => {
 
       if (response.data.access) { 
         alert("Login Successful!");
-        localStorage.setItem("token", response.data.access); 
+        localStorage.setItem("accessToken", response.data.access); 
 
         // Reset form data after successful login
         setFormData({
