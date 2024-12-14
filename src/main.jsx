@@ -11,6 +11,7 @@ import Room from './Pages/Room/Room';
 import ErrorPage from './Pages/Errorpage/ErrorPage';
 import Login from './Pages/authentication/Login';
 import Registration from './Pages/authentication/Registration';
+import NDCApproval from './Pages/authentication/NDCApproval';
 
 
 const router = createBrowserRouter([
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
         path: "/register", // Add the registration route
         element: <Registration />,
       },
+      {
+        path: "/staff-approval",
+        element: <NDCApproval />,
+      },
+
     ],
   },
 ]);
