@@ -1,117 +1,141 @@
-import { useEffect, useState} from "react";
-import axios from 'axios'
-import { baseurl } from "../../BaseURL"
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { baseurl } from "../../BaseURL";
 
 const HonourBoard = () => {
-    const [DChonourlist, SetDCHonourlist] = useState([]);
-    const [NDChonourlist, SetNDCHonourlist] = useState([]);
+  const [DChonourlist, SetDCHonourlist] = useState([]);
+  const [NDChonourlist, SetNDCHonourlist] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await axios.get(`${baseurl}/honour-board/`);
-            const dcData = response.data.filter(item => item.designation_type === 'DC');
-            const ndData = response.data.filter(item => item.designation_type === 'NDC');
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${baseurl}/honour-board/`);
+        const dcData = response.data.filter(
+          (item) => item.designation_type === "DC"
+        );
+        const ndData = response.data.filter(
+          (item) => item.designation_type === "NDC"
+        );
 
-            SetDCHonourlist(dcData)
-            SetNDCHonourlist(ndData)
+        SetDCHonourlist(dcData);
+        SetNDCHonourlist(ndData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
-        };
-    
-        fetchData();
-      }, []);
-    
-      useEffect(() => {
-        console.log(DChonourlist);
-      }, [DChonourlist]); 
-    
-    return (
-        <div className="mt-8 p-8 mb-4">
-            <div className="overflow-x-auto shadow-md sm:rounded-lg">
-            <table className="min-w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <caption className=" text-black uppercase bg-blue-200 dark:bg-blue-400 test-xl text-center font-bold border-b dark:border-gray-400 py-2">District Commissioner (DC) Honour Board</caption>
-                <thead className="text-sm text-black uppercase bg-blue-300 dark:bg-blue-300 dark:text-black">
-                <tr>
-                    <th scope="col" className="px-0 py-3 text-center">
-                    SL.
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                    Image
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                    Name
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                    Batch
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                    Joining Date
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                    Ending Date
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                {DChonourlist.map((item, index) => (
-                    <tr key={item.id} className="bg-white font-semibold border-b dark:bg-gray-100 dark:border-gray-700 hover:bg-gray-300  text-gray-800">
-                    <td className="px-0 py-2 text-center">{index + 1}</td> 
-                    <td className="px-5 py-5 w-4 h-4"><img src={item.photo} alt="image" /></td>
-                    <td className="px-6 py-4">{item.name}</td>
-                    <td className="px-6 py-4">{item.batch}</td>
-                    <td className="px-6 py-4">{item.joining_date}</td>
-                    <td className="px-6 py-4">{item.ending_date ? item.ending_date : "Running" }</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-            </div> 
+    fetchData();
+  }, []);
 
+  // Function to convert Arabic numerals to Bangla numerals
+  const convertToBanglaNumerals = (number) => {
+    const banglaNumerals = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+    return number
+      .toString()
+      .split('')
+      .map((digit) => banglaNumerals[parseInt(digit)])
+      .join('');
+  };
 
-            <div className="overflow-x-auto shadow-md sm:rounded-lg mt-12">
-            <table className="min-w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <caption className=" text-black uppercase bg-blue-200 dark:bg-blue-400 test-xl text-center font-bold border-b dark:border-gray-400 py-2">Nejarat District Commissioner (NDC) Honour Board</caption>
-                <thead className="text-sm text-black uppercase bg-blue-300 dark:bg-blue-300 dark:text-black">
-                <tr>
-                    <th scope="col" className="px-0 py-3 text-center">
-                    SL.
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                    Image
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                    Name
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                    Batch
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                    Joining Date
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                    Ending Date
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                {NDChonourlist.map((item, index) => (
-                    <tr key={item.id} className="bg-white font-semibold border-b dark:bg-gray-100 dark:border-gray-700 hover:bg-gray-300  text-gray-800">
-                    <td className="px-0 py-2 text-center">{index + 1}</td> 
-                    <td className="px-5 py-5 w-4 h-4"><img src={item.photo} alt="image" /></td>
-                    <td className="px-6 py-4">{item.name}</td>
-                    <td className="px-6 py-4">{item.batch}</td>
-                    <td className="px-6 py-4">{item.joining_date}</td>
-                    <td className="px-6 py-4">{item.ending_date ? item.ending_date : "Running" }</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-            </div> 
+  return (
+<div className="p-8 bg-teal-50 mb-6 mt-10 w-1/2 mx-auto rounded-lg">
+      {/* DC Honour Board */}
+      <h2 className="text-center text-xl font-bold mb-4 py-2">
+        ডেপুটি কালেক্টর
+      </h2>
+      <div className=" space-y-0">
+        {DChonourlist.map((item, index) => (
+          <div
+            key={item.id}
+            className="flex items-center  shadow-lg rounded-lg border border-1 border-gray  p-4"
+          >
+            {/* Left: Number */}
+            <div className="w-1/8  text-center text-sm font-semibold  text-gray-800 p-3">
+              {convertToBanglaNumerals(index + 1)}
+            </div>
+
+            
+
+            {/* Right: Details */}
+            <div className="w-2/4 ml-4 ">
+              <p className="text-sm font-bold text-gray-800 px-2  border border-1 border-gray">
+                <strong> নামঃ </strong> {item.name}
+              </p>
+              <p className="text-sm text-gray-600 px-2  border border-1 border-gray">
+                <strong>ব্যচঃ</strong> {item.batch}
+              </p>
+              <p className="text-sm text-gray-600 px-2  border border-1 border-gray">
+                <strong>যোগদানের তারিখঃ</strong> {item.joining_date}
+              </p>
+              <p className="text-sm text-gray-600 px-2  border border-1 border-gray">
+                <strong>প্রস্থানের তারিখঃ</strong> {item.ending_date ? item.ending_date : "চলমান"}
+              </p>
+              <p className="text-sm text-gray-600 px-2  border border-1 border-gray">
+                <strong>মন্তব্যঃ</strong> {item.remarks}
+              </p>
+            </div>
+
+            {/* Left: Image */}
+            <div className="w-1/4 pr-4 ml-10 border-gray-300">
+              <img
+                src={item.photo}
+                alt={item.name}
+                className="w-28 h-28 object-cover rounded-full border-2 border-gray-300"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+      
+
+      {/* NDC Honour Board */}
+      <h2 className="text-center text-xl font-bold mb-4 mt-12 py-2 ">
+        নেজারত ডেপুটি কালেক্টর
+      </h2>
+      <div className="space-y-0">
+        {NDChonourlist.map((item, index) => (
+          <div
+            key={item.id}
+            className="flex items-center  shadow-lg rounded-lg p-4 border border-1 border-gray"
+          >
+            {/* Left: Number */}
+            <div className="w-1/8 text-center text-sm font-semibold text-gray-800 p-3">
+              {convertToBanglaNumerals(index + 1)}
+            </div>
+
+            
+
+            {/* Right: Details */}
+            <div className="w-1/2 ml-4">
+              <p className="text-sm font-bold text-gray-800 px-2  border border-1 border-gray">
+                <strong> নামঃ </strong> {item.name}
+              </p>
+              <p className="text-sm text-gray-600 px-2  border border-1 border-gray">
+                <strong>ব্যচঃ</strong> {item.batch}
+              </p>
+              <p className="text-sm text-gray-600 px-2  border border-1 border-gray">
+                <strong>যোগদানের তারিখঃ</strong> {item.joining_date}
+              </p>
+              <p className="text-sm text-gray-600 px-2 border border-1 border-gray">
+                <strong>প্রস্থানের তারিখঃ</strong> {item.ending_date ? item.ending_date : "চলমান"}
+              </p>
+              <p className="text-sm text-gray-600 px-2 border border-1 border-gray">
+                <strong>মন্তব্যঃ</strong> {item.remarks}
+              </p>
+            </div>
+            {/* Left: Image */}
+            <div className="w-1/4 pr-4 ml-10">
+              <img
+                src={item.photo}
+                alt={item.name}
+                className="w-28 h-28 object-cover rounded-full border-2 border-gray-300"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
-    );
+  );
 };
 
 export default HonourBoard;
