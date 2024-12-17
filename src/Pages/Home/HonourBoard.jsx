@@ -38,7 +38,10 @@ const HonourBoard = () => {
   };
 
   return (
-<div className="p-8 bg-teal-50 mb-6 mt-10 w-1/2 mx-auto rounded-lg">
+<div className="lg:w-1/2 md:w-2/3 sm:w-2/3  mx-auto rounded-lg">
+      <div className="p-8 bg-teal-50 mb-6 mt-10 ">
+
+  
       {/* DC Honour Board */}
       <h2 className="text-center text-xl font-bold mb-4 py-2">
         ডেপুটি কালেক্টর
@@ -86,10 +89,10 @@ const HonourBoard = () => {
           </div>
         ))}
       </div>
-      
-
+      </div>
+          <div className="p-8 bg-teal-50 mb-6 mt-10 "> 
       {/* NDC Honour Board */}
-      <h2 className="text-center text-xl font-bold mb-4 mt-12 py-2 ">
+      <h2 className="text-center text-xl font-bold mb-4 mt-0 py-2 ">
         নেজারত ডেপুটি কালেক্টর
       </h2>
       <div className="space-y-0">
@@ -133,6 +136,7 @@ const HonourBoard = () => {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );
