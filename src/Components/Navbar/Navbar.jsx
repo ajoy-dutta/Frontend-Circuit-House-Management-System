@@ -5,7 +5,7 @@ import Login from '../../Pages/authentication/Login';
 import { useUser } from "../../Provider/UserProvider";
 
 const Navbar = () => {
-  const { user, loading, error } = useUser();
+  const { user, loading, error, signOut } = useUser();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
   console.log("showLoginForm",showLoginForm);
@@ -32,14 +32,18 @@ const Navbar = () => {
         <Link to="/matches">Guest</Link>
       </li> */}
       <li onClick={handleLinkClick}>
-        <Link to="/contact">Food</Link>
+        <Link to="/Food">Food</Link>
       </li>
-      <li onClick={handleLinkClick}>
-        <Link to="/profile">Profile</Link>
-      </li>
+      {user && user.role === 'NDC' && ( 
       <li onClick={handleLinkClick}>
         <Link to="/staff-approval">Staffs</Link>
       </li>
+      )}
+      {user && ( // Restrict profile to logged-in users
+        <li onClick={handleLinkClick}>
+          <Link to="/profile">Profile</Link>
+        </li>
+      )}
     </>
   );
 
@@ -89,8 +93,8 @@ const Navbar = () => {
           {navOptions}
           {user  ? (
             <>
-              <button  className="btn ml-24">
-                Sign Out
+              <button onClick={signOut} className="btn ml-24">
+              Sign Out
               </button>
             </>
           ) : (

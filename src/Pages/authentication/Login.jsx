@@ -1,8 +1,11 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useUser } from "../../Provider/UserProvider";
 
 const Login = ({ setShowLoginForm }) => {
+  const { refreshUser } = useUser();
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -28,17 +31,21 @@ const Login = ({ setShowLoginForm }) => {
     try {
       setLoading(true); // Set loading to true to show the button is being processed
       const response = await axios.post("http://127.0.0.1:8000/token/", formData);
-      console.log("Response received:", response); 
+      if (response.data.access) {
 
-      if (response.data.access) { 
-        alert("Login Successful!");
-        localStorage.setItem("accessToken", response.data.access); 
+        localStorage.setItem("accessToken", response.data.access);
 
-        // Reset form data after successful login
+        // Trigger a manual fetch of user data
+        refreshUser();
+
+        // Reset form data and close login form
         setFormData({
-          username: "",
-          password: "",
-        });
+        username: "",
+        password: "",
+      });
+
+        setShowLoginForm(false);
+        alert("Login Successful!");
 
       }
     } catch (error) {

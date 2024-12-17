@@ -2,18 +2,36 @@ import axios from "axios"
 import {useEffect, useState} from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import Details from "./Details";
+import { Link } from "react-router-dom";
+
 
 const Room = () => {
     const [ roomlist, SetRoomlist ]= useState([]);
     const [showForm, setShowForm] = useState(false);
+    const [showDetails, setShowDetails] = useState(false);
+    const [selectedRoom, setSelectedRoom] = useState(null);
     const [newRoom, setNewRoom] = useState({
-        room_name: '',
-        room_description: '',
-        room_type: 'One Bed',
-        availability_status: 'Vacant',
-      });
+      room_name: '',
+      room_description: '',
+      room_type: 'One Bed',
+      availability_status: 'Vacant',
+  });
 
       console.log(newRoom)
+
+    const handleDetailsClick = (room) => {
+      setSelectedRoom(room); // Set the selected room
+      setShowDetails(true); // Show details
+    };
+
+    const handleBookClick = (room) => {
+      setSelectedRoom(room); // Set the selected room
+    };
+  
+    const handleCloseDetails = () => {
+      setShowDetails(false);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -47,11 +65,34 @@ const Room = () => {
     e.preventDefault();
 
     try {
+
+      const token = localStorage.getItem("accessToken");
+
+      if (!token) {
+        throw new Error("No token found. Please log in.");
+      }
+
       const response = await axios.post(
-        "http://127.0.0.1:8000/room/",newRoom
+        "http://127.0.0.1:8000/room/",
+        newRoom,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token
+            "Content-Type": "application/json",
+          },
+        }
       );
+
       // Update the room list with the newly added room
       SetRoomlist((prev) => [...prev, response.data]);
+
+      setNewRoom({
+        room_name: "",
+        room_description: "",
+        room_type : "",
+        availability_status:""
+      });
+
       setShowForm(false); 
       alert("Room Added Successfully");
     } catch (error) {
@@ -145,7 +186,7 @@ const Room = () => {
            </div>
 
 
-           <h2 className="text-xl font-bold text-center mb-6">Room List</h2>
+           <h2 className="relative text-xl font-bold text-center mb-6">Room List</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
                 {roomlist.map((room) => (
                    
@@ -173,12 +214,36 @@ const Room = () => {
                     </button>
                     </div>
                     <div className="flex justify-center pt-2 space-x-2">
-                        <button className="onClick =hover:bg-gray-400 hover:text-white text-black text-black text-sm font-semibold py-2 px-4 rounded border border-black">Details </button>
-                        <button className="hover:bg-gray-400 hover:text-white text-black text-sm font-semibold py-1 px-4 rounded border border-black">Book <FontAwesomeIcon icon={faArrowRight} /></button>
+                        <button 
+                         onClick={() => handleDetailsClick(room)}
+                        className="hover:bg-gray-400 hover:text-white text-black text-black text-sm font-semibold py-2 px-4 rounded border border-black">
+                          Details 
+                        </button>
+                        
+                        <Link
+                          onClick={() => handleBookClick(room)}
+                          to="/book"
+                          state={{ room }} // Pass the room object as state
+                          className="hover:bg-gray-400 hover:text-white text-black text-sm font-semibold py-1 px-4 rounded border border-black flex items-center justify-center"
+                        >
+                          Book <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+                        </Link>
                     </div>
+
                     </div>
                 ))}
             </div>
+
+            {/* Conditionally render Details component */}
+            {showDetails && selectedRoom && (
+                <Details onClose={handleCloseDetails} room={selectedRoom} />
+            )}
+
+            {/* Conditionally render Details component */}
+            {/* {showBookForm && selectedRoom && (
+                <Book onClose={handleCloseDetails} room={selectedRoom} setshowBookForm={setshowBookForm}/>
+            )} */}
+
         </div>
     );
 };
