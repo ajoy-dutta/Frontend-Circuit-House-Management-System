@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Details from "./Details";
 import { Link } from "react-router-dom";
+import {baseurl} from '../../BaseURL'
 
 
 const Room = () => {
@@ -37,7 +38,7 @@ const Room = () => {
         const fetchData = async () => {
             try{
 
-                const response =  await axios.get('http://127.0.0.1:8000/room/');
+                const response =  await axios.get(baseurl+'/room/');
                 SetRoomlist(response.data);
             }
 
@@ -73,7 +74,7 @@ const Room = () => {
       }
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/room/",
+        baseurl+"/room/",
         newRoom,
         {
           headers: {
