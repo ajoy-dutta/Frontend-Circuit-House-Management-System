@@ -34,7 +34,7 @@ const Registration = () => {
 
     setLoading(true);
     try {
-      await axios.post(baseurl+ "/register/", formData);
+      await axios.post(`${baseurl}/register/`, formData);
       alert("Registration Successful");
 
       // Reset form data after successful login

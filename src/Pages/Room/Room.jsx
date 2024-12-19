@@ -74,7 +74,7 @@ const Room = () => {
       }
 
       const response = await axios.post(
-        baseurl+"/room/",
+      `${baseurl}/room/`,
         newRoom,
         {
           headers: {

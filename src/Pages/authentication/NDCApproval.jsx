@@ -9,7 +9,7 @@ const NDCApproval = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(baseurl+'/approve_staff/');
+                const response = await axios.get(`${baseurl}/approve_staff/`);
                 console.log(response);
                 // Filter staff data where the role is "Assistant Accountant"
                 const staffData = response.data.filter(item => item.role === "Assistant Accountant");
