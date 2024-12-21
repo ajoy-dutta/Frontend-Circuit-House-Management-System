@@ -34,6 +34,13 @@ const Navbar = () => {
       <li onClick={handleLinkClick}>
         <Link to="/Food">Food</Link>
       </li>
+
+      {user && ( 
+      <li onClick={handleLinkClick}>
+        <Link to="/guest-list">Our Guests</Link>
+      </li>
+      )}
+
       {user && user.role === 'NDC' && ( 
       <li onClick={handleLinkClick}>
         <Link to="/staff-approval">Staffs</Link>

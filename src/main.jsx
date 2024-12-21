@@ -16,6 +16,7 @@ import Profile from './Pages/Profile/Profile';
 import NDCApproval from './Pages/authentication/NDCApproval';
 import Navbar from './Components/Navbar/Navbar';
 import Book from './Pages/Room/Book';
+import Guests from './Pages/Guests/Guests';
 
 
 const router = createBrowserRouter([
@@ -56,6 +57,11 @@ const router = createBrowserRouter([
       {
         path: "/book",
         element: <Book/>,
+      },
+
+      {
+        path: "/guest-list",
+        element: <Guests/>,
       },
     ],
   },
