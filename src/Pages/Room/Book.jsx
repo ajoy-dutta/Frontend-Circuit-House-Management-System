@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { useLocation } from "react-router-dom";
 
 
-
 const Book = () => {
 
 const location = useLocation();
@@ -45,10 +44,7 @@ const [bookData, setBookData] = useState({
 
     try {
 
-        const response = await axios.post(`${baseurl}/book/`, {
-            ...bookData,
-            room: room.id,  
-          });
+        const response = await axios.post(`${baseurl}/book/`, {...bookData,room: room.id, });
 
       setBookData({
         name: "",
