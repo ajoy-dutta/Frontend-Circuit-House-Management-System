@@ -17,6 +17,7 @@ import NDCApproval from './Pages/authentication/NDCApproval';
 import Navbar from './Components/Navbar/Navbar';
 import Book from './Pages/Room/Book';
 import Guests from './Pages/Guests/Guests';
+import Checkout from './Pages/Guests/Checkout';
 
 
 const router = createBrowserRouter([
@@ -62,6 +63,11 @@ const router = createBrowserRouter([
       {
         path: "/guest-list",
         element: <Guests/>,
+      },
+
+      {
+        path: "/checkout",
+        element: <Checkout/>,
       },
     ],
   },

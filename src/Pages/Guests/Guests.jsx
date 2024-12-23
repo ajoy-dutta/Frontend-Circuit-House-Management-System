@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { baseurl } from '../../BaseURL'
-import CheckoutHandler from "./CheckoutHandler";
+import { baseurl } from '../../BaseURL';
+import { Link } from "react-router-dom";
 
 const Guests = () => {
   const [guests, setGuestsList] = useState([]);
@@ -62,12 +62,13 @@ const Guests = () => {
                   </button>
                 </td>
                 <td className="py-3 px-4 text-sm">
-                <CheckoutHandler
-                    guest={guest}
-                    onCheckoutSuccess={(guestId) => {
-                      setGuestsList((prevGuests) => prevGuests.filter((g) => g.id !== guestId));
-                    }}
-                  />
+                <Link
+                  to="/checkout"
+                  state={{ guest }}
+                  className="px-4 py-2 bg-green-500 text-white text-xs font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+                >
+                  Checkout
+                </Link>
                 </td>
               </tr>
             ))}
