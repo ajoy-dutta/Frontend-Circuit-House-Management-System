@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { baseurl } from "../../BaseURL"
+import { baseurl } from "../../BaseURL";
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -13,15 +13,21 @@ const Registration = () => {
   });
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate(); 
-
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    const { name, value, type, files } = e.target;
+    if (type === "file") {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: files[0], // Only store the first file selected
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -33,24 +39,46 @@ const Registration = () => {
     }
 
     setLoading(true);
+
+    // Prepare the form data for submission
+    const formDataToSubmit = new FormData();
+    formDataToSubmit.append("username", formData.username);
+    formDataToSubmit.append("email", formData.email);
+    formDataToSubmit.append("password", formData.password);
+    formDataToSubmit.append("confirm_password", formData.confirm_password);
+    if (formData.profile_picture) {
+      formDataToSubmit.append("profile_picture", formData.profile_picture);
+    }
+
     try {
-      await axios.post(`${baseurl}/register/`, formData);
+      // Send a POST request to the server
+      const response = await axios.post(`${baseurl}/register/`, formDataToSubmit, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
       alert("Registration Successful");
 
-      // Reset form data after successful login
+      // Reset form data after successful registration
       setFormData({
         username: "",
-        email:"",
+        email: "",
         password: "",
         confirm_password: "",
-        profile_picture: "",
+        profile_picture: null,
       });
 
       navigate("/");
 
     } catch (error) {
       console.error("Error during registration:", error);
-      setErrorMessage("Registration failed. Please try again.");
+      if (error.response && error.response.data) {
+        // Handle error response from the API
+        setErrorMessage(error.response.data.detail || "Registration failed. Please try again.");
+      } else {
+        setErrorMessage("Registration failed. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -128,6 +156,22 @@ const Registration = () => {
             onChange={handleChange}
             className="w-full px-4 py-1 border rounded"
             required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="profile_picture"
+            className="block font-semibold mb-2 text-sm"
+          >
+            Profile Picture:
+          </label>
+          <input
+            id="profile_picture"
+            type="file"
+            name="profile_picture"
+            onChange={handleChange}
+            className="w-full px-4 py-1 border rounded"
           />
         </div>
 
