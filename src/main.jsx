@@ -17,10 +17,10 @@ import NDCApproval from './Pages/authentication/NDCApproval';
 import Navbar from './Components/Navbar/Navbar';
 import Book from './Pages/Room/Book';
 import Guests from './Pages/Guests/Guests';
+import Checkout from './Pages/Guests/Checkout';
 import Food from './Pages/Food/Food';
 import Other from './Pages/Food/Other';
 
-import Checkout from './Pages/Guests/Checkout';
 
 
 const router = createBrowserRouter([
@@ -67,19 +67,22 @@ const router = createBrowserRouter([
         path: "/guest-list",
         element: <Guests/>,
       },
-      {
-        path: "/food",
-        element: <Food/>,
-      },
-      {
-        path: "/other",
-        element: <Other/>,
-      },
 
       {
         path: "/checkout",
         element: <Checkout/>,
       },
+
+      {
+        path: "/food",
+        element: <Food/>,
+      },
+
+      {
+        path: "/other",
+        element: <Other/>,
+      },
+      
     ],
   },
 ]);
