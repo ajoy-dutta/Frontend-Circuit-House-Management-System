@@ -1,7 +1,5 @@
-import React from 'react';
-import { useEffect, useState } from React
-import axios from 'axios';
-import { baseurl } from "../../BaseURL";
+import { useEffect, useState } from 'react';
+import AxiosInstance from '../../Components/Axios';
 
 
 const Price = () => {
@@ -10,7 +8,7 @@ const Price = () => {
     useEffect(() => {
         const fetchData = async () => {
             try{
-                const respone=await axios.get(`${baseurl}/pricing/`)
+                const response=await AxiosInstance.get('pricing/')
                 const data=response.data
                 setPricelist(data)
             }

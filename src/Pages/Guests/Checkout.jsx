@@ -5,13 +5,16 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
 import { baseurl } from "../../BaseURL";
 import { jsPDF } from "jspdf";
+import AxiosInstance from "../../Components/Axios";
 
 const Checkout = () => {
 
     const location = useLocation();
     const { guest } = location.state || {};
     const [paymentStatus, setPaymentStatus] = useState("Pending"); 
-    const [checkoutsummary, setCheckOutSummary] = useState([])
+    const [checkoutsummary, setCheckOutSummary] = useState([]);
+
+    console.log(checkoutsummary)
 
     const handlePaymentStatusChange = (event) => {
         setPaymentStatus(event.target.value);
@@ -24,7 +27,7 @@ const Checkout = () => {
             if (!isConfirmed) return;
         
             try {
-              const response = await axios.post(`${baseurl}/checkout/`, { guest_id: guest.id, paymentStatus});
+              const response = await AxiosInstance.post('checkout/', { guest_id: guest.id, paymentStatus});
               console.log(response)
               setCheckOutSummary(response.data)
         

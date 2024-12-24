@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import {baseurl} from '../../BaseURL'
+import AxiosInstance from '../../Components/Axios';
 
 const NDCApproval = () => {
     const [staffList, setStaffList] = useState([]);
@@ -9,7 +8,7 @@ const NDCApproval = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${baseurl}/approve_staff/`);
+                const response = await AxiosInstance.get("approve_staff/");
                 console.log(response);
                 // Filter staff data where the role is "Assistant Accountant"
                 const staffData = response.data.filter(item => item.role === "Assistant Accountant");
@@ -26,7 +25,7 @@ const NDCApproval = () => {
         if (!isConfirmed) return;
         console.log("Approving staff with id:", id); // Debugging output
         try {
-            await axios.put(`${baseurl}/approve_staff/${id}/`, { is_approved: true });
+            await AxiosInstance.put(`approve_staff/${id}/`, { is_approved: true });
             setStaffList((prevStaffList) =>
                 prevStaffList.map((item) =>
                     item.id === id ? { ...item, is_approved: true } : item
@@ -42,7 +41,7 @@ const NDCApproval = () => {
         if (!isConfirmed) return; 
         try{
             console.log("id is found in delete",id)
-            await axios.delete(`${baseurl}/approve_staff/${id}/`);
+            await AxiosInstance.delete(`approve_staff/${id}/`);
             setStaffList((prevStaffList) => prevStaffList.filter((item) => item.id !== id));
         }
         catch(error){

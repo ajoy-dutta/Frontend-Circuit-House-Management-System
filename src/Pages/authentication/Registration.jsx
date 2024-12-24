@@ -1,7 +1,6 @@
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { baseurl } from "../../BaseURL";
+import AxiosInstance from "../../Components/Axios";
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -48,7 +47,7 @@ const Registration = () => {
     // }
 
     try {
-      await axios.post(`${baseurl}/register/`, formData, {
+      await AxiosInstance.post("/register/", formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Required for file uploads
         },
