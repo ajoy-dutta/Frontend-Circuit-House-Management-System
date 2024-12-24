@@ -20,6 +20,7 @@ import Guests from './Pages/Guests/Guests';
 import Food from './Pages/Food/Food';
 import Other from './Pages/Food/Other';
 
+import Checkout from './Pages/Guests/Checkout';
 
 
 const router = createBrowserRouter([
@@ -73,6 +74,11 @@ const router = createBrowserRouter([
       {
         path: "/other",
         element: <Other/>,
+      },
+
+      {
+        path: "/checkout",
+        element: <Checkout/>,
       },
     ],
   },
