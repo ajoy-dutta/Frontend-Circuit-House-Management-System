@@ -37,7 +37,7 @@ const NDCApproval = () => {
         }
     };
     const handleDelete=async(id) =>{
-        const token = localStorage.getItem("token");  // Retrieve the token from local storage or other storage method
+        // const token = localStorage.getItem("token");  // Retrieve the token from local storage or other storage method
         const isConfirmed = window.confirm("Are you sure you want to delete this user?");
         if (!isConfirmed) return; 
         try{
