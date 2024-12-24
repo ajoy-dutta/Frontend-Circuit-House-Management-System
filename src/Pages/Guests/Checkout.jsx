@@ -26,7 +26,7 @@ const Checkout = () => {
               await axios.post(`${baseurl}/checkout/`, { guest_id: guest.id, paymentStatus});
         
               // Generate the PDF invoice
-            //   generatePDFInvoice(guest);
+              generatePDFInvoice(guest);
         
               alert(`Guest ${guest.name} has been successfully checked out.`);
         
