@@ -32,7 +32,10 @@ const Navbar = () => {
         <Link to="/matches">Guest</Link>
       </li> */}
       <li className='btn btn-glass hover:underline hover:text-cyan-300'> 
-        <Link to="/Food">Food</Link>
+        <Link to="/food">Food</Link>
+      </li>
+      <li onClick={handleLinkClick}>
+        <Link to="/other">Others</Link>
       </li>
 
       {user && ( 
@@ -111,7 +114,7 @@ const Navbar = () => {
 
 
   return (
-    <div className="navbar sticky top-0 z-[1000] bg-base-100 flex h-[70px] px-8 items-center justify-between">
+    <div className="navbar sticky top-0 z-[1000] bg-slate-50 flex h-[70px] px-8 items-center justify-between">
       <div className="navbar-start flex items-center gap-2">
       <div className="dropdown">
   <div
@@ -138,7 +141,7 @@ const Navbar = () => {
   {isDropdownOpen && (
     <ul
       tabIndex={0}
-      className="menu menu-sm dropdown-content bg-gray-500 absolute rounded-box z-[1000] mt-3 w-40 p-2 shadow"
+      className="menu menu-sm dropdown-content bg-slate-200 absolute rounded-box z-[1000] mt-3 w-40 p-2 shadow"
     >
       <ul className="font-serif space-y-2">{navDropOptions}</ul>
     </ul>

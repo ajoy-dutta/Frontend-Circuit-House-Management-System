@@ -16,6 +16,10 @@ import Profile from './Pages/Profile/Profile';
 import NDCApproval from './Pages/authentication/NDCApproval';
 import Book from './Pages/Room/Book';
 import Guests from './Pages/Guests/Guests';
+import Checkout from './Pages/Guests/Checkout';
+import Food from './Pages/Food/Food';
+import Other from './Pages/Food/Other';
+
 
 
 const router = createBrowserRouter([
@@ -62,6 +66,22 @@ const router = createBrowserRouter([
         path: "/guest-list",
         element: <Guests/>,
       },
+
+      {
+        path: "/checkout",
+        element: <Checkout/>,
+      },
+
+      {
+        path: "/food",
+        element: <Food/>,
+      },
+
+      {
+        path: "/other",
+        element: <Other/>,
+      },
+      
     ],
   },
 ]);

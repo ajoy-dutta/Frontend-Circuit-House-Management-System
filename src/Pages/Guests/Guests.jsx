@@ -1,16 +1,19 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { baseurl } from '../../BaseURL'
-import CheckoutHandler from "./CheckoutHandler";
+import { baseurl } from '../../BaseURL';
+import { Link } from "react-router-dom";
+import AxiosInstance from "../../Components/Axios";
 
 const Guests = () => {
   const [guests, setGuestsList] = useState([]);
   const [selectedGuest, setSelectedGuest] = useState(null);
 
+  console.log(guests)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${baseurl}/book/`);
+        const response = await AxiosInstance.get('book/');
         setGuestsList(response.data);
       } catch (error) {
         console.log("Error fetching data", error);
@@ -62,12 +65,13 @@ const Guests = () => {
                   </button>
                 </td>
                 <td className="py-3 px-4 text-sm">
-                <CheckoutHandler
-                    guest={guest}
-                    onCheckoutSuccess={(guestId) => {
-                      setGuestsList((prevGuests) => prevGuests.filter((g) => g.id !== guestId));
-                    }}
-                  />
+                <Link
+                  to="/checkout"
+                  state={{ guest }}
+                  className="px-4 py-2 bg-green-500 text-white text-xs font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+                >
+                  Checkout
+                </Link>
                 </td>
               </tr>
             ))}

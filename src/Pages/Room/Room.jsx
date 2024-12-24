@@ -1,10 +1,10 @@
-import axios from "axios"
 import {useEffect, useState} from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Details from "./Details";
 import { Link } from "react-router-dom";
-import {baseurl} from '../../BaseURL'
+import AxiosInstance from "../../Components/Axios";
+
 
 
 const Room = () => {
@@ -38,7 +38,7 @@ const Room = () => {
         const fetchData = async () => {
             try{
 
-                const response =  await axios.get(baseurl+'/room/');
+                const response =  await AxiosInstance.get('room/');
                 SetRoomlist(response.data);
             }
 
@@ -73,8 +73,8 @@ const Room = () => {
         throw new Error("No token found. Please log in.");
       }
 
-      const response = await axios.post(
-      `${baseurl}/room/`,
+      const response = await AxiosInstance.post(
+       'room/',
         newRoom,
         {
           headers: {
@@ -217,7 +217,7 @@ const Room = () => {
                     <div className="flex justify-center pt-2 space-x-2">
                         <button 
                          onClick={() => handleDetailsClick(room)}
-                        className="hover:bg-gray-400 hover:text-white text-black text-black text-sm font-semibold py-2 px-4 rounded border border-black">
+                        className="hover:bg-gray-400 hover:text-white  text-black text-sm font-semibold py-2 px-4 rounded border border-black">
                           Details 
                         </button>
                         
