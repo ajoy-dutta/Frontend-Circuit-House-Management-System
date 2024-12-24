@@ -7,6 +7,8 @@ const Guests = () => {
   const [guests, setGuestsList] = useState([]);
   const [selectedGuest, setSelectedGuest] = useState(null);
 
+  console.log(guests)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
