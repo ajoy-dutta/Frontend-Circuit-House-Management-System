@@ -1,7 +1,6 @@
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { baseurl } from "../../BaseURL";
+import AxiosInstance from "../../Components/Axios";
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -37,18 +36,18 @@ const Registration = () => {
     setLoading(true);
     setErrorMessage(""); // Clear any previous errors
 
-    // Prepare form data for submission
-    const form = new FormData();
-    form.append("username", formData.username);
-    form.append("email", formData.email);
-    form.append("password", formData.password);
-    form.append("confirm_password", formData.confirm_password);
-    if (formData.profile_picture) {
-      form.append("profile_picture", formData.profile_picture);
-    }
+    // // Prepare form data for submission
+    // const form = new FormData();
+    // form.append("username", formData.username);
+    // form.append("email", formData.email);
+    // form.append("password", formData.password);
+    // form.append("confirm_password", formData.confirm_password);
+    // if (formData.profile_picture) {
+    //   form.append("profile_picture", formData.profile_picture);
+    // }
 
     try {
-      await axios.post(`${baseurl}/register/`, form, {
+      await AxiosInstance.post("/register/", formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Required for file uploads
         },
@@ -154,7 +153,8 @@ const Registration = () => {
           />
         </div>
 
-        {/* Profile Picture */}
+
+
         <div className="mb-4">
           <label
             htmlFor="profile_picture"
@@ -166,6 +166,7 @@ const Registration = () => {
             id="profile_picture"
             type="file"
             name="profile_picture"
+            value={formData.profile_picture}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded"
             accept="image/*"
