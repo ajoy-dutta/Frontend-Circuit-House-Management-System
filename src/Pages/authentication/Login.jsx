@@ -111,6 +111,12 @@ const Login = ({ setShowLoginForm }) => {
           Sign Up
         </Link>
       </p>
+      <p className="text-blue-700 hover:text-blue-800 font-semibold text-sm p-4">
+      Forget Password ?{" "}
+      <Link to="/forgot-password" className="text-blue-700 hover:underline">
+        Reset Here
+      </Link>
+    </p>
     </div>
   );
 };

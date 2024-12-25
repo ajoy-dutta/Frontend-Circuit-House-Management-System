@@ -16,6 +16,7 @@ import Profile from './Pages/Profile/Profile';
 import NDCApproval from './Pages/authentication/NDCApproval';
 import Navbar from './Components/Navbar/Navbar';
 import Book from './Pages/Room/Book';
+import ForgotPassword from './Pages/authentication/ForgotPassword';
 
 
 const router = createBrowserRouter([
@@ -57,6 +58,11 @@ const router = createBrowserRouter([
         path: "/book",
         element: <Book/>,
       },
+
+      {
+        path: "/forgot-password",
+        element: <ForgotPassword/>
+      }
     ],
   },
 ]);
