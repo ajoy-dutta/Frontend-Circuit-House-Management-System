@@ -26,15 +26,17 @@ const Checkout = () => {
         
             try {
               const response = await AxiosInstance.post('/checkout/', { guest_id: guest.id, paymentStatus});
-              // console.log(response.data)
-              // console.log(response.data)
-              // console.log(response.data)
               setCheckOutSummary(response.data)
+
+             
         
-              // Generate the PDF invoice
-              generatePDFInvoice(guest, checkoutsummary);
-        
+              if(response.data && Object.keys(response.data).length > 0){
+                  generatePDFInvoice(guest, response.data);
+              }
+
               alert(`Guest ${guest.name} has been successfully checked out.`);
+        
+              
         
               // Notify parent component to update guest list
             //   if (onCheckoutSuccess) {

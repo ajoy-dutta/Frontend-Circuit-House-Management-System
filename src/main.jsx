@@ -14,7 +14,6 @@ import Login from './Pages/authentication/Login';
 import Registration from './Pages/authentication/Registration';
 import Profile from './Pages/Profile/Profile';
 import NDCApproval from './Pages/authentication/NDCApproval';
-import Navbar from './Components/Navbar/Navbar';
 import Book from './Pages/Room/Book';
 import Guests from './Pages/Guests/Guests';
 import Checkout from './Pages/Guests/Checkout';
@@ -58,7 +57,7 @@ const router = createBrowserRouter([
         path: "/staff-approval", // Add the registration route
         element: <NDCApproval />,
       },
-      
+
       {
         path: "/book",
         element: <Book/>,
