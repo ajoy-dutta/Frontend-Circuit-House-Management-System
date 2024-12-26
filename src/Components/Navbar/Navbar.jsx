@@ -49,6 +49,7 @@ const Navbar = () => {
         <Link to="/staff-approval">Staffs</Link>
       </li>
       )}
+      
       {user && ( // Restrict profile to logged-in users
         <li onClick={handleLinkClick}>
           <Link to="/profile">Profile</Link>
