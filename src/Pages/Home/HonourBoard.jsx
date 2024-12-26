@@ -31,11 +31,7 @@ const HonourBoard = () => {
       formData.append("designation_type", newItem.designation_type);
 
       // Send the request to the backend
-      const response = await axios.post(`${baseurl}/honour-board/`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data', // Set the correct content type for file upload
-        },
-      });
+      const response = await AxiosInstance.post('/honour-board/', formData);
 
       const addedItem = response.data;
 

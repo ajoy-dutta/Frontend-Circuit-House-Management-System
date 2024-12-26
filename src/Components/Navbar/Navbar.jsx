@@ -10,6 +10,8 @@ const Navbar = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   console.log("showLoginForm",showLoginForm);
 
+  console.log(user)
+
  
 
   const handleDropdownToggle = () => {
@@ -44,7 +46,7 @@ const Navbar = () => {
       </li>
       )}
 
-      {user && user.role === 'NDC' && ( 
+      {user && user.role === "NDC" && ( 
       <li onClick={handleLinkClick}>
         <Link to="/staff-approval">Staffs</Link>
       </li>

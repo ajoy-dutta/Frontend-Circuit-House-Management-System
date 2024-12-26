@@ -26,7 +26,9 @@ const Checkout = () => {
         
             try {
               const response = await AxiosInstance.post('/checkout/', { guest_id: guest.id, paymentStatus});
-              console.log(response.data)
+              // console.log(response.data)
+              // console.log(response.data)
+              // console.log(response.data)
               setCheckOutSummary(response.data)
         
               // Generate the PDF invoice
@@ -86,10 +88,10 @@ const Checkout = () => {
             let startY = 115;
             const tableData = [
                 ["Description", "Amount (BDT)"],
-                ["Total Rental Price", checkoutsummary.total_rental_cost || 0],
-                ["Total Food Price", checkoutsummary.total_food_cost || 0],
-                ["Total Other Costs", checkoutsummary.total_other_cost || 0],
-                ["Grand Total", checkoutsummary.grand_total || 0]
+                ["Total Rental Price", checkoutsummary.total_rental_cost ],
+                ["Total Food Price", checkoutsummary.total_food_cost ],
+                ["Total Other Costs", checkoutsummary.total_other_cost ],
+                ["Grand Total", checkoutsummary.grand_total ]
             ];
             
             // Iterate through tableData and ensure values are strings

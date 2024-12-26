@@ -14,11 +14,8 @@ const Registration = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-<<<<<<< HEAD
 
   // Handle text and file changes
-=======
->>>>>>> origin/master
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     if (type === "file") {
@@ -57,7 +54,7 @@ const Registration = () => {
 
     try {
 
-        const response = await AxiosInstance.post('/register/', form );
+      const response = await AxiosInstance.post('/register/', form );
 
       alert("Registration Successful");
 
@@ -171,10 +168,7 @@ const Registration = () => {
             id="profile_picture"
             type="file"
             name="profile_picture"
-<<<<<<< HEAD
             // value={formData.profile_picture}
-=======
->>>>>>> origin/master
             onChange={handleChange}
             className="w-full px-4 py-1 border rounded"
           />
