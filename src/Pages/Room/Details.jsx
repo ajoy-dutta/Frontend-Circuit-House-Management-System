@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import {baseurl} from '../../BaseURL'
+import AxiosInstance from "../../Components/Axios";
 
 const Details = ({ onClose, room }) => {
 
@@ -12,7 +11,7 @@ const Details = ({ onClose, room }) => {
      const fetchData= async()=>{
 
       try{
-        const response = await axios.get(`${baseurl}/pricing/`)
+        const response = await AxiosInstance.get('pricing/')
         console.log(response.data)
         const PriceData = response.data.filter(item => item.room_type === room.room_type);
 

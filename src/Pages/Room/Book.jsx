@@ -3,7 +3,7 @@ import axios from "axios";
 import {baseurl} from '../../BaseURL'
 import PropTypes from 'prop-types';
 import { useLocation } from "react-router-dom";
-
+import AxiosInstance from "../../Components/Axios";
 
 
 const Book = () => {
@@ -45,10 +45,7 @@ const [bookData, setBookData] = useState({
 
     try {
 
-        const response = await axios.post(`${baseurl}/book/`, {
-            ...bookData,
-            room: room.id,  
-          });
+        const response = await AxiosInstance.post('book/', {...bookData,room: room.id, });
 
       setBookData({
         name: "",

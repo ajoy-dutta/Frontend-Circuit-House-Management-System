@@ -1,8 +1,7 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useUser } from "../../Provider/UserProvider";
-import {baseurl} from '../../BaseURL'
+import AxiosInstance from '../../Components/Axios';
 
 const Login = ({ setShowLoginForm }) => {
   const { refreshUser } = useUser();
@@ -31,7 +30,7 @@ const Login = ({ setShowLoginForm }) => {
 
     try {
       setLoading(true); // Set loading to true to show the button is being processed
-      const response = await axios.post(baseurl+"/token/", formData);
+      const response = await AxiosInstance.post("token/", formData);
       if (response.data.access) {
 
         localStorage.setItem("accessToken", response.data.access);

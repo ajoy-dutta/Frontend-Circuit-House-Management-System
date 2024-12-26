@@ -1,10 +1,10 @@
-import axios from "axios"
 import {useEffect, useState} from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Details from "./Details";
 import { Link } from "react-router-dom";
-import {baseurl} from '../../BaseURL'
+import AxiosInstance from "../../Components/Axios";
+
 
 
 const Room = () => {
@@ -38,7 +38,7 @@ const Room = () => {
         const fetchData = async () => {
             try{
 
-                const response =  await axios.get(baseurl+'/room/');
+                const response =  await AxiosInstance.get('room/');
                 SetRoomlist(response.data);
             }
 
@@ -73,8 +73,8 @@ const Room = () => {
         throw new Error("No token found. Please log in.");
       }
 
-      const response = await axios.post(
-      `${baseurl}/room/`,
+      const response = await AxiosInstance.post(
+       'room/',
         newRoom,
         {
           headers: {
@@ -221,16 +221,24 @@ const Room = () => {
                           Details 
                         </button>
                         
+                        {room.availability_status === 'Vacant' ? (
                         <Link
                           onClick={() => handleBookClick(room)}
                           to="/book"
-                          state={{ room }} // Pass the room object as state
+                          state={{ room }}
                           className="hover:bg-gray-400 hover:text-white text-black text-sm font-semibold py-1 px-4 rounded border border-black flex items-center justify-center"
                         >
-                          Book <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+                           Book <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
                         </Link>
+                      ) : (
+                        <button
+                          disabled
+                          className="bg-gray-300 text-gray-500 text-sm font-semibold py-1 px-4 rounded border border-black flex items-center justify-center cursor-not-allowed"
+                        >
+                           Book <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+                        </button>
+                      )}
                     </div>
-
                     </div>
                 ))}
             </div>

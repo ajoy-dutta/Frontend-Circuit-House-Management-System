@@ -51,6 +51,10 @@ const Home = () => {
       </div>
 
       <div>
+        <p className='text-center'>We are in {import.meta.env.MODE}</p>
+      </div>
+
+      <div>
         <HonourBoard />
       </div>
 
