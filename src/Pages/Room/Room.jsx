@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import AxiosInstance from "../../Components/Axios";
 
 
-
 const Room = () => {
     const [ roomlist, SetRoomlist ]= useState([]);
     const [showForm, setShowForm] = useState(false);
@@ -38,7 +37,7 @@ const Room = () => {
         const fetchData = async () => {
             try{
 
-                const response =  await AxiosInstance.get('room/');
+                const response =  await AxiosInstance.get('/room/');
                 SetRoomlist(response.data);
             }
 
@@ -51,7 +50,7 @@ const Room = () => {
     }, []);
 
 
-    // Handle input change for the new room form
+  // Handle input change for the new room form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewRoom((prev) => ({
@@ -60,6 +59,13 @@ const Room = () => {
     }));
   };
 
+  // const form = FormData();
+
+  // room_name: '',
+  // room_description: '',
+  // room_type: 'One Bed',
+  // availability_status: 'Vacant',
+
 
   // Submit the new room form
   const handleSubmit = async (e) => {
@@ -67,23 +73,8 @@ const Room = () => {
 
     try {
 
-      const token = localStorage.getItem("accessToken");
-
-      if (!token) {
-        throw new Error("No token found. Please log in.");
-      }
-
-      const response = await AxiosInstance.post(
-       'room/',
-        newRoom,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Include the token
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
+      const response = await AxiosInstance.post('/room/', newRoom);
+    
       // Update the room list with the newly added room
       SetRoomlist((prev) => [...prev, response.data]);
 

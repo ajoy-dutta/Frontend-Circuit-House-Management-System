@@ -45,7 +45,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/register", // Add the registration route
+        path: "/registers", // Add the registration route
         element: <Registration />,
       },
 

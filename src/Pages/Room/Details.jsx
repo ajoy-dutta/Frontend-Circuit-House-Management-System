@@ -11,8 +11,8 @@ const Details = ({ onClose, room }) => {
      const fetchData= async()=>{
 
       try{
-        const response = await AxiosInstance.get('pricing/')
-        console.log(response.data)
+        const response = await AxiosInstance.get('/pricing/')
+     
         const PriceData = response.data.filter(item => item.room_type === room.room_type);
 
         // Group data by user_type

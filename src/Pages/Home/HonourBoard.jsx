@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { baseurl } from "../../BaseURL";
 import AxiosInstance from "../../Components/Axios";
 
 const HonourBoard = () => {
@@ -10,7 +8,7 @@ const HonourBoard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await AxiosInstance.get('honour-board/');
+        const response = await AxiosInstance.get('/honour-board/');
         const dcData = response.data.filter(
           (item) => item.designation_type === "DC"
         );

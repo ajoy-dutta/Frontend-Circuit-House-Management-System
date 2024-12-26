@@ -2,8 +2,6 @@ import { useLocation  } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import axios from "axios";
-import { baseurl } from "../../BaseURL";
 import { jsPDF } from "jspdf";
 import AxiosInstance from "../../Components/Axios";
 
@@ -27,8 +25,8 @@ const Checkout = () => {
             if (!isConfirmed) return;
         
             try {
-              const response = await AxiosInstance.post('checkout/', { guest_id: guest.id, paymentStatus});
-              console.log(response)
+              const response = await AxiosInstance.post('/checkout/', { guest_id: guest.id, paymentStatus});
+              console.log(response.data)
               setCheckOutSummary(response.data)
         
               // Generate the PDF invoice
