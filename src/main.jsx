@@ -20,6 +20,7 @@ import Guests from './Pages/Guests/Guests';
 import Checkout from './Pages/Guests/Checkout';
 import Food from './Pages/Food/Food';
 import Other from './Pages/Food/Other';
+import Rooms from './Pages/Room/Rooms';
 
 
 
@@ -38,11 +39,16 @@ const router = createBrowserRouter([
         path: "/room",
         element: <Room />,
       },
+      {
+        path: "/room-details",
+        element: <Rooms />,
+      },
 
       {
         path: "/login",
         element: <Login />,
       },
+
 
       {
         path: "/registers", // Add the registration route
