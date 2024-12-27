@@ -45,7 +45,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/register", // Add the registration route
+        path: "/registers", // Add the registration route
         element: <Registration />,
       },
 
@@ -58,6 +58,7 @@ const router = createBrowserRouter([
         path: "/staff-approval", // Add the registration route
         element: <NDCApproval />,
       },
+
       {
         path: "/book",
         element: <Book/>,

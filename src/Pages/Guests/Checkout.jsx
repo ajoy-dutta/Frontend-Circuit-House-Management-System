@@ -2,8 +2,6 @@ import { useLocation  } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import axios from "axios";
-import { baseurl } from "../../BaseURL";
 import { jsPDF } from "jspdf";
 import AxiosInstance from "../../Components/Axios";
 
@@ -27,14 +25,18 @@ const Checkout = () => {
             if (!isConfirmed) return;
         
             try {
-              const response = await AxiosInstance.post('checkout/', { guest_id: guest.id, paymentStatus});
-              console.log(response)
+              const response = await AxiosInstance.post('/checkout/', { guest_id: guest.id, paymentStatus});
               setCheckOutSummary(response.data)
+
+             
         
-              // Generate the PDF invoice
-              generatePDFInvoice(guest, checkoutsummary);
-        
+              if(response.data && Object.keys(response.data).length > 0){
+                  generatePDFInvoice(guest, response.data);
+              }
+
               alert(`Guest ${guest.name} has been successfully checked out.`);
+        
+              
         
               // Notify parent component to update guest list
             //   if (onCheckoutSuccess) {
@@ -88,10 +90,10 @@ const Checkout = () => {
             let startY = 115;
             const tableData = [
                 ["Description", "Amount (BDT)"],
-                ["Total Rental Price", checkoutsummary.total_rental_cost || 0],
-                ["Total Food Price", checkoutsummary.total_food_cost || 0],
-                ["Total Other Costs", checkoutsummary.total_other_cost || 0],
-                ["Grand Total", checkoutsummary.grand_total || 0]
+                ["Total Rental Price", checkoutsummary.total_rental_cost ],
+                ["Total Food Price", checkoutsummary.total_food_cost ],
+                ["Total Other Costs", checkoutsummary.total_other_cost ],
+                ["Grand Total", checkoutsummary.grand_total ]
             ];
             
             // Iterate through tableData and ensure values are strings
@@ -120,29 +122,87 @@ const Checkout = () => {
     
 
     return (
-        <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 p-4 lg:p-8">
-           <div className="bg-white p-6 rounded-lg w-full max-w-lg ml-8">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">Guest Details</h3>
-                <div key={guest.id} className="space-y-2">
-                  <p><strong className="text-gray-700">Guest Name:</strong> {guest.name}</p>
-                  <p><strong className="text-gray-700">Phone No:</strong> {guest.phone}</p>
-                  <p><strong className="text-gray-700">Room Name:</strong> {guest.room_name}</p>
-                  <p><strong className="text-gray-700">Check-In Date:</strong> {guest.check_in_date}</p>
-                  <p><strong className="text-gray-700">Check-Out Date:</strong> {guest.check_out_date}</p>
-                  <p><strong className="text-gray-700">Guest Type:</strong> {guest.user_type}</p>
-                  <p><strong className="text-gray-700">NID:</strong> {guest.nid}</p>
-                  <p><strong className="text-gray-700">Email:</strong> {guest.email}</p>
-                  <p><strong className="text-gray-700">Total Persons:</strong> {guest.total_person}</p>
-                  <p><strong className="text-gray-700">Total Days:</strong> {guest.total_days}</p>
-                  <p><strong className="text-gray-700">Total Rental Price:</strong> {guest.total_rental_price}</p>
-                </div>
-              <div className="mt-4">
-            </div>
-          </div>
+        <div className="grid grid-rows-2 lg:grid-cols-2 gap-2 p-4 lg:p-8">
+           <div key={guest.id} className="bg-white p-6 rounded-lg w-full max-w-lg ml-8">
+          <h3 className="text-lg font-bold text-gray-800 mb-4">Guest Details</h3>
+          <table className="table-auto w-full  text-left text-sm md:text-base lg:text-lg">
+            <tbody>
+              <tr>
+                <td className="text-gray-700 font-semibold">Guest Name:</td>
+                <td>{guest.name}</td>
+              </tr>
+              <tr>
+                <td className="text-gray-700 font-semibold">Phone No:</td>
+                <td>{guest.phone}</td>
+              </tr>
+              <tr>
+                <td className="text-gray-700 font-semibold">Room Name:</td>
+                <td>{guest.room_name}</td>
+              </tr>
+              <tr>
+                <td className="text-gray-700 font-semibold">Check-In Date:</td>
+                <td>
+                {new Date(guest.check_in_date).toLocaleString("en-GB", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true,
+                })}
+              </td>
+              </tr>
+              <tr>
+                <td className="text-gray-700 font-semibold">Check-Out Date:</td>
+                <td>{guest.check_out_date}</td>
+              </tr>
+              <tr>
+                <td className="text-gray-700 font-semibold">Guest Type:</td>
+                <td>{guest.user_type}</td>
+              </tr>
+              <tr>
+                <td className="text-gray-700 font-semibold">NID:</td>
+                <td>{guest.nid}</td>
+              </tr>
+              <tr>
+                <td className="text-gray-700 font-semibold">Email:</td>
+                <td>{guest.email}</td>
+              </tr>
+              <tr>
+                <td className="text-gray-700 font-semibold">Total Persons:</td>
+                <td>{guest.total_person}</td>
+              </tr>
+              <tr>
+                <td className="text-gray-700 font-semibold">Total Days:</td>
+                <td>{guest.total_days}</td>
+              </tr>
+              <tr>
+                <td className="text-gray-700 font-semibold">Total Rental Price:</td>
+                <td>{guest.total_rental_price}</td>
+              </tr>
+              <tr>
+                <td className="text-gray-700 font-semibold">Total Food Cost:</td>
+                <td>{guest.total_food_cost}</td>
+              </tr>
+              <tr>
+                <td className="text-gray-700 font-semibold">Total Other Cost:</td>
+                <td>{guest.total_other_cost}</td>
+              </tr>
+              <tr>
+                <td className="text-gray-700 font-semibold">Grand Total:</td>
+                <td>
+                  {Number(guest.total_rental_price) +
+                    Number(guest.total_food_cost) +
+                    Number(guest.total_other_cost)}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-          <div className="mt-4">
+          <div className="mt-4 lg:ml-0 sm:ml-14 ">
                 <div>
-                    <p className="text-sm font-bold">Payment Status:</p>
+                    <p className="text-lg font-bold">Payment Status:</p>
                     <select
                     value={paymentStatus}
                     onChange={handlePaymentStatusChange}

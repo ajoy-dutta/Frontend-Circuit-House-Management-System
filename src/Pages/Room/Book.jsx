@@ -1,8 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
-import {baseurl} from '../../BaseURL'
 import PropTypes from 'prop-types';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import AxiosInstance from "../../Components/Axios";
 
 
@@ -11,6 +9,7 @@ const Book = () => {
 const location = useLocation();
 const { state } = location;
 const room = state?.room;
+const navigate = useNavigate();
 
 console.log(room.id)
 const [bookData, setBookData] = useState({
@@ -45,8 +44,8 @@ const [bookData, setBookData] = useState({
 
     try {
 
-        const response = await AxiosInstance.post('book/', {...bookData,room: room.id, });
-
+      const response = await AxiosInstance.post('/book/', {...bookData,room: room.id, });
+            
       setBookData({
         name: "",
         designation:"",
@@ -60,7 +59,10 @@ const [bookData, setBookData] = useState({
         motive_of_visiting:"Visiting"
       });
 
+
+
       alert("Room Booked Successfully");
+      navigate("/guest-list");
     } catch (error) {
       console.error("Error Book room:", error);
     }
@@ -250,48 +252,6 @@ return (
                 ></textarea>
             </div>
 
-
-
-            
-
-            {/* Room ID */}
-            {/* <div className="mb-4">
-                <label htmlFor="room_id" className="block font-semibold mb-2 text-sm">
-                Room ID:
-                </label>
-                <select
-                id="room_id"
-                name="room_id"
-                value={bookData.room_id}
-                onChange={handleChange}
-                className="w-full px-4 py-1 border rounded"
-                required
-                >
-                <option value="">Select Room</option>
-                {rooms.map((room) => (
-                    <option key={room.id} value={room.id}>
-                    {room.name}
-                    </option>
-                ))}
-                </select>
-            </div> */}
-
-
-            {/* Comment */}
-            {/* <div className="mb-4">
-                <label htmlFor="comment" className="block font-semibold mb-2 text-sm">
-                Comment:
-                </label>
-                <textarea
-                id="comment"
-                name="comment"
-                value={bookData.comment}
-                onChange={handleChange}
-                className="w-full px-4 py-1 border rounded"
-                ></textarea>
-            </div> */}
-
-            {/* Submit Button */}
             {/* <div  className=" flex justify-center items-center"> */}
                 <button
                     type="submit"
