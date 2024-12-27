@@ -1,8 +1,8 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useUser } from "../../Provider/UserProvider";
-import {baseurl} from '../../BaseURL'
+import AxiosInstance from '../../Components/Axios';
+
 
 const Login = ({ setShowLoginForm }) => {
   const { refreshUser } = useUser();
@@ -23,6 +23,10 @@ const Login = ({ setShowLoginForm }) => {
     }));
   };
 
+  const form = new FormData();
+    form.append("username", formData.username);
+    form.append("password", formData.password);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage(""); 
@@ -30,8 +34,9 @@ const Login = ({ setShowLoginForm }) => {
     console.log("Button clicked");
 
     try {
-      setLoading(true); // Set loading to true to show the button is being processed
-      const response = await axios.post(baseurl+"/token/", formData);
+      setLoading(true); 
+      const response = await AxiosInstance.post('/token/', form);
+        
       if (response.data.access) {
 
         localStorage.setItem("accessToken", response.data.access);
@@ -107,7 +112,7 @@ const Login = ({ setShowLoginForm }) => {
 
       <p className="text-sm font-semibold p-4">
         Do not have an account?{" "}
-        <Link to="/register" onClick={() => setShowLoginForm(false)} className="text-blue-700 hover:underline">
+        <Link to="/registers" onClick={() => setShowLoginForm(false)} className="text-blue-700 hover:underline">
           Sign Up
         </Link>
       </p>

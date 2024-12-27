@@ -2,16 +2,17 @@ import { useLocation  } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import axios from "axios";
-import { baseurl } from "../../BaseURL";
 import { jsPDF } from "jspdf";
+import AxiosInstance from "../../Components/Axios";
 
 const Checkout = () => {
 
     const location = useLocation();
     const { guest } = location.state || {};
     const [paymentStatus, setPaymentStatus] = useState("Pending"); 
-    const [checkoutsummary, setCheckOutSummary] = useState([])
+    const [checkoutsummary, setCheckOutSummary] = useState([]);
+
+    console.log(checkoutsummary)
 
     const handlePaymentStatusChange = (event) => {
         setPaymentStatus(event.target.value);
@@ -24,14 +25,18 @@ const Checkout = () => {
             if (!isConfirmed) return;
         
             try {
-              const response = await axios.post(`${baseurl}/checkout/`, { guest_id: guest.id, paymentStatus});
-              console.log(response)
+              const response = await AxiosInstance.post('/checkout/', { guest_id: guest.id, paymentStatus});
               setCheckOutSummary(response.data)
+
+             
         
-              // Generate the PDF invoice
-              generatePDFInvoice(guest, checkoutsummary);
-        
+              if(response.data && Object.keys(response.data).length > 0){
+                  generatePDFInvoice(guest, response.data);
+              }
+
               alert(`Guest ${guest.name} has been successfully checked out.`);
+        
+              
         
               // Notify parent component to update guest list
             //   if (onCheckoutSuccess) {
@@ -85,10 +90,10 @@ const Checkout = () => {
             let startY = 115;
             const tableData = [
                 ["Description", "Amount (BDT)"],
-                ["Total Rental Price", checkoutsummary.total_rental_cost || 0],
-                ["Total Food Price", checkoutsummary.total_food_cost || 0],
-                ["Total Other Costs", checkoutsummary.total_other_cost || 0],
-                ["Grand Total", checkoutsummary.grand_total || 0]
+                ["Total Rental Price", checkoutsummary.total_rental_cost ],
+                ["Total Food Price", checkoutsummary.total_food_cost ],
+                ["Total Other Costs", checkoutsummary.total_other_cost ],
+                ["Grand Total", checkoutsummary.grand_total ]
             ];
             
             // Iterate through tableData and ensure values are strings

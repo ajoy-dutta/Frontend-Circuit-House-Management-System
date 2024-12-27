@@ -1,7 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { baseurl } from '../../BaseURL';
 import { Link } from "react-router-dom";
+import AxiosInstance from "../../Components/Axios";
 
 const Guests = () => {
   const [guests, setGuestsList] = useState([]);
@@ -12,7 +11,7 @@ const Guests = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${baseurl}/book/`);
+        const response = await AxiosInstance.get('/book/');
         setGuestsList(response.data);
       } catch (error) {
         console.log("Error fetching data", error);

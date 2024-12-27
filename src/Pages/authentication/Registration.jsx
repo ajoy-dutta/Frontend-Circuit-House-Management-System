@@ -1,7 +1,6 @@
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { baseurl } from "../../BaseURL";
+import AxiosInstance from "../../Components/Axios";
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +14,8 @@ const Registration = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
+
+  // Handle text and file changes
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     if (type === "file") {
@@ -40,29 +41,26 @@ const Registration = () => {
 
     setLoading(true);
 
-    // Prepare the form data for submission
-    const formDataToSubmit = new FormData();
-    formDataToSubmit.append("username", formData.username);
-    formDataToSubmit.append("email", formData.email);
-    formDataToSubmit.append("password", formData.password);
-    formDataToSubmit.append("confirm_password", formData.confirm_password);
-    if (formData.profile_picture) {
-      formDataToSubmit.append("profile_picture", formData.profile_picture);
-    }
+    // // Prepare form data for submission
+      const form = new FormData();
+      form.append("username", formData.username);
+      form.append("email", formData.email);
+      form.append("password", formData.password);
+      form.append("confirm_password", formData.confirm_password);
+      if (formData.profile_picture) {
+      form.append("profile_picture", formData.profile_picture);
+      }
+    
 
     try {
-      // Send a POST request to the server
-      const response = await axios.post(`${baseurl}/register/`, formDataToSubmit, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+
+      const response = await AxiosInstance.post('/register/', form );
 
       alert("Registration Successful");
 
       // Reset form data after successful registration
       setFormData({
-        username: "",
+        username: "",   
         email: "",
         password: "",
         confirm_password: "",
@@ -170,6 +168,7 @@ const Registration = () => {
             id="profile_picture"
             type="file"
             name="profile_picture"
+            // value={formData.profile_picture}
             onChange={handleChange}
             className="w-full px-4 py-1 border rounded"
           />
@@ -184,7 +183,8 @@ const Registration = () => {
         </button>
       </form>
     </div>
-  );
+  
+);
 };
 
 export default Registration;
