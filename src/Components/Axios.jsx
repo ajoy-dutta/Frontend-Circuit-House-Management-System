@@ -20,10 +20,10 @@ const AxiosInstance = axios.create({
 AxiosInstance.interceptors.request.use(
 (config) => {
 
-      // const token = localStorage.getItem("accessToken");
-      // if (token) {
-      //   config.headers["Authorization"] = `Bearer ${token}`;
-      // }
+      const token = localStorage.getItem("accessToken");
+      if (token) {
+        config.headers["Authorization"] = `Bearer ${token}`;
+      }
 
     //Check if the data being sent is FormData (file upload or mixed data)
     if (config.data instanceof FormData) {
