@@ -14,12 +14,12 @@ import Login from './Pages/authentication/Login';
 import Registration from './Pages/authentication/Registration';
 import Profile from './Pages/Profile/Profile';
 import NDCApproval from './Pages/authentication/NDCApproval';
-import Navbar from './Components/Navbar/Navbar';
 import Book from './Pages/Room/Book';
 import Guests from './Pages/Guests/Guests';
 import Checkout from './Pages/Guests/Checkout';
 import Food from './Pages/Food/Food';
 import Other from './Pages/Food/Other';
+import Rooms from './Pages/Room/Rooms';
 
 
 
@@ -38,11 +38,16 @@ const router = createBrowserRouter([
         path: "/room",
         element: <Room />,
       },
+      {
+        path: "/room-details",
+        element: <Rooms />,
+      },
 
       {
         path: "/login",
         element: <Login />,
       },
+
 
       {
         path: "/registers", // Add the registration route
@@ -58,7 +63,7 @@ const router = createBrowserRouter([
         path: "/staff-approval", // Add the registration route
         element: <NDCApproval />,
       },
-      
+
       {
         path: "/book",
         element: <Book/>,

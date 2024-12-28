@@ -27,10 +27,9 @@ const Checkout = () => {
         
             try {
               const response = await AxiosInstance.post('/checkout/', { guest_id: guest.id, paymentStatus});
-              // console.log(response.data)
-              // console.log(response.data)
-              // console.log(response.data)
               setCheckOutSummary(response.data)
+
+             
         
               // Trigger PDF generation after the checkout summary is set
               if (response.data && Object.keys(response.data).length > 0) {
