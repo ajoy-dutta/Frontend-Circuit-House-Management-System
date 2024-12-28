@@ -15,6 +15,7 @@ import Registration from './Pages/authentication/Registration';
 import Profile from './Pages/Profile/Profile';
 import NDCApproval from './Pages/authentication/NDCApproval';
 import Book from './Pages/Room/Book';
+import ForgotPassword from './Pages/authentication/ForgotPassword';
 import Guests from './Pages/Guests/Guests';
 import Checkout from './Pages/Guests/Checkout';
 import Food from './Pages/Food/Food';
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/register", // Add the registration route
+        path: "/registers", // Add the registration route
         element: <Registration />,
       },
 
@@ -57,11 +58,17 @@ const router = createBrowserRouter([
         path: "/staff-approval", // Add the registration route
         element: <NDCApproval />,
       },
+
       {
         path: "/book",
         element: <Book/>,
       },
 
+      {
+        path: "/forgot-password",
+        element: <ForgotPassword/>
+      },
+      
       {
         path: "/guest-list",
         element: <Guests/>,

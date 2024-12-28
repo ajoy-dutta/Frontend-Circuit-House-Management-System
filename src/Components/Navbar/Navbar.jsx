@@ -10,6 +10,8 @@ const Navbar = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   console.log("showLoginForm",showLoginForm);
 
+  console.log(user)
+
  
 
   const handleDropdownToggle = () => {
@@ -49,6 +51,7 @@ const Navbar = () => {
         <Link to="/staff-approval">Staffs</Link>
       </li>
       )}
+      
       {user && ( // Restrict profile to logged-in users
         <li className='btn btn-glass hover:underline hover:text-cyan-300' onClick={handleLinkClick}>
           <Link to="/profile">Profile</Link>
