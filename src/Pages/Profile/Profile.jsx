@@ -4,6 +4,8 @@ import { useUser } from "../../Provider/UserProvider"; // Import the custom hook
 const Profile = () => {
   const { user, loading, error } = useUser(); // Access user data from context
 
+  console.log(user)
+
   if (loading) {
     return <p>Loading...</p>;
   }

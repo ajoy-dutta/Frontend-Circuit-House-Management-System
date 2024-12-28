@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { baseurl } from "../../BaseURL";
+import AxiosInstance from "../../Components/Axios";
 
 const HonourBoard = () => {
   const [DChonourlist, SetDCHonourlist] = useState([]);
@@ -32,11 +31,7 @@ const HonourBoard = () => {
       formData.append("designation_type", newItem.designation_type);
 
       // Send the request to the backend
-      const response = await axios.post(`${baseurl}/honour-board/`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data', // Set the correct content type for file upload
-        },
-      });
+      const response = await AxiosInstance.post('/honour-board/', formData);
 
       const addedItem = response.data;
 
@@ -82,7 +77,7 @@ const HonourBoard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${baseurl}/honour-board/`);
+        const response = await AxiosInstance.get('/honour-board/');
         const dcData = response.data.filter(
           (item) => item.designation_type === "DC"
         );

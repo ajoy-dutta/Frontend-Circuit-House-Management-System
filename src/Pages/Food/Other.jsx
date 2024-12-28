@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { baseurl } from "../../BaseURL";
+import { useState, useEffect } from "react";
+import AxiosInstance from "../../Components/Axios";
 
 
 
@@ -19,7 +18,7 @@ const Other = () => {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const response = await axios.get(`${baseurl}/room/`); // Replace with your API endpoint
+        const response = await AxiosInstance.get('/room/'); // Replace with your API endpoint
         setRooms(response.data);
       } catch (error) {
         console.error("Error fetching rooms:", error.response?.data || error.message);
@@ -33,16 +32,17 @@ const Other = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${baseurl}/other-cost/`, formData); // Send formData directly
+      const response = await AxiosInstance.post('/other-cost/', formData); 
+
       console.log("Success:", response.data);
       setFormData({
         date: "",
         item: "",
-        // Order_time: "Breakfast",
         price: "",
         room_name: "",
       });

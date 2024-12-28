@@ -2,16 +2,18 @@ import { useLocation  } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import axios from "axios";
-import { baseurl } from "../../BaseURL";
 import { jsPDF } from "jspdf";
+import AxiosInstance from "../../Components/Axios";
+import { useEffect } from "react";
 
 const Checkout = () => {
 
     const location = useLocation();
     const { guest } = location.state || {};
     const [paymentStatus, setPaymentStatus] = useState("Pending"); 
-    const [checkoutsummary, setCheckOutSummary] = useState([])
+    const [checkoutsummary, setCheckOutSummary] = useState([]);
+
+    console.log(checkoutsummary)
 
     const handlePaymentStatusChange = (event) => {
         setPaymentStatus(event.target.value);
@@ -24,19 +26,19 @@ const Checkout = () => {
             if (!isConfirmed) return;
         
             try {
-              const response = await axios.post(`${baseurl}/checkout/`, { guest_id: guest.id, paymentStatus});
-              console.log(response)
+              const response = await AxiosInstance.post('/checkout/', { guest_id: guest.id, paymentStatus});
+              // console.log(response.data)
+              // console.log(response.data)
+              // console.log(response.data)
               setCheckOutSummary(response.data)
         
-              // Generate the PDF invoice
-              generatePDFInvoice(guest, checkoutsummary);
-        
+              // Trigger PDF generation after the checkout summary is set
+              if (response.data && Object.keys(response.data).length > 0) {
+                generatePDFInvoice(guest, response.data);
+            }
+
               alert(`Guest ${guest.name} has been successfully checked out.`);
         
-              // Notify parent component to update guest list
-            //   if (onCheckoutSuccess) {
-            //     onCheckoutSuccess(guest.id);
-            //   }
             } catch (error) {
               console.error("Error during checkout:", error);
               alert("Failed to check out the guest. Please try again.");
@@ -85,10 +87,10 @@ const Checkout = () => {
             let startY = 115;
             const tableData = [
                 ["Description", "Amount (BDT)"],
-                ["Total Rental Price", checkoutsummary.total_rental_cost],
-                ["Total Food Price", checkoutsummary.total_food_cost],
-                ["Total Other Costs", checkoutsummary.total_other_cost],
-                ["Grand Total", checkoutsummary.grand_total]
+                ["Total Rental Price", checkoutsummary.total_rental_cost ],
+                ["Total Food Price", checkoutsummary.total_food_cost ],
+                ["Total Other Costs", checkoutsummary.total_other_cost ],
+                ["Grand Total", checkoutsummary.grand_total ]
             ];
             
             // Iterate through tableData and ensure values are strings
