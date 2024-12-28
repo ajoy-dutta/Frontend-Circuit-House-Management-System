@@ -15,7 +15,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="profile-container max-w-md mx-auto p-6 mb-8 bg-white shadow-lg rounded-lg">
+    <div className="profile-container max-w-md my-[200px] mx-auto p-6 mb-8 bg-white shadow-lg rounded-lg">
         <div className="text-center mb-6">
             <h1 className="text-2xl font-semibold text-gray-800">Welcome, {user?.username}</h1>
             <p className="text-sm text-gray-600">Your Profile</p>

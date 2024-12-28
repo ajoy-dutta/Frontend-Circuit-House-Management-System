@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from "../../Provider/UserProvider";
 import AxiosInstance from '../../Components/Axios';
 
 
 const Login = ({ setShowLoginForm }) => {
+  const navigate = useNavigate();
   const { refreshUser } = useUser();
 
   const [formData, setFormData] = useState({
@@ -49,10 +50,10 @@ const Login = ({ setShowLoginForm }) => {
         username: "",
         password: "",
       });
-
+        navigate("/admin/room"); // Redirect to home page
         setShowLoginForm(false);
         alert("Login Successful!");
-
+        
       }
     } catch (error) {
       console.error("Error during login:", error);

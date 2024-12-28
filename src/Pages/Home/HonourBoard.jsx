@@ -83,6 +83,7 @@ const HonourBoard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        
         const response = await AxiosInstance.get('/honour-board/');
         const dcData = response.data.filter(
           (item) => item.designation_type === "DC"
@@ -113,12 +114,12 @@ const HonourBoard = () => {
 
   // Convert Arabic numerals to Bangla numerals
   const convertToBanglaNumerals = (number) => {
-    const banglaNumerals = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+    const banglaNumerals = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
     return number
       .toString()
-      .split('')
+      .split("")
       .map((digit) => banglaNumerals[parseInt(digit)])
-      .join('');
+      .join("");
   };
 
   return (

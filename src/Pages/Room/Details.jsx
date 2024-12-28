@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import AxiosInstance from "../../Components/Axios";
-
+import { IoCloseSharp } from "react-icons/io5";
 const Details = ({ onClose, room }) => {
 
    const [grouped, setGrouped] = useState([]);
@@ -85,16 +85,16 @@ const Details = ({ onClose, room }) => {
           </table>
           </div>
   
-          <div className="text-center">
-          <button
+          <div className="flex justify-center items-center my-10">
+          <div
             onClick={onClose}
-            className="mt-4 text-sm bg-red-500 text-white py-2 px-2  rounded hover:bg-red-600"
+            className="btn flex items-center justify-center w-36 gap-4 mt-4 text-base bg-red-500 text-white py-2 px-2  rounded hover:bg-red-600"
           >
+            <IoCloseSharp className="text-lg" />
             Close
-          </button>
           </div>
-          
-          
+          </div>
+
         </div>
       </div>
     );
