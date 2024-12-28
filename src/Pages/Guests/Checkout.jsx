@@ -31,7 +31,7 @@ const Checkout = () => {
               setCheckOutSummary(response.data)
 
               navigate("/checkout-summary", { state: { checkoutsummary: response.data, guest } });
-             
+
               alert(`Guest ${guest.name} has been successfully checked out.`);
         
             } catch (error) {
