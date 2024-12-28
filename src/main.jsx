@@ -21,6 +21,7 @@ import Checkout from './Pages/Guests/Checkout';
 import Food from './Pages/Food/Food';
 import Other from './Pages/Food/Other';
 import Rooms from './Pages/Room/Rooms';
+import CheckoutSummary from './Pages/Guests/CheckOutSummary';
 
 
 
@@ -83,6 +84,11 @@ const router = createBrowserRouter([
       {
         path: "/checkout",
         element: <Checkout/>,
+      },
+
+      {
+        path: "/checkout-summary",
+        element: <CheckoutSummary />,
       },
 
       {
