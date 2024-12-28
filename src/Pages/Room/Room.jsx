@@ -99,9 +99,23 @@ const Room = () => {
 
     return (
         <div className="container mx-auto p-4 px-4 lg:px-12">
-            <div className="flex justify-start mb-0">
-                <button  onClick={() => setShowForm(!showForm)} className="bg-gradient-to-r from-blue-500 to-blue-700  text-white font-semibold font-sans py-2 px-4 rounded">Add New Room</button>
-            </div>
+
+          <div className="flex justify-between items-center mb-4">
+            <button
+              onClick={() => setShowForm(!showForm)}
+              className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold font-sans py-2 px-4 rounded"
+            >
+              Add New Room
+            </button>
+            <Link to="/admin/room-details">
+              <button
+                className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold font-sans py-2 px-4 rounded"
+              >
+                All Room Details
+              </button>
+            </Link>
+          </div>
+
 
             <div className="absolute bg-gradient-to-r from-blue-300 to-blue-400 shadow-lg flex justify-end mb-6 rounded-lg">
             {/* Show the form if showForm is true */}
@@ -191,8 +205,10 @@ const Room = () => {
                     <div className="flex justify-center">
                     <button
                     className={`text-sm text-white font-bold py-2 px-4 rounded mr-4 ${
-                        room.availability_status === 'Occupied'
-                        ? 'bg-gradient-to-r from-blue-500 to-blue-700' // Blue gradient for "Occupied"
+                          room.availability_status === 'Occupied'
+                          ? 'bg-gradient-to-r from-blue-500 to-blue-700' // Blue gradient for "Occupied"
+                          : room.availability_status === 'Booked'
+                        ? 'bg-gradient-to-r from-orange-500 to-orange-700' // Black gradient for "Needs clean"
                         : room.availability_status === 'Needs clean'
                         ? 'bg-gradient-to-r from-red-500 to-red-700' // Black gradient for "Needs clean"
                         : room.availability_status === 'Needs verify'
