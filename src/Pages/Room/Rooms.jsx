@@ -1,9 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { RiEditFill } from "react-icons/ri";
-import { RiDeleteBin5Fill } from "react-icons/ri";
-import { baseurl } from '../../BaseURL'; // Adjust the import for your base URL
+import AxiosInstance from "../../Components/Axios";
+import { RiDeleteBin5Fill, RiEditFill } from "react-icons/ri";
 
 const Rooms = () => {
   const [roomList, setRoomList] = useState([]);
@@ -20,7 +17,7 @@ const Rooms = () => {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const response = await axios.get(`${baseurl}/room/`);
+        const response =  await AxiosInstance.get('/room/');
         setRoomList(response.data);
       } catch (error) {
         console.error("Error fetching rooms:", error);
@@ -44,22 +41,7 @@ const Rooms = () => {
     e.preventDefault();
 
     try {
-      const token = localStorage.getItem("accessToken");
-
-      if (!token) {
-        throw new Error("No token found. Please log in.");
-      }
-
-      const response = await axios.put(
-        `${baseurl}/room/${selectedRoom.id}/`,
-        newRoom,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await AxiosInstance.put(`/room/${selectedRoom.id}/`, newRoom);
 
       setRoomList((prev) =>
         prev.map((room) => (room.id === selectedRoom.id ? response.data : room))
@@ -74,17 +56,7 @@ const Rooms = () => {
   // Handle room deletion
   const handleDelete = async (roomId) => {
     try {
-      const token = localStorage.getItem("accessToken");
-
-      if (!token) {
-        throw new Error("No token found. Please log in.");
-      }
-
-      await axios.delete(`${baseurl}/room/${roomId}/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await AxiosInstance.delete(`/room/${roomId}/`);
 
       setRoomList((prev) => prev.filter((room) => room.id !== roomId));
       alert("Room deleted successfully");
