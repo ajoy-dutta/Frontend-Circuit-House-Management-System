@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import AxiosInstance from "../../Components/Axios";
+import { useUser } from "../../Provider/UserProvider"; 
 
 const HonourBoard = () => {
+  const { user } = useUser();
   const [DChonourlist, SetDCHonourlist] = useState({ before1971: [], after1971: [] });
   const [NDChonourlist, SetNDCHonourlist] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -124,6 +126,7 @@ const HonourBoard = () => {
 
   return (
     <div className="lg:w-1/2 md:w-2/3 sm:w-2/3 mx-auto rounded-lg">
+      { user && (
       <div className="flex justify-end p-4">
         <button
           onClick={() => setShowForm(!showForm)}
@@ -132,6 +135,7 @@ const HonourBoard = () => {
           Add New
         </button>
       </div>
+     )}
 
       {showForm && (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
