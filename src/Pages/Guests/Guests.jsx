@@ -112,7 +112,7 @@ const Guests = () => {
                 
                 <td className="py-3 px-4 text-sm">
                 <Link
-                  to="/checkout"
+                  to="/admin/checkout"
                   state={{ guest }}
                   className="px-4 py-2 bg-green-500 text-white text-xs font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
                 >

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AxiosInstance from "../../Components/Axios";
+import { RiDeleteBin5Fill, RiEditFill } from "react-icons/ri";
 
 const Rooms = () => {
   const [roomList, setRoomList] = useState([]);
@@ -99,18 +100,18 @@ const Rooms = () => {
               <td className="px-4 py-2">{room.room_description}</td>
               <td className="px-4 py-2">{room.room_type}</td>
               <td className="px-4 py-2">{room.availability_status}</td>
-              <td className="px-4 py-2">
+              <td className=" px-4 py-2">
                 <button
                   onClick={() => handleEditClick(room)}
                   className="text-teal-600 hover:text-teal-800 mr-2"
                 >
-                  Edit
+                  <RiEditFill></RiEditFill>
                 </button>
                 <button
                   onClick={() => handleDelete(room.id)}
                   className="text-red-600 hover:text-red-800"
                 >
-                  Delete
+                 <RiDeleteBin5Fill></RiDeleteBin5Fill>
                 </button>
               </td>
             </tr>
