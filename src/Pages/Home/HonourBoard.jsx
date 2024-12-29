@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import AxiosInstance from "../../Components/Axios";
+import { useUser } from "../../Provider/UserProvider"; // Import the custom hook
+
+
+ 
 
 const HonourBoard = () => {
   const [DChonourlist, SetDCHonourlist] = useState([]);
@@ -14,6 +18,8 @@ const HonourBoard = () => {
     remarks: '',
     designation_type: 'DC',
   });
+
+  const { user, loading, error } = useUser();
 
   // Submit the form
   const handleSubmit = async (e) => {
@@ -107,13 +113,15 @@ const HonourBoard = () => {
 
   return (
     <div className="lg:w-1/2 md:w-2/3 sm:w-2/3 mx-auto rounded-lg">
-      <div className="flex justify-end p-4">
-        <button
-          onClick={() => setShowForm(!showForm)}
-          className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600"
-        >
-          Add New
-        </button>
+      <div className="flex justify-center p-4">
+         {user && ( // Adjust the condition based on your logic
+          <button
+            onClick={() => setShowForm(!showForm)}
+            className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600"
+          >
+            Add New
+          </button>
+          )}
       </div>
 
       {showForm && (

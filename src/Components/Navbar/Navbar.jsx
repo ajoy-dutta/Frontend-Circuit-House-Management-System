@@ -27,18 +27,24 @@ const Navbar = () => {
       <li onClick={handleLinkClick}>
         <Link to="/">Home</Link>
       </li>
+
+      {user && (
       <li onClick={handleLinkClick}>
         <Link to="/room">Room</Link>
       </li>
-      {/* <li onClick={handleLinkClick}>
-        <Link to="/matches">Guest</Link>
-      </li> */}
+      )}
+
+     {user && (
       <li onClick={handleLinkClick}>
         <Link to="/food">Food</Link>
       </li>
+      )}
+
+      {user && (
       <li onClick={handleLinkClick}>
         <Link to="/other">Others</Link>
       </li>
+      )}
 
       {user && ( 
       <li onClick={handleLinkClick}>
