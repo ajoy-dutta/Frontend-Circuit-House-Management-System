@@ -19,13 +19,9 @@ const Navbar = () => {
 
   const navOptions = (
     <>
-      <li className="btn btn-glass hover:underline hover:text-cyan-300">
-        <Link to="/">Home</Link>
-      </li>
-    
       {user && (
         <li className="btn btn-glass hover:underline hover:text-cyan-300">
-          <Link to="/admin">Admin</Link>
+          <Link to="/admin/room">Dashboard</Link>
         </li>
       )}
     </>
@@ -84,13 +80,18 @@ const Navbar = () => {
           )}
         </div>
         <div className="navbar-end ">
+        <Link to='/'>
         <div className="block lg:hidden text-2xl font-bold text-with-gradient lg:text-2xl">
           Circuit House
         </div>
+        </Link>
+
         </div>
+        <Link to='/'>
         <div className="hidden lg:block text-2xl font-bold text-with-gradient lg:text-2xl">
           Circuit House
         </div>
+        </Link>
       </div>
 
       {/* Navbar Center */}

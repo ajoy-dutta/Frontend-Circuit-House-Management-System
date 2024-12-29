@@ -238,7 +238,7 @@ const Room = () => {
                         {room.availability_status === 'Vacant' ? (
                         <Link
                           onClick={() => handleBookClick(room)}
-                          to="/book"
+                          to="/admin/book"
                           state={{ room }}
                           className="hover:bg-gray-400 hover:text-white text-black text-sm font-semibold py-1 px-4 rounded border border-black flex items-center justify-center"
                         >

@@ -30,13 +30,8 @@ const Checkout = () => {
               const response = await AxiosInstance.post('/checkout/', { guest_id: guest.id, paymentStatus});
               setCheckOutSummary(response.data)
 
-<<<<<<< HEAD
               navigate("/admin/checkout-summary", { state: { checkoutsummary: response.data, guest } });
              
-=======
-              navigate("/checkout-summary", { state: { checkoutsummary: response.data, guest } });
-
->>>>>>> c67b1b4a6c0c4a4b4d587e45a7a3c82e9fa33487
               alert(`Guest ${guest.name} has been successfully checked out.`);
         
             } catch (error) {
