@@ -79,8 +79,28 @@ const Guests = () => {
                 <td className="py-3 px-4 text-sm font-medium text-gray-800">{guest.name}</td>
                 {/* <td className="py-3 px-4 text-sm font-medium text-gray-800">{guest.designation}</td> */}
                 <td className="py-3 px-4 text-sm font-medium text-gray-800">{guest.room_name}</td>
-                <td className="py-3 px-4 text-sm text-gray-600">{guest.check_in_date}</td>
-                <td className="py-3 px-4 text-sm text-gray-600">{guest.check_out_date}</td>
+                <td className="py-3 px-4 text-sm text-gray-600"> 
+                  {new Date(guest.check_in_date ).toLocaleString("en-GB", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true,
+                })}
+                </td>
+
+                <td className="py-3 px-4 text-sm text-gray-600">
+                  {new Date(guest.check_out_date ).toLocaleString("en-GB", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true,
+                })}
+                </td>
+
                 <td className="py-3 px-4 text-sm">
                   <button
                     onClick={() => toggleUpdate(guest.id)}

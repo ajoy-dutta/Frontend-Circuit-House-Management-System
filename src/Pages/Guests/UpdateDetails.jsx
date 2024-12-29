@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import AxiosInstance from "../../Components/Axios";
 
+
 const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
    
     const [showForm, setShowForm] = useState(false);
@@ -16,7 +17,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
         check_out_date: guest.check_out_date,
         total_person: guest.total_person,
         motive_of_visiting: guest.motive_of_visiting,
-        room:"",
+        room:guest.room,
         });
       const [loading, setLoading] = useState(false);
       const [errorMessage, setErrorMessage] = useState("");
@@ -54,7 +55,8 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
             room_id : ""
           });
     
-          alert("Room Booked Successfully");
+          alert("Room Updated Successfully");
+          toggleUpdate(null)
         } catch (error) {
           console.error("Error Book room:", error);
         }
@@ -107,13 +109,11 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                     className="w-full text-red text-bg-red px-4 py-1 border rounded text-sm"
                     required
                     >
-                    <option value="" disabled>
-                        Select Room
-                    </option>
+
                     {roomlist.map((room) => (
                         <option key={room.id} value={room.id}>
-                        {room.room_name}
-                        </option>
+                                {room.room_name}
+                        </option> 
                     ))}
                     </select>
                     </div>
@@ -218,7 +218,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                         id="check_in_date"
                         type="date"
                         name="check_in_date"
-                        value={bookData.check_in_date}
+                        value={new Date(bookData.check_in_date).toISOString().split("T")[0]}
                         onChange={handleChange}
                         className="w-full px-4 py-1 border rounded text-sm"
                         required
@@ -233,7 +233,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                         id="check_out_date"
                         type="date"
                         name="check_out_date"
-                        value={bookData.check_out_date}
+                        value={new Date(bookData.check_out_date).toISOString().split("T")[0]}
                         onChange={handleChange}
                         className="w-full px-4 py-1 border rounded text-sm"
                         required

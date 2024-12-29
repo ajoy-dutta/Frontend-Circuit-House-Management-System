@@ -100,16 +100,16 @@ const Room = () => {
     return (
         <div className="container mx-auto p-4 px-4 lg:px-12">
 
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex flex-cols-2 items-center gap-2 mb-4">
             <button
               onClick={() => setShowForm(!showForm)}
-              className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold font-sans py-2 px-4 rounded"
+              className="bg-gray-500 text-white font-semibold font-sans py-2 px-4 rounded shadow-md border border-gray-100 hover:bg-gray-600"
             >
               Add New Room
             </button>
             <Link to="/admin/room-details">
               <button
-                className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold font-sans py-2 px-4 rounded"
+                className="bg-gray-500 text-white font-semibold font-sans py-2 px-4 rounded shadow-md border border-gray-100 hover:bg-gray-600"
               >
                 All Room Details
               </button>
@@ -117,7 +117,7 @@ const Room = () => {
           </div>
 
 
-            <div className="absolute bg-gradient-to-r from-blue-300 to-blue-400 shadow-lg flex justify-end mb-6 rounded-lg">
+            <div className="absolute bg-teal-50 shadow-lg flex justify-end mb-6 rounded-lg">
             {/* Show the form if showForm is true */}
             {showForm && (
                 <form onSubmit={handleSubmit}  className="mb-6 p-4">
@@ -184,13 +184,13 @@ const Room = () => {
                 </div>
                 <button
                     type="submit"
-                    className="bg-gradient-to-r from-teal-600 to-blue-700 text-white text-sm font-semibold py-2 w-full rounded"
+                    className="bg-gradient-to-r from-teal-500 to-blue-500 text-white text-sm font-semibold py-2 w-full rounded hover:bg-blue-600"
                 >
                     Add Room
                 </button>
                 <button
               onClick={() => setShowForm(!showForm)}
-              className="mt-2 px-3 py-2 bg-gray-300 rounded-lg text-sm"
+              className="mt-2 px-3 py-2 bg-gray-300 rounded-lg text-sm hover:bg-gray-400"
             >
               Cancel
             </button>

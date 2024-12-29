@@ -138,7 +138,7 @@ const HonourBoard = () => {
      )}
 
       {showForm && (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+  <div className="fixed top-20 inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
     <div className="bg-white p-4 rounded-lg w-11/12 sm:w-4/5 md:w-2/3 lg:w-1/2 xl:w-1/3 max-w-2xl max-h-[80vh] overflow-y-auto shadow-lg">
       <h2 className="text-lg font-bold mb-4 text-center">Add New Record</h2>
       <form onSubmit={handleSubmit}>
