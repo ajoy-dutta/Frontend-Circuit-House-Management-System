@@ -3,16 +3,16 @@ import AxiosInstance from "../../Components/Axios";
 import { IoCloseSharp } from "react-icons/io5";
 const Details = ({ onClose, room }) => {
 
-   const [grouped, setGrouped] = useState([]);
-   console.log(grouped)
+  const [grouped, setGrouped] = useState([]);
+  console.log(grouped)
 
 
-   useEffect (() =>{
-     const fetchData= async()=>{
+  useEffect(() => {
+    const fetchData = async () => {
 
-      try{
+      try {
         const response = await AxiosInstance.get('/pricing/')
-     
+
         const PriceData = response.data.filter(item => item.room_type === room.room_type);
 
         // Group data by user_type
@@ -30,29 +30,29 @@ const Details = ({ onClose, room }) => {
 
         setGrouped(Object.entries(grouped));
 
-      }catch (error) {
+      } catch (error) {
         console.error('Error fetching data:', error);
       }
 
-     }
+    }
 
-     fetchData()
+    fetchData()
 
-   }, [])
+  }, [])
 
 
-   
 
-    return (
-      <div className="flex justify-center items-center">
-        <div className="absolute p-4 top-40 w-2/3 h-2/3 bg-teal-50 bg-opacity-300">
 
-          <h2 className="text-2xl font-bold text-center mb-4">{room.room_name}</h2>
-          <div className="text-center mb-4">
-            <span className="text-lg font-semibold"> বেডঃ {room.room_type}</span>
-           </div>
-          <p className="text-lg font-bold text-center mb-2">Price table</p>
-          <div className="flex justify-center items-center">
+  return (
+    <div className="flex justify-center items-center">
+      <div className="absolute p-4 top-40 w-2/3 h-2/3 bg-teal-50 bg-opacity-300">
+
+        <h2 className="text-2xl font-bold text-center mb-4">{room.room_name}</h2>
+        <div className="text-center mb-4">
+          <span className="text-lg font-semibold"> বেডঃ {room.room_type}</span>
+        </div>
+        <p className="text-lg font-bold text-center mb-2">Price table</p>
+        <div className="flex justify-center items-center">
           <table className="text-left text-sm">
             <thead>
               <tr >
@@ -73,19 +73,19 @@ const Details = ({ onClose, room }) => {
                       {prices.price_per_day}
                     </td>
                   ) : (
-                    <>
-                      <td style={{ border: "1px solid #000", padding: "8px" }}>{prices["1-3"]}</td>
-                      <td style={{ border: "1px solid #000", padding: "8px" }}>{prices["4-7"]}</td>
-                      <td style={{ border: "1px solid #000", padding: "8px" }}>{prices["7+"]}</td>
-                    </>
-                  )}
+                      <>
+                        <td style={{ border: "1px solid #000", padding: "8px" }}>{prices["1-3"]}</td>
+                        <td style={{ border: "1px solid #000", padding: "8px" }}>{prices["4-7"]}</td>
+                        <td style={{ border: "1px solid #000", padding: "8px" }}>{prices["7+"]}</td>
+                      </>
+                    )}
                 </tr>
               ))}
             </tbody>
           </table>
-          </div>
-  
-          <div className="flex justify-center items-center my-10">
+        </div>
+
+        <div className="flex justify-center items-center my-10">
           <div
             onClick={onClose}
             className="btn flex items-center justify-center w-36 gap-4 mt-4 text-base bg-red-500 text-white py-2 px-2  rounded hover:bg-red-600"
@@ -93,12 +93,11 @@ const Details = ({ onClose, room }) => {
             <IoCloseSharp className="text-lg" />
             Close
           </div>
-          </div>
-
         </div>
+
       </div>
-    );
-  };
-  
-  export default Details;
-  
+    </div>
+  );
+};
+
+export default Details;

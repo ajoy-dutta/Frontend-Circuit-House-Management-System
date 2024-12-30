@@ -42,25 +42,25 @@ const Registration = () => {
     setLoading(true);
 
     // // Prepare form data for submission
-      const form = new FormData();
-      form.append("username", formData.username);
-      form.append("email", formData.email);
-      form.append("password", formData.password);
-      form.append("confirm_password", formData.confirm_password);
-      if (formData.profile_picture) {
+    const form = new FormData();
+    form.append("username", formData.username);
+    form.append("email", formData.email);
+    form.append("password", formData.password);
+    form.append("confirm_password", formData.confirm_password);
+    if (formData.profile_picture) {
       form.append("profile_picture", formData.profile_picture);
-      }
-    
+    }
+
 
     try {
 
-      const response = await AxiosInstance.post('/register/', form );
+      const response = await AxiosInstance.post('/register/', form);
 
       alert("Registration Successful");
 
       // Reset form data after successful registration
       setFormData({
-        username: "",   
+        username: "",
         email: "",
         password: "",
         confirm_password: "",
@@ -183,8 +183,8 @@ const Registration = () => {
         </button>
       </form>
     </div>
-  
-);
+
+  );
 };
 
 export default Registration;

@@ -25,19 +25,19 @@ const Login = ({ setShowLoginForm }) => {
   };
 
   const form = new FormData();
-    form.append("username", formData.username);
-    form.append("password", formData.password);
+  form.append("username", formData.username);
+  form.append("password", formData.password);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage(""); 
+    setErrorMessage("");
 
     console.log("Button clicked");
 
     try {
-      setLoading(true); 
+      setLoading(true);
       const response = await AxiosInstance.post('/token/', form);
-        
+
       if (response.data.access) {
 
         localStorage.setItem("accessToken", response.data.access);
@@ -47,19 +47,19 @@ const Login = ({ setShowLoginForm }) => {
 
         // Reset form data and close login form
         setFormData({
-        username: "",
-        password: "",
-      });
+          username: "",
+          password: "",
+        });
         navigate("/admin/room"); // Redirect to home page
         setShowLoginForm(false);
         alert("Login Successful!");
-        
+
       }
     } catch (error) {
       console.error("Error during login:", error);
       setErrorMessage("Invalid username or password."); // Set an error message
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -118,11 +118,11 @@ const Login = ({ setShowLoginForm }) => {
         </Link>
       </p>
       <p className="text-blue-700 hover:text-blue-800 font-semibold text-sm p-4">
-      Forget Password ?{" "}
-      <Link to="/forgot-password" className="text-blue-700 hover:underline">
-        Reset Here
+        Forget Password ?{" "}
+        <Link to="/forgot-password" className="text-blue-700 hover:underline">
+          Reset Here
       </Link>
-    </p>
+      </p>
     </div>
   );
 };

@@ -17,7 +17,7 @@ const Rooms = () => {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const response =  await AxiosInstance.get('/room/');
+        const response = await AxiosInstance.get('/room/');
         setRoomList(response.data);
       } catch (error) {
         console.error("Error fetching rooms:", error);
@@ -111,7 +111,7 @@ const Rooms = () => {
                   onClick={() => handleDelete(room.id)}
                   className="text-red-600 hover:text-red-800"
                 >
-                 <RiDeleteBin5Fill></RiDeleteBin5Fill>
+                  <RiDeleteBin5Fill></RiDeleteBin5Fill>
                 </button>
               </td>
             </tr>
@@ -119,83 +119,83 @@ const Rooms = () => {
         </tbody>
       </table>
 
-    {/* Modal for Editing Room */}
-{showForm && (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-    <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg max-h-full overflow-auto">
-      <h3 className="text-xl font-bold mb-4">Edit Room</h3>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block font-bold mb-2">Room Name</label>
-          <input
-            type="text"
-            name="room_name"
-            value={newRoom.room_name}
-            onChange={handleInputChange}
-            className="w-full px-4 py-1 border rounded"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block font-bold mb-2">Room Description</label>
-          <input
-            type="text"
-            name="room_description"
-            value={newRoom.room_description}
-            onChange={handleInputChange}
-            className="w-full px-4 py-1 border rounded"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block font-bold mb-2">Room Type</label>
-          <select
-            name="room_type"
-            value={newRoom.room_type}
-            onChange={handleInputChange}
-            className="w-full px-4 py-1 border text-sm rounded"
-            required
-          >
-            <option value="One Bed">One Bed</option>
-            <option value="Two Beds">Two Beds</option>
-          </select>
-        </div>
-        <div className="mb-4">
-          <label className="block font-bold mb-2">Availability Status</label>
-          <select
-            name="availability_status"
-            value={newRoom.availability_status}
-            onChange={handleInputChange}
-            className="w-full px-4 py-1 border rounded text-sm"
-            required
-          >
-            <option value="Vacant">Vacant</option>
-            <option value="Booked">Booked</option>
-            <option value="Occupied">Occupied</option>
-            <option value="Needs clean">Needs clean</option>
-            <option value="Needs verify">Needs verify</option>
-            <option value="Locked">Locked</option>
-          </select>
-        </div>
-        <div className="flex justify-between">
-          <button
-            type="button"
-            onClick={() => setShowForm(false)}
-            className="bg-gray-500 text-white py-2 px-4 rounded"
-          >
-            Cancel
+      {/* Modal for Editing Room */}
+      {showForm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg max-h-full overflow-auto">
+            <h3 className="text-xl font-bold mb-4">Edit Room</h3>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label className="block font-bold mb-2">Room Name</label>
+                <input
+                  type="text"
+                  name="room_name"
+                  value={newRoom.room_name}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-1 border rounded"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold mb-2">Room Description</label>
+                <input
+                  type="text"
+                  name="room_description"
+                  value={newRoom.room_description}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-1 border rounded"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold mb-2">Room Type</label>
+                <select
+                  name="room_type"
+                  value={newRoom.room_type}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-1 border text-sm rounded"
+                  required
+                >
+                  <option value="One Bed">One Bed</option>
+                  <option value="Two Beds">Two Beds</option>
+                </select>
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold mb-2">Availability Status</label>
+                <select
+                  name="availability_status"
+                  value={newRoom.availability_status}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-1 border rounded text-sm"
+                  required
+                >
+                  <option value="Vacant">Vacant</option>
+                  <option value="Booked">Booked</option>
+                  <option value="Occupied">Occupied</option>
+                  <option value="Needs clean">Needs clean</option>
+                  <option value="Needs verify">Needs verify</option>
+                  <option value="Locked">Locked</option>
+                </select>
+              </div>
+              <div className="flex justify-between">
+                <button
+                  type="button"
+                  onClick={() => setShowForm(false)}
+                  className="bg-gray-500 text-white py-2 px-4 rounded"
+                >
+                  Cancel
           </button>
-          <button
-            type="submit"
-            className="bg-teal-600 text-white py-2 px-4 rounded"
-          >
-            Save Changes
+                <button
+                  type="submit"
+                  className="bg-teal-600 text-white py-2 px-4 rounded"
+                >
+                  Save Changes
           </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </form>
-    </div>
-  </div>
-)}
+      )}
 
     </div>
   );
