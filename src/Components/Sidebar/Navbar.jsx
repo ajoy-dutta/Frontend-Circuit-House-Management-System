@@ -29,7 +29,7 @@ const Navbar = ({sidebarToggle, setSidebarToggle}) => {
 
     return (
       <div id="nav"
-      ref={navRef} className="bg-blue-700 px-4 py-3 flex justify-between">
+      ref={navRef} className="bg-teal-500 px-4 py-3 flex justify-between">
         <div className="flex items-center text-xl">
           
           <FaBars

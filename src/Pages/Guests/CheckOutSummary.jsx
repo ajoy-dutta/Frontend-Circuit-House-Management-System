@@ -49,13 +49,13 @@ const CheckoutSummary = () => {
                             <p><strong className="text-gray-700 font-semibold">Guest Name</strong> <span className="ml-7 ">: {guest.name}</span></p>
                             <p><strong className="text-gray-700 font-semibold">Room Name:</strong><span className="ml-7">: {guest.room_name}</span></p>
                             <p><strong className="text-gray-700 font-semibold">Check-In Date</strong><span className="ml-5 mr-1">: </span>
-                                {new Date(guest.check_in_date + "T00:00:00").toLocaleString("en-GB", {
-                                    day: "2-digit",
-                                    month: "2-digit",
-                                    year: "numeric",
-                                    hour: "numeric",
-                                    minute: "numeric",
-                                    hour12: true,
+                                {new Date(guest.check_in_date ).toLocaleString("en-GB", {
+                                day: "2-digit",
+                                month: "2-digit",
+                                year: "numeric",
+                                hour: "numeric",
+                                minute: "numeric",
+                                hour12: true,
                                 })}
                             </p>
 

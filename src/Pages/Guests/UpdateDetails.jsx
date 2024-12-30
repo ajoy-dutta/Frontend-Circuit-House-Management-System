@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import AxiosInstance from "../../Components/Axios";
 
-const UpdateDetails = ({ guest, roomlist, toggleUpdate }) => {
 
+const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
+   
     const [showForm, setShowForm] = useState(false);
     const [bookData, setBookData] = useState({
         name: guest.name,
@@ -16,10 +17,10 @@ const UpdateDetails = ({ guest, roomlist, toggleUpdate }) => {
         check_out_date: guest.check_out_date,
         total_person: guest.total_person,
         motive_of_visiting: guest.motive_of_visiting,
-        room: "",
-    });
-    const [loading, setLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
+        room:guest.room,
+        });
+      const [loading, setLoading] = useState(false);
+      const [errorMessage, setErrorMessage] = useState("");
 
     console.log(bookData)
 
@@ -37,24 +38,25 @@ const UpdateDetails = ({ guest, roomlist, toggleUpdate }) => {
         e.preventDefault();
 
         try {
-
-            const response = await AxiosInstance.put(`/book/${guest.id}/`, bookData);
-
-            setBookData({
-                name: "",
-                designation: "",
-                user_type: "",
-                nid: "",
-                phone: "",
-                email: "",
-                check_in_date: "",
-                check_out_date: "",
-                total_person: "",
-                motive_of_visiting: "Visiting",
-                room_id: ""
-            });
-
-            alert("Room Booked Successfully");
+    
+         const response = await AxiosInstance.put(`/book/${guest.id}/`, bookData);
+        
+          setBookData({
+            name: "",
+            designation:"",
+            user_type:"",
+            nid: "",
+            phone: "",
+            email:"",
+            check_in_date:"",
+            check_out_date:"",
+            total_person:"",
+            motive_of_visiting:"Visiting",
+            room_id : ""
+          });
+    
+          alert("Room Updated Successfully");
+          toggleUpdate(null)
         } catch (error) {
             console.error("Error Book room:", error);
         }
@@ -96,26 +98,24 @@ const UpdateDetails = ({ guest, roomlist, toggleUpdate }) => {
 
                     {/* Room Selection */}
                     <div className="mb-4">
-                        <label htmlFor="room" className="block font-semibold mb-2 text-sm">
-                            Room <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                            id="room"
-                            name="room"
-                            value={bookData.room}
-                            onChange={handleChange}
-                            className="w-full text-red text-bg-red px-4 py-1 border rounded text-sm"
-                            required
-                        >
-                            <option value="" disabled>
-                                Select Room
-                    </option>
-                            {roomlist.map((room) => (
-                                <option key={room.id} value={room.id}>
-                                    {room.room_name}
-                                </option>
-                            ))}
-                        </select>
+                    <label htmlFor="room" className="block font-semibold mb-2 text-sm">
+                    Room <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                    id="room"
+                    name="room"
+                    value={bookData.room}
+                    onChange={handleChange}
+                    className="w-full text-red text-bg-red px-4 py-1 border rounded text-sm"
+                    required
+                    >
+
+                    {roomlist.map((room) => (
+                        <option key={room.id} value={room.id}>
+                                {room.room_name}
+                        </option> 
+                    ))}
+                    </select>
                     </div>
                 </div>
 
@@ -211,33 +211,33 @@ const UpdateDetails = ({ guest, roomlist, toggleUpdate }) => {
                 {/* Check-in and Check-out Dates */}
                 <div className="mb-4 grid grid-cols-2 gap-2">
                     <div>
-                        <label htmlFor="check_in_date" className="block font-semibold mb-2 text-sm">
-                            Check-in Date <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                            id="check_in_date"
-                            type="date"
-                            name="check_in_date"
-                            value={bookData.check_in_date}
-                            onChange={handleChange}
-                            className="w-full px-4 py-1 border rounded text-sm"
-                            required
-                        />
+                    <label htmlFor="check_in_date" className="block font-semibold mb-2 text-sm">
+                        Check-in Date <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                        id="check_in_date"
+                        type="date"
+                        name="check_in_date"
+                        value={new Date(bookData.check_in_date).toISOString().split("T")[0]}
+                        onChange={handleChange}
+                        className="w-full px-4 py-1 border rounded text-sm"
+                        required
+                    />
                     </div>
 
                     <div>
-                        <label htmlFor="check_out_date" className="block font-semibold mb-2 text-sm">
-                            Check-out Date <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                            id="check_out_date"
-                            type="date"
-                            name="check_out_date"
-                            value={bookData.check_out_date}
-                            onChange={handleChange}
-                            className="w-full px-4 py-1 border rounded text-sm"
-                            required
-                        />
+                    <label htmlFor="check_out_date" className="block font-semibold mb-2 text-sm">
+                        Check-out Date <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                        id="check_out_date"
+                        type="date"
+                        name="check_out_date"
+                        value={new Date(bookData.check_out_date).toISOString().split("T")[0]}
+                        onChange={handleChange}
+                        className="w-full px-4 py-1 border rounded text-sm"
+                        required
+                    />
                     </div>
                 </div>
 

@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from "../../Provider/UserProvider";
 import AxiosInstance from '../../Components/Axios';
+import { MdOutlineClose } from "react-icons/md";
 
 
 const Login = ({ setShowLoginForm }) => {
@@ -65,6 +67,9 @@ const Login = ({ setShowLoginForm }) => {
 
   return (
     <div className="">
+      <div className='flex items-end justify-end'>
+      <div className=' text-red-500 text-xl font-bold text-center  hover:text-black px-4 py-2' onClick={() => setShowLoginForm(false)}><MdOutlineClose /></div>
+      </div>
       <form onSubmit={handleSubmit} className="p-4">
         <h2 className="text-center font-semibold text-lg mb-4">Sign In</h2>
 
@@ -122,7 +127,9 @@ const Login = ({ setShowLoginForm }) => {
         <Link to="/forgot-password" className="text-blue-700 hover:underline">
           Reset Here
       </Link>
-      </p>
+    </p>
+
+    
     </div>
   );
 };

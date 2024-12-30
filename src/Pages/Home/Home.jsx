@@ -6,9 +6,8 @@ import Banner from './Banner';
 const Home = () => {
   return (
     <div className="">
-      <Banner />
-      <HonourBoard />
-
+         <Banner />
+         <HonourBoard />
     </div>
   );
 };
