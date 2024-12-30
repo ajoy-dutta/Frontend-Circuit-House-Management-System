@@ -64,7 +64,7 @@ const Checkout = () => {
               <tr>
                 <td className="text-gray-700 font-semibold">Check-In Date:</td>
                 <td>
-                {new Date(guest.check_in_date + "T00:00:00").toLocaleString("en-GB", {
+                {new Date(guest.check_in_date ).toLocaleString("en-GB", {
                   day: "2-digit",
                   month: "2-digit",
                   year: "numeric",
@@ -76,7 +76,15 @@ const Checkout = () => {
               </tr>
               <tr>
                 <td className="text-gray-700 font-semibold">Check-Out Date:</td>
-                <td>{guest.check_out_date}</td>
+                <td>{new Date(guest.check_out_date ).toLocaleString("en-GB", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true,
+                })}
+                </td>
               </tr>
               <tr>
                 <td className="text-gray-700 font-semibold">Guest Type:</td>

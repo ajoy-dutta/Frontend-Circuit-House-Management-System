@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import AxiosInstance from "../../Components/Axios";
+import { useUser } from "../../Provider/UserProvider"; 
 
 const HonourBoard = () => {
+  const { user } = useUser();
   const [DChonourlist, SetDCHonourlist] = useState({ before1971: [], after1971: [] });
   const [NDChonourlist, SetNDCHonourlist] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -14,6 +16,7 @@ const HonourBoard = () => {
     remarks: '',
     designation_type: 'DC',
   });
+
 
   // Submit the form
   const handleSubmit = async (e) => {
@@ -124,6 +127,7 @@ const HonourBoard = () => {
 
   return (
     <div className="lg:w-1/2 md:w-2/3 sm:w-2/3 mx-auto rounded-lg">
+      { user && (
       <div className="flex justify-end p-4">
         <button
           onClick={() => setShowForm(!showForm)}
@@ -132,9 +136,10 @@ const HonourBoard = () => {
           Add New
         </button>
       </div>
+     )}
 
       {showForm && (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+  <div className="fixed top-20 inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
     <div className="bg-white p-4 rounded-lg w-11/12 sm:w-4/5 md:w-2/3 lg:w-1/2 xl:w-1/3 max-w-2xl max-h-[80vh] overflow-y-auto shadow-lg">
       <h2 className="text-lg font-bold mb-4 text-center">Add New Record</h2>
       <form onSubmit={handleSubmit}>
@@ -236,23 +241,42 @@ const HonourBoard = () => {
 
 
 {/* DC Honour Board */}
-<div className="p-8 bg-teal-50 mb-6">
-  <h2 className="text-center text-xl font-bold mb-4 py-2 mt-8">জেলা প্রশাসক/জেলা ম্যজিস্ট্রেট/কালেক্টর</h2>
-  <div className="space-y-0  mb-10">
+<div className="p-6 bg-teal-50">
+  <h2 className="text-center text-lg font-bold mb-4 py-2">
+    জেলা প্রশাসক/জেলা ম্যজিস্ট্রেট/কালেক্টর
+  </h2>
+  <div className="mb-10 rounded-lg">
     {DChonourlist.after1971.map((item, index) => (
-      <div key={item.id} className="flex items-center shadow-lg rounded-lg border p-4">
-        <div className="w-1/8 text-center text-sm font-semibold text-gray-800 p-3">
+      <div
+        key={item.id}
+        className="flex items-center shadow-md rounded-lg border border-gray-300 p-4"
+      >
+        {/* Serial Number */}
+        <div className=" text-center text-sm font-semibold text-gray-800 p-2 ">
           {convertToBanglaNumerals(DChonourlist.after1971.length - index)}
         </div>
-        {/* Item Details */}
-        <div className="w-2/4 ml-4">
-          <p className="text-sm font-bold text-gray-800 px-2">{item.name}</p>
-          <p className="text-sm text-gray-600 px-2">{item.batch}</p>
-          <p className="text-sm text-gray-600 px-2">{item.joining_date}</p>
-          <p className="text-sm text-gray-600 px-2">{item.ending_date || "চলমান"}</p>
-          <p className="text-sm text-gray-600 px-2">{item.remarks}</p>
+
+        {/* Details */}
+        <div className="w-8/12 ml-4  p-2">
+          <p className="text-sm font-bold text-gray-800 px-2 border border-gray-300">
+            নাম: {item.name}
+          </p>
+          <p className="text-sm text-gray-600 px-2 border border-gray-300">
+            ব্যাচ: {item.batch}
+          </p>
+          <p className="text-sm text-gray-600 px-2 border border-gray-300">
+            যোগদানের তারিখ: {item.joining_date}
+          </p>
+          <p className="text-sm text-gray-600 px-2 border border-gray-300">
+            প্রস্থানের তারিখ: {item.ending_date || "চলমান"}
+          </p>
+          <p className="text-sm text-gray-600 px-2 border border-gray-300">
+            মন্তব্য: {item.remarks}
+          </p>
         </div>
-        <div className="w-1/4 pr-4 ml-10">
+
+        {/* Image */}
+        <div className="w-3/12 flex justify-center">
           <img
             src={item.photo}
             alt={item.name}
@@ -264,61 +288,100 @@ const HonourBoard = () => {
   </div>
 
 
-  <h2 className="text-center text-xl font-bold mb-4 py-2">British India and East Pakistan District Magistrate</h2>
-  <div className="space-y-0">
-    {DChonourlist.before1971.map((item, index) => (
-      <div key={item.id} className="flex items-center shadow-lg rounded-lg border p-4">
-        <div className="w-1/8 text-center text-sm font-semibold text-gray-800 p-3">
-          {convertToBanglaNumerals(DChonourlist.before1971.length - index)}
-        </div>
-        {/* Item Details */}
-        <div className="w-2/4 ml-4">
-          <p className="text-sm font-bold text-gray-800 px-2">{item.name}</p>
-          <p className="text-sm text-gray-600 px-2">{item.batch}</p>
-          <p className="text-sm text-gray-600 px-2">{item.joining_date}</p>
-          <p className="text-sm text-gray-600 px-2">{item.ending_date || "চলমান"}</p>
-          <p className="text-sm text-gray-600 px-2">{item.remarks}</p>
-        </div>
-        <div className="w-1/4 pr-4 ml-10">
-          <img
-            src={item.photo}
-            alt={item.name}
-            className="w-28 h-28 object-cover rounded-full border-2 border-gray-300"
-          />
-        </div>
-      </div>
-    ))}
-  </div>
 
+  <h1 className="text-center text-xl font-bold mb-2 py-2 mt-4">
+  British India and East Pakistan District Magistrate
+</h1>
+<div className="mb-0 rounded-lg">
+  {DChonourlist.before1971.map((item, index) => (
+    <div
+      key={item.id}
+      className="flex items-center shadow-md rounded-lg border border-gray-300 p-4"
+    >
+      {/* Serial Number */}
+      <div className="text-center text-sm font-semibold text-gray-800 p-2">
+        {convertToBanglaNumerals(DChonourlist.before1971.length - index)}
+      </div>
+
+      {/* Details */}
+      <div className="w-8/12 ml-4 p-2">
+        <p className="text-sm font-bold text-gray-800 px-2 border border-gray-300">
+          নাম: {item.name}
+        </p>
+        <p className="text-sm text-gray-600 px-2 border border-gray-300">
+          ব্যাচ: {item.batch}
+        </p>
+        <p className="text-sm text-gray-600 px-2 border border-gray-300">
+          যোগদানের তারিখ: {item.joining_date}
+        </p>
+        <p className="text-sm text-gray-600 px-2 border border-gray-300">
+          প্রস্থানের তারিখ: {item.ending_date || "চলমান"}
+        </p>
+        <p className="text-sm text-gray-600 px-2 border border-gray-300">
+          মন্তব্য: {item.remarks}
+        </p>
+      </div>
+
+      {/* Image */}
+      <div className="w-3/12 flex justify-center">
+        <img
+          src={item.photo}
+          alt={item.name}
+          className="w-28 h-28 object-cover rounded-full border-2 border-gray-300"
+        />
+      </div>
+    </div>
+  ))}
+</div>
 </div>
 
 
-      <div className="p-8 bg-teal-50 mb-6 mt-10 ">
-        <h2 className="text-center text-xl font-bold mb-4 py-2">নেজারত ডেপুটি কালেক্টর</h2>
-        <div className="space-y-0">
-          {NDChonourlist.map((item, index) => (
-            <div key={item.id} className="flex items-center shadow-lg rounded-lg border p-4">
-              <div className="w-1/8 text-center text-sm font-semibold text-gray-800 p-3">
-              {convertToBanglaNumerals(NDChonourlist.length - index)}
-                </div>
-              <div className="w-2/4 ml-4 ">
-                <p className="text-sm font-bold text-gray-800 px-2">{item.name}</p>
-                <p className="text-sm text-gray-600 px-2">{item.batch}</p>
-                <p className="text-sm text-gray-600 px-2">{item.joining_date}</p>
-                <p className="text-sm text-gray-600 px-2">{item.ending_date || "চলমান"}</p>
-                <p className="text-sm text-gray-600 px-2">{item.remarks}</p>
-              </div>
-              <div className="w-1/4 pr-4 ml-10">
-                <img
-                  src={item.photo}
-                  alt={item.name}
-                  className="w-28 h-28 object-cover rounded-full border-2 border-gray-300"
-                />
-              </div>
-            </div>
-          ))}
+<div className="p-8 bg-teal-50 mb-4 mt-4">
+  <h2 className="text-center text-lg font-bold mb-2 px-2">
+    নেজারত ডেপুটি কালেক্টর
+  </h2>
+  <div className="mb-2 rounded-lg">
+    {NDChonourlist.map((item, index) => (
+      <div
+        key={item.id}
+        className="flex items-center shadow-md rounded-lg border border-gray-300 p-4"
+      >
+        {/* Serial Number */}
+        <div className="text-center text-sm font-semibold text-gray-800 p-2">
+          {convertToBanglaNumerals(NDChonourlist.length - index)}
+        </div>
+
+        {/* Details */}
+        <div className="w-8/12 ml-4 p-2">
+          <p className="text-sm font-bold text-gray-800 px-2 border border-gray-300">
+            নাম: {item.name}
+          </p>
+          <p className="text-sm text-gray-600 px-2 border border-gray-300">
+            ব্যাচ: {item.batch}
+          </p>
+          <p className="text-sm text-gray-600 px-2 border border-gray-300">
+            যোগদানের তারিখ: {item.joining_date}
+          </p>
+          <p className="text-sm text-gray-600 px-2 border border-gray-300">
+            প্রস্থানের তারিখ: {item.ending_date || "চলমান"}
+          </p>
+          <p className="text-sm text-gray-600 px-2 border border-gray-300">
+            মন্তব্য: {item.remarks}
+          </p>
+        </div>
+
+        {/* Image */}
+        <div className="w-3/12 flex justify-center">
+          <img
+            src={item.photo}
+            alt={item.name}
+            className="w-28 h-28 object-cover rounded-full border-2 border-gray-300"
+          />
         </div>
       </div>
+    ))}
+  </div>
+</div>
 
     </div>
   );

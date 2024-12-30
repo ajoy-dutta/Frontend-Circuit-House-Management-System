@@ -19,30 +19,41 @@ const Navbar = () => {
 
   const navOptions = (
     <>
-      <li className="btn btn-glass hover:underline hover:text-cyan-300">
-        <Link to="/">Home</Link>
-      </li>
-    
       {user && (
-        <li className="btn btn-glass hover:underline hover:text-cyan-300">
-          <Link to="/admin">Admin</Link>
+        <li className="btn btn-glass hover:text-cyan-400">
+          <Link to="/admin/room">Dashboard</Link>
         </li>
       )}
     </>
   );
   const navDropOptions = (
     <>
-      <li className="btn btn-glass hover:underline hover:text-cyan-300">
+      <li className="btn btn-glass  hover:text-cyan-400 ">
         <Link to="/">Home</Link>
       </li>
-    
+
       {user ? (
-        <li className="btn btn-glass hover:underline hover:text-cyan-300">
+        <li className="btn btn-glass  hover:text-cyan-400 ">
           <div onClick={signOut}>Sign Out</div>
         </li>
-      ):(
-        <li className="btn btn-glass hover:underline hover:text-cyan-300">
-          <Link to="/login">Sign In</Link>
+      ) : (
+        <li className="relative">
+          <div
+            onClick={() => setShowLoginForm(!showLoginForm)}
+            className="btn btn-glass  hover:text-cyan-400 "
+          >
+            Sign In
+          </div>
+          {showLoginForm && (
+            <div
+              className="fixed top-28 left-4 z-[9999] w-full max-w-xs p-4 shadow-lg bg-teal-50 rounded-lg"
+              style={{
+                transform: "translate(0, 0)",
+              }}
+            >
+              <Login setShowLoginForm={setShowLoginForm} />
+            </div>
+          )}
         </li>
       )}
     </>
@@ -79,18 +90,23 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-slate-200 absolute rounded-box z-[1000] mt-3 w-40 p-2 shadow"
             >
-              <ul className="font-serif space-y-2">{navDropOptions}</ul>
+              <ul className="font-serif space-y-4 p-2 text-lg font-semibold hover:">{navDropOptions}</ul>
             </ul>
           )}
         </div>
         <div className="navbar-end ">
-        <div className="block lg:hidden text-2xl font-bold text-with-gradient lg:text-2xl">
-          Circuit House
+          <Link to='/'>
+            <div className="block lg:hidden text-2xl font-bold text-with-gradient lg:text-2xl">
+              Circuit House
+            </div>
+          </Link>
+
         </div>
-        </div>
-        <div className="hidden lg:block text-2xl font-bold text-with-gradient lg:text-2xl">
-          Circuit House
-        </div>
+        <Link to='/'>
+          <div className="hidden lg:block text-2xl font-bold text-with-gradient lg:text-2xl">
+            Circuit House
+          </div>
+        </Link>
       </div>
 
       {/* Navbar Center */}
@@ -101,13 +117,13 @@ const Navbar = () => {
       {/* Navbar End */}
       <div className="navbar-end">
         <ul className="hidden font-semibold text-lg lg:flex menu-horizontal px-1 gap-10">
-        
+
           {navOptions}
-       
+
           {user ? (
             <div
               onClick={signOut}
-              className="btn btn-glass hover:underline hover:text-cyan-300"
+              className="btn btn-glass  hover:text-cyan-400"
             >
               Sign Out
             </div>
@@ -115,7 +131,7 @@ const Navbar = () => {
             <li className="relative">
               <div
                 onClick={() => setShowLoginForm(!showLoginForm)}
-                className="btn btn-glass hover:underline hover:text-cyan-300 px-4"
+                className="btn btn-glass  hover:text-cyan-400 px-4"
               >
                 Sign In
               </div>
