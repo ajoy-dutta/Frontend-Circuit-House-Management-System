@@ -1,74 +1,68 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import './navbar.css';
-import Login from '../../Pages/authentication/Login';
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import "./navbar.css";
+import Login from "../../Pages/authentication/Login";
 import { useUser } from "../../Provider/UserProvider";
 
 const Navbar = () => {
-  const { user, loading, error, signOut } = useUser();
+  const { user, signOut } = useUser();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
-  console.log("showLoginForm",showLoginForm);
-
-  console.log(user)
-
- 
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen((prev) => !prev);
   };
 
-  const handleLinkClick = () => {
-    setIsDropdownOpen(false); // Close the dropdown
-  };
+  // const handleLinkClick = () => {
+  //   setIsDropdownOpen(false); // Close the dropdown
+  // };
 
   const navOptions = (
     <>
-      <li onClick={handleLinkClick}>
+      {user && (
+        <li className="btn btn-glass hover:text-cyan-400">
+          <Link to="/admin/room">Dashboard</Link>
+        </li>
+      )}
+    </>
+  );
+  const navDropOptions = (
+    <>
+      <li className="btn btn-glass  hover:text-cyan-400 ">
         <Link to="/">Home</Link>
       </li>
 
-      {user && (
-      <li onClick={handleLinkClick}>
-        <Link to="/room">Room</Link>
-      </li>
-      )}
-
-     {user && (
-      <li onClick={handleLinkClick}>
-        <Link to="/food">Food</Link>
-      </li>
-      )}
-
-      {user && (
-      <li onClick={handleLinkClick}>
-        <Link to="/other">Others</Link>
-      </li>
-      )}
-
-      {user && ( 
-      <li onClick={handleLinkClick}>
-        <Link to="/guest-list">Our Guests</Link>
-      </li>
-      )}
-
-      {user && user.role === "NDC" && ( 
-      <li onClick={handleLinkClick}>
-        <Link to="/staff-approval">Staffs</Link>
-      </li>
-      )}
-      
-      {user && ( // Restrict profile to logged-in users
-        <li onClick={handleLinkClick}>
-          <Link to="/profile">Profile</Link>
+      {user ? (
+        <li className="btn btn-glass  hover:text-cyan-400 ">
+          <div onClick={signOut}>Sign Out</div>
+        </li>
+      ) : (
+        <li className="relative">
+          <div
+            onClick={() => setShowLoginForm(!showLoginForm)}
+            className="btn btn-glass  hover:text-cyan-400 "
+          >
+            Sign In
+          </div>
+          {showLoginForm && (
+            <div
+              className="fixed top-28 left-4 z-[9999] w-full max-w-xs p-4 shadow-lg bg-teal-50 rounded-lg"
+              style={{
+                transform: "translate(0, 0)",
+              }}
+            >
+              <Login setShowLoginForm={setShowLoginForm} />
+            </div>
+          )}
         </li>
       )}
     </>
   );
 
   return (
-    <div className="navbar bg-base-100 px-10 rounded-2xl flex gap-20">
-      <div className="navbar-start">
+    <div className="navbar sticky top-0 z-[1000] bg-slate-50 flex h-[70px] px-8 items-center justify-between">
+      {/* Navbar Start */}
+      <div className="navbar-start flex items-center gap-2">
         <div className="dropdown">
           <div
             tabIndex={0}
@@ -76,60 +70,86 @@ const Navbar = () => {
             onClick={handleDropdownToggle}
             className="btn btn-ghost lg:hidden"
           >
-            {/* <svg
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-            > */}
-              {/* <path
+            >
+              <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h8m-8 6h16"
-              /> */}
-            {/* </svg> */}
+              />
+            </svg>
           </div>
           {isDropdownOpen && (
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box absolute w-52"
+              className="menu menu-sm dropdown-content bg-slate-200 absolute rounded-box z-[1000] mt-3 w-40 p-2 shadow"
             >
-              {navOptions}
+              <ul className="font-serif space-y-4 p-2 text-lg font-semibold hover:">{navDropOptions}</ul>
             </ul>
           )}
         </div>
-        <a className="text-2xl font-bold text-with-gradient lg:text-2xl">
-          Circuit House
-        </a>
+        <div className="navbar-end ">
+          <Link to='/'>
+            <div className="block lg:hidden text-2xl font-bold text-with-gradient lg:text-2xl">
+              Circuit House
+            </div>
+          </Link>
+
+        </div>
+        <Link to='/'>
+          <div className="hidden lg:block text-2xl font-bold text-with-gradient lg:text-2xl">
+            Circuit House
+          </div>
+        </Link>
       </div>
-      {/* <div className="navbar-center hidden lg:flex">
-        <ul className="menu font-semibold text-lg menu-horizontal px-1">{navOptions}</ul>
+
+      {/* Navbar Center */}
+      {/* <div className="navbar-center hidden lg:flex items-center">
+        
       </div> */}
+
+      {/* Navbar End */}
       <div className="navbar-end">
         <ul className="hidden font-semibold text-lg lg:flex menu-horizontal px-1 gap-10">
+
           {navOptions}
-          {user  ? (
-            <>
-              <button onClick={signOut} className="btn ml-24">
+
+          {user ? (
+            <div
+              onClick={signOut}
+              className="btn btn-glass  hover:text-cyan-400"
+            >
               Sign Out
-              </button>
-            </>
+            </div>
           ) : (
-            <>
-              <li className='relative'>
-                  <button  onClick={() => setShowLoginForm(!showLoginForm)} className="btn px-4 ml-24">Sign In</button>
-                  {showLoginForm && (
-                    <div className="absolute top-full p-4 shadow-lg z-10 w-80 bg-teal-50 mb-4 rounded-lg">
-                      <Login setShowLoginForm={setShowLoginForm} />
-                    </div>
-                  )}
-              </li>
-            </>
+            <li className="relative">
+              <div
+                onClick={() => setShowLoginForm(!showLoginForm)}
+                className="btn btn-glass  hover:text-cyan-400 px-4"
+              >
+                Sign In
+              </div>
+              {showLoginForm && (
+                <div
+                  className="fixed top-16 right-4 z-[9999] w-full max-w-xs p-4 shadow-lg bg-teal-50 rounded-lg"
+                  style={{
+                    transform: "translate(0, 0)",
+                  }}
+                >
+                  <Login setShowLoginForm={setShowLoginForm} />
+                </div>
+              )}
+            </li>
           )}
         </ul>
       </div>
+
     </div>
   );
 };

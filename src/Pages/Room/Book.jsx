@@ -62,7 +62,7 @@ const [bookData, setBookData] = useState({
 
 
       alert("Room Booked Successfully");
-      navigate("/guest-list");
+      navigate("/admin/guest-list");
     } catch (error) {
       console.error("Error Book room:", error);
     }

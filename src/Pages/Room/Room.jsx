@@ -99,11 +99,25 @@ const Room = () => {
 
     return (
         <div className="container mx-auto p-4 px-4 lg:px-12">
-            <div className="flex justify-start mb-0">
-                <button  onClick={() => setShowForm(!showForm)} className="bg-gradient-to-r from-blue-500 to-blue-700  text-white font-semibold font-sans py-2 px-4 rounded">Add New Room</button>
-            </div>
 
-            <div className="absolute bg-gradient-to-r from-blue-300 to-blue-400 shadow-lg flex justify-end mb-6 rounded-lg">
+          <div className="flex flex-cols-2 items-center gap-2 mb-4">
+            <button
+              onClick={() => setShowForm(!showForm)}
+              className="bg-gray-500 text-white font-semibold font-sans py-2 px-4 rounded shadow-md border border-gray-100 hover:bg-gray-600"
+            >
+              Add New Room
+            </button>
+            <Link to="/admin/room-details">
+              <button
+                className="bg-gray-500 text-white font-semibold font-sans py-2 px-4 rounded shadow-md border border-gray-100 hover:bg-gray-600"
+              >
+                All Room Details
+              </button>
+            </Link>
+          </div>
+
+
+            <div className="absolute bg-teal-50 shadow-lg flex justify-end mb-6 rounded-lg">
             {/* Show the form if showForm is true */}
             {showForm && (
                 <form onSubmit={handleSubmit}  className="mb-6 p-4">
@@ -161,6 +175,7 @@ const Room = () => {
                     required
                     >
                     <option value="Vacant">Vacant</option>
+                    <option value="Booked">Booked</option>
                     <option value="Occupied">Occupied</option>
                     <option value="Needs clean">Needs clean</option>
                     <option value="Needs verify">Needs verify</option>
@@ -169,10 +184,16 @@ const Room = () => {
                 </div>
                 <button
                     type="submit"
-                    className="bg-gradient-to-r from-teal-600 to-blue-700 text-white text-sm font-semibold py-2 w-full rounded"
+                    className="bg-gradient-to-r from-teal-500 to-blue-500 text-white text-sm font-semibold py-2 w-full rounded hover:bg-blue-600"
                 >
                     Add Room
                 </button>
+                <button
+              onClick={() => setShowForm(!showForm)}
+              className="mt-2 px-3 py-2 bg-gray-300 rounded-lg text-sm hover:bg-gray-400"
+            >
+              Cancel
+            </button>
                 </form>
                 )}
            </div>
@@ -190,8 +211,10 @@ const Room = () => {
                     <div className="flex justify-center">
                     <button
                     className={`text-sm text-white font-bold py-2 px-4 rounded mr-4 ${
-                        room.availability_status === 'Occupied'
-                        ? 'bg-gradient-to-r from-blue-500 to-blue-700' // Blue gradient for "Occupied"
+                          room.availability_status === 'Occupied'
+                          ? 'bg-gradient-to-r from-blue-500 to-blue-700' // Blue gradient for "Occupied"
+                          : room.availability_status === 'Booked'
+                        ? 'bg-gradient-to-r from-orange-500 to-orange-700' // Black gradient for "Needs clean"
                         : room.availability_status === 'Needs clean'
                         ? 'bg-gradient-to-r from-red-500 to-red-700' // Black gradient for "Needs clean"
                         : room.availability_status === 'Needs verify'
@@ -208,14 +231,14 @@ const Room = () => {
                     <div className="flex justify-center pt-2 space-x-2">
                         <button 
                          onClick={() => handleDetailsClick(room)}
-                        className="hover:bg-gray-400 hover:text-white text-black text-black text-sm font-semibold py-2 px-4 rounded border border-black">
+                        className="hover:bg-gray-400 hover:text-white  text-black text-sm font-semibold py-2 px-4 rounded border border-black">
                           Details 
                         </button>
                         
                         {room.availability_status === 'Vacant' ? (
                         <Link
                           onClick={() => handleBookClick(room)}
-                          to="/book"
+                          to="/admin/book"
                           state={{ room }}
                           className="hover:bg-gray-400 hover:text-white text-black text-sm font-semibold py-1 px-4 rounded border border-black flex items-center justify-center"
                         >

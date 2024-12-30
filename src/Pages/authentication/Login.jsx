@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from "../../Provider/UserProvider";
 import AxiosInstance from '../../Components/Axios';
+import { MdOutlineClose } from "react-icons/md";
 
 
 const Login = ({ setShowLoginForm }) => {
+  const navigate = useNavigate();
   const { refreshUser } = useUser();
 
   const [formData, setFormData] = useState({
@@ -49,10 +51,10 @@ const Login = ({ setShowLoginForm }) => {
         username: "",
         password: "",
       });
-
+        navigate("/admin/room"); // Redirect to home page
         setShowLoginForm(false);
         alert("Login Successful!");
-
+        
       }
     } catch (error) {
       console.error("Error during login:", error);
@@ -64,6 +66,9 @@ const Login = ({ setShowLoginForm }) => {
 
   return (
     <div className="">
+      <div className='flex items-end justify-end'>
+      <div className=' text-red-500 text-xl font-bold text-center  hover:text-black px-4 py-2' onClick={() => setShowLoginForm(false)}><MdOutlineClose /></div>
+      </div>
       <form onSubmit={handleSubmit} className="p-4">
         <h2 className="text-center font-semibold text-lg mb-4">Sign In</h2>
 
@@ -116,6 +121,14 @@ const Login = ({ setShowLoginForm }) => {
           Sign Up
         </Link>
       </p>
+      <p className="text-blue-700 hover:text-blue-800 font-semibold text-sm p-4">
+      Forget Password ?{" "}
+      <Link to="/forgot-password" className="text-blue-700 hover:underline">
+        Reset Here
+      </Link>
+    </p>
+
+    
     </div>
   );
 };

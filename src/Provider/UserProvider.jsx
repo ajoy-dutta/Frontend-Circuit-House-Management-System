@@ -1,6 +1,6 @@
 import { createContext, useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { baseurl } from "../BaseURL";
-
 
 // Create a Context for user data
 const UserContext = createContext();
@@ -15,6 +15,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+ // useNavigate is now available!
 
   const token = localStorage.getItem("accessToken");
 
@@ -60,7 +61,7 @@ export const UserProvider = ({ children }) => {
   // Handle Sign Out
   const signOut = () => {
     localStorage.removeItem("accessToken"); // Remove token from localStorage
-    setUser(null); // Reset user state
+    setUser(null);// Redirect to the home page
   };
 
   // Fetch user data on initial load if token exists
@@ -69,7 +70,7 @@ export const UserProvider = ({ children }) => {
   }, [token]);
 
   return (
-    <UserContext.Provider value={{ user, loading, error, refreshUser,signOut }}>
+    <UserContext.Provider value={{ user, loading, error, refreshUser, signOut }}>
       {children}
     </UserContext.Provider>
   );

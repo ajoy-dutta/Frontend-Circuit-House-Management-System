@@ -4,7 +4,7 @@ const isDevelopment = import.meta.env.MODE === 'development';
 const baseurl = isDevelopment ? import.meta.env.VITE_API_BASE_URL_LOCAL : import.meta.env.VITE_API_BASE_URL_PROD;
 console.log(baseurl)
 
-// Extract CSRF token from cookies
+//Extract CSRF token from cookies
 const csrfToken = document.cookie.match(/csrftoken=([\w-]+)/)?.[1];
 
 const AxiosInstance = axios.create({
