@@ -59,13 +59,7 @@ const Room = () => {
     }));
   };
 
-  // const form = FormData();
-
-  // room_name: '',
-  // room_description: '',
-  // room_type: 'One Bed',
-  // availability_status: 'Vacant',
-
+ 
 
   // Submit the new room form
   const handleSubmit = async (e) => {

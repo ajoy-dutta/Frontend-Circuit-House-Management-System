@@ -47,11 +47,22 @@ const Details = ({ onClose, room }) => {
       <div className="flex justify-center items-center">
         <div className="absolute p-4 top-40 w-2/3 h-2/3 bg-teal-50 bg-opacity-300">
 
-          <h2 className="text-2xl font-bold text-center mb-4">{room.room_name}</h2>
-          <div className="text-center mb-4">
-            <span className="text-lg font-semibold"> বেডঃ {room.room_type}</span>
-           </div>
-          <p className="text-lg font-bold text-center mb-2">Price table</p>
+          <h2 className="text-2xl font-bold text-center my-4">{room.room_name}</h2>
+          <div className="space-y-4 mb-2 text-center">
+
+          <div className="flex flex-col items-center justify-center space-y-4 mb-6">
+            <div className="flex justify-center items-center w-full">
+              <p className="text-lg font-semibold text-right">Bed</p>
+              <p className="text-lg font-semibold text-left ml-2">: {room.room_type}</p>
+            </div>
+            <div className="flex justify-center items-center w-full">
+              <p className="text-lg font-semibold text-right">Description</p>
+              <p className="text-lg font-semibold text-left ml-2">: {room.room_description}</p>
+            </div>
+          </div>
+
+         </div>
+          <p className="text-lg font-bold text-center mb-2">মূল্য তালিকা</p>
           <div className="flex justify-center items-center">
           <table className="text-left text-sm">
             <thead>
@@ -60,7 +71,7 @@ const Details = ({ onClose, room }) => {
                 <th style={{ border: '1px solid #000', padding: '8px', textAlign: 'left' }}>Guest Type</th>
                 <th style={{ border: '1px solid #000', padding: '8px', textAlign: 'left' }}>1-3 days</th>
                 <th style={{ border: '1px solid #000', padding: '8px', textAlign: 'left' }}>4-7 days</th>
-                <th style={{ border: '1px solid #000', padding: '8px', textAlign: 'left' }}>7 days or up</th>
+                <th style={{ border: '1px solid #000', padding: '8px', textAlign: 'left' }}>8 days or up</th>
               </tr>
             </thead>
             <tbody>
@@ -88,7 +99,7 @@ const Details = ({ onClose, room }) => {
           <div className="flex justify-center items-center my-10">
           <div
             onClick={onClose}
-            className="btn flex items-center justify-center w-36 gap-4 mt-4 text-base bg-red-500 text-white py-2 px-2  rounded hover:bg-red-600"
+            className="btn flex items-center justify-center w-36 gap-4 mt-4 text-base bg-red-500 text-white py-2 px-2  rounded hover:bg-red-600 cursor-pointer"
           >
             <IoCloseSharp className="text-lg" />
             Close

@@ -105,7 +105,8 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+]
+);
 
 // Render your app with RouterProvider
 ReactDOM.createRoot(document.getElementById("root")).render(

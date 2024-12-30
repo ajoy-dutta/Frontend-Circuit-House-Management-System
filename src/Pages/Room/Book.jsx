@@ -240,7 +240,7 @@ return (
             {/* motive of Visiting */}
             <div className="mb-4">
                 <label htmlFor="motive" className="block font-semibold mb-2 text-sm">
-                motive of Visiting 
+                Motive of Visiting 
                 </label>
                 <textarea
                 id="motive_of_visiting"
