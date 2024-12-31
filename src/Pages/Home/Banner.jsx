@@ -61,7 +61,7 @@ const Banner = () => {
           currentSlider === 0
             ? sliders[sliders.length - 1].img
             : sliders[currentSlider - 1].img
-        })`,
+          })`,
       }}
     >
       {/* Arrow */}
@@ -116,7 +116,7 @@ const Banner = () => {
           style={{
             transform: `translateX(-${
               currentSlider * (isSmallScreen ? 98 : 200)
-            }px)`,
+              }px)`,
           }}
         >
           {/* Sliders */}
@@ -128,7 +128,7 @@ const Banner = () => {
                 currentSlider - 1 === inx
                   ? "scale-0"
                   : "scale-100 delay-500"
-              } drop-shadow-lg shadow-lg shadow-black bg-black/50 duration-300 rounded-lg z-50`}
+                } drop-shadow-lg shadow-lg shadow-black bg-black/50 duration-300 rounded-lg z-50`}
               alt={slide.title}
             />
           ))}

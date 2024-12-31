@@ -43,8 +43,7 @@ const HonourBoard = () => {
       if (addedItem.designation_type === "DC") {
         SetDCHonourlist((prev) => {
           const isAfter1971 =
-            !addedItem.ending_date ||
-            new Date(addedItem.ending_date) > new Date("1971-12-31");
+            !addedItem.ending_date || new Date(addedItem.ending_date) > new Date("1971-12-31");
           return {
             before1971: isAfter1971
               ? prev.before1971
