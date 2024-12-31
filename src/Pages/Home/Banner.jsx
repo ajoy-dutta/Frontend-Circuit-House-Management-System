@@ -8,13 +8,15 @@ const Banner = () => {
     {
       img: homeImage,
       title: "Escape 1",
-      des: "A Symphony of Tranquility. Experience the perfect blend of relaxation and excitement.",
+      des: "",
     },
+
     {
       img: homeImage2,
       title: "Escape 2",
       des: "A Symphony of Tranquility. Experience the perfect blend of relaxation and excitement.",
     },
+    
     {
       img: "https://images.unsplash.com/photo-1719749990914-a3ba54e6343f?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Escape 3",
