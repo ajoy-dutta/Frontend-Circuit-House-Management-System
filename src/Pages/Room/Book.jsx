@@ -14,6 +14,7 @@ const Book = () => {
     console.log(room.id)
     const [bookData, setBookData] = useState({
         name: "",
+        office:"",
         designation: "",
         user_type: "",
         nid: "",
@@ -21,7 +22,7 @@ const Book = () => {
         email: "",
         check_in_date: "",
         check_out_date: "",
-        total_person: "",
+        total_person: null,
         motive_of_visiting: "Visiting",
     });
     const [loading, setLoading] = useState(false);
@@ -48,6 +49,7 @@ const Book = () => {
 
             setBookData({
                 name: "",
+                office:"",
                 designation: "",
                 user_type: "",
                 nid: "",
@@ -55,7 +57,7 @@ const Book = () => {
                 email: "",
                 check_in_date: "",
                 check_out_date: "",
-                total_person: "",
+                total_person: null,
                 motive_of_visiting: "Visiting"
             });
 
@@ -97,6 +99,22 @@ const Book = () => {
                         required
                     />
                 </div>
+                <div className="mb-4">
+                    <label htmlFor="office" className="block font-semibold mb-2 text-sm">
+                        Office Name 
+                    </label>
+                    <input
+                        id="office"
+                        type="text"
+                        name="office"
+                        value={bookData.office}
+                        onChange={handleChange}
+                        placeholder="Enter guest's office"
+                        className="w-full px-4 py-1 border rounded text-sm"
+                        
+                    />
+                </div>
+
 
                 {/* Designation and Guest Type */}
                 <div className="mb-4 grid grid-cols-2 gap-2">
@@ -223,7 +241,7 @@ const Book = () => {
                 {/* Total Persons */}
                 <div className="mb-4">
                     <label htmlFor="total_person" className="block font-semibold mb-2 text-sm">
-                        Total Persons <span className="text-red-500">*</span>
+                        Total Persons
                     </label>
                     <input
                         id="total_person"
@@ -233,7 +251,7 @@ const Book = () => {
                         onChange={handleChange}
                         placeholder="Enter total number of persons"
                         className="w-full px-4 py-1 border rounded text-sm"
-                        required
+                        
                     />
                 </div>
 

@@ -8,6 +8,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
     const [showForm, setShowForm] = useState(false);
     const [bookData, setBookData] = useState({
         name: guest.name,
+        office: guest.office,
         designation: guest.designation,
         user_type: guest.user_type,
         nid: guest.nid,
@@ -43,6 +44,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
         
           setBookData({
             name: "",
+            office: "",
             designation:"",
             user_type:"",
             nid: "",
@@ -50,7 +52,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
             email:"",
             check_in_date:"",
             check_out_date:"",
-            total_person:"",
+            total_person:null,
             motive_of_visiting:"Visiting",
             room_id : ""
           });
@@ -78,7 +80,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                 )}
 
                 {/* Guest Name */}
-                <div className="grid grid-cols-2 gap-2">
+                <div className="mb-4 flex flex-row gap-2">
 
                     <div className="mb-4">
                         <label htmlFor="name" className="block font-semibold mb-2 text-sm">
@@ -95,7 +97,21 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                             required
                         />
                     </div>
-
+                    <div className="mb-4">
+                        <label htmlFor="office" className="block font-semibold mb-2 text-sm">
+                            Guest's Office
+                        </label>
+                        <input
+                            id="office"
+                            type="text"
+                            name="office"
+                            value={bookData.office}
+                            onChange={handleChange}
+                            placeholder="Enter guest name"
+                            className="w-full px-4 py-1 border rounded text-sm"
+                            
+                        />
+                    </div>
                     {/* Room Selection */}
                     <div className="mb-4">
                     <label htmlFor="room" className="block font-semibold mb-2 text-sm">
@@ -240,11 +256,12 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                     />
                     </div>
                 </div>
+                <div className="mb-4 grid grid-cols-2 gap-2">
 
                 {/* Total Persons */}
                 <div className="mb-4">
                     <label htmlFor="total_person" className="block font-semibold mb-2 text-sm">
-                        Total Persons <span className="text-red-500">*</span>
+                        Total Persons 
                     </label>
                     <input
                         id="total_person"
@@ -254,7 +271,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                         onChange={handleChange}
                         placeholder="Enter total number of persons"
                         className="w-full px-4 py-1 border rounded text-sm"
-                        required
+                       
                     />
                 </div>
 
@@ -272,7 +289,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                         className="w-full px-4 py-1 border rounded text-sm"
                     ></textarea>
                 </div>
-
+                    </div>
                 {/* <div  className=" flex justify-center items-center"> */}
                 <button
                     type="submit"

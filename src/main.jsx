@@ -27,6 +27,7 @@ import HonourBoard from "./Pages/Home/HonourBoard";
 import Contact from "./Pages/Home/Contact";
 import VisitJashore from "./Pages/VisitJashore/VisitJashore";
 import ConferenceRoom from "./Pages/ConferenceRoom/ConferenceRoom";
+import Details from "./Pages/Room/Details";
 
 
 const router = createBrowserRouter([
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
       {
         path: "room-details",
         element: <Rooms />,
+      },
+      {
+        path: "room_details",
+        element: <Details />,
       },
 
       {

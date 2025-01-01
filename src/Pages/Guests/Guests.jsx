@@ -166,6 +166,10 @@ const Guests = () => {
                       <td>{guest.name}</td>
                     </tr>
                     <tr>
+                      <td className="text-gray-700 font-semibold">Guest's Office:</td>
+                      <td>{guest.office}</td>
+                    </tr>
+                    <tr>
                       <td className="text-gray-700 font-semibold">Designation:</td>
                       <td>{guest.designation}</td>
                     </tr>

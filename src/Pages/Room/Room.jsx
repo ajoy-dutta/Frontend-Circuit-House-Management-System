@@ -13,9 +13,9 @@ const Room = () => {
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [newRoom, setNewRoom] = useState({
     room_name: "",
-    availability_status:"Vacant",
+    availability_status: "Vacant",
     room_type: "One Bed",
-    room_category:"Regular",
+    room_category: "Regular",
     building: "",
     floor: "",
   });
@@ -70,7 +70,7 @@ const Room = () => {
       setNewRoom({
         room_name: "",
         room_type: "One Bed",
-        room_category:"Regular",
+        room_category: "Regular",
         building: "",
         floor: "",
       });
@@ -119,7 +119,7 @@ const Room = () => {
                 required
               />
             </div>
-            
+
 
             <div className="mb-4">
               <label className="block font-bold mb-2 text-sm">
@@ -131,12 +131,12 @@ const Room = () => {
                 onChange={handleInputChange}
                 className="w-full px-4 py-1 border rounded"
                 required
-                >
+              >
 
                 <option value="Regular">Regular</option>
                 <option value="VIP">VIP</option>
                 <option value="VVIP">VVIP</option>
-                </select>
+              </select>
             </div>
 
 
@@ -167,7 +167,7 @@ const Room = () => {
               >
                 <option value="New Building">New Building</option>
                 <option value="Old Building">Old Building</option>
-                
+
               </select>
             </div>
 
@@ -185,7 +185,7 @@ const Room = () => {
                 <option value="First Floor">First Floor</option>
                 <option value="Second Floor">Second Floor</option>
                 <option value="Third Floor">Third Floor</option>
-                
+
               </select>
             </div>
 
@@ -220,50 +220,56 @@ const Room = () => {
                 বেডঃ {room.room_type}
               </span>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center ml-5"> 
               <button
-                className={`text-sm text-white font-bold py-2 px-4 rounded mr-4 ${
-                  room.availability_status === "Occupied"
+                className={`text-sm text-white font-bold py-2 px-4 rounded mr-4 ${room.availability_status === "Occupied"
                     ? "bg-gradient-to-r from-blue-500 to-blue-700"
                     : room.availability_status === "Booked"
-                    ? "bg-gradient-to-r from-orange-500 to-orange-700"
-                    : room.availability_status === "Needs clean"
-                    ? "bg-gradient-to-r from-red-500 to-red-700"
-                    : room.availability_status === "Needs verify"
-                    ? "bg-gradient-to-r from-yellow-500 to-yellow-600"
-                    : room.availability_status === "Locked"
-                    ? "bg-gradient-to-r from-gray-400 to-gray-500"
-                    : "bg-gradient-to-r from-green-500 to-green-700"
-                }`}
+                      ? "bg-gradient-to-r from-orange-500 to-orange-700"
+                      : room.availability_status === "Needs clean"
+                        ? "bg-gradient-to-r from-red-500 to-red-700"
+                        : room.availability_status === "Needs verify"
+                          ? "bg-gradient-to-r from-yellow-500 to-yellow-600"
+                          : room.availability_status === "Locked"
+                            ? "bg-gradient-to-r from-gray-400 to-gray-500"
+                            : "bg-gradient-to-r from-green-500 to-green-700"
+                  }`}
                 disabled={room.availability_status === "Locked"}
               >
                 {room.availability_status}
               </button>
             </div>
             <div className="flex justify-center pt-2 space-x-2">
-              <button
-                onClick={() => handleDetailsClick(room)}
+              <Link
+                // onClick={() => handleDetailsClick(room)}
+                to="/admin/room_details"
+                state={{ room }}
                 className="hover:bg-gray-400 hover:text-white text-black text-sm font-semibold py-2 px-4 rounded border border-black"
               >
                 Details
-              </button>
-              {room.availability_status === "Vacant" ? (
-                <Link
-                  onClick={() => handleBookClick(room)}
-                  to="/admin/book"
-                  state={{ room }}
-                  className="hover:bg-gray-400 hover:text-white text-black text-sm font-semibold py-1 px-4 rounded border border-black flex items-center justify-center"
-                >
-                  Book <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-                </Link>
-              ) : (
-                <button
-                  disabled
-                  className="bg-gray-300 text-gray-500 text-sm font-semibold py-1 px-4 rounded border border-black flex items-center justify-center cursor-not-allowed"
-                >
-                  Book <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-                </button>
+              </Link>
+              {user && (
+                <>
+                  {room.availability_status === "Vacant" ? (
+                    <Link
+                      onClick={() => handleBookClick(room)}
+                      to="/admin/book"
+                      state={{ room }}
+                      className="hover:bg-gray-400 hover:text-white text-black text-sm font-semibold py-1 px-4 rounded border border-black flex items-center justify-center"
+                    >
+                      Book <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+                    </Link>
+                  ) : (
+                    <button
+                      disabled
+                      className="bg-gray-300 text-gray-500 text-sm font-semibold py-1 px-4 rounded border border-black flex items-center justify-center cursor-not-allowed"
+                    >
+                      Book <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+                    </button>
+                  )}
+                </>
               )}
+
             </div>
           </div>
         ))}
