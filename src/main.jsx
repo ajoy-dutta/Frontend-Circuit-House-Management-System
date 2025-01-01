@@ -24,6 +24,7 @@ import Other from "./Pages/Food/Other";
 import Rooms from "./Pages/Room/Rooms";
 import CheckoutSummary from "./Pages/Guests/CheckOutSummary";
 import Appbar from "./Components/Sidebar/Appbar";
+import Details from "./Pages/Room/Details";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "room-details",
         element: <Rooms />,
+      },
+      {
+        path: "room_details",
+        element: <Details />,
       },
 
       {

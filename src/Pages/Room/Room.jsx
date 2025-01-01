@@ -206,12 +206,15 @@ const Room = () => {
               </button>
             </div>
             <div className="flex justify-center pt-2 space-x-2">
-              <button
-                onClick={() => handleDetailsClick(room)}
+              <Link
+                // onClick={() => handleDetailsClick(room)}
+                to="/admin/room_details"
+                state={{ room }}
                 className="hover:bg-gray-400 hover:text-white text-black text-sm font-semibold py-2 px-4 rounded border border-black"
               >
                 Details
-              </button>
+              </Link>
+
               {room.availability_status === "Vacant" ? (
                 <Link
                   onClick={() => handleBookClick(room)}

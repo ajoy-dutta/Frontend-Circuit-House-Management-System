@@ -1,21 +1,25 @@
 import { useEffect, useState } from "react";
 import AxiosInstance from "../../Components/Axios";
-import { IoCloseSharp } from "react-icons/io5";
-const Details = ({ onClose, room }) => {
+import { useLocation } from "react-router-dom";
+
+const Details = () => {
+  const location = useLocation();
+  const room = location.state?.room;
+
+  if (!room) {
+    return <p className="text-center text-lg text-red-600">Room data not found.</p>;
+  }
+  console.log("room id", room.id)
 
   const [grouped, setGrouped] = useState([]);
-  console.log(grouped)
-
+  const [guestHistory, setGuestHistory] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-
+    const fetchPricingData = async () => {
       try {
-        const response = await AxiosInstance.get('/pricing/')
-
+        const response = await AxiosInstance.get("/pricing/");
         const PriceData = response.data.filter(item => item.room_type === room.room_type);
 
-        // Group data by user_type
         const grouped = PriceData.reduce((acc, item) => {
           if (!acc[item.user_type]) {
             acc[item.user_type] = { "1-3": "-", "4-7": "-", "7+": "-", price_per_day: null };
@@ -29,54 +33,59 @@ const Details = ({ onClose, room }) => {
         }, {});
 
         setGrouped(Object.entries(grouped));
-
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching pricing data:", error);
       }
+    };
 
-    }
+    const fetchGuestHistory = async () => {
+      try {
+        const response = await AxiosInstance.get(`/book/`);
+        const filteredGuests = response.data.filter((guest) => guest.room === room.id);
+        setGuestHistory(filteredGuests)
+        setGuestDetails(filteredGuests);
+      } catch (error) {
+        console.error("Error fetching guest history:", error);
+      }
+    };
 
-    fetchData()
-
-  }, [])
-
-
-
+    fetchPricingData();
+    fetchGuestHistory();
+  }, [room.id, room.room_type]);
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="absolute p-4 top-40 w-2/3 h-2/3 bg-teal-50 bg-opacity-300">
-
-        <h2 className="text-2xl font-bold text-center mb-4">{room.room_name}</h2>
-        <div className="text-center mb-4">
-          <span className="text-lg font-semibold"> বেডঃ {room.room_type}</span>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 flex-col">
+      <div className="relative p-6 w-full max-w-4xl bg-white shadow-lg rounded-lg mb-6">
+        <h2 className="text-3xl font-bold text-center text-teal-600 mb-4">{room.room_name}</h2>
+        <div className="text-center mb-6">
+          <span className="text-lg font-medium text-gray-700">বেডঃ {room.room_type}</span>
         </div>
-        <p className="text-lg font-bold text-center mb-2">Price table</p>
-        <div className="flex justify-center items-center">
-          <table className="text-left text-sm">
-            <thead>
-              <tr >
-                <th style={{ border: '1px solid #000', padding: '8px', textAlign: 'left' }}>SL No.</th>
-                <th style={{ border: '1px solid #000', padding: '8px', textAlign: 'left' }}>Guest Type</th>
-                <th style={{ border: '1px solid #000', padding: '8px', textAlign: 'left' }}>1-3 days</th>
-                <th style={{ border: '1px solid #000', padding: '8px', textAlign: 'left' }}>4-7 days</th>
-                <th style={{ border: '1px solid #000', padding: '8px', textAlign: 'left' }}>7 days or up</th>
+        <p className="text-lg font-bold text-center text-gray-800 mb-4">Price Table</p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
+            <thead className="bg-teal-100 text-gray-800">
+              <tr>
+                <th className="px-4 py-2 border">SL No.</th>
+                <th className="px-4 py-2 border">Guest Type</th>
+                <th className="px-4 py-2 border">1-3 days</th>
+                <th className="px-4 py-2 border">4-7 days</th>
+                <th className="px-4 py-2 border">8 days or up</th>
               </tr>
             </thead>
             <tbody>
               {grouped.map(([guestType, prices], index) => (
-                <tr key={index}>
-                  <td style={{ border: "1px solid #000", padding: "8px" }}>{index + 1}</td>
-                  <td style={{ border: "1px solid #000", padding: "8px" }}>{guestType}</td>
+                <tr key={index} className="hover:bg-teal-50">
+                  <td className="px-4 py-2 border text-center">{index + 1}</td>
+                  <td className="px-4 py-2 border">{guestType}</td>
                   {prices.price_per_day ? (
-                    <td style={{ border: "1px solid #000", padding: "8px" }} colSpan={3} className="text-left">
+                    <td className="px-4 py-2 border text-center font-semibold text-teal-600" colSpan={3}>
                       {prices.price_per_day}
                     </td>
                   ) : (
                       <>
-                        <td style={{ border: "1px solid #000", padding: "8px" }}>{prices["1-3"]}</td>
-                        <td style={{ border: "1px solid #000", padding: "8px" }}>{prices["4-7"]}</td>
-                        <td style={{ border: "1px solid #000", padding: "8px" }}>{prices["7+"]}</td>
+                        <td className="px-4 py-2 border text-center">{prices["1-3"]}</td>
+                        <td className="px-4 py-2 border text-center">{prices["4-7"]}</td>
+                        <td className="px-4 py-2 border text-center">{prices["7+"]}</td>
                       </>
                     )}
                 </tr>
@@ -84,17 +93,46 @@ const Details = ({ onClose, room }) => {
             </tbody>
           </table>
         </div>
+      </div>
+      {/* Guest History Section */}
+      <div className="relative p-6 w-full max-w-4xl bg-white shadow-lg rounded-lg">
+        <h2 className="text-2xl font-bold text-center text-teal-600 mb-4">Guest History</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
+            <thead className="bg-teal-100 text-gray-800">
+              <tr>
+                <th className="px-4 py-2 border">SL No.</th>
+                <th className="px-4 py-2 border">Guest Name</th>
+                <th className="px-4 py-2 border">Guest Type</th>
+                <th className="px-4 py-2 border">Check-In</th>
+                <th className="px-4 py-2 border">Check-Out</th>
+                <th className="px-4 py-2 border">Contact Info. </th>
 
-        <div className="flex justify-center items-center my-10">
-          <div
-            onClick={onClose}
-            className="btn flex items-center justify-center w-36 gap-4 mt-4 text-base bg-red-500 text-white py-2 px-2  rounded hover:bg-red-600"
-          >
-            <IoCloseSharp className="text-lg" />
-            Close
-          </div>
+              </tr>
+            </thead>
+            <tbody>
+              {guestHistory.length > 0 ? (
+                guestHistory.map((guest, index) => (
+                  <tr key={index} className="hover:bg-teal-50">
+                    <td className="px-4 py-2 border text-center">{index + 1}</td>
+                    <td className="px-4 py-2 border">{guest.name}</td>
+                    <td className="px-4 py-2 border">{guest.user_type}</td>
+                    <td className="px-4 py-2 border text-center">{guest.check_in_date}</td>
+                    <td className="px-4 py-2 border text-center">{guest.check_out_date}</td>
+                    <td className="px-4 py-2 border text-center">{guest.phone}</td>
+
+                  </tr>
+                ))
+              ) : (
+                  <tr>
+                    <td colSpan={4} className="px-4 py-2 border text-center text-gray-500">
+                      No guest history available.
+                  </td>
+                  </tr>
+                )}
+            </tbody>
+          </table>
         </div>
-
       </div>
     </div>
   );
