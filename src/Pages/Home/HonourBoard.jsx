@@ -43,7 +43,8 @@ const HonourBoard = () => {
       if (addedItem.designation_type === "DC") {
         SetDCHonourlist((prev) => {
           const isAfter1971 =
-            !addedItem.ending_date || new Date(addedItem.ending_date) > new Date("1971-12-31");
+            !addedItem.ending_date ||
+            new Date(addedItem.ending_date) > new Date("1971-12-31");
           return {
             before1971: isAfter1971
               ? prev.before1971
@@ -264,13 +265,15 @@ const HonourBoard = () => {
               key={item.id}
               className="border shadow rounded-md p-3 gap-5 flex flex-col my-2 md:flex-row items-center md:items-start justify-center "
             >
-              <figure className="block md:hidden w-[100px] rounded-full border-[1px] border-gray-500">
-                <img
-                  className="w-full object-cover rounded-full"
-                  src={item.photo}
-                  alt={item.name}
-                />
-              </figure>
+              <div className="block md:hidden avatar">
+                <div className="w-24 rounded-full border-[1px] border-gray-500">
+                  <img
+                    className="rounded-full"
+                    src={item.photo}
+                    alt={item.name}
+                  />
+                </div>
+              </div>
               <div className="h-max hidden md:block text-lg text-start font-bold text-gray-600 px-2 ">
                 {convertToBanglaNumerals(DChonourlist.after1971.length - index)}
               </div>
@@ -310,13 +313,15 @@ const HonourBoard = () => {
                   </tr>
                 </tbody>
               </table>
-              <figure className="hidden md:block  border-[1px] border-gray-500">
-                <img
-                  className="w-[95px] h-[90px] object-cover"
-                  src={item.photo}
-                  alt={item.name}
-                />
-              </figure>
+              <div className="hidden md:block avatar">
+                <div className="w-28 rounded border-[1px] border-gray-500">
+                  <img
+                    className="object-fill w-full"
+                    src={item.photo}
+                    alt={item.name}
+                  />
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -330,10 +335,13 @@ const HonourBoard = () => {
               key={item.id}
               className="border shadow rounded-md my-2 p-3 gap-5 flex flex-col md:flex-row items-center md:items-start justify-center "
             >
-              <div className="block md:hidden avatar">
+              <div className="block md:hidden avatar rounded-full border-[1px] border-gray-500">
                 <div className="w-24 rounded-full">
-                  <img  src={item.photo}
-                  alt={item.name} />
+                  <img
+                    className="rounded-full"
+                    src={item.photo}
+                    alt={item.name}
+                  />
                 </div>
               </div>
               {/* <figure className="block md:hidden w-[100px]  rounded-full border-[1px] border-gray-500">
@@ -384,8 +392,8 @@ const HonourBoard = () => {
                   </tr>
                 </tbody>
               </table>
-              <div className="avatar">
-                <div className="w-32 rounded">
+              <div className="hidden md:block avatar">
+                <div className="w-28 rounded">
                   <img src={item.photo} alt={item.name} />
                 </div>
               </div>
@@ -415,13 +423,15 @@ const HonourBoard = () => {
               key={item.id}
               className="border shadow rounded-md my-2 p-3 gap-5 flex flex-col md:flex-row items-center md:items-start justify-center "
             >
-              <figure className="block md:hidden w-[100px] h-[100px] rounded-full border-[1px] border-gray-500">
-                <img
-                  className="w-full object-cover rounded-full"
-                  src={item.photo}
-                  alt={item.name}
-                />
-              </figure>{" "}
+              <div className="block md:hidden avatar rounded-full border-[1px] border-gray-500">
+                <div className="w-24 rounded-full">
+                  <img
+                    className="rounded-full"
+                    src={item.photo}
+                    alt={item.name}
+                  />
+                </div>
+              </div>{" "}
               <div className="h-max hidden md:block text-lg text-start font-bold text-gray-600 px-2 ">
                 {convertToBanglaNumerals(NDChonourlist.length - index)}
               </div>
@@ -461,13 +471,15 @@ const HonourBoard = () => {
                   </tr>
                 </tbody>
               </table>
-              <figure className="hidden md:block border-[1px] border-gray-500">
-                <img
-                  className="w-[95px] h-[90px] object-cover"
-                  src={item.photo}
-                  alt={item.name}
-                />
-              </figure>
+              <div className="hidden md:block avatar">
+                <div className="w-28 rounded border-[1px] border-gray-500">
+                  <img
+                    className="object-fill w-full"
+                    src={item.photo}
+                    alt={item.name}
+                  />
+                </div>
+              </div>
             </div>
           ))}
         </div>
