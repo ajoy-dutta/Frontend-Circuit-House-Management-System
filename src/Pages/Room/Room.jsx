@@ -4,6 +4,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Details from "./Details";
 import { Link } from "react-router-dom";
 import AxiosInstance from "../../Components/Axios";
+import { useUser } from "../../Provider/UserProvider";
 
 const Room = () => {
   const [roomlist, SetRoomlist] = useState([]);
@@ -16,8 +17,10 @@ const Room = () => {
     room_type: "One Bed",
     availability_status: "Vacant",
   });
+  const { user } = useUser();
+  console.log(user);
 
-  console.log(newRoom);
+  // console.log(newRoom);
 
   const handleDetailsClick = (room) => {
     setSelectedRoom(room); // Set the selected room
@@ -77,30 +80,32 @@ const Room = () => {
   };
 
   useEffect(() => {
-    console.log("Accessed");
-    console.log(roomlist);
+    // console.log("Accessed");
+    // console.log(roomlist);
   }, [roomlist]);
 
   return (
     <div className="container mx-auto p-4 px-4 lg:px-12">
-      <div className="flex justify-between items-center mb-4">
-        <button
-          onClick={() => setShowForm(!showForm)}
-          className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold py-2 px-4 rounded"
-        >
-          Add New Room
-        </button>
-        <Link to="/admin/room-details">
-          <button className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold py-2 px-4 rounded">
-            All Room Details
+      {user && (
+        <div className="flex justify-between items-center mb-4">
+          <button
+            onClick={() => setShowForm(!showForm)}
+            className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold py-2 px-4 rounded"
+          >
+            Add New Room
           </button>
-        </Link>
-      </div>
+          <Link to="/admin/room-details">
+            <button className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold py-2 px-4 rounded">
+              All Room Details
+            </button>
+          </Link>
+        </div>
+      )}
 
       <div className="absolute bg-teal-50 shadow-lg flex justify-end mb-6 rounded-lg">
         {showForm && (
           <form onSubmit={handleSubmit} className="mb-6 p-4">
-            <div className="mb-4">
+            <div className="mb-4 ">
               <label className="block font-bold mb-2 text-sm">Room Name</label>
               <input
                 type="text"
@@ -172,7 +177,7 @@ const Room = () => {
         )}
       </div>
 
-      <h2 className="relative text-xl font-bold text-center mb-6">Room List</h2>
+      <h2 className="relative text-xl font-bold text-center mt-10 mb-6">Room List</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
         {roomlist.map((room) => (
           <div
@@ -183,7 +188,9 @@ const Room = () => {
               {room.room_name}
             </h2>
             <div className="text-center mb-4">
-              <span className="text-lg font-semibold">বেডঃ {room.room_type}</span>
+              <span className="text-lg font-semibold">
+                বেডঃ {room.room_type}
+              </span>
             </div>
             <div className="flex justify-center">
               <button
