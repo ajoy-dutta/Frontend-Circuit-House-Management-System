@@ -275,7 +275,7 @@ const HonourBoard = () => {
             <div className="h-max hidden md:block text-lg text-start font-bold text-gray-600 px-2 ">
             {convertToBanglaNumerals(DChonourlist.after1971.length - index)}
             </div>
-            <table className="table-auto w-full ">
+            <table className="table-auto w-full">
               <tbody>
                 <tr className="">
                   <td className="bg-gray-300 w-1/3 text-sm font-bold text-gray-800 px-2 border border-gray-500">

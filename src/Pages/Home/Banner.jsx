@@ -6,31 +6,31 @@ const Banner = () => {
   const [currentSlider, setCurrentSlider] = useState(0);
   const sliders = [
     {
-      img: homeImage,
-      title: "Escape 1",
-      des: "A Symphony of Tranquility. Experience the perfect blend of relaxation and excitement.",
+        img: homeImage,
+        title: "Welcome to Circuit House Jashore",
+        des: "Discover the blend of heritage and modern hospitality at Circuit House Jashore.",
     },
     {
-      img: homeImage2,
-      title: "Escape 2",
-      des: "A Symphony of Tranquility. Experience the perfect blend of relaxation and excitement.",
+        img: homeImage2,
+        title: "Your Comfortable Stay",
+        des: "Experience serene living spaces with all the amenities you need for a memorable stay.",
     },
     {
-      img: "https://images.unsplash.com/photo-1719749990914-a3ba54e6343f?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      title: "Escape 3",
-      des: "A Symphony of Tranquility. Experience the perfect blend of relaxation and excitement.",
+        img: "https://images.unsplash.com/photo-1719749990914-a3ba54e6343f?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        title: "Heritage Meets Luxury",
+        des: "Enjoy the rich cultural ambiance and luxurious comfort at Circuit House Jashore.",
     },
     {
-      img: "https://images.unsplash.com/photo-1467195468637-72eb862bb14e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      title: "Escape 4",
-      des: "A Symphony of Tranquility. Experience the perfect blend of relaxation and excitement.",
+        img: "https://images.unsplash.com/photo-1467195468637-72eb862bb14e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        title: "Tranquility Awaits",
+        des: "Relax and unwind in the peaceful environment of Circuit House Jashore.",
     },
     {
-      img: "https://images.unsplash.com/photo-1532155297578-a43684be8db8?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      title: "Escape 5",
-      des: "A Symphony of Tranquility. Experience the perfect blend of relaxation and excitement.",
+        img: "https://images.unsplash.com/photo-1532155297578-a43684be8db8?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        title: "Plan Your Visit",
+        des: "Book your stay at Circuit House Jashore for an unforgettable experience.",
     },
-  ];
+];
 
   const prevSlider = () =>
     setCurrentSlider((currentSlider) =>

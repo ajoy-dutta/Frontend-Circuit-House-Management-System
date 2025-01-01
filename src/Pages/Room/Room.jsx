@@ -53,9 +53,6 @@ const Room = () => {
     }));
   };
 
- 
-
-  // Submit the new room form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -86,19 +83,22 @@ const Room = () => {
 
   return (
     <div className="container mx-auto p-4 px-4 lg:px-12">
-      <div className="flex justify-between items-center mb-4">
-        <button
-          onClick={() => setShowForm(!showForm)}
-          className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold py-2 px-4 rounded"
-        >
-          Add New Room
-        </button>
-        <Link to="/admin/room-details">
-          <button className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold py-2 px-4 rounded">
-            All Room Details
-          </button>
-        </Link>
-      </div>
+
+       <div className="flex flex-cols-2 items-center gap-2 mb-4">
+            <button
+              onClick={() => setShowForm(!showForm)}
+              className="bg-gray-500 text-white font-semibold font-sans py-2 px-4 rounded shadow-md border border-gray-100 hover:bg-gray-600"
+            >
+              Add New Room
+            </button>
+            <Link to="/admin/room-details">
+              <button
+                className="bg-gray-500 text-white font-semibold font-sans py-2 px-4 rounded shadow-md border border-gray-100 hover:bg-gray-600"
+              >
+                All Room Details
+              </button>
+            </Link>
+          </div>
 
       <div className="absolute bg-teal-50 shadow-lg flex justify-end mb-6 rounded-lg">
         {showForm && (
