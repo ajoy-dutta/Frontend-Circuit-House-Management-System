@@ -12,9 +12,11 @@ const Room = () => {
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [newRoom, setNewRoom] = useState({
     room_name: "",
-    room_description: "",
+    availability_status:"Vacant",
     room_type: "One Bed",
-    availability_status: "Vacant",
+    room_category:"Regular",
+    building: "",
+    floor: "",
   });
 
   console.log(newRoom);
@@ -64,9 +66,10 @@ const Room = () => {
 
       setNewRoom({
         room_name: "",
-        room_description: "",
         room_type: "One Bed",
-        availability_status: "Vacant",
+        room_category:"Regular",
+        building: "",
+        floor: "",
       });
 
       setShowForm(false);
@@ -111,19 +114,27 @@ const Room = () => {
                 required
               />
             </div>
+            
+
             <div className="mb-4">
               <label className="block font-bold mb-2 text-sm">
-                Room Description
+                Room Category
               </label>
-              <input
-                type="text"
-                name="room_description"
-                value={newRoom.room_description}
+              <select
+                name="room_category"
+                value={newRoom.room_category}
                 onChange={handleInputChange}
                 className="w-full px-4 py-1 border rounded"
                 required
-              />
+                >
+
+                <option value="Regular">Regular</option>
+                <option value="VIP">VIP</option>
+                <option value="VVIP">VVIP</option>
+                </select>
             </div>
+
+
             <div className="mb-4">
               <label className="block font-bold mb-2 text-sm">Room Type</label>
               <select
@@ -133,29 +144,46 @@ const Room = () => {
                 className="w-full px-4 py-1 border text-sm rounded"
                 required
               >
-                <option value="One Bed">One Bed</option>
-                <option value="Two Beds">Two Beds</option>
+                <option value="One Bed">One King Size Bed</option>
+                <option value="Two Beds">Two King Size Beds</option>
               </select>
             </div>
+
             <div className="mb-4">
               <label className="block font-bold mb-2 text-sm">
-                Availability Status
+                Building
               </label>
               <select
-                name="availability_status"
-                value={newRoom.availability_status}
+                name="building"
+                value={newRoom.building}
                 onChange={handleInputChange}
                 className="w-full px-4 py-1 border rounded text-sm"
                 required
               >
-                <option value="Vacant">Vacant</option>
-                <option value="Booked">Booked</option>
-                <option value="Occupied">Occupied</option>
-                <option value="Needs clean">Needs clean</option>
-                <option value="Needs verify">Needs verify</option>
-                <option value="Locked">Locked</option>
+                <option value="New Building">New Building</option>
+                <option value="Old Building">Old Building</option>
+                
               </select>
             </div>
+
+            <div className="mb-4">
+              <label className="block font-bold mb-2 text-sm">
+                Floor
+              </label>
+              <select
+                name="floor"
+                value={newRoom.floor}
+                onChange={handleInputChange}
+                className="w-full px-4 py-1 border rounded text-sm"
+                required
+              >
+                <option value="First Floor">First Floor</option>
+                <option value="Second Floor">Second Floor</option>
+                <option value="Third Floor">Third Floor</option>
+                
+              </select>
+            </div>
+
             <button
               type="submit"
               className="bg-gradient-to-r from-teal-500 to-blue-500 text-white text-sm font-semibold py-2 w-full rounded hover:bg-blue-600"
