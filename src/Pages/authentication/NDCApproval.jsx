@@ -28,7 +28,7 @@ const NDCApproval = () => {
         try {
 
             await AxiosInstance.put(`/approve_staff/${id}/`, { is_approved: true });
-                
+
             setStaffList((prevStaffList) =>
                 prevStaffList.map((item) =>
                     item.id === id ? { ...item, is_approved: true } : item
@@ -38,22 +38,22 @@ const NDCApproval = () => {
             console.error('Error approving staff:', error);
         }
     };
-    const handleDelete=async(id) =>{
-        
+    const handleDelete = async (id) => {
+
         const isConfirmed = window.confirm("Are you sure you want to delete this user?");
-        if (!isConfirmed) return; 
-        try{
-            console.log("id is found in delete",id)
+        if (!isConfirmed) return;
+        try {
+            console.log("id is found in delete", id)
             await AxiosInstance.delete(`/approve_staff/${id}/`);
-               
+
             setStaffList((prevStaffList) => prevStaffList.filter((item) => item.id !== id));
         }
-        catch(error){
+        catch (error) {
             console.log("Error fetching data");
         }
     }
-    
-    
+
+
     return (
         <div className="mt-8 p-8 mb-4">
             <div className="overflow-x-auto shadow-md sm:rounded-lg">
@@ -104,16 +104,16 @@ const NDCApproval = () => {
                                             </button>
                                         </>
                                     ) : (
-                                        <>
-                                            {console.log(`Rendering Delete button for ID: ${item.id}`)}
-                                            <button
-                                                className="px-4 py-2 bg-red-500 text-white font-bold rounded hover:bg-red-600"
-                                                onClick={() => handleDelete(item.id)}
-                                            >
-                                                Delete
+                                            <>
+                                                {console.log(`Rendering Delete button for ID: ${item.id}`)}
+                                                <button
+                                                    className="px-4 py-2 bg-red-500 text-white font-bold rounded hover:bg-red-600"
+                                                    onClick={() => handleDelete(item.id)}
+                                                >
+                                                    Delete
                                             </button>
-                                        </>
-                                    )}
+                                            </>
+                                        )}
                                 </td>
 
                             </tr>

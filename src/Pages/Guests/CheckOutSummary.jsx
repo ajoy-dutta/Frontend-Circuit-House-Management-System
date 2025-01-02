@@ -13,14 +13,14 @@ const CheckoutSummary = () => {
         downloadButton.style.display = 'none';
 
         doc.html(content, {
-          callback: function (doc) {
-            doc.save('booking_invoice.pdf');
-            downloadButton.style.display = 'block';
-          },
-          x: 5,
-          y: 5,
-          width: 180,
-         windowWidth: 650, 
+            callback: function (doc) {
+                doc.save('booking_invoice.pdf');
+                downloadButton.style.display = 'block';
+            },
+            x: 5,
+            y: 5,
+            width: 180,
+            windowWidth: 650,
         });
     }
 
@@ -28,25 +28,25 @@ const CheckoutSummary = () => {
         return <div>No data available.</div>;
     }
 
-    
+
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100 py-8">
-            
+
             <div id="content-to-pdf" className="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full">
-               {/* Header Section */}
+                {/* Header Section */}
                 <div className="text-center mb-8">
                 <h1 className="text-2xl font-bold text-gray-700">Circuit House, Jashore</h1>
                 <h2 className="text-lg font-medium text-gray-600">Room Checkout Invoice</h2>
                 <p className="text-sm text-gray-500">Jashore, Khulna, Bangladesh</p>
                 <p className="text-sm text-gray-500">Phone: 02477762486 | Email: chjashore@gmail.com</p>
                 </div>
-                
-                 {/* Grid Layout for Guest Details and Additional Info */}
-                 <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
+
+                {/* Grid Layout for Guest Details and Additional Info */}
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
                     <div className="ml-2">
                         <h3 className="text-lg font-bold text-gray-700 mb-4">Guest Details</h3>
                         <div className="space-y-2 text-base">
-                            <p><strong className="text-gray-700 font-semibold">Guest Name</strong> <span className="ml-7 ">: { guest.name}</span></p>
+                            <p><strong className="text-gray-700 font-semibold">Guest Name</strong> <span className="ml-7 ">: {guest.name}</span></p>
                             <p><strong className="text-gray-700 font-semibold">Room Name:</strong><span className="ml-7">: {guest.room_name}</span></p>
                             <p><strong className="text-gray-700 font-semibold">Check-In Date</strong><span className="ml-5 mr-1">: </span>
                                 {new Date(guest.check_in_date ).toLocaleString("en-GB", {
@@ -60,14 +60,14 @@ const CheckoutSummary = () => {
                             </p>
 
                             <p><strong className="text-gray-700 font-semibold">Check-Out Date</strong><span className="ml-2 mr-1">:</span>
-                            {new Date(guest.check_out_date ).toLocaleString("en-GB", {
-                            day: "2-digit",
-                            month: "2-digit",
-                            year: "numeric",
-                            hour: "numeric",
-                            minute: "numeric",
-                            hour12: true,
-                            })}
+                                {new Date(guest.check_out_date).toLocaleString("en-GB", {
+                                    day: "2-digit",
+                                    month: "2-digit",
+                                    year: "numeric",
+                                    hour: "numeric",
+                                    minute: "numeric",
+                                    hour12: true,
+                                })}
                             </p>
 
                             <p><strong className="text-gray-700 font-semibold">Total Persons</strong><span className="ml-7">: {guest.total_person}</span></p>
@@ -117,18 +117,18 @@ const CheckoutSummary = () => {
 
                 {/* Button for Downloading PDF */}
                 <div className="mt-8 flex justify-center">
-                <button
-                    id = "download-pdf-button"
-                    onClick={handleDownloadPDF}
-                    className="bg-blue-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-600"
-                >
-                    Download PDF
+                    <button
+                        id="download-pdf-button"
+                        onClick={handleDownloadPDF}
+                        className="bg-blue-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-600"
+                    >
+                        Download PDF
                 </button>
                 </div>
             </div>
         </div>
 
-        
+
     );
 };
 

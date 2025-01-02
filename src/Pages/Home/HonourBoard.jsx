@@ -43,8 +43,7 @@ const HonourBoard = () => {
       if (addedItem.designation_type === "DC") {
         SetDCHonourlist((prev) => {
           const isAfter1971 =
-            !addedItem.ending_date ||
-            new Date(addedItem.ending_date) > new Date("1971-12-31");
+            !addedItem.ending_date || new Date(addedItem.ending_date) > new Date("1971-12-31");
           return {
             before1971: isAfter1971
               ? prev.before1971
@@ -134,7 +133,7 @@ const HonourBoard = () => {
   };
 
   return (
-    <div className="lg:w-1/2 md:w-2/3 sm:w-2/3 mx-auto rounded-lg">
+    <div className="lg:w-1/2 md:w-2/3 sm:w-2/3 my-10 mx-auto rounded-lg">
       {user && (
         <div className="flex justify-end p-4">
           <button
@@ -260,141 +259,149 @@ const HonourBoard = () => {
         </h2>
 
         <div className="">
-        {DChonourlist.after1971.map((item, index) => (
+          {DChonourlist.after1971.map((item, index) => (
             <div
               key={item.id}
-            className="border shadow rounded-md p-3 gap-5 flex flex-col my-2 md:flex-row items-center md:items-start justify-center "
-          >
-            <figure className="block md:hidden w-[100px] rounded-full border-[1px] border-gray-500">
-              <img
-                className="w-full object-cover rounded-full"
-                src={item.photo}
-                alt={item.name}
-              />
-            </figure>
-            <div className="h-max hidden md:block text-lg text-start font-bold text-gray-600 px-2 ">
-            {convertToBanglaNumerals(DChonourlist.after1971.length - index)}
+              className="border shadow rounded-md p-3 gap-5 flex flex-col my-2 md:flex-row items-center md:items-start justify-center "
+            >
+              <figure className="block md:hidden w-[100px] rounded-full border-[1px] border-gray-500">
+                <img
+                  className="w-full object-cover rounded-full"
+                  src={item.photo}
+                  alt={item.name}
+                />
+              </figure>
+              <div className="h-max hidden md:block text-lg text-start font-bold text-gray-600 px-2 ">
+                {convertToBanglaNumerals(DChonourlist.after1971.length - index)}
+              </div>
+              <table className="table-auto w-full ">
+                <tbody>
+                  <tr className="">
+                    <td className="bg-gray-300 w-1/3 text-sm font-bold text-gray-800 px-2 border border-gray-500">
+                      নাম
+                    </td>
+                    <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      {item.name}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
+                      ব্যাচ
+                    </td>
+                    <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      {item.batch}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
+                      যোগদানের তারিখ
+                    </td>
+                    <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      {item.joining_date}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
+                      প্রস্থানের তারিখ
+                    </td>
+                    <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      {item.ending_date || "চলমান"}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <figure className="hidden md:block  border-[1px] border-gray-500">
+                <img
+                  className="w-[95px] h-[90px] object-cover"
+                  src={item.photo}
+                  alt={item.name}
+                />
+              </figure>
             </div>
-            <table className="table-auto w-full">
-              <tbody>
-                <tr className="">
-                  <td className="bg-gray-300 w-1/3 text-sm font-bold text-gray-800 px-2 border border-gray-500">
-                    নাম
-                  </td>
-                  <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                    {item.name}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
-                    ব্যাচ
-                  </td>
-                  <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                    {item.batch}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
-                    যোগদানের তারিখ
-                  </td>
-                  <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                    {item.joining_date}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
-                    প্রস্থানের তারিখ
-                  </td>
-                  <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                    {item.ending_date || "চলমান"}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <figure className="hidden md:block  border-[1px] border-gray-500">
-              <img
-                className="w-[95px] h-[90px] object-cover"
-                src={item.photo}
-                alt={item.name}
-              />
-            </figure>
-          </div>
-        ))}
+          ))}
         </div>
-     
+
         <h1 className="text-center text-xl font-bold mb-2 py-2 mt-4">
           British India and East Pakistan District Magistrate
         </h1>
         <div className="">
-        {DChonourlist.before1971.map((item, index) => (
+          {DChonourlist.before1971.map((item, index) => (
             <div
               key={item.id}
-            className="border shadow rounded-md my-2 p-3 gap-5 flex flex-col md:flex-row items-center md:items-start justify-center "
-          >
-            <figure className="block md:hidden w-[100px]  rounded-full border-[1px] border-gray-500">
-              <img
-                className="w-full object-cover rounded-full"
-                src={item.photo}
-                alt={item.name}
-              />
-            </figure>
-            <div className="h-max hidden md:block text-lg text-start font-bold text-gray-600 px-2 ">
-            {convertToBanglaNumerals(
+              className="border shadow rounded-md my-2 p-3 gap-5 flex flex-col md:flex-row items-center md:items-start justify-center "
+            >
+              <div className="block md:hidden avatar">
+                <div className="w-24 rounded-full">
+                  <img  src={item.photo}
+                  alt={item.name} />
+                </div>
+              </div>
+              {/* <figure className="block md:hidden w-[100px]  rounded-full border-[1px] border-gray-500">
+                <img
+                  className="w-full object-cover rounded-full"
+                  src={item.photo}
+                  alt={item.name}
+                />
+              </figure> */}
+              <div className="h-max hidden md:block text-lg text-start font-bold text-gray-600 px-2 ">
+                {convertToBanglaNumerals(
                   DChonourlist.before1971.length - index
                 )}
+              </div>
+              <table className="table-auto w-full ">
+                <tbody>
+                  <tr className="">
+                    <td className="bg-gray-300 w-1/3 text-sm font-bold text-gray-800 px-2 border border-gray-500">
+                      নাম
+                    </td>
+                    <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      {item.name}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
+                      ব্যাচ
+                    </td>
+                    <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      {item.batch}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
+                      যোগদানের তারিখ
+                    </td>
+                    <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      {item.joining_date}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
+                      প্রস্থানের তারিখ
+                    </td>
+                    <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      {item.ending_date || "চলমান"}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div className="avatar">
+                <div className="w-32 rounded">
+                  <img src={item.photo} alt={item.name} />
+                </div>
+              </div>
+              {/* <figure className="hidden md:block  border-[1px] border-gray-500">
+                <img
+                  className="w-[95px] h-[90px] object-cover"
+                  src={item.photo}
+                  alt={item.name}
+                />
+              </figure> */}
             </div>
-            <table className="table-auto w-full ">
-              <tbody>
-                <tr className="">
-                  <td className="bg-gray-300 w-1/3 text-sm font-bold text-gray-800 px-2 border border-gray-500">
-                    নাম
-                  </td>
-                  <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                    {item.name}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
-                    ব্যাচ
-                  </td>
-                  <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                    {item.batch}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
-                    যোগদানের তারিখ
-                  </td>
-                  <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                    {item.joining_date}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
-                    প্রস্থানের তারিখ
-                  </td>
-                  <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                    {item.ending_date || "চলমান"}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <figure className="hidden md:block  border-[1px] border-gray-500">
-              <img
-                className="w-[95px] h-[90px] object-cover"
-                src={item.photo}
-                alt={item.name}
-              />
-            </figure>
-          </div>
-        ))}
+          ))}
         </div>
-        
+
         <div className="mb-0 rounded-lg">
-        <div className="mb-2 rounded-lg">
-          
-        </div>
-         
+          <div className="mb-2 rounded-lg"></div>
         </div>
       </div>
 
@@ -403,69 +410,67 @@ const HonourBoard = () => {
           নেজারত ডেপুটি কালেক্টর
         </h2>
         <div className="my-4">
-        {NDChonourlist.map((item, index) => (
+          {NDChonourlist.map((item, index) => (
             <div
               key={item.id}
-            className="border shadow rounded-md my-2 p-3 gap-5 flex flex-col md:flex-row items-center md:items-start justify-center "
-          >
-           
-            <figure className="block md:hidden w-[100px] h-[100px] rounded-full border-[1px] border-gray-500">
-              <img
-                className="w-full object-cover rounded-full"
-                src={item.photo}
-                alt={item.name}
-              />
-            </figure> <div className="h-max hidden md:block text-lg text-start font-bold text-gray-600 px-2 ">
-            {convertToBanglaNumerals(NDChonourlist.length - index)}
+              className="border shadow rounded-md my-2 p-3 gap-5 flex flex-col md:flex-row items-center md:items-start justify-center "
+            >
+              <figure className="block md:hidden w-[100px] h-[100px] rounded-full border-[1px] border-gray-500">
+                <img
+                  className="w-full object-cover rounded-full"
+                  src={item.photo}
+                  alt={item.name}
+                />
+              </figure>{" "}
+              <div className="h-max hidden md:block text-lg text-start font-bold text-gray-600 px-2 ">
+                {convertToBanglaNumerals(NDChonourlist.length - index)}
+              </div>
+              <table className="table-auto w-full ">
+                <tbody>
+                  <tr className="">
+                    <td className="bg-gray-300 w-1/3 text-sm font-bold text-gray-800 px-2 border border-gray-500">
+                      নাম
+                    </td>
+                    <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      {item.name}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
+                      ব্যাচ
+                    </td>
+                    <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      {item.batch}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
+                      যোগদানের তারিখ
+                    </td>
+                    <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      {item.joining_date}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
+                      প্রস্থানের তারিখ
+                    </td>
+                    <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      {item.ending_date || "চলমান"}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <figure className="hidden md:block border-[1px] border-gray-500">
+                <img
+                  className="w-[95px] h-[90px] object-cover"
+                  src={item.photo}
+                  alt={item.name}
+                />
+              </figure>
             </div>
-            <table className="table-auto w-full ">
-              <tbody>
-                <tr className="">
-                  <td className="bg-gray-300 w-1/3 text-sm font-bold text-gray-800 px-2 border border-gray-500">
-                    নাম
-                  </td>
-                  <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                    {item.name}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
-                    ব্যাচ
-                  </td>
-                  <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                    {item.batch}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
-                    যোগদানের তারিখ
-                  </td>
-                  <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                    {item.joining_date}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
-                    প্রস্থানের তারিখ
-                  </td>
-                  <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                    {item.ending_date || "চলমান"}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <figure className="hidden md:block border-[1px] border-gray-500">
-              <img
-                className="w-[95px] h-[90px] object-cover"
-                src={item.photo}
-                alt={item.name}
-              />
-            </figure>
-          </div>
-        ))}
+          ))}
         </div>
-       
-
       </div>
     </div>
   );

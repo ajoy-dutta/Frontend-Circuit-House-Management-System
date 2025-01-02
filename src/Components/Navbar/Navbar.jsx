@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./navbar.css";
 import Login from "../../Pages/authentication/Login";
 import { useUser } from "../../Provider/UserProvider";
+
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const { user, signOut } = useUser();
@@ -13,34 +14,134 @@ const Navbar = () => {
     setIsDropdownOpen((prev) => !prev);
   };
 
-  // const handleLinkClick = () => {
-  //   setIsDropdownOpen(false); // Close the dropdown
-  // };
-
   const navOptions = (
     <>
       {user && (
-        <li className="btn btn-glass hover:text-cyan-400">
-          <Link to="/admin/room">Dashboard</Link>
+        <li className="btn btn-glass">
+          <NavLink
+            to="/admin/room"
+            className={({ isActive }) =>
+              isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+            }
+          >
+            Dashboard
+          </NavLink>
         </li>
       )}
+      <li className="btn btn-glass">
+        <NavLink
+          to="/room"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Room
+        </NavLink>
+      </li>
+      <li className="btn btn-glass">
+        <NavLink
+          to="/conferenceRoom"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Conference Room
+        </NavLink>
+      </li>
+      <li className="btn btn-glass">
+        <NavLink
+          to="/visitJahore"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Visit Jashore
+        </NavLink>
+      </li>
+      <li className="btn btn-glass">
+        <NavLink
+          to="/honor-board"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Honor Board
+        </NavLink>
+      </li>
+      <li className="btn btn-glass">
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Contact
+        </NavLink>
+      </li>
     </>
   );
+
   const navDropOptions = (
     <>
-      <li className="btn btn-glass  hover:text-cyan-400 ">
-        <Link to="/">Home</Link>
+      <li className="btn btn-glass">
+        <NavLink
+          to="/room"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Room
+        </NavLink>
       </li>
-
+      <li className="btn btn-glass">
+        <NavLink
+          to="/conferenceRoom"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Conference Room
+        </NavLink>
+      </li>
+      <li className="btn btn-glass">
+        <NavLink
+          to="/visitJahore"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Visit Jashore
+        </NavLink>
+      </li>
+      <li className="btn btn-glass">
+        <NavLink
+          to="/honor-board"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Honor Board
+        </NavLink>
+      </li>
+      <li className="btn btn-glass">
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Contact
+        </NavLink>
+      </li>
       {user ? (
-        <li className="btn btn-glass  hover:text-cyan-400 ">
+        <li className="btn btn-glass hover:text-cyan-400">
           <div onClick={signOut}>Sign Out</div>
         </li>
       ) : (
         <li className="relative">
           <div
             onClick={() => setShowLoginForm(!showLoginForm)}
-            className="btn btn-glass  hover:text-cyan-400 "
+            className="btn btn-glass hover:text-cyan-400"
           >
             Sign In
           </div>
@@ -61,7 +162,6 @@ const Navbar = () => {
 
   return (
     <div className="navbar sticky top-0 z-[1000] bg-slate-50 flex h-[70px] px-8 items-center justify-between">
-      {/* Navbar Start */}
       <div className="navbar-start flex items-center gap-2">
         <div className="dropdown">
           <div
@@ -90,40 +190,39 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-slate-200 absolute rounded-box z-[1000] mt-3 w-40 p-2 shadow"
             >
-              <ul className="font-serif space-y-4 p-2 text-lg font-semibold hover:">{navDropOptions}</ul>
+              <ul className="font-serif space-y-4 p-2 text-lg font-semibold">
+                {navDropOptions}
+              </ul>
             </ul>
           )}
         </div>
         <div className="navbar-end ">
-          <Link to='/'>
+          <NavLink to="/">
             <div className="block lg:hidden text-2xl font-bold text-with-gradient lg:text-2xl">
               Circuit House
             </div>
-          </Link>
-
+          </NavLink>
         </div>
-        <Link to='/'>
+
+        <div className="flex items-center justify-center gap-10">
           <div className="hidden lg:block text-2xl font-bold text-with-gradient lg:text-2xl">
-            Circuit House
+            <NavLink to="/"> Circuit House </NavLink>
           </div>
-        </Link>
+
+          <div className="nav-start ">
+            <ul className="hidden md:flex items-center text-lg font-medium menu-horizontal px-1 gap-8">
+              {navOptions}
+            </ul>
+          </div>
+        </div>
       </div>
 
-      {/* Navbar Center */}
-      {/* <div className="navbar-center hidden lg:flex items-center">
-        
-      </div> */}
-
-      {/* Navbar End */}
       <div className="navbar-end">
         <ul className="hidden font-semibold text-lg lg:flex menu-horizontal px-1 gap-10">
-
-          {navOptions}
-
           {user ? (
             <div
               onClick={signOut}
-              className="btn btn-glass  hover:text-cyan-400"
+              className="btn btn-glass hover:text-cyan-400"
             >
               Sign Out
             </div>
@@ -131,7 +230,7 @@ const Navbar = () => {
             <li className="relative">
               <div
                 onClick={() => setShowLoginForm(!showLoginForm)}
-                className="btn btn-glass  hover:text-cyan-400 px-4"
+                className="btn btn-glass hover:text-cyan-400 px-4"
               >
                 Sign In
               </div>
@@ -149,7 +248,6 @@ const Navbar = () => {
           )}
         </ul>
       </div>
-
     </div>
   );
 };

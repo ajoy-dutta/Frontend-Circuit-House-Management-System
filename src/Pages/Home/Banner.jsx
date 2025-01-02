@@ -6,15 +6,17 @@ const Banner = () => {
   const [currentSlider, setCurrentSlider] = useState(0);
   const sliders = [
     {
-        img: homeImage,
-        title: "Welcome to Circuit House Jashore",
-        des: "Discover the blend of heritage and modern hospitality at Circuit House Jashore.",
+      img: homeImage,
+      title: "Escape 1",
+      des: "",
     },
+
     {
         img: homeImage2,
         title: "Your Comfortable Stay",
         des: "Experience serene living spaces with all the amenities you need for a memorable stay.",
     },
+    
     {
         img: "https://images.unsplash.com/photo-1719749990914-a3ba54e6343f?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         title: "Heritage Meets Luxury",
@@ -59,7 +61,7 @@ const Banner = () => {
           currentSlider === 0
             ? sliders[sliders.length - 1].img
             : sliders[currentSlider - 1].img
-        })`,
+          })`,
       }}
     >
       {/* Arrow */}
@@ -114,7 +116,7 @@ const Banner = () => {
           style={{
             transform: `translateX(-${
               currentSlider * (isSmallScreen ? 98 : 200)
-            }px)`,
+              }px)`,
           }}
         >
           {/* Sliders */}
@@ -126,7 +128,7 @@ const Banner = () => {
                 currentSlider - 1 === inx
                   ? "scale-0"
                   : "scale-100 delay-500"
-              } drop-shadow-lg shadow-lg shadow-black bg-black/50 duration-300 rounded-lg z-50`}
+                } drop-shadow-lg shadow-lg shadow-black bg-black/50 duration-300 rounded-lg z-50`}
               alt={slide.title}
             />
           ))}

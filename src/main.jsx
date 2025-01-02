@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import {
-  BrowserRouter,
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
@@ -24,6 +23,12 @@ import Other from "./Pages/Food/Other";
 import Rooms from "./Pages/Room/Rooms";
 import CheckoutSummary from "./Pages/Guests/CheckOutSummary";
 import Appbar from "./Components/Sidebar/Appbar";
+import HonourBoard from "./Pages/Home/HonourBoard";
+import Contact from "./Pages/Home/Contact";
+import VisitJashore from "./Pages/VisitJashore/VisitJashore";
+import ConferenceRoom from "./Pages/ConferenceRoom/ConferenceRoom";
+import Details from "./Pages/Room/Details";
+
 
 const router = createBrowserRouter([
   {
@@ -43,6 +48,26 @@ const router = createBrowserRouter([
         path: "/registers", // Add the registration route
         element: <Registration />,
       },
+      {
+        path: "/room",
+        element: <Room />,
+      },
+      {
+        path: "/honor-board",
+        element: <HonourBoard></HonourBoard>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
+      },
+      {
+        path: "/conferenceRoom",
+        element: <ConferenceRoom />,
+      },
+      {
+        path: "/visitJahore",
+        element: <VisitJashore />,
+      },
     ],
   },
   {
@@ -57,6 +82,10 @@ const router = createBrowserRouter([
       {
         path: "room-details",
         element: <Rooms />,
+      },
+      {
+        path: "room_details",
+        element: <Details />,
       },
 
       {
@@ -110,7 +139,7 @@ const router = createBrowserRouter([
 
 // Render your app with RouterProvider
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <React.StrictMode> 
       <UserProvider>
         <RouterProvider router={router} />
       </UserProvider>

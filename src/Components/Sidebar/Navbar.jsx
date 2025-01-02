@@ -28,15 +28,17 @@ const Navbar = ({sidebarToggle, setSidebarToggle}) => {
   } 
 
     return (
-      <div id="nav"
-      ref={navRef} className="bg-teal-500 px-4 py-3 flex justify-between">
+      <div
+        id="nav"
+        ref={navRef}
+        className="bg-teal-500 px-4 py-3 flex justify-between"
+      >
         <div className="flex items-center text-xl">
-          
           <FaBars
             className="text-white  hover:text-blue-200  me-4 cursor-pointer"
             onClick={() => setSidebarToggle(!sidebarToggle)}
           />
-          <span className="text-white font-semibold" >Circuit House</span>
+          <span className="text-white font-semibold">Circuit House</span>
         </div>
         <div className="flex items-center gap-x-5">
           {/* <div className="relative md:w-65">
@@ -59,8 +61,7 @@ const Navbar = ({sidebarToggle, setSidebarToggle}) => {
               <FaUserCircle className="w-6 h-6 mt-1" />
               <div className="z-10 bg-white hidden absolute rounded-lg shadow w-32 group-focus:block top-full right-0">
                 <ul className="py-2 space-y-2 text-sm text-gray-800">
-                  
-                {/* <li>
+                  {/* <li>
                   <Link
                     to="/admin/profile"
                     className="block hover:shadow py-2 hover:bg-black hover:text-gray-100"
@@ -74,12 +75,24 @@ const Navbar = ({sidebarToggle, setSidebarToggle}) => {
                   <a href="">Setting</a>
                   </li>
                   </Link> */}
-                  
-                  <li onClick={handleSignout} className="btn btn-danger hover:shadow py-2 hover:bg-black hover:text-gray-100">
-                  <div>Sign Out</div>
-                  </li>
-                
-                  
+                  {user ? (
+                    <div
+                      onClick={handleSignout}
+                      className="btn btn-danger hover:shadow py-2 hover:bg-black hover:text-gray-100"
+                    >
+                      Sign Out
+                    </div>
+                  ) : (
+                    <li className="relative">
+                      <div className="btn btn-danger hover:shadow py-2 hover:bg-black hover:text-gray-100">
+                        Sign In
+                      </div>
+                    </li>
+                  )}
+
+                  {/* <li onClick={handleSignout}>
+                    <div>Sign Out</div>
+                  </li> */}
                 </ul>
               </div>
             </button>

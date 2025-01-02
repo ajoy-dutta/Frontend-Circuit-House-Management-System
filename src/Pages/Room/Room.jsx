@@ -4,6 +4,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Details from "./Details";
 import { Link } from "react-router-dom";
 import AxiosInstance from "../../Components/Axios";
+import { useUser } from "../../Provider/UserProvider";
 
 const Room = () => {
   const [roomlist, SetRoomlist] = useState([]);
@@ -12,12 +13,16 @@ const Room = () => {
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [newRoom, setNewRoom] = useState({
     room_name: "",
-    room_description: "",
-    room_type: "One Bed",
     availability_status: "Vacant",
+    room_type: "One Bed",
+    room_category: "Regular",
+    building: "",
+    floor: "",
   });
+  const { user } = useUser();
+  console.log(user);
 
-  console.log(newRoom);
+  // console.log(newRoom);
 
   const handleDetailsClick = (room) => {
     setSelectedRoom(room); // Set the selected room
@@ -64,9 +69,10 @@ const Room = () => {
 
       setNewRoom({
         room_name: "",
-        room_description: "",
         room_type: "One Bed",
-        availability_status: "Vacant",
+        room_category: "Regular",
+        building: "",
+        floor: "",
       });
 
       setShowForm(false);
@@ -77,8 +83,8 @@ const Room = () => {
   };
 
   useEffect(() => {
-    console.log("Accessed");
-    console.log(roomlist);
+    // console.log("Accessed");
+    // console.log(roomlist);
   }, [roomlist]);
 
   return (
@@ -103,7 +109,7 @@ const Room = () => {
       <div className="absolute bg-teal-50 shadow-lg flex justify-end mb-6 rounded-lg">
         {showForm && (
           <form onSubmit={handleSubmit} className="mb-6 p-4">
-            <div className="mb-4">
+            <div className="mb-4 ">
               <label className="block font-bold mb-2 text-sm">Room Name</label>
               <input
                 type="text"
@@ -114,19 +120,27 @@ const Room = () => {
                 required
               />
             </div>
+
+
             <div className="mb-4">
               <label className="block font-bold mb-2 text-sm">
-                Room Description
+                Room Category
               </label>
-              <input
-                type="text"
-                name="room_description"
-                value={newRoom.room_description}
+              <select
+                name="room_category"
+                value={newRoom.room_category}
                 onChange={handleInputChange}
                 className="w-full px-4 py-1 border rounded"
                 required
-              />
+              >
+
+                <option value="Regular">Regular</option>
+                <option value="VIP">VIP</option>
+                <option value="VVIP">VVIP</option>
+              </select>
             </div>
+
+
             <div className="mb-4">
               <label className="block font-bold mb-2 text-sm">Room Type</label>
               <select
@@ -136,29 +150,46 @@ const Room = () => {
                 className="w-full px-4 py-1 border text-sm rounded"
                 required
               >
-                <option value="One Bed">One Bed</option>
-                <option value="Two Beds">Two Beds</option>
+                <option value="One Bed">One King Size Bed</option>
+                <option value="Two Beds">Two King Size Beds</option>
               </select>
             </div>
+
             <div className="mb-4">
               <label className="block font-bold mb-2 text-sm">
-                Availability Status
+                Building
               </label>
               <select
-                name="availability_status"
-                value={newRoom.availability_status}
+                name="building"
+                value={newRoom.building}
                 onChange={handleInputChange}
                 className="w-full px-4 py-1 border rounded text-sm"
                 required
               >
-                <option value="Vacant">Vacant</option>
-                <option value="Booked">Booked</option>
-                <option value="Occupied">Occupied</option>
-                <option value="Needs clean">Needs clean</option>
-                <option value="Needs verify">Needs verify</option>
-                <option value="Locked">Locked</option>
+                <option value="New Building">New Building</option>
+                <option value="Old Building">Old Building</option>
+
               </select>
             </div>
+
+            <div className="mb-4">
+              <label className="block font-bold mb-2 text-sm">
+                Floor
+              </label>
+              <select
+                name="floor"
+                value={newRoom.floor}
+                onChange={handleInputChange}
+                className="w-full px-4 py-1 border rounded text-sm"
+                required
+              >
+                <option value="First Floor">First Floor</option>
+                <option value="Second Floor">Second Floor</option>
+                <option value="Third Floor">Third Floor</option>
+
+              </select>
+            </div>
+
             <button
               type="submit"
               className="bg-gradient-to-r from-teal-500 to-blue-500 text-white text-sm font-semibold py-2 w-full rounded hover:bg-blue-600"
@@ -175,7 +206,7 @@ const Room = () => {
         )}
       </div>
 
-      <h2 className="relative text-xl font-bold text-center mb-6">Room List</h2>
+      <h2 className="relative text-xl font-bold text-center mt-10 mb-6">Room List</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
         {roomlist.map((room) => (
           <div
@@ -186,52 +217,60 @@ const Room = () => {
               {room.room_name}
             </h2>
             <div className="text-center mb-4">
-              <span className="text-lg font-semibold">বেডঃ {room.room_type}</span>
+              <span className="text-lg font-semibold">
+                বেডঃ {room.room_type}
+              </span>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center ml-5"> 
               <button
-                className={`text-sm text-white font-bold py-2 px-4 rounded mr-4 ${
-                  room.availability_status === "Occupied"
+                className={`text-sm text-white font-bold py-2 px-4 rounded mr-4 ${room.availability_status === "Occupied"
                     ? "bg-gradient-to-r from-blue-500 to-blue-700"
                     : room.availability_status === "Booked"
-                    ? "bg-gradient-to-r from-orange-500 to-orange-700"
-                    : room.availability_status === "Needs clean"
-                    ? "bg-gradient-to-r from-red-500 to-red-700"
-                    : room.availability_status === "Needs verify"
-                    ? "bg-gradient-to-r from-yellow-500 to-yellow-600"
-                    : room.availability_status === "Locked"
-                    ? "bg-gradient-to-r from-gray-400 to-gray-500"
-                    : "bg-gradient-to-r from-green-500 to-green-700"
-                }`}
+                      ? "bg-gradient-to-r from-orange-500 to-orange-700"
+                      : room.availability_status === "Needs clean"
+                        ? "bg-gradient-to-r from-red-500 to-red-700"
+                        : room.availability_status === "Needs verify"
+                          ? "bg-gradient-to-r from-yellow-500 to-yellow-600"
+                          : room.availability_status === "Locked"
+                            ? "bg-gradient-to-r from-gray-400 to-gray-500"
+                            : "bg-gradient-to-r from-green-500 to-green-700"
+                  }`}
                 disabled={room.availability_status === "Locked"}
               >
                 {room.availability_status}
               </button>
             </div>
             <div className="flex justify-center pt-2 space-x-2">
-              <button
-                onClick={() => handleDetailsClick(room)}
+              <Link
+                // onClick={() => handleDetailsClick(room)}
+                to="/admin/room_details"
+                state={{ room }}
                 className="hover:bg-gray-400 hover:text-white text-black text-sm font-semibold py-2 px-4 rounded border border-black"
               >
                 Details
-              </button>
-              {room.availability_status === "Vacant" ? (
-                <Link
-                  onClick={() => handleBookClick(room)}
-                  to="/admin/book"
-                  state={{ room }}
-                  className="hover:bg-gray-400 hover:text-white text-black text-sm font-semibold py-1 px-4 rounded border border-black flex items-center justify-center"
-                >
-                  Book <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-                </Link>
-              ) : (
-                <button
-                  disabled
-                  className="bg-gray-300 text-gray-500 text-sm font-semibold py-1 px-4 rounded border border-black flex items-center justify-center cursor-not-allowed"
-                >
-                  Book <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-                </button>
+              </Link>
+              {user && (
+                <>
+                  {room.availability_status === "Vacant" ? (
+                    <Link
+                      onClick={() => handleBookClick(room)}
+                      to="/admin/book"
+                      state={{ room }}
+                      className="hover:bg-gray-400 hover:text-white text-black text-sm font-semibold py-1 px-4 rounded border border-black flex items-center justify-center"
+                    >
+                      Book <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+                    </Link>
+                  ) : (
+                    <button
+                      disabled
+                      className="bg-gray-300 text-gray-500 text-sm font-semibold py-1 px-4 rounded border border-black flex items-center justify-center cursor-not-allowed"
+                    >
+                      Book <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+                    </button>
+                  )}
+                </>
               )}
+
             </div>
           </div>
         ))}
