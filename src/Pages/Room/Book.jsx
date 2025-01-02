@@ -148,7 +148,7 @@ const Book = () => {
                             <option value="" disabled>
                                 Select Guest Type
                     </option>
-                            <option value="Government Officer">Government Officer</option>
+                            <option value="Government Officer">Government Official</option>
                             <option value="Self-Government Officer">Self-Government Officer</option>
                             <option value="Private Sector Employee">Private Sector Employee</option>
                         </select>
