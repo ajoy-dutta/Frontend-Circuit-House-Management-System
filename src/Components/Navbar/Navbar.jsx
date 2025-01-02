@@ -210,7 +210,7 @@ const Navbar = () => {
           </div>
 
           <div className="nav-start ">
-            <ul className="hidden md:flex items-center text-lg font-medium menu-horizontal px-1 gap-8">
+            <ul className="hidden md:flex items-center text-lg font-normal font-serif menu-horizontal px-1 gap-8">
               {navOptions}
             </ul>
           </div>
@@ -218,7 +218,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end">
-        <ul className="hidden font-semibold text-lg lg:flex menu-horizontal px-1 gap-10">
+        <ul className="hidden font-normal font-serif text-lg lg:flex menu-horizontal px-1 gap-10">
           {user ? (
             <div
               onClick={signOut}

@@ -1,9 +1,11 @@
+import { NavLink } from "react-router-dom";
+
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-8">
-      <div className="container mx-auto px-4 md:px-8">
+    <footer className="bg-[#213555] text-white py-5">
+      <div className="container mx-auto px-4 md:px-5">
         {/* Links Section */}
-        <div className="hidden md:block">
+        {/* <div className="hidden md:block">
         <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-8 mb-6">
           <a href="#" className="text-gray-400 hover:text-white text-sm md:text-base">
             Home
@@ -64,10 +66,10 @@ const Footer = () => {
             Sign In
           </a>
         </div>
-        </div>
+        </div> */}
 
         {/* Social Media Icons Section */}
-        <div className="flex justify-center space-x-4 sm:space-x-6 mb-6">
+        {/* <div className="flex justify-center space-x-4 sm:space-x-6 mb-6">
           <a href="#" className="text-gray-400 hover:text-white text-xl sm:text-2xl">
             <i className="fab fa-facebook"></i>
           </a>
@@ -83,12 +85,23 @@ const Footer = () => {
           <a href="#" className="text-gray-400 hover:text-white text-xl sm:text-2xl">
             <i className="fab fa-youtube"></i>
           </a>
+        </div> */}
+       <div className="grid grid-cols-3 justify-between gap-4">
+       <div className="text-2xl font-bold text-with-gradient lg:text-2xl">
+          <NavLink to="/"> Circuit House </NavLink>
         </div>
 
         {/* Copyright Section */}
-        <p className="text-gray-400 text-sm sm:text-base text-center">
-          © 2024 Utshob Technology, Inc. All rights reserved.
-        </p>
+        <div>
+          <p className="text-gray-400 text-sm sm:text-base text-center">
+            © 2024 Jashore Circuit House, Inc. All rights reserved.
+          </p>
+          <p className="text-gray-400 text-sm sm:text-base text-center">
+            Developed by Utshob Technology
+          </p>
+        </div>
+       </div>
+       <div></div>
       </div>
     </footer>
   );

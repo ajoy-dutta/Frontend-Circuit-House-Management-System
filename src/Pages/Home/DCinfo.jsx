@@ -2,9 +2,10 @@ import DC from "../../assets/DC.jpg";
 
 const DCinfo = () => {
     return (
-      <div className="my-10 mx-10">
-        <div className="grid sm:grid-rows-1 md:grid-cols-2 py-4 border place-items-center">
-          <div className="md:border-r-2 border-gray-300">
+      <div className="bg-[#f5efe7]">
+        <div className="py-10 px-10">
+        <div className="grid sm:grid-rows-1 md:grid-cols-2 py-4 place-items-center">
+          <div className="md:border-r-[1px] border-[#d8c4b6]">
             <div className="px-5 space-y-3">
                 <p className="font-bold text-3xl py-3">যশোর সার্কিট হাউস</p>
                 <p>দড়াটানা হতে দক্ষিণদিকে জজ কোর্ট ও জিলা স্কুলের মধ্যবর্তী স্থানে সার্কিট হাউজের অবস্থান।</p>
@@ -14,51 +15,55 @@ const DCinfo = () => {
           </div>
           <div >
             <div className="flex flex-col md:flex-row items-center justify-center place-items-center">
+            <div className="block md:hidden w-1/3 p-3 mt-5 border border-[#d8c4b6] rounded-full me-3">
+                <img className="rounded-full" src={DC} alt="DC" />
+              </div>
               <div className="w-full p-3">
-                <p className="font-bold my-3 text-xl"> জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট,যশোর</p>
+                <p className="font-bold my-3 text-center text-xl"> জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট,যশোর</p>
                 <table className="table-auto w-full mt-4">
                   <tbody>
                     <tr className="">
-                      <td className="bg-gray-300 w-1/3 text-sm font-bold text-gray-800 px-2 border border-gray-500">
+                      <td className="bg-[#d8c4b6]  text-right w-1/3 text-sm font-bold text-gray-800 px-2 border border-[#c2a896]">
                         নাম
                       </td>
-                      <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      <td className="text-sm text-gray-800 px-2 border border-[#d8c4b6]">
                         {/* {item.name} */}
                       </td>
                     </tr>
                     <tr>
-                      <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
+                      <td className="bg-[#d8c4b6] text-right text-sm text-gray-600 px-2 border border-[#c2a896]">
                         ব্যাচ
                       </td>
-                      <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      <td className="text-sm text-gray-800 px-2 border border-[#c2a896]">
                         {/* {item.batch} */}
                       </td>
                     </tr>
                     <tr>
-                      <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
+                      <td className="bg-[#d8c4b6] text-right text-sm text-gray-600 px-2 border border-[#c2a896]">
                         যোগদানের তারিখ
                       </td>
-                      <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      <td className="text-sm  text-gray-800 px-2 border border-[#d8c4b6]">
                         {/* {item.joining_date} */}
                       </td>
                     </tr>
                     <tr>
-                      <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
+                      <td className="bg-[#d8c4b6] text-right text-sm text-gray-600 px-2 border border-[#c2a896]">
                         প্রস্থানের তারিখ
                       </td>
-                      <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                      <td className="text-sm text-gray-800 px-2 border border-[#d8c4b6]">
                         {/* {item.ending_date || "চলমান"} */}
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div className="w-1/3 p-3 border rounded me-3">
+              <div className="hidden md:block w-1/3 p-3 border border-[#d8c4b6] rounded me-3">
                 <img src={DC} alt="DC" />
               </div>
             </div>
           </div>
         </div>
+      </div>
       </div>
     );
 };
