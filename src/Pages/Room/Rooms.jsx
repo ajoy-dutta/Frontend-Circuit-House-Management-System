@@ -174,8 +174,8 @@ const Rooms = () => {
                 className="w-full px-4 py-1 border text-sm rounded"
                 required
               >
-                <option value="One Bed">One King Size Bed</option>
-                <option value="Two Beds">Two King Size Beds</option>
+                <option value="One King Size Bed">One King Size Bed</option>
+                <option value="Two King Size Beds">Two King Size Beds</option>
               </select>
             </div>
 
