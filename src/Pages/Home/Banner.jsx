@@ -7,12 +7,12 @@ import homeImage3 from '../../assets/Slider/Khejur Guur_06.jpg';
 import { Carousel } from 'antd';
 
 const Banner = () => {
-  const contentStyle = {
-    height: '160px',
-    lineHeight: '160px',
-    textAlign: 'center',
+  // const contentStyle = {
+  //   height: '160px',
+  //   lineHeight: '160px',
+  //   textAlign: 'center',
    
-  };
+  // };
   
   return (
     <div>

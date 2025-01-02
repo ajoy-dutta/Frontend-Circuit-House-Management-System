@@ -4,6 +4,7 @@ import { useUser } from "../../Provider/UserProvider";
 
 const HonourBoard = () => {
   const { user } = useUser();
+  console.log(user)
   const [DChonourlist, SetDCHonourlist] = useState({
     before1971: [],
     after1971: [],
@@ -19,6 +20,7 @@ const HonourBoard = () => {
     remarks: "",
     designation_type: "DC",
   });
+  
 
   // Submit the form
   const handleSubmit = async (e) => {
@@ -39,6 +41,7 @@ const HonourBoard = () => {
       const response = await AxiosInstance.post("/honour-board/", formData);
 
       const addedItem = response.data;
+      
 
       if (addedItem.designation_type === "DC") {
         SetDCHonourlist((prev) => {
@@ -112,7 +115,7 @@ const HonourBoard = () => {
             new Date(item.ending_date) <= new Date("1971-12-31")
         );
 
-        // Set both lists
+        
         SetDCHonourlist({ before1971, after1971 });
         SetNDCHonourlist(ndData);
       } catch (error) {
@@ -132,6 +135,16 @@ const HonourBoard = () => {
       .map((digit) => banglaNumerals[parseInt(digit)])
       .join("");
   };
+
+
+  // // Function to navigate to another page with current DC data
+  // const goToCurrentDCPage  = () => {
+  //   if (currentDC) {
+  //     navigate("/", { state: { currentDC } }); // Pass current DC data via state
+  //   } else {
+  //     alert("No current DC found.");
+  //   }
+  // };
 
   return (
     <div className="lg:w-1/2 md:w-2/3 sm:w-2/3 my-10 mx-auto rounded-lg">

@@ -35,10 +35,10 @@ const CheckoutSummary = () => {
             <div id="content-to-pdf" className="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full">
                 {/* Header Section */}
                 <div className="text-center mb-8">
-                    <h1 className="text-2xl font-bold text-gray-700">Circuit House, jashore</h1>
-                    <h2 className="text-lg font-medium text-gray-600">Room Booking Invoice</h2>
-                    <p className="text-sm text-gray-500">Jashore, Khulna, Bangladesh</p>
-                    <p className="text-sm text-gray-500">Phone: 02477762486| Email: chjashore@gmail.com</p>
+                <h1 className="text-2xl font-bold text-gray-700">Circuit House, Jashore</h1>
+                <h2 className="text-lg font-medium text-gray-600">Room Checkout Invoice</h2>
+                <p className="text-sm text-gray-500">Jashore, Khulna, Bangladesh</p>
+                <p className="text-sm text-gray-500">Phone: 02477762486 | Email: chjashore@gmail.com</p>
                 </div>
 
                 {/* Grid Layout for Guest Details and Additional Info */}
