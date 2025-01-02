@@ -18,7 +18,7 @@ const Room = () => {
   const { user } = useUser();
   const [newRoom, setNewRoom] = useState({
     room_name: '',
-    room_type: 'Two Beds',
+    room_type: 'One King Size Bed',
     availability_status: 'Vacant',
     room_category: 'Regular',
     building: 'New Building',
@@ -185,8 +185,8 @@ const Room = () => {
                   className="w-full px-4 py-1 border text-sm rounded"
                   required
                 >
-                  <option value="One Bed">One King Size Bed</option>
-                  <option value="Two Beds">Two King Size Beds</option>
+                  <option value="One King Size Bed">One King Size Bed</option>
+                  <option value="Two King Size Beds">Two King Size Beds</option>
                 </select>
               </div>
   
