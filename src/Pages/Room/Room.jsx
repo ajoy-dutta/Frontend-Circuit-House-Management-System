@@ -18,10 +18,12 @@ const Room = () => {
   const { user } = useUser();
   const [newRoom, setNewRoom] = useState({
     room_name: '',
-    room_description: '',
-    room_type: 'One Bed',
+    room_type: 'Two Beds',
     availability_status: 'Vacant',
-   });
+    room_category: 'Regular',
+    building: 'New Building',
+    floor: 'First Floor',
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,30 +56,32 @@ const Room = () => {
     }));
   };
 
-  // Submit the new room form
+  console.log(newRoom)
+
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
+      e.preventDefault();
 
-    try {
+      try {
+        const response = await AxiosInstance.post('/room/', newRoom);
 
-      const response = await AxiosInstance.post('/room/', newRoom);
-    
-      // Update the room list with the newly added room
-      setRoomlist((prev) => [...prev, response.data]);
+        setRoomlist((prev) => [...prev, response.data]);
 
-      setNewRoom({
-        room_name: "",
-        room_description: "",
-        room_type : "",
-        availability_status:""
-      });
+        setNewRoom({
+          room_name: '',
+          room_type: '',
+          availability_status: 'Vacant',
+          room_category: '',
+          building: '',
+          floor: '',
+        });
 
-      setShowForm(false); 
-      alert("Room Added Successfully");
-    } catch (error) {
-      console.error("Error adding room:", error);
-    }
-  };
+        setShowForm(false);
+        alert("Room Added Successfully");
+      } catch (error) {
+        console.error("Error adding room:", error);
+      }
+    };
 
     useEffect(() => {
         console.log("Acessed")
@@ -136,92 +140,109 @@ const Room = () => {
         </Link>
       </div>
 
-
-      <div className="absolute bg-teal-50 shadow-lg flex justify-end mb-6 rounded-lg">
-            {/* Show the form if showForm is true */}
+   
+    
+      <div className="absolute bg-teal-50 shadow-lg p-4 flex justify-end mb-6 rounded-lg">
             {showForm && (
-                <form onSubmit={handleSubmit}  className="mb-6 p-4">
+                <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                    <label className="block font-bold mb-2 text-sm">
-                    Room Name
-                    </label>
-                    <input
+                  <label className="block font-bold mb-2">Room Name</label>
+                  <input
                     type="text"
-                    name ="room_name"
+                    name="room_name"
                     value={newRoom.room_name}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-1 border rounded "
-                    required
-                    />
-                </div>
-
-                <div className="mb-4">
-                    <label className="block font-bold mb-2 text-sm" >
-                    Room Description
-                    </label>
-                    <input
-                    type="text"
-                    name ="room_description"
-                    value={newRoom.room_description}
                     onChange={handleInputChange}
                     className="w-full px-4 py-1 border rounded"
                     required
-                    />
+                  />
                 </div>
-
+  
                 <div className="mb-4">
-                    <label className="block font-bold mb-2 text-sm">
-                    Room Type
-                    </label>
-                    <select
-                    type="text"
-                    name ="room_type"
-                    value={newRoom.room_type}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-1 border text-sm rounded"
-                    required
-                    >
-                   <option value="One Bed">One Bed</option>
-                   <option value="Two Beds">Two Beds</option>
+                <label className="block font-bold mb-2 text-sm">
+                  Room Category
+                </label>
+                <select
+                  name="room_category"
+                  value={newRoom.room_category}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-1 border rounded"
+                  required
+                  >
+  
+                  <option value="Regular">Regular</option>
+                  <option value="VIP">VIP</option>
+                  <option value="VVIP">VVIP</option>
                   </select>
+              </div>
+  
+  
+              <div className="mb-4">
+                <label className="block font-bold mb-2 text-sm">Room Type</label>
+                <select
+                  name="room_type"
+                  value={newRoom.room_type}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-1 border text-sm rounded"
+                  required
+                >
+                  <option value="One Bed">One King Size Bed</option>
+                  <option value="Two Beds">Two King Size Beds</option>
+                </select>
+              </div>
+  
+              <div className="mb-4">
+                <label className="block font-bold mb-2 text-sm">
+                  Building
+                </label>
+                <select
+                  name="building"
+                  value={newRoom.building}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-1 border rounded text-sm"
+                  required
+                >
+                  <option value="New Building">New Building</option>
+                  <option value="Old Building">Old Building</option>
+                  
+                </select>
+              </div>
+  
+              <div className="mb-4">
+                <label className="block font-bold mb-2 text-sm">
+                  Floor
+                </label>
+                <select
+                  name="floor"
+                  value={newRoom.floor}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-1 border rounded text-sm"
+                  required
+                >
+                  <option value="First Floor">First Floor</option>
+                  <option value="Second Floor">Second Floor</option>
+                  <option value="Third Floor">Third Floor</option>
+                  
+                </select>
                 </div>
-
-                <div className="mb-4">
-                    <label className="block font-bold mb-2 text-sm">
-                    Availability Status
-                    </label>
-                    <select
-                    name ="availability_status"
-                    value={newRoom.availability_status}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-1 border rounded text-sm"
-                    required
-                    >
-                    <option value="Vacant">Vacant</option>
-                    <option value="Booked">Booked</option>
-                    <option value="Occupied">Occupied</option>
-                    <option value="Needs clean">Needs clean</option>
-                    <option value="Needs verify">Needs verify</option>
-                    <option value="Locked">Locked</option>
-                    </select>
-                </div>
-
+  
+                <div className="flex justify-between gap-2">
                 <button
                     type="submit"
-                    className="bg-gradient-to-r from-teal-500 to-blue-500 text-white text-sm font-semibold py-2 w-full rounded hover:bg-blue-600"
+                    className="bg-gradient-to-r from-teal-500 to-blue-500 text-white text-sm font-semibold py-1 px-2 rounded hover:bg-blue-600"
                 >
                     Add Room
                 </button>
 
                 <button
-              onClick={() => setShowForm(!showForm)}
-              className="mt-2 px-3 py-2 bg-gray-300 rounded-lg text-sm hover:bg-gray-400"
-            >
-              Cancel
-            </button>
+                onClick={() => setShowForm(!showForm)}
+                className="mt-2 px-2 py-2 bg-gray-300 rounded-lg text-sm hover:bg-gray-400"
+              >
+                Cancel
+               </button>
+                </div>
               </form>
               )}
-           </div>
+          </div>
       
       <h2 className="text-xl font-bold text-center mb-8 mt-4">Room List</h2>
 
