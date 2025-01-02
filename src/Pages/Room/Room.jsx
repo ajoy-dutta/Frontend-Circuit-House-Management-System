@@ -5,12 +5,19 @@ import Details from "./Details";
 import { Link } from "react-router-dom";
 import AxiosInstance from "../../Components/Axios";
 import { useUser } from "../../Provider/UserProvider";
+import { IoMdArrowDroprightCircle } from "react-icons/io";
 
 const Room = () => {
-  const [roomlist, SetRoomlist] = useState([]);
+  const [roomlist, SetRoomlist] = useState([]); 
+  const [vvip_room, SetVvip_Room] = useState([]);
+  const [expandedBuildings, setExpandedBuildings] = useState({});
+  const [expandedFloors, setExpandedFloors] = useState({});
+
+
   const [showForm, setShowForm] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState(null);
+
   const [newRoom, setNewRoom] = useState({
     room_name: "",
     availability_status: "Vacant",
@@ -81,6 +88,36 @@ const Room = () => {
       console.error("Error adding room:", error);
     }
   };
+
+  const toggleBuilding = (building) => {
+    setExpandedBuildings((prev) => ({
+      ...prev,
+      [building]: !prev[building],
+    }));
+  };
+
+  const toggleFloor = (building, floor) => {
+    setExpandedFloors((prev) => ({
+      ...prev,
+      [`${building}-${floor}`]: !prev[`${building}-${floor}`],
+    }));
+  };
+
+
+  const vvipRooms = roomlist.filter((room) => room.room_category === "VVIP");
+
+
+  // Group rooms by building and floor
+  const groupedRooms = roomlist
+  .filter((room) => room.room_category !== "VVIP")
+  .reduce((acc, room) => {
+    const { building, floor } = room;
+    if (!acc[building]) acc[building] = {};
+    if (!acc[building][floor]) acc[building][floor] = [];
+    acc[building][floor].push(room);
+    return acc;
+  }, {});
+
 
   useEffect(() => {
     // console.log("Accessed");
@@ -204,6 +241,132 @@ const Room = () => {
           </form>
         )}
       </div>
+
+
+      {/* show all rooms base on building and floor */}
+      <div className="container mx-auto p-4">
+      <h2 className="text-xl font-bold text-center mb-6">Room List</h2>
+
+      {/* VVIP Rooms Section */}
+      {vvipRooms.length > 0 && (
+        <div className="mb-8">
+          <h3 className="text-lg font-bold bg-purple-200 p-3 rounded-lg shadow-md">
+            VVIP Rooms
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            {vvipRooms.map((room) => (
+              <div
+                key={room.id}
+                className="bg-gray-200 p-4 rounded-lg shadow-md border-2"
+              >
+                <h5 className="text-lg font-bold">{room.room_name}</h5>
+                <p className="text-sm">Type: {room.room_type}</p>
+                <p className="text-sm">Status: {room.availability_status}</p>
+                <div className="flex justify-between mt-4">
+                  <Link
+                    to="/admin/room_details"
+                    state={{ room }}
+                    className="bg-blue-500 text-white py-1 px-3 rounded text-sm"
+                  >
+                    Details
+                  </Link>
+                  {room.availability_status === "Vacant" ? (
+                    <Link
+                      to="/admin/book"
+                      state={{ room }}
+                      className="bg-green-500 text-white py-1 px-3 rounded text-sm"
+                    >
+                      Book <FontAwesomeIcon icon={faArrowRight} />
+                    </Link>
+                  ) : (
+                    <button
+                      disabled
+                      className="bg-gray-300 text-gray-500 py-1 px-3 rounded text-sm cursor-not-allowed"
+                    >
+                      Book
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {Object.keys(groupedRooms).map((building) => (
+        <div key={building} className="mb-4">
+          <div
+            className="cursor-pointer bg-blue-200 p-4 rounded-lg shadow-md flex gap-2 inline block w-1/4"
+            onClick={() => toggleBuilding(building)}
+          >
+            <h3 className="text-lg font-semibold">{building}</h3><h2 className="text-xl mt-2"><IoMdArrowDroprightCircle /></h2> 
+           
+          </div>
+
+          {expandedBuildings[building] &&
+            Object.keys(groupedRooms[building]).map((floor) => (
+              <div key={floor} className="ml-6 mt-2">
+                <div
+                  className="cursor-pointer bg-green-200 p-3 rounded-md shadow-sm flex gap-2 inline block w-1/4"
+                  onClick={() => toggleFloor(building, floor)}
+                >
+                  <h4 className="text-md font-medium">{floor}</h4><h2 className="text-xl mt-1"><IoMdArrowDroprightCircle /></h2> 
+                </div>
+
+                {expandedFloors[`${building}-${floor}`] && (
+                  <div className="ml-6 mt-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {groupedRooms[building][floor].map((room) => (
+                      <div
+                        key={room.id}
+                        className="bg-gray-200 p-4 rounded-lg shadow-md border-2"
+                      >
+                        <h5 className="text-lg font-bold">{room.room_name}</h5>
+                        <p className="text-sm">Type: {room.room_type}</p>
+                        <p className="text-sm">
+                          Status: {room.availability_status}
+                        </p>
+                        <div className="flex justify-between mt-4">
+                          <Link
+                            to="/admin/room_details"
+                            state={{ room }}
+                            className="bg-blue-500 text-white py-1 px-3 rounded text-sm"
+                          >
+                            Details
+                          </Link>
+                          {room.availability_status === "Vacant" ? (
+                            <Link
+                              to="/admin/book"
+                              state={{ room }}
+                              className="bg-green-500 text-white py-1 px-3 rounded text-sm"
+                            >
+                              Book <FontAwesomeIcon icon={faArrowRight} />
+                            </Link>
+                          ) : (
+                            <button
+                              disabled
+                              className="bg-gray-300 text-gray-500 py-1 px-3 rounded text-sm cursor-not-allowed"
+                            >
+                              Book
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+        </div>
+      ))}
+    </div>
+
+
+
+
+
+
+
+
 
       <h2 className="relative text-xl font-bold text-center mt-10 mb-6">Room List</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
