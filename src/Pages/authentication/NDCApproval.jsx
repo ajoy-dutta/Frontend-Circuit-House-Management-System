@@ -97,24 +97,25 @@ const NDCApproval = () => {
                                         <>
                                             {console.log(`Rendering Approve button for ID: ${item.id}`)}
                                             <button
-                                                className="px-4 py-2 bg-green-500 text-white font-bold rounded hover:bg-green-600"
+                                                className="w-28 h-10 bg-green-500 text-white font-bold rounded hover:bg-green-600"
                                                 onClick={() => handleApprove(item.id)}
                                             >
                                                 Approve
-                                            </button>
+      </button>
                                         </>
                                     ) : (
                                             <>
                                                 {console.log(`Rendering Delete button for ID: ${item.id}`)}
                                                 <button
-                                                    className="px-4 py-2 bg-red-500 text-white font-bold rounded hover:bg-red-600"
+                                                    className="w-28 h-10 bg-red-500 text-white font-bold rounded hover:bg-red-600"
                                                     onClick={() => handleDelete(item.id)}
                                                 >
                                                     Delete
-                                            </button>
+      </button>
                                             </>
                                         )}
                                 </td>
+
 
                             </tr>
                         ))}

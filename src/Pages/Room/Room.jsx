@@ -9,9 +9,6 @@ import { IoMdArrowDroprightCircle } from "react-icons/io";
 
 const Room = () => {
   const [roomlist, setRoomlist] = useState([]);
-  const [expandedBuildings, setExpandedBuildings] = useState({});
-  const [expandedFloors, setExpandedFloors] = useState({});
-  const [expandedVVIP, setExpandedVVIP] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [showForm, setShowForm] = useState(false);
@@ -242,7 +239,7 @@ const Room = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-4 mt-4">
             {vvipRooms.map((room) => {
               let statusClass = "";
               switch (room.availability_status) {
@@ -278,7 +275,7 @@ const Room = () => {
                       Details
                     </Link>
                     {room.availability_status === "Vacant" ? (
-                      <Link to="/admin/book" state={{ room }} className="bg-teal-600 text-white py-1 px-3 rounded text-sm">
+                      <Link to="/admin/book" state={{ room }} className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm">
                         Book <FontAwesomeIcon icon={faArrowRight} />
                       </Link>
                     ) : (
@@ -306,7 +303,7 @@ const Room = () => {
               <h3 className="text-lg font-semibold">{building} ({floor})</h3>
             </div>
           </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-4 mt-4">
                 {groupedRooms[building][floor].map((room) => {
                   let statusClass = "";
                   switch (room.availability_status) {
@@ -342,7 +339,7 @@ const Room = () => {
                           Details
                         </Link>
                         {room.availability_status === "Vacant" ? (
-                          <Link to="/admin/book" state={{ room }} className="bg-teal-600 text-white py-1 px-3 rounded text-sm">
+                          <Link to="/admin/book" state={{ room }} className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm">
                             Book <FontAwesomeIcon icon={faArrowRight} />
                           </Link>
                         ) : (

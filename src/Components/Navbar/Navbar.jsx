@@ -134,20 +134,20 @@ const Navbar = () => {
         </NavLink>
       </li>
       {user ? (
-        <li className="btn btn-glass hover:text-cyan-400">
+        <li className="btn btn-glass hover:text-cyan-400  cursor-pointer">
           <div onClick={signOut}>Sign Out</div>
         </li>
       ) : (
         <li className="relative">
           <div
             onClick={() => setShowLoginForm(!showLoginForm)}
-            className="btn btn-glass hover:text-cyan-400"
+            className="btn btn-glass hover:text-cyan-400  cursor-pointer"
           >
             Sign In
           </div>
           {showLoginForm && (
             <div
-              className="fixed top-28 left-4 z-[9999] w-full max-w-xs p-4 shadow-lg bg-teal-50 rounded-lg"
+              className="fixed top-28 left-4 z-[9999] w-full max-w-xs p-4 shadow-lg bg-teal-50 rounded-lg "
               style={{
                 transform: "translate(0, 0)",
               }}
@@ -222,7 +222,7 @@ const Navbar = () => {
           {user ? (
             <div
               onClick={signOut}
-              className="btn btn-glass hover:text-cyan-400"
+              className="btn btn-glass hover:text-cyan-400  cursor-pointer"
             >
               Sign Out
             </div>
@@ -230,13 +230,13 @@ const Navbar = () => {
             <li className="relative">
               <div
                 onClick={() => setShowLoginForm(!showLoginForm)}
-                className="btn btn-glass hover:text-cyan-400 px-4"
+                className="btn btn-glass hover:text-cyan-400 px-4  cursor-pointer"
               >
                 Sign In
               </div>
               {showLoginForm && (
                 <div
-                  className="fixed top-16 right-4 z-[9999] w-full max-w-xs p-4 shadow-lg bg-teal-50 rounded-lg"
+                  className="  cursor-pointer fixed top-16 right-4 z-[9999] w-full max-w-xs p-4 shadow-lg bg-teal-50 rounded-lg"
                   style={{
                     transform: "translate(0, 0)",
                   }}

@@ -55,6 +55,7 @@ const Checkout = () => {
               <td className="text-gray-700 font-semibold">Guest Name:</td>
               <td>{guest.name}</td>
             </tr>
+           
             <tr>
               <td className="text-gray-700 font-semibold">Phone No:</td>
               <td>{guest.phone}</td>
@@ -87,6 +88,7 @@ const Checkout = () => {
                   hour12: true,
                 })}</td>
             </tr>
+            
             <tr>
               <td className="text-gray-700 font-semibold">Guest Type:</td>
               <td>{guest.user_type}</td>

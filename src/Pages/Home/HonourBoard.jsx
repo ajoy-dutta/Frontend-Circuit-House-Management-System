@@ -16,7 +16,7 @@ const HonourBoard = () => {
     batch: "",
     joining_date: "",
     ending_date: "",
-    photo: "",
+    photo: null,
     remarks: "",
     designation_type: "DC",
   });
@@ -269,7 +269,7 @@ const HonourBoard = () => {
       {/* DC Honour Board */}
       <div className="p-6 bg-teal-50">
         <h2 className="text-center text-lg font-bold mb-4 py-2">
-          জেলা প্রশাসক/জেলা ম্যাজিস্ট্রেট/কালেক্টর
+        জেলা প্রশাসক ও বিজ্ঞ জেলা ম্যাজিস্ট্রেট,যশোর
         </h2>
 
         <div className="">

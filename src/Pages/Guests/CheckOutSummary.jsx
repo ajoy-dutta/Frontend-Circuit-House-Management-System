@@ -1,10 +1,12 @@
 import { useLocation } from "react-router-dom";
 import jsPDF from "jspdf";
+import { useUser } from "../../Provider/UserProvider";
 
 const CheckoutSummary = () => {
     const location = useLocation();
     const { checkoutsummary, guest } = location.state || {};
-
+    const { user } = useUser(); 
+    console.log("user",user);
     const handleDownloadPDF = () => {
     const doc = new jsPDF('p', 'mm', 'a4'); // Set the paper size to A4 in millimeters
         const content = document.getElementById('content-to-pdf');
