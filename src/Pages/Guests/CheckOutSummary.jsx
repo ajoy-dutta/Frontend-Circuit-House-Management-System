@@ -8,7 +8,7 @@ const CheckoutSummary = () => {
     const { user } = useUser(); 
     console.log("user",user);
     const handleDownloadPDF = () => {
-        const doc = new jsPDF();
+    const doc = new jsPDF('p', 'mm', 'a4'); // Set the paper size to A4 in millimeters
         const content = document.getElementById('content-to-pdf');
         // Hide the download button
         const downloadButton = document.getElementById('download-pdf-button');
@@ -37,10 +37,10 @@ const CheckoutSummary = () => {
             <div id="content-to-pdf" className="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full">
                 {/* Header Section */}
                 <div className="text-center mb-8">
-                    <h1 className="text-2xl font-bold text-gray-700">Circuit House, jashore</h1>
-                    <h2 className="text-lg font-medium text-gray-600">Room Booking Invoice</h2>
+                    <h1 className="text-2xl font-bold text-gray-700">Circuit House, Jashore</h1>
+                    <h2 className="text-lg font-medium text-gray-600">Room Checkout Invoice</h2>
                     <p className="text-sm text-gray-500">Jashore, Khulna, Bangladesh</p>
-                    <p className="text-sm text-gray-500">Phone: 02477762486| Email: chjashore@gmail.com</p>
+                    <p className="text-sm text-gray-500">Phone: 02477762486 | Email: chjashore@gmail.com</p>
                 </div>
 
                 {/* Grid Layout for Guest Details and Additional Info */}
@@ -51,13 +51,13 @@ const CheckoutSummary = () => {
                             <p><strong className="text-gray-700 font-semibold">Guest Name</strong> <span className="ml-7 ">: {guest.name}</span></p>
                             <p><strong className="text-gray-700 font-semibold">Room Name:</strong><span className="ml-7">: {guest.room_name}</span></p>
                             <p><strong className="text-gray-700 font-semibold">Check-In Date</strong><span className="ml-5 mr-1">: </span>
-                                {new Date(guest.check_in_date ).toLocaleString("en-GB", {
-                                day: "2-digit",
-                                month: "2-digit",
-                                year: "numeric",
-                                hour: "numeric",
-                                minute: "numeric",
-                                hour12: true,
+                                {new Date(guest.check_in_date).toLocaleString("en-GB", {
+                                    day: "2-digit",
+                                    month: "2-digit",
+                                    year: "numeric",
+                                    hour: "numeric",
+                                    minute: "numeric",
+                                    hour12: true,
                                 })}
                             </p>
 
@@ -115,7 +115,18 @@ const CheckoutSummary = () => {
                             </tr>
                         </tbody>
                     </table>
+
                 </div>
+                <div className="mt-12">
+                    <p>Thank you for staying at Jashore Circuit House. You are always welcome at Joyful Jashore.</p>
+                    <p>Please call in advance for any future booking.</p>
+                    <p>
+                        Thanks and regards,<br />
+                        <strong>Nezarat Deputy Collector</strong><br />
+                        Cell: +8801733909222
+                    </p>
+                </div>
+
 
                 {/* Button for Downloading PDF */}
                 <div className="mt-8 flex justify-center">
@@ -125,7 +136,7 @@ const CheckoutSummary = () => {
                         className="bg-blue-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-600"
                     >
                         Download PDF
-                </button>
+                    </button>
                 </div>
             </div>
         </div>

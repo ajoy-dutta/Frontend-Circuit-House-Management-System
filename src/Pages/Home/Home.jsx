@@ -4,11 +4,11 @@ import Banner from './Banner';
 import DCinfo from './DCinfo';
 
 const Home = () => {
+
   return (
     <div className="">
-         
          <Banner />
-         <DCinfo></DCinfo>
+         <DCinfo ></DCinfo>
     </div>
   );
 };
