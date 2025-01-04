@@ -4,6 +4,7 @@ import Login from "../../Pages/authentication/Login";
 import { useUser } from "../../Provider/UserProvider";
 
 import { NavLink } from "react-router-dom";
+import logo from "../../assets/Footer/joyful.png";
 
 const Navbar = () => {
   const { user, signOut } = useUser();
@@ -17,7 +18,7 @@ const Navbar = () => {
   const navOptions = (
     <>
       {user && (
-        <li className="btn btn-glass">
+        <li>
           <NavLink
             to="/admin/room"
             className={({ isActive }) =>
@@ -28,7 +29,7 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
-      <li className="btn btn-glass">
+      <li>
         <NavLink
           to="/room"
           className={({ isActive }) =>
@@ -38,7 +39,7 @@ const Navbar = () => {
           Room
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li>
         <NavLink
           to="/conferenceRoom"
           className={({ isActive }) =>
@@ -48,7 +49,7 @@ const Navbar = () => {
           Conference Room
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li>
         <NavLink
           to="/visitJahore"
           className={({ isActive }) =>
@@ -58,7 +59,7 @@ const Navbar = () => {
           Visit Jashore
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li>
         <NavLink
           to="/honor-board"
           className={({ isActive }) =>
@@ -68,7 +69,7 @@ const Navbar = () => {
           Honor Board
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li>
         <NavLink
           to="/contact"
           className={({ isActive }) =>
@@ -83,7 +84,7 @@ const Navbar = () => {
 
   const navDropOptions = (
     <>
-      <li className="btn btn-glass">
+      <li >
         <NavLink
           to="/room"
           className={({ isActive }) =>
@@ -93,7 +94,7 @@ const Navbar = () => {
           Room
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li >
         <NavLink
           to="/conferenceRoom"
           className={({ isActive }) =>
@@ -103,7 +104,7 @@ const Navbar = () => {
           Conference Room
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li >
         <NavLink
           to="/visitJahore"
           className={({ isActive }) =>
@@ -113,7 +114,7 @@ const Navbar = () => {
           Visit Jashore
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li >
         <NavLink
           to="/honor-board"
           className={({ isActive }) =>
@@ -123,7 +124,7 @@ const Navbar = () => {
           Honor Board
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li >
         <NavLink
           to="/contact"
           className={({ isActive }) =>
@@ -134,14 +135,14 @@ const Navbar = () => {
         </NavLink>
       </li>
       {user ? (
-        <li className="btn btn-glass hover:text-cyan-400  cursor-pointer">
+        <li className=" hover:text-cyan-400  cursor-pointer">
           <div onClick={signOut}>Sign Out</div>
         </li>
       ) : (
         <li className="relative">
           <div
             onClick={() => setShowLoginForm(!showLoginForm)}
-            className="btn btn-glass hover:text-cyan-400  cursor-pointer"
+            className=" hover:text-cyan-400  cursor-pointer"
           >
             Sign In
           </div>
@@ -161,8 +162,8 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar sticky top-0 z-[1000] bg-slate-50 flex h-[70px] px-8 items-center justify-between">
-      <div className="navbar-start flex items-center gap-2">
+    <div className="navbar sticky top-0 z-[1000] bg-slate-50 flex h-[50px] px-8 items-center justify-between">
+      <div className="navbar-start w-full flex items-center gap-2">
         <div className="dropdown">
           <div
             tabIndex={0}
@@ -196,33 +197,31 @@ const Navbar = () => {
             </ul>
           )}
         </div>
-        <div className="navbar-end ">
-          <NavLink to="/">
-            <div className="block lg:hidden text-2xl font-bold text-with-gradient lg:text-2xl">
-              Circuit House
-            </div>
-          </NavLink>
-        </div>
-
-        <div className="flex items-center justify-center gap-10">
-          <div className="hidden lg:block text-2xl font-bold text-with-gradient lg:text-2xl">
-            <NavLink to="/"> Circuit House </NavLink>
+        <div className="flex items-center justify-center gap-5">
+          <div className="hidden lg:block text-xl font-bold text-with-gradient md:text-2xl whitespace-nowrap">
+            <NavLink to="/">
+              <div className="flex items-center justify-center gap-2">
+                <img className="w-[32px]" src={logo} />
+                <div className="text-lg">
+                  Circuit House
+                </div>
+              </div>
+            </NavLink>
           </div>
-
-          <div className="nav-start ">
-            <ul className="hidden md:flex items-center text-lg font-normal font-serif menu-horizontal px-1 gap-8">
+          <div className="nav-start w-3/4">
+            <ul className="hidden md:flex items-center font-normal font-serif px-1 gap-8 whitespace-nowrap">
               {navOptions}
             </ul>
           </div>
         </div>
       </div>
 
-      <div className="navbar-end">
-        <ul className="hidden font-normal font-serif text-lg lg:flex menu-horizontal px-1 gap-10">
+      <div className="navbar-end w-1/4">
+        <ul className="hidden font-normal font-serif text-lg lg:flex menu-horizontal px-1 gap-10 whitespace-nowrap overflow-x-auto">
           {user ? (
             <div
               onClick={signOut}
-              className="btn btn-glass hover:text-cyan-400  cursor-pointer"
+              className=" hover:text-cyan-400 cursor-pointer"
             >
               Sign Out
             </div>
@@ -230,13 +229,13 @@ const Navbar = () => {
             <li className="relative">
               <div
                 onClick={() => setShowLoginForm(!showLoginForm)}
-                className="btn btn-glass hover:text-cyan-400 px-4  cursor-pointer"
+                className=" hover:text-cyan-400 px-4 cursor-pointer"
               >
                 Sign In
               </div>
               {showLoginForm && (
                 <div
-                  className="  cursor-pointer fixed top-16 right-4 z-[9999] w-full max-w-xs p-4 shadow-lg bg-teal-50 rounded-lg"
+                  className="fixed top-16 right-4 z-[9999] w-full max-w-xs p-4 shadow-lg bg-teal-50 rounded-lg"
                   style={{
                     transform: "translate(0, 0)",
                   }}
@@ -253,3 +252,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
