@@ -174,8 +174,8 @@ const Rooms = () => {
                 className="w-full px-4 py-1 border text-sm rounded"
                 required
               >
-                <option value="One Bed">One King Size Bed</option>
-                <option value="Two Beds">Two King Size Beds</option>
+                <option value="One King Size Bed">One King Size Bed</option>
+                <option value="Two King Size Beds">Two King Size Beds</option>
               </select>
             </div>
 
@@ -227,7 +227,7 @@ const Rooms = () => {
                   <option value="Vacant">Vacant</option>
                   <option value="Booked">Booked</option>
                   <option value="Occupied">Occupied</option>
-                  <option value="Needs clean">Needs clean</option>
+                  <option value="Needs Housekeeping">Needs Housekeeping</option>
                   <option value="Needs verify">Needs verify</option>
                   <option value="Locked">Locked</option>
                 </select>

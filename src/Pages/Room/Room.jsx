@@ -14,7 +14,7 @@ const Room = () => {
   const [newRoom, setNewRoom] = useState({
     room_name: "",
     availability_status: "Vacant",
-    room_type: "One Bed",
+    room_type: "One King Size Bed",
     room_category: "Regular",
     building: "",
     floor: "",
@@ -24,10 +24,10 @@ const Room = () => {
 
   // console.log(newRoom);
 
-  const handleDetailsClick = (room) => {
-    setSelectedRoom(room); // Set the selected room
-    setShowDetails(true); // Show details
-  };
+  // const handleDetailsClick = (room) => {
+  //   setSelectedRoom(room); // Set the selected room
+  //   setShowDetails(true); // Show details
+  // };
 
   const handleBookClick = (room) => {
     setSelectedRoom(room); // Set the selected room
@@ -69,7 +69,7 @@ const Room = () => {
 
       setNewRoom({
         room_name: "",
-        room_type: "One Bed",
+        room_type: "One King Size Bed",
         room_category: "Regular",
         building: "",
         floor: "",
@@ -149,8 +149,8 @@ const Room = () => {
                 className="w-full px-4 py-1 border text-sm rounded"
                 required
               >
-                <option value="One Bed">One King Size Bed</option>
-                <option value="Two Beds">Two King Size Beds</option>
+                <option value="One King Size Bed">One King Size Bed</option>
+                <option value="Two King Size Beds">Two King Size Beds</option>
               </select>
             </div>
 
@@ -217,16 +217,16 @@ const Room = () => {
             </h2>
             <div className="text-center mb-4">
               <span className="text-lg font-semibold">
-                বেডঃ {room.room_type}
+                Bed: {room.room_type}
               </span>
             </div>
             <div className="flex justify-center ml-5"> 
               <button
-                className={`text-sm text-white font-bold py-2 px-4 rounded mr-4 ${room.availability_status === "Occupied"
+                className={`text-sm text-white font-bold py-2 px-4 rounded mr-4 cursor-default ${room.availability_status === "Occupied"
                     ? "bg-gradient-to-r from-blue-500 to-blue-700"
                     : room.availability_status === "Booked"
                       ? "bg-gradient-to-r from-orange-500 to-orange-700"
-                      : room.availability_status === "Needs clean"
+                      : room.availability_status === "Needs Housekeeping"
                         ? "bg-gradient-to-r from-red-500 to-red-700"
                         : room.availability_status === "Needs verify"
                           ? "bg-gradient-to-r from-yellow-500 to-yellow-600"

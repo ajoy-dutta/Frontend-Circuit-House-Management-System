@@ -46,9 +46,20 @@ const Guests = () => {
     setSelectedGuest(selectedGuest === id ? null : id);
   };
 
-  const toggleUpdate = (id) => {
+  const toggleUpdate = async (id) => {
     setSelectedGuestUpdate(selectedGuestUpdate === id ? null : id);
+    
+    // If the update is successful, fetch the data again to refresh the state
+    if (selectedGuestUpdate !== id) {
+      try {
+        const response = await AxiosInstance.get('/book/');
+        setGuestsList(response.data); // Refresh the guest list
+      } catch (error) {
+        console.log("Error fetching data", error);
+      }
+    }
   };
+  
 
 
 
@@ -125,7 +136,7 @@ const Guests = () => {
                     onClick={() => toggleDetails(guest.id)}
                     className="px-4 py-2 bg-blue-500 text-white text-xs font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
-                    Show Details
+                     Details
                   </button>
                 </td>
 
@@ -144,12 +155,6 @@ const Guests = () => {
           </tbody>
         </table>
       </div>
-
-
-
-
-
-
 
       {/* Modal for guest details */}
       {selectedGuest && (

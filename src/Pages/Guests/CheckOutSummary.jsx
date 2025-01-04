@@ -1,10 +1,12 @@
 import { useLocation } from "react-router-dom";
 import jsPDF from "jspdf";
+import { useUser } from "../../Provider/UserProvider";
 
 const CheckoutSummary = () => {
     const location = useLocation();
     const { checkoutsummary, guest } = location.state || {};
-
+    const { user } = useUser(); 
+    console.log("user",user);
     const handleDownloadPDF = () => {
         const doc = new jsPDF();
         const content = document.getElementById('content-to-pdf');
@@ -80,8 +82,8 @@ const CheckoutSummary = () => {
                         <h3 className="text-lg font-bold text-gray-700 mb-4 ">Payment Information</h3>
                         <div className="space-y-2 text-base">
                             <p><strong className="text-gray-700 font-semibold">Payment Status</strong><span className="ml-3">: {checkoutsummary.payment_status}</span></p>
-                            <p><strong className="text-gray-700 font-semibold">Bill ID</strong><span className="ml-20">: {checkoutsummary.bill_id ? checkoutsummary.bill_id : "345678"} </span></p>
-                            <p><strong className="text-gray-700 font-semibold">Bill By</strong><span className="ml-20">: ---</span></p>
+                            <p><strong className="text-gray-700 font-semibold">Bill ID</strong><span className="ml-20">: {checkoutsummary.payment_id ? checkoutsummary.payment_id : "345678"} </span></p>
+                            <p><strong className="text-gray-700 font-semibold">Bill By</strong><span className="ml-20">: {user.username} </span></p>
                         </div>
                     </div>
                 </div>

@@ -6,6 +6,8 @@ import AxiosInstance from "../../Components/Axios";
 const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
    
     const [showForm, setShowForm] = useState(false);
+    const [guests, setGuests] = useState([]); // Array of guest data
+
     const [bookData, setBookData] = useState({
         name: guest.name,
         office: guest.office,
@@ -33,15 +35,23 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
             [name]: value,
         }));
     };
-
+    const updateGuestData = (updatedGuest) => {
+        // Find the index of the guest being updated
+        const updatedGuests = guests.map((guest) => 
+            guest.id === updatedGuest.id ? updatedGuest : guest
+        );
+        setGuests(updatedGuests);  // Update the state with the new guest data
+    };
 
     const handleSubmit = async (e) => {
+        
         e.preventDefault();
+        setLoading(true); 
 
         try {
     
          const response = await AxiosInstance.put(`/book/${guest.id}/`, bookData);
-        
+         updateGuestData(response.data);
           setBookData({
             name: "",
             office: "",
