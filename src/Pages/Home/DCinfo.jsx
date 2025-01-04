@@ -10,6 +10,7 @@ const DCinfo = () => {
       try {
         const response = await AxiosInstance.get("/honour-board/");
         const dcData = response.data.filter((item) => item.designation_type === "DC");
+        console.log(dcData)
 
         // Find the current DC
         const Current_DC = dcData.find((item) => !item.ending_date);
@@ -85,7 +86,7 @@ const DCinfo = () => {
                 </table>
               </div>
               <div className="hidden md:block w-1/3 p-3 border border-[#d8c4b6] rounded me-3">
-                <img src={DCImage} alt="DC" />
+                <img src={ currentDC && currentDC.photo ? currentDC.photo : "default-image.jpg" } alt="DC" />
               </div>
             </div>
           </div>
