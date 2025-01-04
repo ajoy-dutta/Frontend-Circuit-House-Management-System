@@ -278,7 +278,7 @@ const Room = () => {
                       Details
                     </Link>
                     {room.availability_status === "Vacant" ? (
-                      <Link to="/admin/book" state={{ room }} className="bg-teal-600 text-white py-1 px-3 rounded text-sm">
+                      <Link to="/admin/book" state={{ room }} className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm">
                         Book <FontAwesomeIcon icon={faArrowRight} />
                       </Link>
                     ) : (
@@ -342,7 +342,7 @@ const Room = () => {
                           Details
                         </Link>
                         {room.availability_status === "Vacant" ? (
-                          <Link to="/admin/book" state={{ room }} className="bg-teal-600 text-white py-1 px-3 rounded text-sm">
+                          <Link to="/admin/book" state={{ room }} className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm">
                             Book <FontAwesomeIcon icon={faArrowRight} />
                           </Link>
                         ) : (
