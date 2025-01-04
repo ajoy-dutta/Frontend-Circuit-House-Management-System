@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./navbar.css";
 import Login from "../../Pages/authentication/Login";
 import { useUser } from "../../Provider/UserProvider";
-
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
@@ -17,7 +16,7 @@ const Navbar = () => {
   const navOptions = (
     <>
       {user && (
-        <li className="btn btn-glass">
+        <li >
           <NavLink
             to="/admin/room"
             className={({ isActive }) =>
@@ -28,9 +27,9 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
-      <li className="btn btn-glass">
+      <li >
         <NavLink
-          to="/room"
+          to="/room_details"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
@@ -38,7 +37,7 @@ const Navbar = () => {
           Room
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li >
         <NavLink
           to="/conferenceRoom"
           className={({ isActive }) =>
@@ -48,7 +47,7 @@ const Navbar = () => {
           Conference Room
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li >
         <NavLink
           to="/visitJahore"
           className={({ isActive }) =>
@@ -58,7 +57,7 @@ const Navbar = () => {
           Visit Jashore
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li >
         <NavLink
           to="/honor-board"
           className={({ isActive }) =>
@@ -68,7 +67,7 @@ const Navbar = () => {
           Honor Board
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li >
         <NavLink
           to="/contact"
           className={({ isActive }) =>
@@ -83,9 +82,9 @@ const Navbar = () => {
 
   const navDropOptions = (
     <>
-      <li className="btn btn-glass">
+      <li >
         <NavLink
-          to="/room"
+          to="/room_details"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
@@ -93,7 +92,7 @@ const Navbar = () => {
           Room
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li >
         <NavLink
           to="/conferenceRoom"
           className={({ isActive }) =>
@@ -103,7 +102,7 @@ const Navbar = () => {
           Conference Room
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li >
         <NavLink
           to="/visitJahore"
           className={({ isActive }) =>
@@ -113,7 +112,7 @@ const Navbar = () => {
           Visit Jashore
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li >
         <NavLink
           to="/honor-board"
           className={({ isActive }) =>
@@ -123,7 +122,7 @@ const Navbar = () => {
           Honor Board
         </NavLink>
       </li>
-      <li className="btn btn-glass">
+      <li >
         <NavLink
           to="/contact"
           className={({ isActive }) =>
