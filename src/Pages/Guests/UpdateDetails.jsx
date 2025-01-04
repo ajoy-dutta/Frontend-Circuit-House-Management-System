@@ -246,7 +246,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                         id="check_in_date"
                         type="date"
                         name="check_in_date"
-                        value={new Date(bookData.check_in_date).toISOString().split("T")[0]}
+                            value={bookData.check_in_date}
                         onChange={handleChange}
                         className="w-full px-4 py-1 border rounded text-sm"
                         required
@@ -261,7 +261,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                         id="check_out_date"
                         type="date"
                         name="check_out_date"
-                        value={new Date(bookData.check_out_date).toISOString().split("T")[0]}
+                        value={bookData.check_out_date}
                         onChange={handleChange}
                         className="w-full px-4 py-1 border rounded text-sm"
                         required
