@@ -21,6 +21,7 @@ const HonourBoard = () => {
     designation_type: "DC",
   });
   
+  
 
   // Submit the form
   const handleSubmit = async (e) => {
@@ -137,14 +138,20 @@ const HonourBoard = () => {
   };
 
 
-  // // Function to navigate to another page with current DC data
-  // const goToCurrentDCPage  = () => {
-  //   if (currentDC) {
-  //     navigate("/", { state: { currentDC } }); // Pass current DC data via state
-  //   } else {
-  //     alert("No current DC found.");
-  //   }
-  // };
+  const convertToBanglaDate = (dateString) => {
+    if (!dateString) return ""; // Handle empty dates
+    const banglaNumerals = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+    return dateString
+      .split("-") // Split date into parts (e.g., "YYYY-MM-DD")
+      .reverse() // Reorder to DD-MM-YYYY
+      .map((part) =>
+        part
+          .split("")
+          .map((digit) => banglaNumerals[parseInt(digit)] || digit) // Convert to Bangla numerals
+          .join("")
+      )
+      .join("-"); // Join the parts back with the separator
+  };
 
   return (
     <div className="lg:w-1/2 md:w-2/3 sm:w-2/3 my-10 mx-auto rounded-lg">
@@ -313,7 +320,7 @@ const HonourBoard = () => {
                       যোগদানের তারিখ
                     </td>
                     <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                      {item.joining_date}
+                    {convertToBanglaDate(item.joining_date)}
                     </td>
                   </tr>
                   <tr>
@@ -321,7 +328,7 @@ const HonourBoard = () => {
                       প্রস্থানের তারিখ
                     </td>
                     <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                      {item.ending_date || "চলমান"}
+                    {convertToBanglaDate(item.ending_date) || "চলমান"}
                     </td>
                   </tr>
                 </tbody>
@@ -392,7 +399,7 @@ const HonourBoard = () => {
                       যোগদানের তারিখ
                     </td>
                     <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                      {item.joining_date}
+                      {convertToBanglaDate(item.joining_date)}
                     </td>
                   </tr>
                   <tr>
@@ -400,7 +407,7 @@ const HonourBoard = () => {
                       প্রস্থানের তারিখ
                     </td>
                     <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                      {item.ending_date || "চলমান"}
+                      {convertToBanglaDate(item.ending_date) || "চলমান"}
                     </td>
                   </tr>
                 </tbody>
@@ -471,7 +478,7 @@ const HonourBoard = () => {
                       যোগদানের তারিখ
                     </td>
                     <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                      {item.joining_date}
+                      {convertToBanglaDate(item.joining_date)}
                     </td>
                   </tr>
                   <tr>
@@ -479,7 +486,7 @@ const HonourBoard = () => {
                       প্রস্থানের তারিখ
                     </td>
                     <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                      {item.ending_date || "চলমান"}
+                      {convertToBanglaDate(item.ending_date) || "চলমান"}
                     </td>
                   </tr>
                 </tbody>

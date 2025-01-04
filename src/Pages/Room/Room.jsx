@@ -298,7 +298,7 @@ const Room = () => {
 
           {Object.keys(groupedRooms[building]).map((floor) => (
             <div key={floor} className="mt-2">
-             <div className="flex items-center justify-center">
+             <div className="flex items-center justify-center mb-2">
             <div className="text-center bg-blue-200 p-4 rounded-lg shadow-md flex items-center justify-center w-full">
               <h3 className="text-lg font-semibold">{building} ({floor})</h3>
             </div>
