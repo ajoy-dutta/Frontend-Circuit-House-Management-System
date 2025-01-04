@@ -9,9 +9,6 @@ import { IoMdArrowDroprightCircle } from "react-icons/io";
 
 const Room = () => {
   const [roomlist, setRoomlist] = useState([]);
-  const [expandedBuildings, setExpandedBuildings] = useState({});
-  const [expandedFloors, setExpandedFloors] = useState({});
-  const [expandedVVIP, setExpandedVVIP] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [showForm, setShowForm] = useState(false);

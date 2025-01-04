@@ -28,6 +28,7 @@ import Contact from "./Pages/Home/Contact";
 import VisitJashore from "./Pages/VisitJashore/VisitJashore";
 import ConferenceRoom from "./Pages/ConferenceRoom/ConferenceRoom";
 import Details from "./Pages/Room/Details";
+import CheckoutHistory from "./Pages/Guests/CheckoutHistory";
 
 
 const router = createBrowserRouter([
@@ -111,6 +112,11 @@ const router = createBrowserRouter([
       {
         path: "guest-list",
         element: <Guests />,
+      },
+
+      {
+        path: "checkout-history",
+        element: <CheckoutHistory />,
       },
 
       {

@@ -177,9 +177,11 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                             <option value="" disabled>
                                 Select Guest Type
                         </option>
-                            <option value="Government Officer">Government Officer</option>
-                            <option value="Self-Government Officer">Self-Government Officer</option>
+                            <option value="Government Official">Government Official</option>
+                            <option value="Reference">Reference</option>
                             <option value="Private Sector Employee">Private Sector Employee</option>
+                            <option value="Others">Others</option>
+
                         </select>
                     </div>
                 </div>

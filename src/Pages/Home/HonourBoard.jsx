@@ -16,7 +16,7 @@ const HonourBoard = () => {
     batch: "",
     joining_date: "",
     ending_date: "",
-    photo: "",
+    photo: null,
     remarks: "",
     designation_type: "DC",
   });
