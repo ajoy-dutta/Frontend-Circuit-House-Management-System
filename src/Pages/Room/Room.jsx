@@ -271,7 +271,7 @@ const Room = () => {
                   <p className="text-sm">Type: {room.room_type}</p>
                   <p className="text-sm">Status: {room.availability_status}</p>
                   <div className="flex justify-between mt-4">
-                    <Link to="/admin/room_details" state={{ room }} className="bg-blue-500 text-white py-1 px-3 rounded text-sm">
+                    <Link to="/admin/room_details" state={{ room }} className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm">
                       Details
                     </Link>
                     {room.availability_status === "Vacant" ? (
@@ -335,7 +335,7 @@ const Room = () => {
                       <p className="text-sm">Type: {room.room_type}</p>
                       <p className="text-sm">Status: {room.availability_status}</p>
                       <div className="flex justify-between mt-4">
-                        <Link to="/admin/room_details" state={{ room }} className="bg-blue-500 text-white py-1 px-3 rounded text-sm">
+                        <Link to="/admin/room_details" state={{ room }} className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm">
                           Details
                         </Link>
                         {room.availability_status === "Vacant" ? (
