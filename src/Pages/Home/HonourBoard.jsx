@@ -294,7 +294,7 @@ const HonourBoard = () => {
                   />
                 </div>
               </div>
-              <div className="h-max hidden md:block text-lg text-start font-bold text-gray-600 px-2 ">
+              <div className="h-max hidden md:block text-md text-start mt-8 font-bold text-gray-600 px-2 ">
                 {convertToBanglaNumerals(DChonourlist.after1971.length - index)}
               </div>
               <table className="table-auto w-full ">
@@ -371,7 +371,7 @@ const HonourBoard = () => {
                   alt={item.name}
                 />
               </figure> */}
-              <div className="h-max hidden md:block text-lg text-start font-bold text-gray-600 px-2 ">
+              <div className="h-max hidden md:block text-md text-start mt-8 font-bold text-gray-600 px-2 ">
                 {convertToBanglaNumerals(
                   DChonourlist.before1971.length - index
                 )}
@@ -452,7 +452,7 @@ const HonourBoard = () => {
                   />
                 </div>
               </div>{" "}
-              <div className="h-max hidden md:block text-lg text-start font-bold text-gray-600 px-2 ">
+              <div className="h-max hidden md:block text-md mt-8 text-start font-bold text-gray-600 px-2 ">
                 {convertToBanglaNumerals(NDChonourlist.length - index)}
               </div>
               <table className="table-auto w-full ">
