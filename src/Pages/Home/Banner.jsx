@@ -16,7 +16,23 @@ const Banner = () => {
   
   return (
     <div>
-      <Carousel autoplay>
+    <Carousel autoplay>
+      <div className='min-h-fit md:h-screen'>
+        <img className="w-full h-full" src={homeImage} alt="test-slide" />
+      </div>
+      <div className='min-h-fit md:h-screen'>
+        <img className="w-full h-full" src={homeImage1} alt="test-slide" />
+      </div>
+      <div className='min-h-fit md:h-screen'>
+        <img className="w-full h-full" src={homeImage2} alt="test-slide" />
+      </div>
+      <div className='min-h-fit md:h-screen'>
+        <img className="w-full h-full" src={homeImage3} alt="test-slide" />
+      </div>
+
+    </Carousel>
+
+      {/* <Carousel autoplay>
         <div className='min-h-fit md:h-screen'
         // style={{
         //   backgroundImage: `url(${homeImage})`,
@@ -34,7 +50,7 @@ const Banner = () => {
         <div className='min-h-fit md:h-screen'>
           <img className="w-full max-h-full" src={homeImage3} alt="" />
         </div>
-      </Carousel>
+      </Carousel> */}
     </div>
   );
 };
