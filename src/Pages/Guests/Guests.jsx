@@ -46,9 +46,20 @@ const Guests = () => {
     setSelectedGuest(selectedGuest === id ? null : id);
   };
 
-  const toggleUpdate = (id) => {
+  const toggleUpdate = async (id) => {
     setSelectedGuestUpdate(selectedGuestUpdate === id ? null : id);
+    
+    // If the update is successful, fetch the data again to refresh the state
+    if (selectedGuestUpdate !== id) {
+      try {
+        const response = await AxiosInstance.get('/book/');
+        setGuestsList(response.data); // Refresh the guest list
+      } catch (error) {
+        console.log("Error fetching data", error);
+      }
+    }
   };
+  
 
 
 
@@ -145,12 +156,6 @@ const Guests = () => {
         </table>
       </div>
 
-
-
-
-
-
-
       {/* Modal for guest details */}
       {selectedGuest && (
         <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-75 z-50">
@@ -200,7 +205,15 @@ const Guests = () => {
                     </tr>
                     <tr>
                       <td className="text-gray-700 font-semibold">Check-Out Date:</td>
-                      <td>{guest.check_out_date}</td>
+                      <td>{new Date(guest.check_out_date).toLocaleString("en-GB", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                          hour: "numeric",
+                          minute: "numeric",
+                          hour12: true,
+                        })}
+                      </td>
                     </tr>
                     <tr>
                       <td className="text-gray-700 font-semibold">Guest Type:</td>

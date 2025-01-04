@@ -5,6 +5,7 @@ import { MdDashboard } from "react-icons/md";
 import { FaBowlFood } from "react-icons/fa6";
 import { Link } from "react-router";
 import { useUser } from "../../Provider/UserProvider";
+import { FaHistory } from "react-icons/fa";
 
 const Sidebar = ({ sidebarToggle }) => {
   const {user} = useUser();
@@ -28,14 +29,16 @@ const Sidebar = ({ sidebarToggle }) => {
             </div>
           </li>
         </Link>
+
         <Link to="/admin/room">
           <li className="mb-2 rounded hover:shadow hover:bg-blue-100 py-2">
             <div className="px-3 ">
               <FaHome className="inline-block w-6 h-6 mr-2 -mt-2  "></FaHome>
-              Room
+              Rooms
             </div>
           </li>
         </Link>
+
         <Link to="/admin/food">
           <li className="mb-2 rounded hover:shadow hover:bg-blue-100 py-2">
             <div className="px-3 ">
@@ -44,6 +47,7 @@ const Sidebar = ({ sidebarToggle }) => {
             </div>
           </li>
         </Link>
+
         <Link to="/admin/other">
           <li className="mb-2 rounded hover:shadow hover:bg-blue-100 py-2">
             <div className="px-3 ">
@@ -52,6 +56,7 @@ const Sidebar = ({ sidebarToggle }) => {
             </div>
           </li>
         </Link>
+
         <Link to="/admin/guest-list">
           <li className="mb-2 rounded hover:shadow hover:bg-blue-100 py-2">
             <div className="px-3 ">
@@ -60,6 +65,16 @@ const Sidebar = ({ sidebarToggle }) => {
             </div>
           </li>
         </Link>
+
+        <Link to="/admin/checkout-history">
+          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 py-2">
+            <div className="px-3 ">
+              <FaHistory className="inline-block w-6 h-6 mr-2 -mt-2 "></FaHistory>
+              checkout History
+            </div>
+          </li>
+        </Link>
+
         {user?.role === "NDC" && (
           <Link to="/admin/staff-approval">
           <li className="mb-2 rounded hover:shadow hover:bg-blue-100 py-2">

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import AxiosInstance from "../../Components/Axios";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../Provider/UserProvider"; 
 
 
 const Checkout = () => {
@@ -13,6 +14,7 @@ const Checkout = () => {
   const { guest } = location.state || {};
   const [paymentStatus, setPaymentStatus] = useState("Pending");
   const [checkoutsummary, setCheckOutSummary] = useState([]);
+  const { user } = useUser()
 
   console.log(checkoutsummary)
 
@@ -27,7 +29,7 @@ const Checkout = () => {
     if (!isConfirmed) return;
 
     try {
-      const response = await AxiosInstance.post('/checkout/', { guest_id: guest.id, paymentStatus });
+      const response = await AxiosInstance.post('/checkout/', { guest_id: guest.id, paymentStatus,username: user.username });
       setCheckOutSummary(response.data)
 
       navigate("/admin/checkout-summary", { state: { checkoutsummary: response.data, guest } });
@@ -53,6 +55,7 @@ const Checkout = () => {
               <td className="text-gray-700 font-semibold">Guest Name:</td>
               <td>{guest.name}</td>
             </tr>
+           
             <tr>
               <td className="text-gray-700 font-semibold">Phone No:</td>
               <td>{guest.phone}</td>
@@ -64,7 +67,7 @@ const Checkout = () => {
             <tr>
               <td className="text-gray-700 font-semibold">Check-In Date:</td>
               <td>
-                {new Date(guest.check_in_date + "T00:00:00").toLocaleString("en-GB", {
+                {new Date(guest.check_in_date ).toLocaleString("en-GB", {
                   day: "2-digit",
                   month: "2-digit",
                   year: "numeric",
@@ -76,8 +79,16 @@ const Checkout = () => {
             </tr>
             <tr>
               <td className="text-gray-700 font-semibold">Check-Out Date:</td>
-              <td>{guest.check_out_date}</td>
+              <td>{new Date(guest.check_out_date ).toLocaleString("en-GB", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true,
+                })}</td>
             </tr>
+            
             <tr>
               <td className="text-gray-700 font-semibold">Guest Type:</td>
               <td>{guest.user_type}</td>

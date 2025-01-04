@@ -16,6 +16,8 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "antd": "^5.22.7",
     "axios": "^1.7.9",
+    "daisyui": "^4.5.0",
+    "i": "^0.3.7",
     "js-cookie": "^3.0.5",
     "jspdf": "^2.5.2",
     "prop-types": "^15.8.1",
@@ -41,7 +43,7 @@
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.12.0",
     "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.16",
+    "tailwindcss": "^3.4.17",
     "vite": "^6.0.1"
   }
 }

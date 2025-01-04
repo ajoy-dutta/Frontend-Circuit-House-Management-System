@@ -101,7 +101,7 @@ const Book = () => {
                 </div>
                 <div className="mb-4">
                     <label htmlFor="office" className="block font-semibold mb-2 text-sm">
-                        Office Name 
+                        Office
                     </label>
                     <input
                         id="office"
@@ -148,9 +148,11 @@ const Book = () => {
                             <option value="" disabled>
                                 Select Guest Type
                     </option>
-                            <option value="Government Officer">Government Official</option>
-                            <option value="Self-Government Officer">Self-Government Officer</option>
+                            <option value="Government Official">Government Official</option>
+                            <option value="Reference">Reference</option>
                             <option value="Private Sector Employee">Private Sector Employee</option>
+                            <option value="Others">Others</option>
+
                         </select>
                     </div>
                 </div>
@@ -258,7 +260,7 @@ const Book = () => {
                 {/* motive of Visiting */}
                 <div className="mb-4">
                     <label htmlFor="motive" className="block font-semibold mb-2 text-sm">
-                        motive of Visiting
+                        Motive of Visiting
                 </label>
                     <textarea
                         id="motive_of_visiting"

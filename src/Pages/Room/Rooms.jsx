@@ -142,7 +142,7 @@ const Rooms = () => {
                   value={newRoom.room_name}
                   onChange={handleInputChange}
                   className="w-full px-4 py-1 border rounded"
-                  required
+                  
                 />
               </div>
 
@@ -155,7 +155,7 @@ const Rooms = () => {
                 value={newRoom.room_category}
                 onChange={handleInputChange}
                 className="w-full px-4 py-1 border rounded"
-                required
+                
                 >
 
                 <option value="Regular">Regular</option>
@@ -172,7 +172,7 @@ const Rooms = () => {
                 value={newRoom.room_type}
                 onChange={handleInputChange}
                 className="w-full px-4 py-1 border text-sm rounded"
-                required
+                
               >
                 <option value="One King Size Bed">One King Size Bed</option>
                 <option value="Two King Size Beds">Two King Size Beds</option>
@@ -188,7 +188,7 @@ const Rooms = () => {
                 value={newRoom.building}
                 onChange={handleInputChange}
                 className="w-full px-4 py-1 border rounded text-sm"
-                required
+                
               >
                 <option value="New Building">New Building</option>
                 <option value="Old Building">Old Building</option>
@@ -205,7 +205,7 @@ const Rooms = () => {
                 value={newRoom.floor}
                 onChange={handleInputChange}
                 className="w-full px-4 py-1 border rounded text-sm"
-                required
+                
               >
                 <option value="First Floor">First Floor</option>
                 <option value="Second Floor">Second Floor</option>
@@ -222,12 +222,12 @@ const Rooms = () => {
                   value={newRoom.availability_status}
                   onChange={handleInputChange}
                   className="w-full px-4 py-1 border rounded text-sm"
-                  required
+                  
                 >
                   <option value="Vacant">Vacant</option>
                   <option value="Booked">Booked</option>
                   <option value="Occupied">Occupied</option>
-                  <option value="Needs clean">Needs clean</option>
+                  <option value="Needs Housekeeping">Needs Housekeeping</option>
                   <option value="Needs verify">Needs verify</option>
                   <option value="Locked">Locked</option>
                 </select>

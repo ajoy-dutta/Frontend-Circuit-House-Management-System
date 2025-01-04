@@ -28,6 +28,8 @@ import Contact from "./Pages/Home/Contact";
 import VisitJashore from "./Pages/VisitJashore/VisitJashore";
 import ConferenceRoom from "./Pages/ConferenceRoom/ConferenceRoom";
 import Details from "./Pages/Room/Details";
+import CheckoutHistory from "./Pages/Guests/CheckoutHistory";
+import RoomDetails from "./Pages/RoomDetails/RoomDetails";
 
 
 const router = createBrowserRouter([
@@ -49,8 +51,8 @@ const router = createBrowserRouter([
         element: <Registration />,
       },
       {
-        path: "/room",
-        element: <Room />,
+        path: "/room_details",
+        element: <RoomDetails />,
       },
       {
         path: "/honor-board",
@@ -111,6 +113,11 @@ const router = createBrowserRouter([
       {
         path: "guest-list",
         element: <Guests />,
+      },
+
+      {
+        path: "checkout-history",
+        element: <CheckoutHistory />,
       },
 
       {
