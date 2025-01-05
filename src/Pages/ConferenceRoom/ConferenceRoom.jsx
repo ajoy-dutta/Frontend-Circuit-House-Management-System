@@ -1,4 +1,4 @@
-import img1 from '../../assets/Conference/conference_1.jpg'
+
 import img2 from '../../assets/Conference/conference_2.jpg'
 import img3 from '../../assets/Conference/conference_3.jpg'
 
@@ -8,7 +8,7 @@ const ConferenceRoom = () => {
       id: 1,
       title: 'Executive Conference Room',
       description: 'A spacious and fully equipped conference room suitable for executive meetings and presentations.',
-      image: img1, // Replace with your image URL
+      image: img2, // Replace with your image URL
     },
     {
       id: 2,

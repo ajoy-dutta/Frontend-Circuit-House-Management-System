@@ -30,6 +30,8 @@ import ConferenceRoom from "./Pages/ConferenceRoom/ConferenceRoom";
 import Details from "./Pages/Room/Details";
 import CheckoutHistory from "./Pages/Guests/CheckoutHistory";
 import RoomDetails from "./Pages/RoomDetails/RoomDetails";
+import Media from "./Pages/Media/Media";
+import BrandJashore from "./Pages/BrandJashore/BrandJashore";
 
 
 const router = createBrowserRouter([
@@ -69,6 +71,14 @@ const router = createBrowserRouter([
       {
         path: "/visitJahore",
         element: <VisitJashore />,
+      },
+      {
+        path: "/brandJashore",
+        element: <BrandJashore></BrandJashore>,
+      },
+      {
+        path: "/media",
+        element: <Media></Media>,
       },
     ],
   },

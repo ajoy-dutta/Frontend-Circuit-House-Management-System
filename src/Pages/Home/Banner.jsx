@@ -11,12 +11,12 @@ const data = [
   },
   {
     img: homeImage3,
-    title: "নানা রঙের ফুলের মেলা খেজুর গুড়ে যশোর জেলা",
+    title: "নানা রঙের ফুলের মেলা, খেজুর গুড়ে যশোর জেলা",
     buttonText: "Explore",
   },
   {
     img: homeImage2,
-    title: "নানা রঙের ফুলের মেলা খেজুর গুড়ে যশোর জেলা",
+    title: "নানা রঙের ফুলের মেলা, খেজুর গুড়ে যশোর জেলা",
     buttonText: "Get Started",
   },
   {
