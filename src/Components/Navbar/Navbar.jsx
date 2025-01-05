@@ -78,6 +78,26 @@ const Navbar = () => {
           Contact
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/brandJashore"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Branding Jashore
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/media"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Media
+        </NavLink>
+      </li>
     </>
   );
 
@@ -131,6 +151,26 @@ const Navbar = () => {
           }
         >
           Contact
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/brandJashore"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Branding Jashore
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/media"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Media
         </NavLink>
       </li>
       {user ? (

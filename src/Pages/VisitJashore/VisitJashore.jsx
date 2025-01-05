@@ -41,6 +41,7 @@ const VisitJashore = () => {
   const itemsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const totalPages = Math.ceil(images.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -54,14 +55,22 @@ const VisitJashore = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
 
+  // const openModal = (image) => {
+  //   setSelectedImage(image);
+  //   document.getElementById("dynamic_modal").showModal();
+  // };
   const openModal = (image) => {
     setSelectedImage(image);
-    document.getElementById("dynamic_modal").showModal();
+    setIsModalOpen(true); // Open modal
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Close modal
   };
 
   return (
     <div className="mb-16 mx-5">
-      <h2 className="text-5xl font-bold italic text-center my-14">
+      <h2 className="text-3xl font-bold italic text-center my-8">
         Meet Our Jashore
       </h2>
       <div className="max-w-7xl mx-auto grid sm:grid-cols-1 md:grid-cols-4 gap-4">
@@ -88,27 +97,23 @@ const VisitJashore = () => {
       </div>
 
       {/* Dynamic Modal */}
-      {selectedImage && (
-        <dialog id="dynamic_modal" className="modal">
+      <div>
+      {selectedImage && isModalOpen && ( 
+        <dialog id="dynamic_modal" className="modal" open>
           <div className="modal-box">
             <h3 className="font-bold uppercase text-lg">
               {selectedImage.title}
             </h3>
             <p className="py-4 text-justify">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto,
-              cupiditate. Cum itaque rerum expedita delectus accusamus aliquam quam ipsam
-              voluptatibus ratione nobis voluptate maxime dolorem earum, minima, facilis
-              similique libero adipisci laudantium quibusdam laboriosam suscipit, sint aliquid?
-              Porro, ratione dolor!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, cupiditate...
             </p>
             <div className="modal-action">
-              <form method="dialog">
-                <button className="btn">Close</button>
-              </form>
+              <button className="btn" onClick={closeModal}>Close</button>
             </div>
           </div>
         </dialog>
       )}
+    </div>
 
       {/* Pagination */}
       <div className="flex justify-center items-center my-10">
