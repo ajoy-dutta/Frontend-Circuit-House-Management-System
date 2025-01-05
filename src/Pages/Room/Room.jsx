@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import AxiosInstance from "../../Components/Axios";
 import { useUser } from "../../Provider/UserProvider";
 import { IoMdArrowDroprightCircle } from "react-icons/io";
+import { CgDetailsMore } from "react-icons/cg";
 
 const Room = () => {
   const [roomlist, setRoomlist] = useState([]);
@@ -21,6 +22,7 @@ const Room = () => {
     building: 'New Building',
     floor: 'First Floor',
   });
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -119,7 +121,6 @@ const Room = () => {
           </button>
         </Link>
       </div>
-
 
 
       {showForm && (
@@ -228,134 +229,175 @@ const Room = () => {
 
 
       {/* Centered Heading */}
-      <h2 className="text-2xl font-bold text-center mb-8 mt-4">Room List</h2>
+      <h2 className="text-2xl font-bold text-center mb-8 font-serif mt-4">Room List</h2>
+      <div className="">
 
-      {/* VVIP Rooms Section */}
-      {vvipRooms.length > 0 && (
-        <div className="mb-4">
-          <div className="flex items-center justify-center">
-            <div className="text-center bg-blue-200 p-4 rounded-lg shadow-md flex items-center justify-center w-full">
-              <h3 className="text-lg font-semibold">VVIP Rooms</h3>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-4 mt-4">
-            {vvipRooms.map((room) => {
-              let statusClass = "";
-              switch (room.availability_status) {
-                case "Vacant":
-                  statusClass = "bg-green-400";
-                  break;
-                case "Occupied":
-                  statusClass = "bg-blue-400";
-                  break;
-                case "Needs Housekeeping":
-                  statusClass = "bg-yellow-400";
-                  break;
-                case "Locked":
-                  statusClass = "bg-gray-400 cursor-not-allowed";
-                  break;
-                case "Needs verify":
-                  statusClass = "bg-red-500";
-                  break;
-                case "Booked":
-                  statusClass = "bg-orange-400";
-                  break;
-                default:
-                  statusClass = "bg-gray-200";
-              }
-
-              return (
-                <div key={room.id} className={`${statusClass} p-4 rounded-lg shadow-md border-2`}>
-                  <h5 className="text-lg text-center font-bold">{room.room_name}</h5>
-                  <p className="text-sm">Type: {room.room_type}</p>
-                  <p className="text-sm">Status: {room.availability_status}</p>
-                  <div className="flex justify-between mt-4">
-                    <Link to="/admin/room_details" state={{ room }} className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm">
-                      Details
-                    </Link>
-                    {room.availability_status === "Vacant" ? (
-                      <Link to="/admin/book" state={{ room }} className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm">
-                        Book <FontAwesomeIcon icon={faArrowRight} />
-                      </Link>
-                    ) : (
-                      <button disabled className="bg-gray-200 text-gray-500 py-1 px-3 rounded text-sm cursor-not-allowed">
-                        Book
-                      </button>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* Non-VVIP Rooms Grouped by Building and Floor */}
-      {Object.keys(groupedRooms).map((building) => (
-        <div key={building} className="mb-4 mt-12">
-          
-
-          {Object.keys(groupedRooms[building]).map((floor) => (
-            <div key={floor} className="mt-2">
-             <div className="flex items-center justify-center mb-2">
-            <div className="text-center bg-blue-200 p-4 rounded-lg shadow-md flex items-center justify-center w-full">
-              <h3 className="text-lg font-semibold">{building} ({floor})</h3>
-            </div>
-          </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-4 mt-4">
-                {groupedRooms[building][floor].map((room) => {
-                  let statusClass = "";
-                  switch (room.availability_status) {
-                    case "Vacant":
-                      statusClass = "bg-green-400";
-                      break;
-                    case "Occupied":
-                      statusClass = "bg-blue-400";
-                      break;
-                    case "Needs Housekeeping":
-                      statusClass = "bg-yellow-400";
-                      break;
-                    case "Locked":
-                      statusClass = "bg-gray-400 cursor-not-allowed";
-                      break;
-                    case "Needs verify":
-                      statusClass = "bg-red-500";
-                      break;
-                    case "Booked":
-                      statusClass = "bg-orange-400";
-                      break;
-                    default:
-                      statusClass = "bg-gray-300";
-                  }
-
-                  return (
-                    <div key={room.id} className={`${statusClass} p-4 rounded-lg shadow-md border-2`}>
-                      <h5 className="text-lg text-center font-bold">{room.room_name}</h5>
-                      <p className="text-sm">Type: {room.room_type}</p>
-                      <p className="text-sm">Status: {room.availability_status}</p>
-                      <div className="flex justify-between mt-4">
-                        <Link to="/admin/room_details" state={{ room }} className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm">
-                          Details
-                        </Link>
-                        {room.availability_status === "Vacant" ? (
-                          <Link to="/admin/book" state={{ room }} className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm">
-                            Book <FontAwesomeIcon icon={faArrowRight} />
-                          </Link>
-                        ) : (
-                          <button disabled className="bg-gray-200 text-gray-500 py-1 px-3 rounded text-sm cursor-not-allowed">
-                            Book
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
+        {/* VVIP Rooms Section */}
+        {vvipRooms.length > 0 && (
+          <div className="mb-4">
+            <div className="flex items-center justify-center ">
+              <div className="text-center mb-4 bg-blue-100 p-2 rounded-lg shadow-md flex items-center justify-center w-full">
+                <h3 className="text-xl font-semibold">VVIP Rooms</h3>
               </div>
             </div>
-          ))}
-        </div>
-      ))}
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:grid-cols-3 gap-4 mt-4">
+              {vvipRooms.map((room) => {
+                let statusClass = "";
+                switch (room.availability_status) {
+                  case "Vacant":
+                    statusClass = "bg-green-200";
+                    break;
+                  case "Occupied":
+                    statusClass = "bg-blue-200";
+                    break;
+                  case "Needs Housekeeping":
+                    statusClass = "bg-red-400";
+
+                    break;
+                  case "Locked":
+                    statusClass = "bg-gray-200 cursor-not-allowed";
+                    break;
+                  case "Needs verify":
+                    statusClass = "bg-yellow-200";
+
+                    break;
+                  case "Booked":
+                    statusClass = "bg-orange-300";
+                    break;
+                  default:
+                    statusClass = "bg-gray-200";
+                }
+
+                return (
+                  <div key={room.id} className={`${statusClass} p-4 rounded-lg shadow-md border-2`}>
+                    <h5 className="text-xl text-center font-bold">{room.room_name}</h5>
+                    <p className="text-base">Type: {room.room_type}</p>
+                    <p className="text-base">Status: {room.availability_status}</p>
+                    <div className="flex items-center justify-between mt-4">
+                      <div className="flex">
+                        <Link
+                          to="/admin/room_details"
+                          state={{ room }}
+                          className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
+                        >
+                          <CgDetailsMore />
+                          <span>Details</span>
+                        </Link>
+                      </div>
+                      {room.availability_status === "Vacant" ? (
+                        <Link
+                          to="/admin/book"
+                          state={{ room }}
+                          className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
+                        >
+                          <span>Book</span>
+                          <FontAwesomeIcon icon={faArrowRight} />
+                        </Link>
+                      ) : (
+                          <button
+                            disabled
+                            className="bg-gray-300 text-gray-500 py-1 px-4 rounded text-sm cursor-not-allowed"
+                          >
+                            Book
+                          </button>
+
+                        )}
+                    </div>
+
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Non-VVIP Rooms Grouped by Building and Floor */}
+        {Object.keys(groupedRooms).map((building) => (
+          <div key={building} className="mb-6 mt-12">
+
+
+            {Object.keys(groupedRooms[building]).map((floor) => (
+              <div key={floor} className="mt-2 mb-12">
+                <div className="flex items-center justify-center mb-4">
+                  <div className="text-center mb-4 bg-blue-100 p-2 rounded-lg shadow-md flex items-center justify-center w-full">
+                    <h3 className="text-xl font-semibold">{building} ({floor})</h3>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:grid-cols-3 gap-4 mt-4">
+                  {groupedRooms[building][floor].map((room) => {
+                    let statusClass = "";
+                    switch (room.availability_status) {
+                      case "Vacant":
+                        statusClass = "bg-green-200";
+                        break;
+                      case "Occupied":
+                        statusClass = "bg-blue-200";
+                        break;
+                      case "Needs Housekeeping":
+                        statusClass = "bg-red-400";
+
+                        break;
+                      case "Locked":
+                        statusClass = "bg-gray-200 cursor-not-allowed";
+                        break;
+                      case "Needs verify":
+                        statusClass = "bg-yellow-200";
+
+                        break;
+                      case "Booked":
+                        statusClass = "bg-orange-300";
+                        break;
+                      default:
+                        statusClass = "bg-gray-200";
+                    }
+
+                    return (
+                      <div key={room.id} className={`${statusClass} p-4 rounded-lg shadow-md border-2`}>
+                        <h5 className="text-xl text-center font-bold">{room.room_name}</h5>
+                        <p className="text-base">Type: {room.room_type}</p>
+                        <p className="text-base">Status: {room.availability_status}</p>
+                        <div className="flex items-center justify-between mt-4">
+                          <div className="flex">
+                            <Link
+                              to="/admin/room_details"
+                              state={{ room }}
+                              className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
+                            >
+                              <CgDetailsMore />
+                              <span>Details</span>
+
+                            </Link>
+                          </div>
+                          {room.availability_status === "Vacant" ? (
+                            <Link
+                              to="/admin/book"
+                              state={{ room }}
+                              className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
+                            >
+                              <span>Book</span>
+                              <FontAwesomeIcon icon={faArrowRight} />
+                            </Link>
+                          ) : (
+                              <button
+                                disabled
+                                className="bg-gray-300 text-gray-500 py-1 px-4 rounded text-sm cursor-not-allowed"
+                              >
+                                Book
+                              </button>
+                            )}
+                        </div>
+
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 };
