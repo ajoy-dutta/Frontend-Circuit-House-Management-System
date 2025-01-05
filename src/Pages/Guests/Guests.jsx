@@ -16,13 +16,19 @@ const Guests = () => {
     const fetchData = async () => {
       try {
         const response = await AxiosInstance.get('/book/');
-        setGuestsList(response.data);
+        const sortedData = response.data.sort((a, b) => {
+          const dateA = new Date(a["check_in_date"]);
+          const dateB = new Date(b["check_in_date"]);
+          return dateB - dateA; // Sort in descending order
+        });
+        setGuestsList(sortedData); // Set the sorted list
       } catch (error) {
         console.log("Error fetching data", error);
       }
     };
     fetchData();
   }, []);
+  
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -53,7 +59,12 @@ const Guests = () => {
     if (selectedGuestUpdate !== id) {
       try {
         const response = await AxiosInstance.get('/book/');
-        setGuestsList(response.data); // Refresh the guest list
+        const sortedData = response.data.sort((a, b) => {
+          const dateA = new Date(a["check_in_date"]);
+          const dateB = new Date(b["check_in_date"]);
+          return dateB - dateA; // Sort in descending order
+        });
+        setGuestsList(sortedData); // Set the sorted list
       } catch (error) {
         console.log("Error fetching data", error);
       }

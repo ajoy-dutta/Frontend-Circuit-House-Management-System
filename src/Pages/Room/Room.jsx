@@ -271,7 +271,7 @@ const Room = () => {
                   <p className="text-sm">Type: {room.room_type}</p>
                   <p className="text-sm">Status: {room.availability_status}</p>
                   <div className="flex justify-between mt-4">
-                    <Link to="/admin/room_details" state={{ room }} className="bg-blue-500 text-white py-1 px-3 rounded text-sm">
+                    <Link to="/admin/room_details" state={{ room }} className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm">
                       Details
                     </Link>
                     {room.availability_status === "Vacant" ? (
@@ -298,7 +298,7 @@ const Room = () => {
 
           {Object.keys(groupedRooms[building]).map((floor) => (
             <div key={floor} className="mt-2">
-             <div className="flex items-center justify-center">
+             <div className="flex items-center justify-center mb-2">
             <div className="text-center bg-blue-200 p-4 rounded-lg shadow-md flex items-center justify-center w-full">
               <h3 className="text-lg font-semibold">{building} ({floor})</h3>
             </div>
@@ -335,7 +335,7 @@ const Room = () => {
                       <p className="text-sm">Type: {room.room_type}</p>
                       <p className="text-sm">Status: {room.availability_status}</p>
                       <div className="flex justify-between mt-4">
-                        <Link to="/admin/room_details" state={{ room }} className="bg-blue-500 text-white py-1 px-3 rounded text-sm">
+                        <Link to="/admin/room_details" state={{ room }} className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm">
                           Details
                         </Link>
                         {room.availability_status === "Vacant" ? (
