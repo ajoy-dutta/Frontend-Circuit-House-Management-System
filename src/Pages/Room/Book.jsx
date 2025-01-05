@@ -148,10 +148,10 @@ const Book = () => {
                             <option value="" disabled>
                                 Select Guest Type
                     </option>
-                            <option value="Government Official">Government Official</option>
-                            <option value="Reference">Reference</option>
-                            <option value="Private Sector Employee">Private Sector Employee</option>
-                            <option value="Others">Others</option>
+                    <option value="Government Official">Govt. Official(Existing/Retd.)</option>
+                        <option value="Reference">Reference</option>
+                        <option value="Autonomous">Autonomous/Statutary Organization</option>
+                        <option value="Private Sector Employee">Private Sector Employee/Others</option>
 
                         </select>
                     </div>
