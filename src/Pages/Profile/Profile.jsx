@@ -1,53 +1,59 @@
-
 import { useUser } from "../../Provider/UserProvider"; // Import the custom hook
+import { baseurl } from "../../BaseURL";
 
 const Profile = () => {
   const { user, loading, error } = useUser(); // Access user data from context
 
-  console.log(user)
-
+  // Remove "/api" from the end of the baseurl
+  const adjustedBaseurl = baseurl.replace(/\/api$/, "");
+  
+  // Use adjustedBaseurl in the image source
+  <img
+    src={`${adjustedBaseurl}${user?.profile_picture}`}
+    alt="Profile"
+    className="w-full h-full object-cover"
+  />;
+  
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className="text-center text-lg text-gray-500">Loading...</p>;
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return <p className="text-center text-lg text-red-500">{error}</p>;
   }
 
   return (
-    <div className="profile-container max-w-md my-[200px] mx-auto p-6 mb-8 bg-white shadow-lg rounded-lg">
-      <div className="text-center mb-6">
-        <h1 className="text-2xl font-semibold text-gray-800">Welcome, {user?.username}</h1>
-        <p className="text-sm text-gray-600">Your Profile</p>
+    <div className="relative flex justify-center items-center mt-6">
+      <div className="max-w-sm w-full bg-white shadow-lg rounded-xl overflow-hidden">
+        <div className="bg-blue-400 p-6 text-center">
+        <div className="w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-white">
+        <img
+          src={`${adjustedBaseurl}${user?.profile_picture}`}
+          alt="Profile"
+          className="w-full h-full object-cover"
+        />
       </div>
 
-      <div className="flex flex-col items-center mb-6">
-        {user?.profile_picture && (
-          <img
-            src={user.profile_picture}
-            alt="Profile"
-            className="w-24 h-24 rounded-full object-cover mb-4"
-          />
-        )}
-        <div className="text-center">
-          <p className="text-lg font-medium text-gray-800">Email: {user?.email}</p>
-          <p className="text-lg font-medium text-gray-800">Role: {user?.role}</p>
-          <p className="text-lg font-medium text-gray-800">
-            Status:{" "}
-            <span className={user?.is_approved ? "text-green-500" : "text-red-500"}>
-              {user?.is_approved ? "Approved" : "Not Approved"}
-            </span>
+          <h2 className="mt-4 text-white text-xl font-semibold">{user?.username}</h2>
+        </div>
+
+        <div className="p-6 text-center space-y-2">
+          <p className="text-gray-700 text-sm">
+           <span className="font-medium">{user?.email}</span>
+          </p>
+          <p className="text-gray-700 text-sm">
+            Role: <span className="font-medium">{user?.role}</span>
+          </p>
+          <p className="text-gray-700 text-sm">
+            Status: <span className={user?.is_approved ? "text-green-500" : "text-red-500"}>{user?.is_approved ? "Approved" : "Not Approved"}</span>
           </p>
         </div>
-      </div>
 
-      <div className="text-center">
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-          Edit Profile
-            </button>
+        <div className="text-center pb-6">
+          <button className="px-4 py-1 text-sm bg-blue-500 text-white font-semibold rounded-full hover:bg-blue-600 transition-all duration-200">Edit Profile</button>
+        </div>
       </div>
     </div>
-
   );
 };
 

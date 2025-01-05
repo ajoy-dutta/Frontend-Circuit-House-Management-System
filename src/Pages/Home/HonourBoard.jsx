@@ -334,7 +334,7 @@ const HonourBoard = () => {
                 </tbody>
               </table>
               <div className="hidden md:block avatar">
-                <div className="w-28 rounded border-[1px] border-gray-500">
+                <div className="w-20 h-[95px] rounded border-[1px] border-gray-500">
                   <img
                     className="object-fill w-full"
                     src={item.photo}
@@ -413,7 +413,7 @@ const HonourBoard = () => {
                 </tbody>
               </table>
               <div className="hidden md:block avatar">
-                <div className="w-28 rounded">
+                <div className="w-20 h-[95px] rounded">
                   <img src={item.photo} alt={item.name} />
                 </div>
               </div>
@@ -492,7 +492,7 @@ const HonourBoard = () => {
                 </tbody>
               </table>
               <div className="hidden md:block avatar">
-                <div className="w-28 rounded border-[1px] border-gray-500">
+                <div className="w-20 h-[95px] rounded border-[1px] border-gray-500">
                   <img
                     className="object-fill w-full"
                     src={item.photo}

@@ -92,12 +92,12 @@ const NDCApproval = () => {
                                 <td className="px-6 py-4">
                                     {item.is_approved ? 'Approved' : 'Pending'}
                                 </td>
-                                <td className="px-6 py-4">
+                                <td className="px-2 py-2">
                                     {!item.is_approved ? (
                                         <>
                                             {console.log(`Rendering Approve button for ID: ${item.id}`)}
                                             <button
-                                                className="w-28 h-10 bg-green-500 text-white font-bold rounded hover:bg-green-600"
+                                                className="w-16 h-8 bg-green-500 text-white font-bold rounded hover:bg-green-600"
                                                 onClick={() => handleApprove(item.id)}
                                             >
                                                 Approve
@@ -107,7 +107,7 @@ const NDCApproval = () => {
                                             <>
                                                 {console.log(`Rendering Delete button for ID: ${item.id}`)}
                                                 <button
-                                                    className="w-28 h-10 bg-red-500 text-white font-bold rounded hover:bg-red-600"
+                                                    className="w-16 h-8 bg-red-500 text-white font-bold rounded hover:bg-red-600"
                                                     onClick={() => handleDelete(item.id)}
                                                 >
                                                     Delete
