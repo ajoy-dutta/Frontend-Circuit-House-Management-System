@@ -125,7 +125,7 @@ const Guests = () => {
                 })}
                 </td>
 
-                <td className="py-3 px-4 text-sm">
+                <td className="py-3 px-4 text-sm text-center">
                   <button
                     onClick={() => toggleUpdate(guest.id)}
                     className="text-teal-600 hover:text-teal-800 align-center"
@@ -158,7 +158,7 @@ const Guests = () => {
                   <Link
                     to="/admin/checkout"
                     state={{ guest }}
-                    className="px-4 py-2 bg-green-500 text-white text-xs font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="px-2 py-2 bg-green-500 text-white text-xs font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
                   >
                     Checkout
                 </Link>
