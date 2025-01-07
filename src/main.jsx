@@ -32,6 +32,7 @@ import CheckoutHistory from "./Pages/Guests/CheckoutHistory";
 import RoomDetails from "./Pages/RoomDetails/RoomDetails";
 import Media from "./Pages/Media/Media";
 import BrandJashore from "./Pages/BrandJashore/BrandJashore";
+import Inbox from "./Pages/Messages/Inbox";
 
 
 const router = createBrowserRouter([
@@ -152,6 +153,10 @@ const router = createBrowserRouter([
       {
         path: "other",
         element: <Other />,
+      },
+      {
+        path: "inbox",
+        element: <Inbox/>,
       },
     ],
   },
