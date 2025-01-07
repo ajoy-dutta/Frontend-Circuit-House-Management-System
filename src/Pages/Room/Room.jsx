@@ -112,7 +112,7 @@ const Room = () => {
         >
           Add New Room
         </button>
-        <Link to="/admin/room-details">
+        <Link to="/dashboard/room-details">
           <button
             className="bg-gray-500 text-white font-semibold font-sans py-2 px-4 rounded shadow-md border border-gray-100 hover:bg-gray-600"
             onClick={handleDetailsClick}
@@ -277,7 +277,7 @@ const Room = () => {
                     <div className="flex items-center justify-between mt-4">
                       <div className="flex">
                         <Link
-                          to="/admin/room_details"
+                          to="/dashboard/room_details"
                           state={{ room }}
                           className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
                         >
@@ -287,7 +287,7 @@ const Room = () => {
                       </div>
                       {room.availability_status === "Vacant" ? (
                         <Link
-                          to="/admin/book"
+                          to="/dashboard/book"
                           state={{ room }}
                           className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
                         >
@@ -360,7 +360,7 @@ const Room = () => {
                         <div className="flex items-center justify-between mt-4">
                           <div className="flex">
                             <Link
-                              to="/admin/room_details"
+                              to="/dashboard/room_details"
                               state={{ room }}
                               className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
                             >
@@ -371,7 +371,7 @@ const Room = () => {
                           </div>
                           {room.availability_status === "Vacant" ? (
                             <Link
-                              to="/admin/book"
+                              to="/dashboard/book"
                               state={{ room }}
                               className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
                             >
