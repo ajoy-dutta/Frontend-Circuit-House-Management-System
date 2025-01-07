@@ -162,7 +162,7 @@ const BrandJashore = () => {
         </div>
       </div>
 
-      <div className="space-y-5 my-10">
+      <div className="space-y-5 my-10 px-5">
       {data.map((item,index)=>(
         <div className="space-y-1" key={index}>
         <div className="font-bold underline font-serif text-xl">{item.heading}</div>
