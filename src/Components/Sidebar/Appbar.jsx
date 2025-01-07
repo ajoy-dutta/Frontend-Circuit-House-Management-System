@@ -6,7 +6,7 @@ import Dashboard from './Dashboard';
 const Appbar = () => {
     const [sidebarToggle, setSidebarToggle] = useState(false)
     return (
-        <div className='flex'>
+        <div className='flex '>
             <Sidebar sidebarToggle={sidebarToggle}/>
             <Dashboard sidebarToggle={sidebarToggle}
             setSidebarToggle={setSidebarToggle}/>

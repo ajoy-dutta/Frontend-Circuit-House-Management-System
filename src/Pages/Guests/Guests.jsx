@@ -77,7 +77,7 @@ const Guests = () => {
 
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
+    <div className="p-8 bg-gray-50 ">
       <h2 className="text-3xl font-semibold mb-6 text-center text-gray-800">Guest Information</h2>
 
       {/* Table for larger screens */}
