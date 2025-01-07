@@ -21,6 +21,7 @@ const HonourBoard = () => {
     designation_type: "DC",
   });
   
+  
 
   // Submit the form
   const handleSubmit = async (e) => {
@@ -137,14 +138,20 @@ const HonourBoard = () => {
   };
 
 
-  // // Function to navigate to another page with current DC data
-  // const goToCurrentDCPage  = () => {
-  //   if (currentDC) {
-  //     navigate("/", { state: { currentDC } }); // Pass current DC data via state
-  //   } else {
-  //     alert("No current DC found.");
-  //   }
-  // };
+  const convertToBanglaDate = (dateString) => {
+    if (!dateString) return ""; // Handle empty dates
+    const banglaNumerals = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+    return dateString
+      .split("-") // Split date into parts (e.g., "YYYY-MM-DD")
+      .reverse() // Reorder to DD-MM-YYYY
+      .map((part) =>
+        part
+          .split("")
+          .map((digit) => banglaNumerals[parseInt(digit)] || digit) // Convert to Bangla numerals
+          .join("")
+      )
+      .join("-"); // Join the parts back with the separator
+  };
 
   return (
     <div className="lg:w-1/2 md:w-2/3 sm:w-2/3 my-10 mx-auto rounded-lg">
@@ -287,7 +294,7 @@ const HonourBoard = () => {
                   />
                 </div>
               </div>
-              <div className="h-max hidden md:block text-lg text-start font-bold text-gray-600 px-2 ">
+              <div className="h-max hidden md:block text-md text-start mt-8 font-bold text-gray-600 px-2 ">
                 {convertToBanglaNumerals(DChonourlist.after1971.length - index)}
               </div>
               <table className="table-auto w-full ">
@@ -313,7 +320,7 @@ const HonourBoard = () => {
                       যোগদানের তারিখ
                     </td>
                     <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                      {item.joining_date}
+                    {convertToBanglaDate(item.joining_date)}
                     </td>
                   </tr>
                   <tr>
@@ -321,13 +328,13 @@ const HonourBoard = () => {
                       প্রস্থানের তারিখ
                     </td>
                     <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                      {item.ending_date || "চলমান"}
+                    {convertToBanglaDate(item.ending_date) || "চলমান"}
                     </td>
                   </tr>
                 </tbody>
               </table>
               <div className="hidden md:block avatar">
-                <div className="w-28 rounded border-[1px] border-gray-500">
+                <div className="w-20 h-[95px] rounded border-[1px] border-gray-500">
                   <img
                     className="object-fill w-full"
                     src={item.photo}
@@ -364,7 +371,7 @@ const HonourBoard = () => {
                   alt={item.name}
                 />
               </figure> */}
-              <div className="h-max hidden md:block text-lg text-start font-bold text-gray-600 px-2 ">
+              <div className="h-max hidden md:block text-md text-start mt-8 font-bold text-gray-600 px-2 ">
                 {convertToBanglaNumerals(
                   DChonourlist.before1971.length - index
                 )}
@@ -392,7 +399,7 @@ const HonourBoard = () => {
                       যোগদানের তারিখ
                     </td>
                     <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                      {item.joining_date}
+                      {convertToBanglaDate(item.joining_date)}
                     </td>
                   </tr>
                   <tr>
@@ -400,13 +407,13 @@ const HonourBoard = () => {
                       প্রস্থানের তারিখ
                     </td>
                     <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                      {item.ending_date || "চলমান"}
+                      {convertToBanglaDate(item.ending_date) || "চলমান"}
                     </td>
                   </tr>
                 </tbody>
               </table>
               <div className="hidden md:block avatar">
-                <div className="w-28 rounded">
+                <div className="w-20 h-[95px] rounded">
                   <img src={item.photo} alt={item.name} />
                 </div>
               </div>
@@ -445,7 +452,7 @@ const HonourBoard = () => {
                   />
                 </div>
               </div>{" "}
-              <div className="h-max hidden md:block text-lg text-start font-bold text-gray-600 px-2 ">
+              <div className="h-max hidden md:block text-md mt-8 text-start font-bold text-gray-600 px-2 ">
                 {convertToBanglaNumerals(NDChonourlist.length - index)}
               </div>
               <table className="table-auto w-full ">
@@ -471,7 +478,7 @@ const HonourBoard = () => {
                       যোগদানের তারিখ
                     </td>
                     <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                      {item.joining_date}
+                      {convertToBanglaDate(item.joining_date)}
                     </td>
                   </tr>
                   <tr>
@@ -479,13 +486,13 @@ const HonourBoard = () => {
                       প্রস্থানের তারিখ
                     </td>
                     <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                      {item.ending_date || "চলমান"}
+                      {convertToBanglaDate(item.ending_date) || "চলমান"}
                     </td>
                   </tr>
                 </tbody>
               </table>
               <div className="hidden md:block avatar">
-                <div className="w-28 rounded border-[1px] border-gray-500">
+                <div className="w-20 h-[95px] rounded border-[1px] border-gray-500">
                   <img
                     className="object-fill w-full"
                     src={item.photo}

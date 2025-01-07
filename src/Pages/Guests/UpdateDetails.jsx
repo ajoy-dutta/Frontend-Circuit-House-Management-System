@@ -177,10 +177,10 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                             <option value="" disabled>
                                 Select Guest Type
                         </option>
-                            <option value="Government Official">Government Official</option>
-                            <option value="Reference">Reference</option>
-                            <option value="Private Sector Employee">Private Sector Employee</option>
-                            <option value="Others">Others</option>
+                        <option value="Government Official">Govt. Official(Existing/Retd.)</option>
+                        <option value="Reference">Reference</option>
+                        <option value="Autonomous">Autonomous/Statutary Organization</option>
+                        <option value="Private Sector Employee">Private Sector Employee/Others</option>
 
                         </select>
                     </div>
@@ -246,7 +246,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                         id="check_in_date"
                         type="date"
                         name="check_in_date"
-                        value={new Date(bookData.check_in_date).toISOString().split("T")[0]}
+                            value={bookData.check_in_date}
                         onChange={handleChange}
                         className="w-full px-4 py-1 border rounded text-sm"
                         required
@@ -261,7 +261,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                         id="check_out_date"
                         type="date"
                         name="check_out_date"
-                        value={new Date(bookData.check_out_date).toISOString().split("T")[0]}
+                        value={bookData.check_out_date}
                         onChange={handleChange}
                         className="w-full px-4 py-1 border rounded text-sm"
                         required

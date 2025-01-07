@@ -1,31 +1,38 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useEffect, useRef, useState } from 'react';
-import { FaBars, FaBell, FaSearch, FaUserCircle } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
-import { useUser } from '../../Provider/UserProvider';
+import React, { useEffect, useRef, useState } from "react";
+import { FaBars, FaUserCircle } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../../Provider/UserProvider";
 
 const Navbar = ({ sidebarToggle, setSidebarToggle }) => {
-  const navRef = useRef(null); // Create a ref to access the DOM element
-  const [navHeight, setNavHeight] = useState(0);
+  const navRef = useRef(null);
+  const dropdownRef = useRef(null); // Ref for dropdown
   const { user, signOut } = useUser();
   const navigate = useNavigate();
-  
-  // New state for toggling dropdown menu visibility
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
-    // Set the height after the component is mounted
-    if (navRef.current) {
-      setNavHeight(navRef.current.offsetHeight);
-      console.log('Navbar height:', navRef.current.offsetHeight);
-    }
-  }, []);
-  
+    const handleClickOutside = (event) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        dropdownOpen
+      ) {
+        setDropdownOpen(false); // Close dropdown when clicking outside
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownOpen]);
+
   const handleSignout = () => {
-    console.log('Ready to sign out');
     signOut();
-    navigate('/');
+    navigate("/");
   };
 
   const handleSidebarToggle = () => {
@@ -33,14 +40,14 @@ const Navbar = ({ sidebarToggle, setSidebarToggle }) => {
   };
 
   const handleDropdownToggle = () => {
-    setDropdownOpen(prev => !prev); // Toggle the dropdown visibility
+    setDropdownOpen((prev) => !prev); // Toggle dropdown visibility
   };
 
   return (
     <div
       id="nav"
       ref={navRef}
-      className="bg-teal-500 px-4 py-3 flex justify-between"
+      className="bg-[#213555] px-4 py-3 flex justify-between sticky top-0"
     >
       <div className="flex items-center text-xl">
         <FaBars
@@ -50,34 +57,40 @@ const Navbar = ({ sidebarToggle, setSidebarToggle }) => {
         <span className="text-white font-semibold">Circuit House</span>
       </div>
       <div className="flex items-center gap-x-5">
-        <div className="relative">
+        <div className="relative" ref={dropdownRef}>
           <button
-            className="text-white btn btn-sm group"
-            onClick={handleDropdownToggle} // Toggle dropdown visibility
+            className="p-0 bg-transparent border-none"
+            onClick={handleDropdownToggle}
           >
-            <FaUserCircle className="w-8 h-6 mt-1" />
-            {/* Conditionally render dropdown */}
-            {dropdownOpen && (
-              <div className="bg-blue absolute shadow w-24 right-0">
-                <ul className=" text-sm">
-                  {user ? (
-                    <div
-                      onClick={handleSignout}
-                      className="  hover:text-cyan-400 cursor-pointer p-3 bg-red-500 rounded-md text-white font-semibold"
-                    >
-                      Sign Out
-                    </div>
-                  ) : (
-                    <li className="relative">
-                      <div className="btn btn-danger hover:shadow py-2 hover:bg-black hover:text-gray-100 cursor-pointer">
-                        Sign In
-                      </div>
-                    </li>
-                  )}
-                </ul>
-              </div>
-            )}
+            <FaUserCircle className="w-8 h-6 text-white" />
           </button>
+          {dropdownOpen && (
+            <div className="absolute shadow w-20 right-0 text-center  bg-white rounded">
+              <ul className="text-sm">
+                <Link to="/admin/profile">
+                  <li className="hover:text-cyan-400 cursor-pointer border-b-2 text-black p-2 font-semibold">
+                    Profile
+                  </li>
+                </Link>
+                {user ? (
+                  <div
+                    onClick={handleSignout}
+                    className="hover:text-cyan-400 cursor-pointer p-2  font-semibold"
+                  >
+                    Sign Out
+                  </div>
+                ) : (
+                  <li className="relative">
+                    <div className="py-2 px-3 hover:bg-black hover:text-gray-100 cursor-pointer">
+                      Sign In
+                    </div>
+                  </li>
+                )}
+              </ul>
+
+              <ul className="text-sm"></ul>
+            </div>
+          )}
         </div>
       </div>
     </div>

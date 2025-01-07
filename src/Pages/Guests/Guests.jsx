@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AxiosInstance from "../../Components/Axios";
 import UpdateDetails from "./UpdateDetails";
+import { RiDeleteBin5Fill, RiEditFill } from "react-icons/ri";
+
 // import GuestDetails from "./GuestDetails";
 
 const Guests = () => {
@@ -16,13 +18,19 @@ const Guests = () => {
     const fetchData = async () => {
       try {
         const response = await AxiosInstance.get('/book/');
-        setGuestsList(response.data);
+        const sortedData = response.data.sort((a, b) => {
+          const dateA = new Date(a["check_in_date"]);
+          const dateB = new Date(b["check_in_date"]);
+          return dateB - dateA; // Sort in descending order
+        });
+        setGuestsList(sortedData); // Set the sorted list
       } catch (error) {
         console.log("Error fetching data", error);
       }
     };
     fetchData();
   }, []);
+  
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -53,7 +61,12 @@ const Guests = () => {
     if (selectedGuestUpdate !== id) {
       try {
         const response = await AxiosInstance.get('/book/');
-        setGuestsList(response.data); // Refresh the guest list
+        const sortedData = response.data.sort((a, b) => {
+          const dateA = new Date(a["check_in_date"]);
+          const dateB = new Date(b["check_in_date"]);
+          return dateB - dateA; // Sort in descending order
+        });
+        setGuestsList(sortedData); // Set the sorted list
       } catch (error) {
         console.log("Error fetching data", error);
       }
@@ -64,7 +77,7 @@ const Guests = () => {
 
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
+    <div className="p-8 bg-gray-50 ">
       <h2 className="text-3xl font-semibold mb-6 text-center text-gray-800">Guest Information</h2>
 
       {/* Table for larger screens */}
@@ -112,12 +125,12 @@ const Guests = () => {
                 })}
                 </td>
 
-                <td className="py-3 px-4 text-sm">
+                <td className="py-3 px-4 text-sm text-center">
                   <button
                     onClick={() => toggleUpdate(guest.id)}
-                    className="px-4 py-2 bg-blue-500 text-white text-xs font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="text-teal-600 hover:text-teal-800 align-center"
                   >
-                    Update
+                     <RiEditFill></RiEditFill>
                   </button>
                 </td>
 
@@ -145,7 +158,7 @@ const Guests = () => {
                   <Link
                     to="/admin/checkout"
                     state={{ guest }}
-                    className="px-4 py-2 bg-green-500 text-white text-xs font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="px-2 py-2 bg-green-500 text-white text-xs font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
                   >
                     Checkout
                 </Link>

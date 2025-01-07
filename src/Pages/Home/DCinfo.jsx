@@ -4,6 +4,23 @@ import DCImage from "../../assets/DC.jpg";
 
 const DCinfo = () => {
   const [currentDC, setCurrentDC] = useState(null);
+  const convertToBanglaDate = (dateString) => {
+    if (!dateString) return ""; // Handle empty dates
+    const banglaNumerals = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+    return dateString
+      .split("-") // Split date into parts (e.g., "YYYY-MM-DD")
+      .reverse() // Reorder to DD-MM-YYYY
+      .map((part) =>
+        part
+          .split("")
+          .map((digit) =>
+            isNaN(parseInt(digit)) ? digit : banglaNumerals[parseInt(digit)] // Convert only numeric digits to Bangla
+          )
+          .join("")
+      )
+      .join("-"); // Join the parts back with the separator
+  };
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,31 +72,31 @@ const DCinfo = () => {
                 <img className="rounded-full" src={DCImage} alt="DC" />
               </div>
               <div className="w-full p-3">
-                <p className="font-bold my-3 text-center text-xl">জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট, যশোর</p>
+                <p className="font-bold my-3 text-center text-xl">জেলা প্রশাসক ও বিজ্ঞ জেলা ম্যাজিস্ট্রেট, যশোর</p>
                 <table className="table-auto w-full mt-4">
                   <tbody>
                     <tr>
-                      <td className="bg-[#d8c4b6] text-right w-1/3 text-sm font-bold text-gray-800 px-2 border border-[#c2a896]">নাম</td>
+                      <td className="bg-[#d8c4b6]  w-1/3 text-sm font-bold text-gray-800 px-2 border border-[#c2a896]">নাম</td>
                       <td className="text-sm text-gray-800 px-2 border border-[#d8c4b6]">
                         {currentDC ? currentDC.name : "তথ্য পাওয়া যায়নি"}
                       </td>
                     </tr>
                     <tr>
-                      <td className="bg-[#d8c4b6] text-right text-sm text-gray-600 px-2 border border-[#c2a896]">ব্যাচ</td>
+                      <td className="bg-[#d8c4b6] text-sm text-gray-600 px-2 border border-[#c2a896]">ব্যাচ</td>
                       <td className="text-sm text-gray-800 px-2 border border-[#c2a896]">
                         {currentDC ? currentDC.batch : "তথ্য পাওয়া যায়নি"}
                       </td>
                     </tr>
                     <tr>
-                      <td className="bg-[#d8c4b6] text-right text-sm text-gray-600 px-2 border border-[#c2a896]">যোগদানের তারিখ</td>
+                      <td className="bg-[#d8c4b6]  text-sm text-gray-600 px-2 border border-[#c2a896]">যোগদানের তারিখ</td>
                       <td className="text-sm text-gray-800 px-2 border border-[#d8c4b6]">
-                        {currentDC ? currentDC.joining_date : "তথ্য পাওয়া যায়নি"}
+                        {currentDC ? convertToBanglaDate(currentDC.joining_date) : "তথ্য পাওয়া যায়নি"}
                       </td>
                     </tr>
                     <tr>
-                      <td className="bg-[#d8c4b6] text-right text-sm text-gray-600 px-2 border border-[#c2a896]">প্রস্থানের তারিখ</td>
+                      <td className="bg-[#d8c4b6]  text-sm text-gray-600 px-2 border border-[#c2a896]">প্রস্থানের তারিখ</td>
                       <td className="text-sm text-gray-800 px-2 border border-[#d8c4b6]">
-                        {currentDC ? currentDC.ending_date || "চলমান" : "তথ্য পাওয়া যায়নি"}
+                        {currentDC ? convertToBanglaDate(currentDC.ending_date) || "চলমান" : "তথ্য পাওয়া যায়নি"}
                       </td>
                     </tr>
                   </tbody>
