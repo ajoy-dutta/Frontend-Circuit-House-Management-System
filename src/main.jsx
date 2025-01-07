@@ -80,10 +80,14 @@ const router = createBrowserRouter([
         path: "/media",
         element: <Media></Media>,
       },
+      {
+        path: "/inbox",
+        element: <Media></Media>,
+      },
     ],
   },
   {
-    path: "/admin",
+    path: "/dashboard",
     element: <Appbar />,
     errorElement: <ErrorPage />,
     children: [

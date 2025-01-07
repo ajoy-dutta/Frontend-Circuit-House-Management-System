@@ -38,10 +38,10 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
-        <Link to="/admin/room">
+        <Link to="/dashboard/room">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/admin/room") ? "bg-blue-100 text-gray-600" : ""
+              isActive("/dashboard/room") ? "bg-blue-100 text-gray-600" : ""
             }`}
           >
             <div className="px-3">
@@ -51,10 +51,10 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
-        <Link to="/admin/food">
+        <Link to="/dashboard/food">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/admin/food") ? "bg-blue-100 text-gray-600" : ""
+              isActive("/dashboard/food") ? "bg-blue-100 text-gray-600" : ""
             }`}
           >
             <div className="px-3">
@@ -64,10 +64,10 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
-        <Link to="/admin/other">
+        <Link to="/dashboard/other">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/admin/other") ? "bg-blue-100 text-gray-600" : ""
+              isActive("/dashboard/other") ? "bg-blue-100 text-gray-600" : ""
             }`}
           >
             <div className="px-3">
@@ -77,10 +77,10 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
-        <Link to="/admin/guest-list">
+        <Link to="/dashboard/guest-list">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/admin/guest-list") ? "bg-blue-100 text-gray-600" : ""
+              isActive("/dashboard/guest-list") ? "bg-blue-100 text-gray-600" : ""
             }`}
           >
             <div className="px-3">
@@ -90,10 +90,10 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
-        <Link to="/admin/checkout-history">
+        <Link to="/dashboard/checkout-history">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/admin/checkout-history") ? "bg-blue-100 text-gray-600" : ""
+              isActive("/dashboard/checkout-history") ? "bg-blue-100 text-gray-600" : ""
             }`}
           >
             <div className="px-3">
@@ -103,11 +103,12 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
+
         {user?.role === "NDC" && (
-          <Link to="/admin/staff-approval">
+          <Link to="/dashboard/staff-approval">
             <li
               className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-                isActive("/admin/staff-approval") ? "bg-blue-100 text-gray-600" : ""
+                isActive("/dashboard/staff-approval") ? "bg-blue-100 text-gray-600" : ""
               }`}
             >
               <div className="px-3">

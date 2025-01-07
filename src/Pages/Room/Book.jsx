@@ -64,7 +64,7 @@ const Book = () => {
 
 
             alert("Room Booked Successfully");
-            navigate("/admin/guest-list");
+            navigate("/dashboard/guest-list");
         } catch (error) {
             console.error("Error Book room:", error);
         }

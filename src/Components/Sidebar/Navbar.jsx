@@ -67,18 +67,20 @@ const Navbar = ({ sidebarToggle, setSidebarToggle }) => {
           {dropdownOpen && (
             <div className="absolute shadow w-20 right-0 text-center  bg-white rounded">
               <ul className="text-sm">
-                <Link to="/admin/profile">
+                <Link to="/dashboard/profile">
                   <li className="hover:text-cyan-400 cursor-pointer border-b-2 text-black p-2 font-semibold">
                     Profile
                   </li>
                 </Link>
                 {user ? (
-                  <div
+                 
+                  <li
                     onClick={handleSignout}
-                    className="hover:text-cyan-400 cursor-pointer p-2  font-semibold"
+                    className="hover:text-cyan-400 cursor-pointer p-2 text-black  font-semibold"
                   >
                     Sign Out
-                  </div>
+                  </li>
+                 
                 ) : (
                   <li className="relative">
                     <div className="py-2 px-3 hover:bg-black hover:text-gray-100 cursor-pointer">
