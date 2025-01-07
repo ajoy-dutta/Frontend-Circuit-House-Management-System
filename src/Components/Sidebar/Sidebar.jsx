@@ -5,7 +5,9 @@ import { MdDashboard } from "react-icons/md";
 import { FaBowlFood } from "react-icons/fa6";
 import { Link } from "react-router";
 import { useUser } from "../../Provider/UserProvider";
-import { FaHistory } from "react-icons/fa";
+import { FaHistory  } from "react-icons/fa";
+import { FaRegMessage } from "react-icons/fa6";
+
 
 const Sidebar = ({ sidebarToggle }) => {
   const {user} = useUser();
@@ -85,6 +87,14 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
       )}
+          <Link to="/admin/inbox">
+          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 py-2">
+            <div className="px-3 ">
+              <FaRegMessage className="inline-block w-6 text-lg mr-2 "></FaRegMessage>
+              Inbox
+            </div>
+          </li>
+        </Link>
        <Link to="/admin/profile">
           <li className="mb-2 rounded hover:shadow hover:bg-blue-100 py-2">
             <div className="px-3 ">
