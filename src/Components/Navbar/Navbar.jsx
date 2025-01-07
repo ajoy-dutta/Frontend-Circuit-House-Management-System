@@ -19,7 +19,7 @@ const Navbar = () => {
       {user && (
         <li>
           <NavLink
-            to="/admin/room"
+            to="/dashboard/room"
             className={({ isActive }) =>
               isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
             }
@@ -247,8 +247,8 @@ const Navbar = () => {
               </div>
             </NavLink>
           </div>
-          <div className="nav-start w-3/4">
-            <ul className="hidden md:flex items-center font-normal font-serif px-1 gap-8 whitespace-nowrap">
+          <div className="nav-start w-4/5">
+            <ul className="hidden md:flex lg:flex lg:justify-between items-center font-normal font-serif px-1 gap-5 whitespace-nowrap">
               {navOptions}
             </ul>
           </div>

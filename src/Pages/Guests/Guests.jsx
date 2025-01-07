@@ -77,7 +77,7 @@ const Guests = () => {
 
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
+    <div className="p-8 bg-gray-50 ">
       <h2 className="text-3xl font-semibold mb-6 text-center text-gray-800">Guest Information</h2>
 
       {/* Table for larger screens */}
@@ -125,7 +125,7 @@ const Guests = () => {
                 })}
                 </td>
 
-                <td className="py-3 px-4 text-sm">
+                <td className="py-3 px-4 text-sm text-center">
                   <button
                     onClick={() => toggleUpdate(guest.id)}
                     className="text-teal-600 hover:text-teal-800 align-center"
@@ -158,7 +158,7 @@ const Guests = () => {
                   <Link
                     to="/admin/checkout"
                     state={{ guest }}
-                    className="px-4 py-2 bg-green-500 text-white text-xs font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="px-2 py-2 bg-green-500 text-white text-xs font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
                   >
                     Checkout
                 </Link>

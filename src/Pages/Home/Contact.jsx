@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AxiosInstance from "../../Components/Axios"; 
+import AxiosInstance from "../../Components/Axios";
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -17,9 +17,9 @@ const Contact = () => {
         const { name, value } = e.target;
         if (name === "message" && value.length > 160) {
             setErrorMessage("Message cannot exceed 160 characters.");
-          } else {
+        } else {
             setErrorMessage(`${160 - value.length} characters remaining`);
-          }
+        }
         setFormData({
             ...formData,
             [name]: value,
@@ -89,7 +89,7 @@ const Contact = () => {
                     </div>
                     <div className="space-y-2 text-sm text-zinc-700 dark:text-zinc-400">
                         <label className="block font-medium" htmlFor="_email">
-                            Phone 
+                            Phone
                         </label>
                         <input
                             className="h-10 w-full rounded border px-3 py-2 text-sm leading-tight focus:outline-none focus:ring-1 dark:border-zinc-700"
@@ -102,25 +102,25 @@ const Contact = () => {
                         />
                     </div>
                     <div className="space-y-2 text-sm text-zinc-700 dark:text-zinc-400">
-    <label className="block font-medium" htmlFor="_message">
-        Message (max 160 characters)
+                        <label className="block font-medium" htmlFor="_message">
+                            Message (max 160 characters)
     </label>
-    <textarea
-        className="min-h-[80px] w-full rounded border px-3 py-2 leading-tight focus:outline-none focus:ring-1 dark:border-zinc-700"
-        id="_message"
-        placeholder="What's on your mind?"
-        name="message"
-        value={formData.message}
-        onChange={handleChange}
-        maxLength={160}  // Limit to 160 characters
-        required
-    />
-    
-    {/* Show remaining characters or error message */}
-    <p className={`text-sm mt-1 ${errorMessage ? 'text-red-500' : 'text-gray-500'}`}>
-        {errorMessage}
-    </p>
-</div>
+                        <textarea
+                            className="min-h-[80px] w-full rounded border px-3 py-2 leading-tight focus:outline-none focus:ring-1 dark:border-zinc-700"
+                            id="_message"
+                            placeholder="What's on your mind?"
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            maxLength={160}  // Limit to 160 characters
+                            required
+                        />
+
+                        {/* Show remaining characters or error message */}
+                        <p className={`text-sm mt-1 ${errorMessage ? 'text-red-500' : 'text-gray-500'}`}>
+                            {errorMessage}
+                        </p>
+                    </div>
 
                     <button
                         className="rounded-md bg-sky-500 px-4 py-2 text-white transition-colors hover:bg-sky-600 dark:bg-sky-700"

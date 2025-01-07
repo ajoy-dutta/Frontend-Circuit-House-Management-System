@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useEffect, useRef, useState } from 'react';
-import { FaBars, FaUserCircle } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
-import { useUser } from '../../Provider/UserProvider';
+import React, { useEffect, useRef, useState } from "react";
+import { FaBars, FaUserCircle } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../../Provider/UserProvider";
 
 const Navbar = ({ sidebarToggle, setSidebarToggle }) => {
   const navRef = useRef(null);
@@ -24,15 +24,15 @@ const Navbar = ({ sidebarToggle, setSidebarToggle }) => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [dropdownOpen]);
 
   const handleSignout = () => {
     signOut();
-    navigate('/');
+    navigate("/");
   };
 
   const handleSidebarToggle = () => {
@@ -47,7 +47,7 @@ const Navbar = ({ sidebarToggle, setSidebarToggle }) => {
     <div
       id="nav"
       ref={navRef}
-      className="bg-teal-500 px-4 py-3 flex justify-between"
+      className="bg-[#213555] px-4 py-3 flex justify-between sticky top-0"
     >
       <div className="flex items-center text-xl">
         <FaBars
@@ -59,21 +59,28 @@ const Navbar = ({ sidebarToggle, setSidebarToggle }) => {
       <div className="flex items-center gap-x-5">
         <div className="relative" ref={dropdownRef}>
           <button
-            className="p-0 bg-transparent border-none" // Removes padding, background, and border
+            className="p-0 bg-transparent border-none"
             onClick={handleDropdownToggle}
           >
-            <FaUserCircle className="w-8 h-6 text-white" /> {/* Clean icon */}
+            <FaUserCircle className="w-8 h-6 text-white" />
           </button>
           {dropdownOpen && (
-            <div className="absolute shadow w-20 right-0 bg-white rounded">
+            <div className="absolute shadow w-20 right-0 text-center  bg-white rounded">
               <ul className="text-sm">
+                <Link to="/dashboard/profile">
+                  <li className="hover:text-cyan-400 cursor-pointer border-b-2 text-black p-2 font-semibold">
+                    Profile
+                  </li>
+                </Link>
                 {user ? (
-                  <div
+                 
+                  <li
                     onClick={handleSignout}
-                    className="hover:text-cyan-400 cursor-pointer p-2 bg-red-500 rounded-md text-white font-semibold"
+                    className="hover:text-cyan-400 cursor-pointer p-2 text-black  font-semibold"
                   >
                     Sign Out
-                  </div>
+                  </li>
+                 
                 ) : (
                   <li className="relative">
                     <div className="py-2 px-3 hover:bg-black hover:text-gray-100 cursor-pointer">
@@ -82,6 +89,8 @@ const Navbar = ({ sidebarToggle, setSidebarToggle }) => {
                   </li>
                 )}
               </ul>
+
+              <ul className="text-sm"></ul>
             </div>
           )}
         </div>

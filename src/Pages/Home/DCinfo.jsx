@@ -72,7 +72,7 @@ const DCinfo = () => {
                 <img className="rounded-full" src={DCImage} alt="DC" />
               </div>
               <div className="w-full p-3">
-                <p className="font-bold my-3 text-center text-xl">জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট, যশোর</p>
+                <p className="font-bold my-3 text-center text-xl">জেলা প্রশাসক ও বিজ্ঞ জেলা ম্যাজিস্ট্রেট, যশোর</p>
                 <table className="table-auto w-full mt-4">
                   <tbody>
                     <tr>

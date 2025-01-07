@@ -75,80 +75,96 @@ const Other = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-6 max-w-md mx-auto shadow-lg rounded">
-      <h1 className="text-2xl font-bold mb-4">Add additional item</h1>
-
-      {/* Error Message */}
-      {error && <div className="text-red-500 mb-4">{error}</div>}
-
-      <div className="mb-4">
-        <label htmlFor="room_name" className="block mb-1 font-medium">Room Name*</label>
-        <select
-          id="room_name"
-          name="room_name"
-          value={formData.room_name}
-          onChange={handleInputChange}
-          className="w-full px-4 py-2 border rounded"
-          required
-        >
-          <option value="" disabled>Select a room</option>
-          {rooms.map((room) => (
-            <option key={room.id} value={room.room_name}>
-              {room.room_name}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="mb-4">
-        <label htmlFor="date" className="block mb-1 font-medium">Date*</label>
-        <input
-          type="date"
-          id="date"
-          name="date"
-          value={formData.date}
-          onChange={handleInputChange}
-          className="w-full px-4 py-2 border rounded"
-          required
-        />
-      </div>
-
-      <div className="mb-4">
-        <label htmlFor="item" className="block mb-1 font-medium">Add Item*</label>
-        <input
-          type="text"
-          id="item"
-          name="item"
-          value={formData.item}
-          onChange={handleInputChange}
-          placeholder="Enter item name"
-          className="w-full px-4 py-2 border rounded"
-          required
-        />
-      </div>
-
-      <div className="mb-4">
-        <label htmlFor="price" className="block mb-1 font-medium">Price*</label>
-        <input
-          type="number"
-          id="price"
-          name="price"
-          value={formData.price}
-          onChange={handleInputChange}
-          placeholder="Enter price"
-          className="w-full px-4 py-2 border rounded"
-          required
-        />
-      </div>
-
-      <button
-        type="submit"
-        className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+    <div className="h-screen flex items-center justify-center ">
+      <form
+        onSubmit={handleSubmit}
+        className="p-6 max-w-md w-full shadow-lg bg-[#F5EFE7] rounded"
       >
-        Submit
-      </button>
-    </form>
+        <h1 className="text-2xl font-bold mb-4">Add additional item</h1>
+  
+        {/* Error Message */}
+        {error && <div className="text-red-500 mb-4">{error}</div>}
+  
+        <div className="mb-4">
+          <label htmlFor="room_name" className="block mb-1 font-medium">
+            Room Name*
+          </label>
+          <select
+            id="room_name"
+            name="room_name"
+            value={formData.room_name}
+            onChange={handleInputChange}
+            className="w-full px-4 py-2 border rounded"
+            required
+          >
+            <option value="" disabled>
+              Select a room
+            </option>
+            {rooms.map((room) => (
+              <option key={room.id} value={room.room_name}>
+                {room.room_name}
+              </option>
+            ))}
+          </select>
+        </div>
+  
+        <div className="mb-4">
+          <label htmlFor="date" className="block mb-1 font-medium">
+            Date*
+          </label>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            value={formData.date}
+            onChange={handleInputChange}
+            className="w-full px-4 py-2 border rounded"
+            required
+          />
+        </div>
+  
+        <div className="mb-4">
+          <label htmlFor="item" className="block mb-1 font-medium">
+            Add Item*
+          </label>
+          <input
+            type="text"
+            id="item"
+            name="item"
+            value={formData.item}
+            onChange={handleInputChange}
+            placeholder="Enter item name"
+            className="w-full px-4 py-2 border rounded"
+            required
+          />
+        </div>
+  
+        <div className="mb-4">
+          <label htmlFor="price" className="block mb-1 font-medium">
+            Price*
+          </label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            value={formData.price}
+            onChange={handleInputChange}
+            placeholder="Enter price"
+            className="w-full px-4 py-2 border rounded"
+            required
+          />
+        </div>
+  
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   );
+  
 };
 
 export default Other;
