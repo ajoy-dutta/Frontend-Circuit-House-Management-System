@@ -66,7 +66,7 @@ const CheckoutHistory = () => {
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Room Name</th>
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Check-In Date</th>
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Check-Out Date</th>
-              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Update</th>
+              {/* <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Update</th> */}
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Details</th>
             </tr>
           </thead>
@@ -99,14 +99,14 @@ const CheckoutHistory = () => {
                 })}
                 </td>
 
-                <td className="py-3 px-4 text-sm">
+                {/* <td className="py-3 px-4 text-sm">
                   <button
                     onClick={() => toggleUpdate(checkout.guest.id)}
                     className="px-4 py-2 bg-blue-500 text-white text-xs font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     Update
                   </button>
-                </td>
+                </td> */}
 
                 {selectedGuestUpdate == checkout.guest.id && (
                   <div className="mt-4">
