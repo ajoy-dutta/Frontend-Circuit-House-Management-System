@@ -133,7 +133,7 @@ const Navbar = () => {
           Visit Jashore
         </NavLink>
       </li>
-      <li >
+      {/* <li >
         <NavLink
           to="/honor-board"
           className={({ isActive }) =>
@@ -142,7 +142,7 @@ const Navbar = () => {
         >
           Honor Board
         </NavLink>
-      </li>
+      </li> */}
       <li >
         <NavLink
           to="/contact"
