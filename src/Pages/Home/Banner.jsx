@@ -16,7 +16,7 @@ const data = [
   },
   {
     img: homeImage2,
-    title: "নানা রঙের ফুলের মেলা, খেজুর গুড়ে যশোর জেলা",
+    title: "Explore the Flower Capital of Bangladesh",
     buttonText: "Get Started",
   },
   {

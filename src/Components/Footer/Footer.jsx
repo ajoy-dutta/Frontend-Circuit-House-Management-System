@@ -17,14 +17,18 @@ const Footer = () => {
               </div>
             </div>
 
+
             <div className="text-left">
               <h3 className="text-xl font-bold">Contact Us</h3>
               <p className="text-gray-300 text-sm sm:text-base mb-2">
-                <strong>Location:</strong> Jashore Circuit House,
-                <br /> Jashore, Khulna, Bangladesh
+                <strong>Location:</strong> Jashore Circuit House, Jashore
+                <br /> <span className="text-sm text-gray-400">Nearest Landmark: Jashore Zila School</span>
               </p>
               <p className="text-gray-300 text-sm sm:text-base">
-                <strong>Phone:</strong> +8801733909222
+                <strong>Mobile:</strong> +8801733909222 (NDC Jashore)
+              </p>
+              <p className="text-gray-300 text-sm sm:text-base">
+                <strong>Phone:</strong> +02477762486 
               </p>
               <p className="text-gray-300 text-sm sm:text-base">
                 <strong>Email:</strong> chjashore@gmail.com
@@ -54,7 +58,7 @@ const Footer = () => {
             © 2025 Jashore Circuit House, Inc. All rights reserved.
           </p>
           <p className="text-gray-400 text-sm sm:text-base">
-            Developed by Utshab Technology
+            Developed by Utshab Technology Ltd.
           </p>
         </div>
       </div>

@@ -9,7 +9,7 @@ export const Carousel = () => {
   const sliders = [
     { img: homeImage, title: "Welcome to Jashore Circuit House" },
     { img: homeImage3, title: "নানা রঙের ফুলের মেলা, খেজুর গুড়ে যশোর জেলা" },
-    { img: homeImage2, title: "নানা রঙের ফুলের মেলা, খেজুর গুড়ে যশোর জেলা" },
+    { img: homeImage2, title: "Explore the Flower Capital of Bangladesh" },
     { img: homeImage1, title: "Discover Jashore", des: "The Land of Heritage and Harmony" },
   ];
   const prevSlider = () =>

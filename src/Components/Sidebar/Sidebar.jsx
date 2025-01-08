@@ -107,8 +107,8 @@ const Sidebar = ({ sidebarToggle }) => {
 
 
         {user?.role === "NDC" && (
-          <Link to="/admin/staff-approval">
-          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 py-2">
+          <Link to="/dashboard/staff-approval">
+          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
             <div className="px-3 ">
               <HiUsers className="inline-block w-6 h-6 mr-2 -mt-2 "></HiUsers>
               Staffs
@@ -116,8 +116,18 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
       )}
-          <Link to="/admin/inbox">
-          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 py-2">
+
+         <Link to="/dashboard/staff-profile">
+            <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
+              <div className="px-3 ">
+                <FaRegMessage className="inline-block w-6 text-lg mr-2 "></FaRegMessage>
+                Staff Profile
+              </div>
+            </li>
+          </Link>
+
+          <Link to="/dashboard/inbox">
+          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
             <div className="px-3 ">
               <FaRegMessage className="inline-block w-6 text-lg mr-2 "></FaRegMessage>
               Inbox

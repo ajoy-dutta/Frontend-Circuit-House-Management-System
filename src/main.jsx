@@ -33,6 +33,7 @@ import RoomDetails from "./Pages/RoomDetails/RoomDetails";
 import Media from "./Pages/Media/Media";
 import BrandJashore from "./Pages/BrandJashore/BrandJashore";
 import Inbox from "./Pages/Messages/Inbox";
+import StaffProfile from "./Pages/Staffs Profile/StaffProfile";
 
 
 const router = createBrowserRouter([
@@ -157,6 +158,11 @@ const router = createBrowserRouter([
       {
         path: "inbox",
         element: <Inbox/>,
+      },
+
+      {
+        path: "staff-profile",
+        element: <StaffProfile/>,
       },
     ],
   },
