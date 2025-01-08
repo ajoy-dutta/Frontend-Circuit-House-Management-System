@@ -323,14 +323,17 @@ const HonourBoard = () => {
                     {convertToBanglaDate(item.joining_date)}
                     </td>
                   </tr>
-                  <tr>
-                    <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
-                      প্রস্থানের তারিখ
-                    </td>
-                    <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                    {convertToBanglaDate(item.ending_date) || "চলমান"}
-                    </td>
-                  </tr>
+                  { item.ending_date && (
+                     <tr>
+                     <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
+                       প্রস্থানের তারিখ
+                     </td>
+                     <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                     {convertToBanglaDate(item.ending_date) || "চলমান"}
+                     </td>
+                   </tr>
+                  ) }
+                 
                 </tbody>
               </table>
               <div className="hidden md:block avatar">
@@ -402,14 +405,16 @@ const HonourBoard = () => {
                       {convertToBanglaDate(item.joining_date)}
                     </td>
                   </tr>
-                  <tr>
-                    <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
-                      প্রস্থানের তারিখ
-                    </td>
-                    <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                      {convertToBanglaDate(item.ending_date) || "চলমান"}
-                    </td>
-                  </tr>
+                  { item.ending_date && (
+                     <tr>
+                     <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
+                       প্রস্থানের তারিখ
+                     </td>
+                     <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                     {convertToBanglaDate(item.ending_date) || "চলমান"}
+                     </td>
+                   </tr>
+                  ) }
                 </tbody>
               </table>
               <div className="hidden md:block avatar">
@@ -481,14 +486,16 @@ const HonourBoard = () => {
                       {convertToBanglaDate(item.joining_date)}
                     </td>
                   </tr>
-                  <tr>
-                    <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
-                      প্রস্থানের তারিখ
-                    </td>
-                    <td className="text-sm text-gray-800 px-2 border border-gray-500">
-                      {convertToBanglaDate(item.ending_date) || "চলমান"}
-                    </td>
-                  </tr>
+                  { item.ending_date && (
+                     <tr>
+                     <td className="bg-gray-300 text-sm text-gray-600 px-2 border border-gray-500">
+                       প্রস্থানের তারিখ
+                     </td>
+                     <td className="text-sm text-gray-800 px-2 border border-gray-500">
+                     {convertToBanglaDate(item.ending_date) || "চলমান"}
+                     </td>
+                   </tr>
+                  ) }
                 </tbody>
               </table>
               <div className="hidden md:block avatar">

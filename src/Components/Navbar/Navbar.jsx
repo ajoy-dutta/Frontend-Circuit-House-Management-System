@@ -19,7 +19,7 @@ const Navbar = () => {
       {user && (
         <li>
           <NavLink
-            to="/admin/room"
+            to="/dashboard/room"
             className={({ isActive }) =>
               isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
             }
@@ -58,7 +58,7 @@ const Navbar = () => {
           Visit Jashore
         </NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink
           to="/honor-board"
           className={({ isActive }) =>
@@ -67,7 +67,7 @@ const Navbar = () => {
         >
           Honor Board
         </NavLink>
-      </li>
+      </li> */}
       <li>
         <NavLink
           to="/contact"
@@ -78,26 +78,8 @@ const Navbar = () => {
           Contact
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/brandJashore"
-          className={({ isActive }) =>
-            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
-          }
-        >
-          Branding Jashore
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/media"
-          className={({ isActive }) =>
-            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
-          }
-        >
-          Media
-        </NavLink>
-      </li>
+     
+      
     </>
   );
 

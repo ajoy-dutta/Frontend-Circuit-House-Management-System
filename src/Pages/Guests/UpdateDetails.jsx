@@ -67,7 +67,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
             room_id : ""
           });
     
-          alert("Room Updated Successfully");
+          alert("Booking Info Updated Successfully");
           toggleUpdate(null)
         } catch (error) {
             console.error("Error Book room:", error);

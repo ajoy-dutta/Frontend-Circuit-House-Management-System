@@ -93,12 +93,7 @@ const DCinfo = () => {
                         {currentDC ? convertToBanglaDate(currentDC.joining_date) : "তথ্য পাওয়া যায়নি"}
                       </td>
                     </tr>
-                    <tr>
-                      <td className="bg-[#d8c4b6]  text-sm text-gray-600 px-2 border border-[#c2a896]">প্রস্থানের তারিখ</td>
-                      <td className="text-sm text-gray-800 px-2 border border-[#d8c4b6]">
-                        {currentDC ? convertToBanglaDate(currentDC.ending_date) || "চলমান" : "তথ্য পাওয়া যায়নি"}
-                      </td>
-                    </tr>
+                    
                   </tbody>
                 </table>
               </div>

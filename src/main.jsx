@@ -32,6 +32,8 @@ import CheckoutHistory from "./Pages/Guests/CheckoutHistory";
 import RoomDetails from "./Pages/RoomDetails/RoomDetails";
 import Media from "./Pages/Media/Media";
 import BrandJashore from "./Pages/BrandJashore/BrandJashore";
+import Inbox from "./Pages/Messages/Inbox";
+import { Carousels } from "./Pages/BrandJashore/Carousels";
 
 
 const router = createBrowserRouter([
@@ -74,16 +76,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/brandJashore",
-        element: <BrandJashore></BrandJashore>,
+        // element: <BrandJashore></BrandJashore>,
+        element: <Carousels></Carousels>
       },
       {
         path: "/media",
         element: <Media></Media>,
       },
+      {
+        path: "/inbox",
+        element: <Media></Media>,
+      },
     ],
   },
   {
-    path: "/admin",
+    path: "/dashboard",
     element: <Appbar />,
     errorElement: <ErrorPage />,
     children: [
@@ -148,6 +155,10 @@ const router = createBrowserRouter([
       {
         path: "other",
         element: <Other />,
+      },
+      {
+        path: "inbox",
+        element: <Inbox/>,
       },
     ],
   },

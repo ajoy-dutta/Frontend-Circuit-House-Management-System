@@ -52,7 +52,7 @@ const Login = ({ setShowLoginForm }) => {
           username: "",
           password: "",
         });
-        navigate("/admin/room"); // Redirect to home page
+        navigate("/dashboard/room"); // Redirect to home page
         setShowLoginForm(false);
         alert("Login Successful!");
 
