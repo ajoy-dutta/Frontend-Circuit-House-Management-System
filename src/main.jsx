@@ -31,9 +31,9 @@ import Details from "./Pages/Room/Details";
 import CheckoutHistory from "./Pages/Guests/CheckoutHistory";
 import RoomDetails from "./Pages/RoomDetails/RoomDetails";
 import Media from "./Pages/Media/Media";
-import BrandJashore from "./Pages/BrandJashore/BrandJashore";
 import Inbox from "./Pages/Messages/Inbox";
 import StaffProfile from "./Pages/Staffs Profile/StaffProfile";
+import { Carousels } from "./Pages/BrandJashore/Carousels";
 
 
 const router = createBrowserRouter([
@@ -76,7 +76,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/brandJashore",
-        element: <BrandJashore></BrandJashore>,
+        // element: <BrandJashore></BrandJashore>,
+        element: <Carousels></Carousels>
       },
       {
         path: "/media",
