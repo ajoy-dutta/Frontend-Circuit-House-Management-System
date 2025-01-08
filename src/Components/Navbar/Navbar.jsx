@@ -45,7 +45,7 @@ const Navbar = () => {
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
         >
-          Conference Room
+          Conference Hall
         </NavLink>
       </li>
       <li>
@@ -88,7 +88,7 @@ const Navbar = () => {
           Branding Jashore
         </NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink
           to="/media"
           className={({ isActive }) =>
@@ -97,7 +97,7 @@ const Navbar = () => {
         >
           Media
         </NavLink>
-      </li>
+      </li> */}
     </>
   );
 
