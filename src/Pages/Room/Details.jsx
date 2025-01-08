@@ -48,22 +48,26 @@ const Details = () => {
 
     const fetchGuestHistory = async () => {
       try {
-        const response = await AxiosInstance.get(`/book/`);
-        const filteredGuests = response.data.filter((guest) => guest.room === room.id);
-        setGuestHistory(filteredGuests)
+        const response = await AxiosInstance.get(`/checkout/`);
+        // Filter guests by room ID (adjusting to match the nested structure)
+        const filteredGuests = response.data.filter(
+          (checkout) => checkout.guest.room === room.id
+        );
+        setGuestHistory(filteredGuests);
         setGuestDetails(filteredGuests);
       } catch (error) {
         console.error("Error fetching guest history:", error);
       }
     };
-
+    
     fetchPricingData();
     fetchGuestHistory();
-  }, [room.id, room.room_type]);
+    }, [room.id, room.room_type]);
+    
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 flex-col">
-      <div className="relative p-8 w-full max-w-4xl bg-white shadow-xl rounded-xl mb-8">
+      <div className="p-8 w-full max-w-4xl bg-white shadow-xl rounded-xl mb-8">
         <h2 className="text-4xl font-extrabold text-center text-teal-700 mb-6">{room.room_name}</h2>
 
         {/* Room Information */}
@@ -144,13 +148,13 @@ const Details = () => {
             <table className="w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
               <thead className="bg-teal-100 text-gray-800">
                 <tr>
-                  <th className="px-4 py-2 border">SL No.</th>
-                  <th className="px-4 py-2 border">Guest Name</th>
-                  <th className="px-4 py-2 border">Office</th>
-                  <th className="px-4 py-2 border">Guest Type</th>
-                  <th className="px-4 py-2 border">Check-In</th>
-                  <th className="px-4 py-2 border">Check-Out</th>
-                  <th className="px-4 py-2 border">Contact Info. </th>
+                  <th className="px-2 py-2 border">SL No.</th>
+                  <th className="px-2 py-2 border">Guest Name</th>
+                  <th className="px-2 py-2 border">Office</th>
+                  <th className="px-2 py-2 border">Guest Type</th>
+                  <th className="px-2 py-2 border">Check-In</th>
+                  <th className="px-2 py-2 border">Check-Out</th>
+                  <th className="px-2 py-2 border">Contact Info. </th>
 
                 </tr>
               </thead>
@@ -158,12 +162,12 @@ const Details = () => {
                 {guestHistory.length > 0 ? (
                   guestHistory.map((guest, index) => (
                     <tr key={index} className="hover:bg-teal-50">
-                      <td className="px-4 py-2 border text-center">{index + 1}</td>
-                      <td className="px-4 py-2 border">{guest.name}</td>
-                      <td className="px-4 py-2 border">{guest.office}</td>
-                      <td className="px-4 py-2 border">{guest.user_type}</td>
-                      <td className="px-4 py-2 border text-center">
-                        {new Date(guest.check_in_date).toLocaleString("en-GB", {
+                      <td className="px-2 py-2 border text-center">{guestHistory.length-index}</td>
+                      <td className="px-2 py-2 border">{guest.guest.name}</td>
+                      <td className="px-2 py-2 border">{guest.guest.office}</td>
+                      <td className="px-2 py-2 border">{guest.guest.user_type}</td>
+                      <td className="px-2 py-2 border text-center">
+                        {new Date(guest.guest.check_in_date).toLocaleString("en-GB", {
                           day: "2-digit",
                           month: "2-digit",
                           year: "numeric",
@@ -172,8 +176,8 @@ const Details = () => {
                           hour12: true,
                         })}
                       </td>
-                      <td className="px-4 py-2 border text-center">
-                        {new Date(guest.check_out_date).toLocaleString("en-GB", {
+                      <td className="px-2 py-2 border text-center">
+                        {new Date(guest.guest.check_out_date).toLocaleString("en-GB", {
                           day: "2-digit",
                           month: "2-digit",
                           year: "numeric",
@@ -182,13 +186,13 @@ const Details = () => {
                           hour12: true,
                         })}
                       </td>
-                      <td className="px-4 py-2 border text-center">{guest.phone}</td>
+                      <td className="px-2 py-2 border text-center">{guest.guest.phone}</td>
 
                     </tr>
                   ))
                 ) : (
                     <tr>
-                      <td colSpan={4} className="px-4 py-2 border text-center text-gray-500">
+                      <td colSpan={4} className="px-2 py-2 border text-center text-gray-500">
                         No guest history available.
                   </td>
                     </tr>
