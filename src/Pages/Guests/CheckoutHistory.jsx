@@ -73,7 +73,7 @@ const CheckoutHistory = () => {
           <tbody>
             {checkoutHistory.map((checkout, index) => (
               <tr key={checkout.id} className="border-t border-b hover:bg-blue-50">
-                <td className="py-3 px-4 text-sm font-medium text-gray-800">{index + 1}</td>
+                <td className="py-3 px-4 text-sm font-medium text-gray-800">{checkoutHistory.length - index}</td>
                 <td className="py-3 px-4 text-sm font-medium text-gray-800">{checkout.guest.name}</td>
                 {/* <td className="py-3 px-4 text-sm font-medium text-gray-800">{checkout.designation}</td> */}
                 <td className="py-3 px-4 text-sm font-medium text-gray-800">{checkout.guest.room_name}</td>

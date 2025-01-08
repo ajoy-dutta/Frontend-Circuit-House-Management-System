@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import AxiosInstance from "../../Components/Axios";
 import Modal from "react-modal";
 
 const Inbox = () => {
@@ -11,7 +11,7 @@ const Inbox = () => {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/contact/");
+        const response = await AxiosInstance.get("/contact/");
         setContacts(response.data);
       } catch (error) {
         console.error("Error fetching contact data:", error);
@@ -57,7 +57,7 @@ const Inbox = () => {
                 className="hover:bg-gray-100 transition duration-200"
               >
                 <td className="border border-gray-200 px-4 py-2 text-center">
-                  {index + 1}
+                  {contacts.length-index}
                 </td>
                 <td className="border border-gray-200 px-4 py-2 text-center">
                   {new Date(contact.created_at).toLocaleDateString()}
@@ -84,7 +84,7 @@ const Inbox = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Message Details"
-        className="flex justify-center items-center fixed inset-0 p-4"
+        className="flex ml-5 justify-center items-center fixed inset-0 p-4"
         overlayClassName="fixed inset-0 bg-black bg-opacity-50"
       >
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg relative">
