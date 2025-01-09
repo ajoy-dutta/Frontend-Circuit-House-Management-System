@@ -7,6 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useUser } from "../../Provider/UserProvider";
 import { FaHistory  } from "react-icons/fa";
 import { FaRegMessage } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa";
 
 
 const Sidebar = ({ sidebarToggle }) => {
@@ -82,7 +83,9 @@ const Sidebar = ({ sidebarToggle }) => {
         <Link to="/dashboard/guest-list">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/dashboard/guest-list") ? "bg-blue-100 text-gray-600" : ""
+              isActive("/dashboard/guest-list")
+                ? "bg-blue-100 text-gray-600"
+                : ""
             }`}
           >
             <div className="px-3">
@@ -95,7 +98,9 @@ const Sidebar = ({ sidebarToggle }) => {
         <Link to="/dashboard/checkout-history">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/dashboard/checkout-history") ? "bg-blue-100 text-gray-600" : ""
+              isActive("/dashboard/checkout-history")
+                ? "bg-blue-100 text-gray-600"
+                : ""
             }`}
           >
             <div className="px-3">
@@ -105,36 +110,50 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
-
         {user?.role === "NDC" && (
           <Link to="/dashboard/staff-approval">
-          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
-            <div className="px-3 ">
-              <HiUsers className="inline-block w-6 h-6 mr-2 -mt-2 "></HiUsers>
-              Staffs
-            </div>
-          </li>
-        </Link>
-      )}
-
-         <Link to="/dashboard/staff-profile">
-            <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
+            <li
+              className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
+                isActive("/dashboard/staff-approval")
+                  ? "bg-blue-100 text-gray-600"
+                  : ""
+              }`}
+            >
               <div className="px-3 ">
-                <FaRegMessage className="inline-block w-6 text-lg mr-2 "></FaRegMessage>
-                Staff Profile
+                <HiUsers className="inline-block w-6 h-6 mr-2 -mt-2 "></HiUsers>
+                Staffs
               </div>
             </li>
           </Link>
+        )}
 
-          <Link to="/dashboard/inbox">
-          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
+        <Link to="/dashboard/staff-profile">
+          <li
+            className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
+              isActive("/dashboard/staff-profile")
+                ? "bg-blue-100 text-gray-600"
+                : ""
+            }`}
+          >
+            <div className="px-3 ">
+              <FaUser className="inline-block w-6 text-lg mr-2 " />
+              Staff Profile
+            </div>
+          </li>
+        </Link>
+
+        <Link to="/dashboard/inbox">
+          <li className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
+              isActive("/dashboard/inbox")
+                ? "bg-blue-100 text-gray-600"
+                : ""
+            }`}>
             <div className="px-3 ">
               <FaRegMessage className="inline-block w-6 text-lg mr-2 "></FaRegMessage>
               Inbox
             </div>
           </li>
         </Link>
-        
       </ul>
     </div>
   );
