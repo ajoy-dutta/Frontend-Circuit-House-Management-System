@@ -15,13 +15,14 @@ import img13 from "../../assets/Jess Garden_01.jpg";
 import img14 from "../../assets/Jhapa Baor_03.jpg";
 import img15 from "../../assets/Johorpur Bot Gacher Mela_04.jpg";
 import img16 from "../../assets/Khanpur Shib Mondir_01.jpg";
+import { Link } from "react-router-dom";
 
 const VisitJashore = () => {
   const images = [
     {
       src: img1,
       title: "Benapole Gate",
-      des: "Benapole  Municipality  constructed  this  56.5  feet  high gate in 2016. This gate has a signi cance as it is used as the gateway to Bangladesh.7373",
+      des: "Benapole  Municipality  constructed  this  56.5  feet  high gate in 2016. This gate has a significance as it is used as the gateway to Bangladesh.7373",
     },
     {
       src: img2,
@@ -120,9 +121,18 @@ const VisitJashore = () => {
 
   return (
     <div className="mb-16 mx-5">
-      <h2 className="text-3xl font-bold italic text-center my-8">
+      <div className="text-3xl font-bold italic text-center my-8">
         Meet Our Jashore
-      </h2>
+      </div>
+      <div className="max-w-7xl mx-auto my-6">
+        <Link
+          to="/brandJashore"
+          className="text-xl font-serif font-semibold italic hover:text-cyan-700 hover:underline"
+        >
+          Branding Jashore
+        </Link>
+      </div>
+
       <div className="max-w-7xl mx-auto grid sm:grid-cols-1 md:grid-cols-4 gap-4">
         {currentImages.map((image, index) => (
           <div

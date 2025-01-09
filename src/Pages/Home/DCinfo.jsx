@@ -54,14 +54,16 @@ const DCinfo = () => {
         <div className="grid sm:grid-rows-1 md:grid-cols-2 py-4 place-items-center">
           {/* Left Section */}
           <div className="md:border-r-[1px] border-[#d8c4b6]">
-            <div className="px-5 space-y-3">
-              <p className="font-bold text-3xl py-3">যশোর সার্কিট হাউস</p>
-              <p>দড়াটানা হতে দক্ষিণদিকে জজ কোর্ট ও জিলা স্কুলের মধ্যবর্তী স্থানে সার্কিট হাউজের অবস্থান।</p>
+            <div className="px-5 space-y-3 font-serif">
+              <p className="font-bold text-2xl py-3">Jashore Circuit House</p>
+              <p>Situated in the heart of Jashore town, Jashore Circuit House presents a blend of tradition and modernity. </p>
               <p className="text-justify">
-                সরকারি, আধা-সরকারি, স্বায়ত্বশাসিত সংস্থার কর্মকর্তাবৃন্দকে ওয়ারেন্ট অব প্রেসিডেন্ট এর ভিত্তিতে সার্কিট হাউজ কক্ষবরাদ্দ দেয়া হয়। এছাড়াও মন্ত্রী/প্রতিমন্ত্রী/উপমন্ত্রী, জাতীয়
-                সংসদের চীফ হুইপ সংসদ সদস্যবৃন্দ অর্থাৎ জেলার সকল ভিআইপি অতিথি সার্কিট হাউজে অবস্থান করেন। অবসরপ্রাপ্ত কর্মকর্তাগণকে তাঁদের ব্যক্তিগত ভ্রমণে সার্কিট হাউজের কক্ষবরাদ্দের বিধান আছে।
+              Maintained by the District Administration,  Circuit House serves as a haven for dignitaries and visitors, 
+              offering both comfort and a connection to history. Its neatly manicured gardens and endless green lawn breathe 
+              life into its surroundings. Over the years, Jashore Circuit House has witnessed the convergence of tradition and
+               progress, standing as a symbol of Jashore’s enduring heritage and evolving identity.
               </p>
-              <p>সার্কিট হাউজে ২ টি টেলিফোন লাইন সংযুক্ত আছে। অভ্যর্থনা কক্ষের নম্বর হলো -০২৪৭৭৭৬২৪৮৬</p>
+             
             </div>
           </div>
 
@@ -73,22 +75,22 @@ const DCinfo = () => {
               </div>
               <div className="w-full p-3">
                 <p className="font-bold my-3 text-center text-xl">জেলা প্রশাসক ও বিজ্ঞ জেলা ম্যাজিস্ট্রেট, যশোর</p>
-                <table className="table-auto w-full mt-4">
+                <table className="table-auto  w-full mt-4">
                   <tbody>
                     <tr>
-                      <td className="bg-[#d8c4b6]  w-1/3 text-sm font-bold text-gray-800 px-2 border border-[#c2a896]">নাম</td>
+                      <td className="bg-[#d8c4b6] text-right  w-1/3 text-sm font-bold text-gray-800 px-2 border border-[#c2a896]">নাম</td>
                       <td className="text-sm text-gray-800 px-2 border border-[#d8c4b6]">
                         {currentDC ? currentDC.name : "তথ্য পাওয়া যায়নি"}
                       </td>
                     </tr>
                     <tr>
-                      <td className="bg-[#d8c4b6] text-sm text-gray-600 px-2 border border-[#c2a896]">ব্যাচ</td>
+                      <td className="bg-[#d8c4b6] text-right text-sm text-gray-600 px-2 border border-[#c2a896]">ব্যাচ</td>
                       <td className="text-sm text-gray-800 px-2 border border-[#c2a896]">
                         {currentDC ? currentDC.batch : "তথ্য পাওয়া যায়নি"}
                       </td>
                     </tr>
                     <tr>
-                      <td className="bg-[#d8c4b6]  text-sm text-gray-600 px-2 border border-[#c2a896]">যোগদানের তারিখ</td>
+                      <td className="bg-[#d8c4b6] text-right  text-sm text-gray-600 px-2 border border-[#c2a896]">যোগদানের তারিখ</td>
                       <td className="text-sm text-gray-800 px-2 border border-[#d8c4b6]">
                         {currentDC ? convertToBanglaDate(currentDC.joining_date) : "তথ্য পাওয়া যায়নি"}
                       </td>
