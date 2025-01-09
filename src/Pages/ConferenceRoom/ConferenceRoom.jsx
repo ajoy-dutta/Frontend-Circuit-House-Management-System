@@ -206,8 +206,8 @@ const ConferenceRoom = () => {
               {showContactInfo && (
               <div className="mt-4 text-sm text-gray-700">
                 <p className="font-medium">Please contact for booking:</p>
-                <p>Phone: +880123456789</p>
-                <p>Email: conference@yourdomain.com</p>
+                <p>Phone: +8801733909222</p>
+                <p>Email: chjashore@gmail.com</p>
               </div>
                )}
 

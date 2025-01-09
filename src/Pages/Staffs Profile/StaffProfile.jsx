@@ -290,7 +290,7 @@ const StaffProfile = () => {
               </tbody>
             </table>
             <div className="hidden md:block avatar">
-              <div className="w-20 h-32 rounded border-[1px] border-gray-500">
+              <div className="w-28 h-[136px] rounded border-[1px] border-gray-500">
                 <img
                   className="object-fill w-full"
                   src={item.picture}

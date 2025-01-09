@@ -135,9 +135,6 @@ const CheckoutHistory = () => {
 
 
 
-
-
-
       {/* Modal for guest details */}
       {selectedGuest && (
             <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-75 z-50">
