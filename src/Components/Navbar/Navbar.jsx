@@ -78,20 +78,7 @@ const Navbar = () => {
           Contact
         </NavLink>
       </li>
-<<<<<<< HEAD
-      {/* <li>
-        <NavLink
-          to="/brandJashore"
-          className={({ isActive }) =>
-            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
-          }
-        >
-          Branding Jashore
-        </NavLink>
-      </li> */}
-=======
      
->>>>>>> b74fd0e478ed5bdab733526c058df645d6f6eae3
       
     </>
   );
