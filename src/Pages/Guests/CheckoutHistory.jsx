@@ -135,14 +135,10 @@ const CheckoutHistory = () => {
 
 
 
-
-
-
       {/* Modal for guest details */}
       {selectedGuest && (
             <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-75 z-50">
             <div className="bg-white p-6 rounded-lg shadow-xl w-2/3 max-w-4xl max-h-screen overflow-y-auto">
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">Guest Details</h3>
               {checkoutHistory
                 .filter((checkout) => checkout.guest.id === selectedGuest)
                 .map((checkout) => (

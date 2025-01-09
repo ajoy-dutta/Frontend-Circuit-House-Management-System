@@ -41,7 +41,7 @@ const Inbox = () => {
       <div className="overflow-x-auto shadow-lg rounded-lg">
         <table className="table-auto w-full text-left border-collapse bg-white border border-gray-300">
           <thead>
-            <tr className="bg-blue-400 text-white">
+            <tr className="bg-blue-400 text-white text-center">
               <th className="border border-gray-300 px-4 py-2">SLNo</th>
               <th className="border border-gray-300 px-4 py-2">Date</th>
               <th className="border border-gray-300 px-4 py-2">Name</th>
@@ -54,13 +54,17 @@ const Inbox = () => {
             {contacts.map((contact, index) => (
               <tr
                 key={contact.id}
-                className="hover:bg-gray-100 transition duration-200"
+                className="hover:bg-gray-100 transition duration-200 text-center"
               >
                 <td className="border border-gray-200 px-4 py-2 text-center">
                   {contacts.length-index}
                 </td>
                 <td className="border border-gray-200 px-4 py-2 text-center">
-                  {new Date(contact.created_at).toLocaleDateString()}
+                  {new Date(contact.created_at).toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                  })}
                 </td>
                 <td className="border border-gray-200 px-4 py-2">{contact.name}</td>
                 <td className="border border-gray-200 px-4 py-2">{contact.phone}</td>

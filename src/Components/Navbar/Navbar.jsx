@@ -78,16 +78,16 @@ const Navbar = () => {
           Contact
         </NavLink>
       </li>
-      {/* <li>
+      <li>
         <NavLink
-          to="/brandJashore"
+          to="/help-line"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
         >
-          Branding Jashore
+          Help Line
         </NavLink>
-      </li> */}
+      </li>
       
     </>
   );
@@ -152,6 +152,17 @@ const Navbar = () => {
           }
         >
           Contact
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          to="/help-line"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Help Line
         </NavLink>
       </li>
       

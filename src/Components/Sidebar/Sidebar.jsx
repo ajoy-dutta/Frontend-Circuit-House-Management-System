@@ -12,7 +12,7 @@ import { FaUser } from "react-icons/fa";
 
 const Sidebar = ({ sidebarToggle }) => {
   const { user } = useUser();
-  const location = useLocation(); // Get the current location
+  const location = useLocation(); 
 
   // Function to determine if a tab is active
   const isActive = (path) => location.pathname === path;
