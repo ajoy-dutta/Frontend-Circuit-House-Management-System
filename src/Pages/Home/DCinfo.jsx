@@ -95,11 +95,35 @@ const DCinfo = () => {
                         {currentDC ? convertToBanglaDate(currentDC.joining_date) : "তথ্য পাওয়া যায়নি"}
                       </td>
                     </tr>
+                    <tr>
+                      <td className="bg-[#d8c4b6] text-right  text-sm text-gray-600 px-2 border border-[#c2a896]">মোবাইল</td>
+                      <td className="text-sm text-gray-800 px-2 border border-[#d8c4b6]">
+                        01713411371
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="bg-[#d8c4b6] text-right  text-sm text-gray-600 px-2 border border-[#c2a896]"> ফোন</td>
+                      <td className="text-sm text-gray-800 px-2 border border-[#d8c4b6]">
+                        02477762652
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="bg-[#d8c4b6] text-right  text-sm text-gray-600 px-2 border border-[#c2a896]"> ফ্যাক্স</td>
+                      <td className="text-sm text-gray-800 px-2 border border-[#d8c4b6]">
+                      02477762652
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="bg-[#d8c4b6] text-right  text-sm text-gray-600 px-2 border border-[#c2a896]"> ইমেইল</td>
+                      <td className="text-sm text-gray-800 px-2 border border-[#d8c4b6]">
+                        dcjessore@mopa.gov.bd
+                      </td>
+                    </tr>
                     
                   </tbody>
                 </table>
               </div>
-              <div className="hidden md:block w-1/3 p-3 border border-[#d8c4b6] rounded me-3">
+              <div className="hidden md:block w-1/3 p-3 mt-4 border border-[#d8c4b6] rounded me-3">
                 <img src={ currentDC && currentDC.photo ? currentDC.photo : "default-image.jpg" } alt="DC" />
               </div>
             </div>

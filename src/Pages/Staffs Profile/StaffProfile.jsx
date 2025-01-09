@@ -10,10 +10,10 @@ const StaffProfile = () => {
     name: "",
     picture: null,
     designation: "",
-    phone: null,
-    email: null,
-    joining_date: null,
-    ending_date: null,
+    phone:"",
+    email: "",
+    joining_date:"",
+    ending_date: "",
   });
 
   // Fetch data
@@ -50,6 +50,7 @@ const StaffProfile = () => {
         joining_date: "",
         ending_date: "",
       });
+      
       setShowForm(false);
       alert("New record added successfully");
     } catch (error) {

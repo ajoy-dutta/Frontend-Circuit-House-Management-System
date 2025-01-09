@@ -7,11 +7,12 @@ import { Link, useLocation } from "react-router-dom";
 import { useUser } from "../../Provider/UserProvider";
 import { FaHistory  } from "react-icons/fa";
 import { FaRegMessage } from "react-icons/fa6";
+import { MdGroups2 } from "react-icons/md";
 
 
 const Sidebar = ({ sidebarToggle }) => {
   const { user } = useUser();
-  const location = useLocation(); // Get the current location
+  const location = useLocation(); 
 
   // Function to determine if a tab is active
   const isActive = (path) => location.pathname === path;
@@ -120,7 +121,7 @@ const Sidebar = ({ sidebarToggle }) => {
          <Link to="/dashboard/staff-profile">
             <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
               <div className="px-3 ">
-                <FaRegMessage className="inline-block w-6 text-lg mr-2 "></FaRegMessage>
+                <MdGroups2 className="inline-block w-6 text-lg mr-2 "></ MdGroups2>
                 Staff Profile
               </div>
             </li>
