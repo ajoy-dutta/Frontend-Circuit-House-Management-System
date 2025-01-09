@@ -1,14 +1,12 @@
 import { useLocation } from "react-router-dom";
 import jsPDF from "jspdf";
-import { useUser } from "../../Provider/UserProvider";
 
 const CheckoutSummary = () => {
     const location = useLocation();
     const { checkoutsummary, guest } = location.state || {};
-    const { user } = useUser(); 
-    console.log("user",user);
+
     const handleDownloadPDF = () => {
-    const doc = new jsPDF('p', 'mm', 'a4'); // Set the paper size to A4 in millimeters
+    const doc = new jsPDF(); 
         const content = document.getElementById('content-to-pdf');
         // Hide the download button
         const downloadButton = document.getElementById('download-pdf-button');
@@ -117,9 +115,8 @@ const CheckoutSummary = () => {
                     </table>
 
                 </div>
-                <div className="mt-12">
+                <div className="mt-4">
                     <p>Thank you for staying at Jashore Circuit House. You are always welcome at Joyful Jashore.</p>
-                    <p>Please call in advance for any future booking.</p>
                     <p>
                         Thanks and regards,<br />
                         <strong>Nezarat Deputy Collector</strong><br />

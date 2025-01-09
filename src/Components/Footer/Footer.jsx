@@ -22,7 +22,7 @@ const Footer = () => {
               <h3 className="text-xl font-bold">Contact Us</h3>
               <p className="text-gray-300 text-sm sm:text-base mb-2">
                 <strong>Location:</strong> Jashore Circuit House, Jashore
-                <br /> <span className="text-sm text-gray-400">Nearest Landmark: Jashore Zila School</span>
+                <br /> <span className="text-sm text-gray-400">Nearest Landmark: Jashore Zilla School</span>
               </p>
               <p className="text-gray-300 text-sm sm:text-base">
                 <strong>Mobile:</strong> +8801733909222 (NDC Jashore)
