@@ -19,7 +19,7 @@ const Navbar = () => {
       {user && (
         <li>
           <NavLink
-            to="/dashboard/room"
+            to="/room"
             className={({ isActive }) =>
               isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
             }

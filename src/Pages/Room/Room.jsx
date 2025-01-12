@@ -112,7 +112,7 @@ const Room = () => {
         >
           Add New Room
         </button>
-        <Link to="/dashboard/room-details">
+        <Link to="/rooms">
           <button
             className="bg-gray-500 text-white font-semibold font-sans py-2 px-4 rounded shadow-md border border-gray-100 hover:bg-gray-600"
             onClick={handleDetailsClick}
@@ -210,14 +210,14 @@ const Room = () => {
             <div className="flex justify-between gap-2">
               <button
                 type="submit"
-                className="bg-gradient-to-r from-teal-500 to-blue-500 text-white text-sm font-semibold py-1 px-2 rounded hover:bg-blue-600"
+                className="bg-blue-500 text-white text-sm font-semibold py-0 px-2 rounded hover:bg-blue-600"
               >
                 Add Room
               </button>
 
               <button
                 onClick={() => setShowForm(!showForm)}
-                className="mt-2 px-2 py-2 bg-gray-300 rounded-lg text-sm hover:bg-gray-400"
+                className="mt-2 px-2 py-1 bg-gray-300 rounded-lg text-sm hover:bg-gray-400"
               >
                 Cancel
               </button>
@@ -276,7 +276,7 @@ const Room = () => {
                     <div className="flex items-center justify-between mt-4">
                       <div className="flex">
                         <Link
-                          to="/dashboard/room_details"
+                          to="/details"
                           state={{ room }}
                           className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
                         >
@@ -286,7 +286,7 @@ const Room = () => {
                       </div>
                       {room.availability_status === "Vacant" ? (
                         <Link
-                          to="/dashboard/book"
+                          to="/book"
                           state={{ room }}
                           className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
                         >
@@ -359,7 +359,7 @@ const Room = () => {
                         <div className="flex items-center justify-between mt-4">
                           <div className="flex">
                             <Link
-                              to="/dashboard/room_details"
+                              to="/details"
                               state={{ room }}
                               className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
                             >
@@ -370,7 +370,7 @@ const Room = () => {
                           </div>
                           {room.availability_status === "Vacant" ? (
                             <Link
-                              to="/dashboard/book"
+                              to="/book"
                               state={{ room }}
                               className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
                             >

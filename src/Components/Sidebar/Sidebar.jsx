@@ -40,7 +40,7 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
-        <Link to="/dashboard/room">
+        <Link to="/room">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
               isActive("/dashboard/room") ? "bg-blue-100 text-gray-600" : ""
@@ -53,7 +53,7 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
-        <Link to="/dashboard/food">
+        <Link to="/food">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
               isActive("/dashboard/food") ? "bg-blue-100 text-gray-600" : ""
@@ -66,7 +66,7 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
-        <Link to="/dashboard/other">
+        <Link to="/other">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
               isActive("/dashboard/other") ? "bg-blue-100 text-gray-600" : ""
@@ -79,7 +79,7 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
-        <Link to="/dashboard/guest-list">
+        <Link to="/guest-list">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
               isActive("/dashboard/guest-list") ? "bg-blue-100 text-gray-600" : ""
@@ -92,7 +92,7 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
-        <Link to="/dashboard/checkout-history">
+        <Link to="/checkout-history">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
               isActive("/dashboard/checkout-history") ? "bg-blue-100 text-gray-600" : ""
@@ -107,7 +107,7 @@ const Sidebar = ({ sidebarToggle }) => {
 
 
         {user?.role === "NDC" && (
-          <Link to="/dashboard/staff-approval">
+          <Link to="/staff-approval">
           <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
             <div className="px-3 ">
               <HiUsers className="inline-block w-6 h-6 mr-2 -mt-2 "></HiUsers>
@@ -117,7 +117,7 @@ const Sidebar = ({ sidebarToggle }) => {
         </Link>
       )}
 
-         <Link to="/dashboard/staff-profile">
+         <Link to="/staff-profile">
             <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
               <div className="px-3 ">
                 <FaRegMessage className="inline-block w-6 text-lg mr-2 "></FaRegMessage>
@@ -126,7 +126,7 @@ const Sidebar = ({ sidebarToggle }) => {
             </li>
           </Link>
 
-          <Link to="/dashboard/inbox">
+          <Link to="inbox">
           <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
             <div className="px-3 ">
               <FaRegMessage className="inline-block w-6 text-lg mr-2 "></FaRegMessage>
