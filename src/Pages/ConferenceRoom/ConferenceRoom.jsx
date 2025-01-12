@@ -1,6 +1,8 @@
 
 import img2 from '../../assets/Conference/conference_2.jpg'
 import img3 from '../../assets/Conference/conference_3.jpg'
+import img4 from '../../assets/Conference/DSC_5628.JPG'
+import img5 from '../../assets/Conference/DSC_5632.JPG'
 import { useState,useCallback, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -13,9 +15,12 @@ const ConferenceRoom = () => {
       url:img2,
       caption: "Beautiful view of the room with modern decor.",
     },
-
     {
-      url:img3,
+      url:img4,
+      caption: "Spacious conference area for business meetings.",
+    },
+    {
+      url:img5,
       caption: "Spacious conference area for business meetings.",
     }
   ];
@@ -56,7 +61,7 @@ const ConferenceRoom = () => {
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Carousel Section */}
         <div className="bg-[#D8C4B6] p-2 rounded-tr-2xl rounded-bl-2xl">
-        <div className="relative h-[300px] overflow-hidden">
+        <div className="relative h-[400px] overflow-hidden">
           {/* Arrow left */}
           <button
             onClick={prevSlider}
@@ -112,7 +117,7 @@ const ConferenceRoom = () => {
               <img
                 key={slide}
                 src={slide.url}
-                className="min-w-full  rounded-bl-full h-60 bg-black/20 sm:h-96 md:h-[540px] object-cover"
+                className="w-full h-full object-cover bg-black/20 sm:h-96 md:h-[540px]"
                 alt={`Slider - ${idx + 1}`}
               />
               
