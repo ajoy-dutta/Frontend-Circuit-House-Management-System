@@ -13,9 +13,8 @@ export const useUser = () => {
 // UserProvider component
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);  // Start with loading true
   const [error, setError] = useState(null);
-  // useNavigate is now available!
 
   const token = localStorage.getItem("accessToken");
 
@@ -23,6 +22,7 @@ export const UserProvider = ({ children }) => {
     if (!token) {
       setError("No token found. Please log in.");
       setUser(null);
+      setLoading(false);  // Stop loading
       return;
     }
 
@@ -43,35 +43,34 @@ export const UserProvider = ({ children }) => {
       }
 
       const data = await response.json();
-      setUser(data);
+      setUser(data);  // Set user data
     } catch (err) {
       console.error(err);
       setError(err.message || "Failed to fetch user data.");
       setUser(null);
     } finally {
-      setLoading(false);
+      setLoading(false);  // Stop loading after fetch completes
     }
   };
 
-  // Expose refreshUser method to allow manual fetching of user data
-  const refreshUser = () => {
-    fetchUserData();
-  };
+  // Fetch user data when the page loads or token changes
+  useEffect(() => {
+    if (token) {
+      fetchUserData();  // Automatically fetch user data on page load if token exists
+    } else {
+      setLoading(false);  // Stop loading if no token exists
+    }
+  }, [token]);  // Dependency on token, will trigger if token changes
 
   // Handle Sign Out
   const signOut = () => {
-    localStorage.removeItem("accessToken"); // Remove token from localStorage
-    setUser(null);// Redirect to the home page
+    localStorage.removeItem("accessToken");  // Remove token from localStorage
+    setUser(null);  // Clear user state
   };
 
-  // Fetch user data on initial load if token exists
-  useEffect(() => {
-    if (token) fetchUserData();
-  }, [token]);
-
   return (
-    <UserContext.Provider value={{ user, loading, error, refreshUser, signOut }}>
-      {children}
+    <UserContext.Provider value={{ user, loading, error, fetchUserData, signOut }}>
+      {loading ? <div>Loading...</div> : children} {/* Render a loading message */}
     </UserContext.Provider>
   );
 };

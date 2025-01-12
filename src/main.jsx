@@ -30,11 +30,11 @@ import ConferenceRoom from "./Pages/ConferenceRoom/ConferenceRoom";
 import Details from "./Pages/Room/Details";
 import CheckoutHistory from "./Pages/Guests/CheckoutHistory";
 import RoomDetails from "./Pages/RoomDetails/RoomDetails";
-import Media from "./Pages/Media/Media";
 import Inbox from "./Pages/Messages/Inbox";
 import StaffProfile from "./Pages/Staffs Profile/StaffProfile";
 import { Carousels } from "./Pages/BrandJashore/Carousels";
-import HelpLine from "./Pages/Home/HelpLine";
+import ProtectedRoute from "./Provider/ProtectedRoute"; 
+
 
 
 const router = createBrowserRouter([
@@ -80,49 +80,45 @@ const router = createBrowserRouter([
         // element: <BrandJashore></BrandJashore>,
         element: <Carousels></Carousels>
       },
-
-      {
-        path: "/inbox",
-        element: <Media></Media>,
-      },
-
-      {
-        path: "/help-line",
-        element: <HelpLine></HelpLine>,
-      },
+      // {
+      //   path: "/media",
+      //   element: <Media></Media>,
+      // },
+     
     ],
   },
   {
-    path: "/dashboard",
+    path: "/",
     element: <Appbar />,
     errorElement: <ErrorPage />,
     children: [
       {
         path: "room",
-        element: <Room />,
+        element: <ProtectedRoute><Room /></ProtectedRoute>, // Protected route
+
       },
       {
-        path: "room-details",
-        element: <Rooms />,
+        path: "rooms",
+        element: <ProtectedRoute><Rooms /></ProtectedRoute>, // Protected route
       },
       {
-        path: "room_details",
-        element: <Details />,
+        path: "details",
+        element: <ProtectedRoute><Details /></ProtectedRoute>, // Protected route
       },
 
       {
         path: "profile", // Add the registration route
-        element: <Profile />,
+        element: <ProtectedRoute><Profile /></ProtectedRoute>, // Protected route
       },
 
       {
         path: "staff-approval", // Add the registration route
-        element: <NDCApproval />,
+        element: <ProtectedRoute><NDCApproval /></ProtectedRoute>, // Protected route
       },
 
       {
         path: "book",
-        element: <Book />,
+        element: <ProtectedRoute><Book /></ProtectedRoute>, // Protected route
       },
 
       {
@@ -132,41 +128,41 @@ const router = createBrowserRouter([
 
       {
         path: "guest-list",
-        element: <Guests />,
+        element: <ProtectedRoute><Guests /></ProtectedRoute>, // Protected route
       },
 
       {
         path: "checkout-history",
-        element: <CheckoutHistory />,
+        element: <ProtectedRoute><CheckoutHistory /></ProtectedRoute>, // Protected route
       },
 
       {
         path: "checkout",
-        element: <Checkout />,
+        element: <ProtectedRoute><Checkout /></ProtectedRoute>, // Protected route
       },
 
       {
         path: "checkout-summary",
-        element: <CheckoutSummary />,
+        element: <ProtectedRoute><CheckoutSummary /></ProtectedRoute>, // Protected route
       },
 
       {
         path: "food",
-        element: <Food />,
+        element: <ProtectedRoute><Food /></ProtectedRoute>, // Protected route
       },
 
       {
         path: "other",
-        element: <Other />,
+        element: <ProtectedRoute><Other /></ProtectedRoute>, // Protected route
       },
       {
         path: "inbox",
-        element: <Inbox/>,
+        element: <ProtectedRoute><Inbox/></ProtectedRoute>, // Protected route
       },
 
       {
         path: "staff-profile",
-        element: <StaffProfile/>,
+        element: <ProtectedRoute><StaffProfile/></ProtectedRoute>, // Protected route
       },
     ],
   },
