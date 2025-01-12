@@ -139,7 +139,7 @@ export const Carousel = () => {
         className={`absolute w-1/2 md:w-1/3 px-10 left-5 top-1/3 text-white transition-all duration-500 ease-in-out drop-shadow-lg rounded-lg ${animationClass}`}
         style={{ zIndex: 2 }}
       >
-        <h1 className="lg:text-3xl uppercase font-serif mb-3">
+        <h1 className="lg:text-3xl  font-serif mb-3">
           {sliders[currentSlider].title}
         </h1>
         <p className="text-xs sm:text-sm md:text-base lg:text-lg">

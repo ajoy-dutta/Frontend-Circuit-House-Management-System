@@ -2,22 +2,20 @@ import { useCallback, useEffect, useState } from "react";
 import homeImage from "../../assets/Branding/Bijoy Stomvo Monihar Area_02.jpg";
 import homeImage1 from "../../assets/Branding/Bijoy Vaskorjo Dhormotola_02.jpg";
 import homeImage2 from "../../assets/Branding/Flower Cultivation_Godkhali_01.jpg";
-import hammamkana from "../../assets/Hammam Khana_01.jpg"
+import hammamkana from "../../assets/Hammam Khana_01.jpg";
 import Modhumela from "../../assets/Branding/Michael Modhusudhan Home Premises_02.jpg";
 import homeImage6 from "../../assets/Branding/Khejur Guur_19.jpg";
-import airport from "../../assets/Branding/airport.jpg"
-import oldDC from "../../assets/DC Old Bunglow_02.jpg"
-import collectrorate from "../../assets/Slider/Collectorate Bhaban_01.jpg"
-import RetreatSirimoni from "../../assets/Border Check Port_06.jpg"
+import airport from "../../assets/Branding/airport.jpg";
+import oldDC from "../../assets/DC Old Bunglow_02.jpg";
+import collectrorate from "../../assets/Slider/Collectorate Bhaban_01.jpg";
+import RetreatSirimoni from "../../assets/Border Check Port_06.jpg";
 import MichaelMadhusudanDutt from "../../assets/Michael Modhusudhan Home Premises_06.jpg";
 import PirMeheruddinMazar from "../../assets/Pir Meheruddin Mazar_01.jpg";
 import preface from "../../assets/Branding/Boddhyovumi sankarpur_02.jpg";
 import imambara from "../../assets/Branding/Imam Bara_04.jpg";
 import kaloMhuk from "../../assets/Branding/Kalomukh Honuman_02.jpg";
 import collectroate from "../../assets/Branding/Collectorate Bhaban_05.jpg";
-
-
-
+import VisitJashore from "../VisitJashore/VisitJashore";
 
 export const Carousels = () => {
   const [currentSlider, setCurrentSlider] = useState(0);
@@ -126,70 +124,83 @@ export const Carousels = () => {
   }, [nextSlider]);
 
   return (
-    <div className="h-60 bg-[#F5EFE7] w-full md:h-[470px] lg:h-[540px] relative overflow-hidden">
-      {/* arrow left */}
-      <button
-        onClick={prevSlider}
-        className="absolute top-1/2 left-3 z-50 flex justify-center items-center bg-black/50 rounded-full w-6 h-6 md:w-8 md:h-8"
-      >
-        <svg
-          className="icon h-4 w-4 fill-black/50 md:h-6 md:w-6"
-          viewBox="0 0 1024 1024"
-          xmlns="http://www.w3.org/2000/svg"
+    <div>
+      <div className="h-60 bg-[#F5EFE7] w-full md:h-[470px] lg:h-[540px] relative overflow-hidden">
+        {/* arrow left */}
+        <button
+          onClick={prevSlider}
+          className="absolute top-1/2 left-3 z-50 flex justify-center items-center bg-black/50 rounded-full w-6 h-6 md:w-8 md:h-8"
         >
-          <path d="M685.248 104.704a64 64 0 010 90.496L368.448 512l316.8 316.8a64 64 0 01-90.496 90.496L232.704 557.248a64 64 0 010-90.496l362.048-362.048a64 64 0 0190.496 0z"></path>
-        </svg>
-      </button>
-      {/* arrow right */}
-      <button
-        onClick={nextSlider}
-        className="absolute top-1/2 z-50 right-3  flex justify-center items-center bg-black/50 rounded-full w-6 h-6 md:w-8 md:h-8"
-      >
-        <svg
-          className="icon h-4 w-4 fill-black/50 md:h-6 md:w-6"
-          viewBox="0 0 1024 1024"
-          xmlns="http://www.w3.org/2000/svg"
-          transform="rotate(180)"
-        >
-          <path d="M685.248 104.704a64 64 0 010 90.496L368.448 512l316.8 316.8a64 64 0 01-90.496 90.496L232.704 557.248a64 64 0 010-90.496l362.048-362.048a64 64 0 0190.496 0z"></path>
-        </svg>
-      </button>
-      {/* dots */}
-      <div className=" flex justify-center items-center rounded-full z-50 absolute bottom-4 w-full gap-1">
-        {data.map((_, idx) => (
-          <button
-            key={`${idx}_${idx}`}
-            onClick={() => setCurrentSlider(idx)}
-            className={`rounded-full duration-500 bg-white ${
-              currentSlider === idx ? "w-8" : "w-2"
-            } h-2`}
-          ></button>
-        ))}
-      </div>
-      {/* Carousel container */}
-      <div
-        className="ease-linear duration-500 flex transform-gpu"
-        style={{ transform: `translateX(-${currentSlider * 100}%)` }}
-      >
-        {/* sliders */}
-        {data.map((slide, idx) => (
-          <div
-            key={slide}
-            className="min-w-full flex items-center text-center relative"
+          <svg
+            className="icon h-4 w-4 fill-black/50 md:h-6 md:w-6"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <img
-              src={slide.img}
-              className="h-60 bg-black/20 sm:h-96 md:h-[540px] object-cover w-1/2"
-              alt={`Slider - ${idx + 1}`}
-            />
-            
-              <div className="absolute right-0 text-[#213555] space-y-5 font-serif text-justify p-4 px-10  w-1/2">
+            <path d="M685.248 104.704a64 64 0 010 90.496L368.448 512l316.8 316.8a64 64 0 01-90.496 90.496L232.704 557.248a64 64 0 010-90.496l362.048-362.048a64 64 0 0190.496 0z"></path>
+          </svg>
+        </button>
+        {/* arrow right */}
+        <button
+          onClick={nextSlider}
+          className="absolute top-1/2 z-50 right-3  flex justify-center items-center bg-black/50 rounded-full w-6 h-6 md:w-8 md:h-8"
+        >
+          <svg
+            className="icon h-4 w-4 fill-black/50 md:h-6 md:w-6"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
+            transform="rotate(180)"
+          >
+            <path d="M685.248 104.704a64 64 0 010 90.496L368.448 512l316.8 316.8a64 64 0 01-90.496 90.496L232.704 557.248a64 64 0 010-90.496l362.048-362.048a64 64 0 0190.496 0z"></path>
+          </svg>
+        </button>
+        {/* dots */}
+        <div className=" flex justify-center items-center rounded-full z-50 absolute bottom-4 w-full gap-1">
+          {data.map((_, idx) => (
+            <button
+              key={`${idx}_${idx}`}
+              onClick={() => setCurrentSlider(idx)}
+              className={`rounded-full duration-500 bg-white ${
+                currentSlider === idx ? "w-8" : "w-2"
+              } h-2`}
+            ></button>
+          ))}
+        </div>
+        {/* Carousel container */}
+        <div
+          className="ease-linear duration-500 flex transform-gpu"
+          style={{ transform: `translateX(-${currentSlider * 100}%)` }}
+        >
+          {/* sliders */}
+          {data.map((slide, idx) => (
+            <div
+              key={slide}
+              className="min-w-full flex items-center text-center relative"
+            >
+              <img
+                src={slide.img}
+                className="h-60 bg-black/20 sm:h-96 md:h-[540px] object-cover w-1/2"
+                alt={`Slider - ${idx + 1}`}
+              />
+              <div className="absolute right-0  bg-white/50 md:bg-transparent p-4 px-6 space-y-3
+              md:space-y-5 text-[#213555] font-serif text-justify w-full sm:w-2/3 md:w-1/2">
+                <p className="font-bold text-lg sm:text-xl md:text-2xl">
+                  {slide.heading}
+                </p>
+                <div className="text-sm sm:text-base md:text-lg">
+                  {slide.des}
+                </div>
+              </div>
+              {/* <div className="absolute right-0 text-[#213555] space-y-5 font-serif text-justify p-4 px-10  w-1/2">
                 <p className="font-bold text-xl">{slide.heading}</p>
                 <div>{slide.des}</div>
-              </div>
-            
-          </div>
-        ))}
+              </div> */}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="my-16">
+        <VisitJashore></VisitJashore>
       </div>
     </div>
   );

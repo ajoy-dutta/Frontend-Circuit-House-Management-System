@@ -50,7 +50,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/visitJahore"
+          to="/brandJashore"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
@@ -104,6 +104,18 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
+      {user && (
+        <li>
+          <NavLink
+            to="/dashboard/room"
+            className={({ isActive }) =>
+              isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
       <li >
         <NavLink
           to="/room_details"
@@ -126,7 +138,7 @@ const Navbar = () => {
       </li>
       <li >
         <NavLink
-          to="/visitJahore"
+          to="/brandJashore"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
@@ -242,7 +254,7 @@ const Navbar = () => {
             </NavLink>
           </div>
           <div className="nav-start px-4  w-3/4">
-            <ul className="hidden md:flex lg:flex lg:justify-between items-center font-normal font-serif px-1 gap-8 whitespace-nowrap">
+            <ul className="hidden lg:flex lg:justify-between items-center font-normal font-serif px-1 gap-8 whitespace-nowrap">
               {navOptions}
             </ul>
           </div>
