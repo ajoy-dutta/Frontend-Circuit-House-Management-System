@@ -88,13 +88,12 @@ const Navbar = () => {
           Help Line
         </NavLink>
       </li>
-      
     </>
   );
 
   const navDropOptions = (
     <>
-    <li >
+      <li>
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -116,7 +115,7 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
-      <li >
+      <li>
         <NavLink
           to="/room_details"
           className={({ isActive }) =>
@@ -126,7 +125,7 @@ const Navbar = () => {
           Rooms
         </NavLink>
       </li>
-      <li >
+      <li>
         <NavLink
           to="/conferenceRoom"
           className={({ isActive }) =>
@@ -136,7 +135,7 @@ const Navbar = () => {
           Conference Hall
         </NavLink>
       </li>
-      <li >
+      <li>
         <NavLink
           to="/brandJashore"
           className={({ isActive }) =>
@@ -156,7 +155,7 @@ const Navbar = () => {
           Honor Board
         </NavLink>
       </li> */}
-      <li >
+      <li>
         <NavLink
           to="/contact"
           className={({ isActive }) =>
@@ -177,8 +176,7 @@ const Navbar = () => {
           Help Line
         </NavLink>
       </li>
-      
-      
+
       {user ? (
         <li className=" hover:text-cyan-400  cursor-pointer">
           <div onClick={signOut}>Sign Out</div>
@@ -193,14 +191,33 @@ const Navbar = () => {
           </div>
           {showLoginForm && (
             <div
-              className="fixed top-28 left-4 z-[9999] w-full max-w-xs p-4 shadow-lg bg-teal-50 rounded-lg "
               style={{
-                transform: "translate(0, 0)",
+                position: "fixed",
+                top: "264px", // Adjust based on your navbar height
+                left: "0",
+                right: "0",
+                width: "300px",
+                background: "#E6FFFA", // Equivalent to bg-teal-50
+                zIndex: 9999,
+                padding: "16px",
+                borderRadius: "8px",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
               }}
             >
               <Login setShowLoginForm={setShowLoginForm} />
             </div>
           )}
+
+          {/* {showLoginForm && (
+            <div
+            className="fixed top-16 left-0 z-[9999] w-full p-4 shadow-lg bg-teal-50 rounded-lg lg:max-w-xs lg:left-auto lg:right-4"
+            style={{
+              transform: "translate(0, 0)",
+            }}
+          >
+            <Login setShowLoginForm={setShowLoginForm} />
+          </div>
+          )} */}
         </li>
       )}
     </>
@@ -234,7 +251,7 @@ const Navbar = () => {
           {isDropdownOpen && (
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-slate-200 absolute rounded-box z-[1000] mt-3 w-40 p-2 shadow"
+              className="menu menu-sm dropdown-content w-[200px] bg-slate-200 absolute rounded-box z-[1000] mt-3 p-2 shadow"
             >
               <ul className="font-serif space-y-4 p-2 text-lg font-semibold">
                 {navDropOptions}
@@ -247,9 +264,7 @@ const Navbar = () => {
             <NavLink to="/">
               <div className="flex items-center justify-center gap-2">
                 <img className="w-[30px]" src={logo} />
-                <div className="text-lg">
-                  Circuit House
-                </div>
+                <div className="text-lg">Circuit House</div>
               </div>
             </NavLink>
           </div>
@@ -297,4 +312,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

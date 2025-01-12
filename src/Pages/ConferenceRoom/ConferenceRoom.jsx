@@ -61,7 +61,7 @@ const ConferenceRoom = () => {
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Carousel Section */}
         <div className="bg-[#D8C4B6] p-2 rounded-tr-2xl rounded-bl-2xl">
-        <div className="relative h-[400px] overflow-hidden">
+        <div className="relative h-[350px] md:h-[400px] overflow-hidden">
           {/* Arrow left */}
           <button
             onClick={prevSlider}
