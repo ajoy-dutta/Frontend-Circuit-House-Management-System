@@ -8,6 +8,7 @@ import { CgDetailsMore } from "react-icons/cg";
 import VVIP from "../../assets/Rooms/CircuitHouse_11.jpg"
 import tista from "../../assets/Rooms/Tista.JPG";
 import oprajita from "../../assets/Rooms/Oprajita.JPG";
+import titas from "../../assets/Rooms/Titas_Old.JPG"
 
 
 const Room = () => {
