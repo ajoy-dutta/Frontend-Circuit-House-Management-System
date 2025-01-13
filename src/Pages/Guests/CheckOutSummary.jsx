@@ -92,13 +92,14 @@ const styles = StyleSheet.create({
   tableCellHeader: {
     padding: 5,
     flex: 1,
+    textAlign: "center",
     backgroundColor: "#f0f0f0",
     borderWidth: 1,
     borderColor: "#ddd",
   },
   tableCell: {
     padding: 5,
-    flex: 1,
+    flex: 2,
     borderWidth: 1,
     borderColor: "#ddd",
   },
