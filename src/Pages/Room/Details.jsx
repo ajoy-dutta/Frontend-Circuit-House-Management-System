@@ -71,7 +71,7 @@ const Details = () => {
         <h2 className="text-2xl font-extrabold text-center text-teal-700 mb-6">{room.room_name}</h2>
 
         {/* Room Information */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           <div className="p-4 bg-teal-50 rounded-lg shadow-md">
             <span className="block text-sm font-semibold text-teal-600">Bed:</span>
             <span className="block text-lg font-medium text-gray-800">{room.room_type}</span>

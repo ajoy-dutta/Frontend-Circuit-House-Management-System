@@ -7,7 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useUser } from "../../Provider/UserProvider";
 import { FaHistory  } from "react-icons/fa";
 import { FaRegMessage } from "react-icons/fa6";
-import { MdGroups2 } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
 
 
 const Sidebar = ({ sidebarToggle }) => {
@@ -44,7 +44,7 @@ const Sidebar = ({ sidebarToggle }) => {
         <Link to="/room">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/dashboard/room") ? "bg-blue-100 text-gray-600" : ""
+              isActive("/room") ? "bg-blue-100 text-gray-600" : ""
             }`}
           >
             <div className="px-3">
@@ -57,7 +57,7 @@ const Sidebar = ({ sidebarToggle }) => {
         <Link to="/food">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/dashboard/food") ? "bg-blue-100 text-gray-600" : ""
+              isActive("/food") ? "bg-blue-100 text-gray-600" : ""
             }`}
           >
             <div className="px-3">
@@ -70,7 +70,7 @@ const Sidebar = ({ sidebarToggle }) => {
         <Link to="/other">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/dashboard/other") ? "bg-blue-100 text-gray-600" : ""
+              isActive("/other") ? "bg-blue-100 text-gray-600" : ""
             }`}
           >
             <div className="px-3">
@@ -83,7 +83,9 @@ const Sidebar = ({ sidebarToggle }) => {
         <Link to="/guest-list">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/dashboard/guest-list") ? "bg-blue-100 text-gray-600" : ""
+              isActive("/guest-list")
+                ? "bg-blue-100 text-gray-600"
+                : ""
             }`}
           >
             <div className="px-3">
@@ -96,7 +98,9 @@ const Sidebar = ({ sidebarToggle }) => {
         <Link to="/checkout-history">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/dashboard/checkout-history") ? "bg-blue-100 text-gray-600" : ""
+              isActive("/checkout-history")
+                ? "bg-blue-100 text-gray-600"
+                : ""
             }`}
           >
             <div className="px-3">
@@ -105,7 +109,6 @@ const Sidebar = ({ sidebarToggle }) => {
             </div>
           </li>
         </Link>
-
 
         {user?.role === "NDC" && (
           <Link to="/staff-approval">
@@ -118,14 +121,15 @@ const Sidebar = ({ sidebarToggle }) => {
         </Link>
       )}
 
-         <Link to="/staff-profile">
-            <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
-              <div className="px-3 ">
-                <MdGroups2 className="inline-block w-6 text-lg mr-2 "></ MdGroups2>
-                Staff Profile
-              </div>
-            </li>
-          </Link>
+        <Link to="/staff-profile">
+          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
+            <div className="px-3 ">
+              <HiUsers className="inline-block w-6 h-6 mr-2 -mt-2 "></HiUsers>
+              Staff List
+            </div>
+          </li>
+        </Link>
+
 
           <Link to="inbox">
           <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
@@ -135,7 +139,6 @@ const Sidebar = ({ sidebarToggle }) => {
             </div>
           </li>
         </Link>
-        
       </ul>
     </div>
   );

@@ -34,6 +34,7 @@ import Inbox from "./Pages/Messages/Inbox";
 import StaffProfile from "./Pages/Staffs Profile/StaffProfile";
 import { Carousels } from "./Pages/BrandJashore/Carousels";
 import ProtectedRoute from "./Provider/ProtectedRoute"; 
+import HelpLine from "./Pages/Home/HelpLine";
 
 
 
@@ -80,10 +81,11 @@ const router = createBrowserRouter([
         // element: <BrandJashore></BrandJashore>,
         element: <Carousels></Carousels>
       },
-      // {
-      //   path: "/media",
-      //   element: <Media></Media>,
-      // },
+
+      {
+        path: "/help-line",
+        element: <HelpLine></HelpLine>,
+      },
      
     ],
   },

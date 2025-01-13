@@ -94,6 +94,16 @@ const Navbar = () => {
 
   const navDropOptions = (
     <>
+    <li >
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Home
+        </NavLink>
+      </li>
       <li >
         <NavLink
           to="/room_details"
@@ -144,6 +154,17 @@ const Navbar = () => {
           Contact
         </NavLink>
       </li>
+
+      <li>
+        <NavLink
+          to="/help-line"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Help Line
+        </NavLink>
+      </li>
       
       
       {user ? (
@@ -160,13 +181,21 @@ const Navbar = () => {
           </div>
           {showLoginForm && (
             <div
-              className="fixed top-28 left-4 z-[9999] w-full max-w-xs p-4 shadow-lg bg-teal-50 rounded-lg "
-              style={{
-                transform: "translate(0, 0)",
-              }}
-            >
-              <Login setShowLoginForm={setShowLoginForm} />
-            </div>
+            style={{
+              position: "fixed",
+              top: "264px", // Adjust based on your navbar height
+              left: "0",
+              right: "0",
+              width: "300px",
+              background: "#E6FFFA", // Equivalent to bg-teal-50
+              zIndex: 9999,
+              padding: "16px",
+              borderRadius: "8px",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <Login setShowLoginForm={setShowLoginForm} />
+          </div>
           )}
         </li>
       )}
@@ -209,18 +238,18 @@ const Navbar = () => {
             </ul>
           )}
         </div>
-        <div className="flex items-center justify-center gap-5">
+        <div className="flex items-center justify-center">
           <div className="hidden lg:block text-xl font-bold text-with-gradient md:text-2xl whitespace-nowrap">
             <NavLink to="/">
               <div className="flex items-center justify-center gap-2">
-                <img className="w-[32px]" src={logo} />
+                <img className="w-[30px]" src={logo} />
                 <div className="text-lg">
                   Circuit House
                 </div>
               </div>
             </NavLink>
           </div>
-          <div className="nav-start w-3/4">
+          <div className="nav-start px-4  w-3/4">
             <ul className="hidden md:flex lg:flex lg:justify-between items-center font-normal font-serif px-1 gap-8 whitespace-nowrap">
               {navOptions}
             </ul>
@@ -228,7 +257,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="navbar-end w-1/4">
+      <div className="navbar-end w-1/5">
         <ul className="hidden font-normal font-serif text-lg lg:flex menu-horizontal px-1 gap-10 whitespace-nowrap overflow-x-auto">
           {user ? (
             <div
@@ -264,4 +293,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

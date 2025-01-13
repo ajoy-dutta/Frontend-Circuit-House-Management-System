@@ -7,6 +7,8 @@ const styles = StyleSheet.create({
     padding: 30,
     fontSize: 12,
     fontFamily: "Helvetica",
+    width: "100%", // Full width
+    height: "100%", 
   },
   header: {
     textAlign: "center",
@@ -36,22 +38,26 @@ const styles = StyleSheet.create({
   grid: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
-    gap: 10,
+    gap: 20,
+    marginBottom: 20,
   },
   gridItem: {
     flex: 1,
-    alignItems: "flex-start", // Align content to the left
+    alignItems: "flex-start",
   },
   infoRow: {
-    marginBottom: 4,
     flexDirection: "row",
-    alignItems: "flex-start", // Align rows to the top
-    justifyContent: "flex-start", // Align labels and values to the left
+    justifyContent: "space-between",
+    marginBottom: 5,
   },
   infoLabel: {
     fontWeight: "bold",
-    marginRight: 5, // Add spacing between label and value
+    width: "40%",
+    textAlign: "left",
+  },
+  infoValue: {
+    width: "60%",
+    textAlign: "left",
   },
   table: {
     width: "100%",
@@ -94,22 +100,22 @@ const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
         <Text style={styles.contact}>Phone: 02477762486 | Email: chjashore@gmail.com</Text>
       </View>
 
-      {/* Guest Details and Payment Info in Grid */}
-      <View style={[styles.section, styles.grid]}>
+      {/* Guest Details and Payment Info Grid */}
+      <View style={styles.grid}>
         {/* Guest Details */}
         <View style={styles.gridItem}>
           <Text style={styles.sectionHeader}>Guest Details</Text>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Guest Name:</Text>
-            <Text>{guest.name}</Text>
+            <Text style={styles.infoValue}>{guest.name}</Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Room Name:</Text>
-            <Text>{guest.room_name}</Text>
+            <Text style={styles.infoValue}>{guest.room_name}</Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Check-In Date:</Text>
-            <Text>
+            <Text style={styles.infoValue}>
               {new Date(guest.check_in_date).toLocaleString("en-GB", {
                 day: "2-digit",
                 month: "2-digit",
@@ -122,7 +128,7 @@ const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Check-Out Date:</Text>
-            <Text>
+            <Text style={styles.infoValue}>
               {new Date(guest.check_out_date).toLocaleString("en-GB", {
                 day: "2-digit",
                 month: "2-digit",
@@ -135,11 +141,11 @@ const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Total Persons:</Text>
-            <Text>{guest.total_person}</Text>
+            <Text style={styles.infoValue}>{guest.total_person}</Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Total Days:</Text>
-            <Text>{guest.total_days}</Text>
+            <Text style={styles.infoValue}>{guest.total_days}</Text>
           </View>
         </View>
 
@@ -148,15 +154,15 @@ const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
           <Text style={styles.sectionHeader}>Payment Information</Text>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Payment Status:</Text>
-            <Text>{checkoutsummary.payment_status}</Text>
+            <Text style={styles.infoValue}>{checkoutsummary.payment_status}</Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Bill ID:</Text>
-            <Text>{checkoutsummary.payment_id}</Text>
+            <Text style={styles.infoValue}>{checkoutsummary.payment_status === "Pending" ? "---" : checkoutsummary.payment_id}</Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Bill By:</Text>
-            <Text>{checkoutsummary.bill_by}</Text>
+            <Text style={styles.infoValue}>{checkoutsummary.payment_status === "Pending" ? "---" : checkoutsummary.bill_by}</Text>
           </View>
         </View>
       </View>
@@ -190,7 +196,7 @@ const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
 
       {/* Footer */}
       <View style={styles.footer}>
-        <Text> you for staying at Jashore Circuit House.</Text>
+        <Text>Thank you for staying at Jashore Circuit House.</Text>
         <Text>You are always welcome at Joyful Jashore.</Text>
         <Text>Thanks and regards,</Text>
         <Text>Nezarat Deputy Collector</Text>
@@ -201,8 +207,8 @@ const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
 );
 
 const CheckoutSummary = () => {
-    const location = useLocation();
-    const { checkoutsummary, guest } = location.state || {};
+  const location = useLocation();
+  const { checkoutsummary, guest } = location.state || {};
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 py-8">
