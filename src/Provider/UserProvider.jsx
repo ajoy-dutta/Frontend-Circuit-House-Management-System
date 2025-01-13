@@ -1,11 +1,8 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { baseurl } from "../BaseURL";
 
-// Create a Context for user data
 const UserContext = createContext();
 
-// Custom hook to use the UserContext
 export const useUser = () => {
   return useContext(UserContext);
 };
@@ -53,14 +50,16 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  // Fetch user data when the page loads or token changes
-  useEffect(() => {
-    if (token) {
-      fetchUserData();  // Automatically fetch user data on page load if token exists
-    } else {
-      setLoading(false);  // Stop loading if no token exists
-    }
-  }, [token]);  // Dependency on token, will trigger if token changes
+
+  const refreshUser = () => {
+    fetchUserData();
+  };
+
+   
+   useEffect(() => {
+    if (token) fetchUserData();
+  }, [token]);
+
 
   // Handle Sign Out
   const signOut = () => {
@@ -69,8 +68,8 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, loading, error, fetchUserData, signOut }}>
-      {loading ? <div>Loading...</div> : children} {/* Render a loading message */}
+    <UserContext.Provider value={{ user, loading, error, refreshUser, signOut }}>
+      {loading ? <div>Loading...</div> : children} 
     </UserContext.Provider>
   );
 };

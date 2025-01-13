@@ -271,13 +271,14 @@ const Room = () => {
                 return (
                   <div key={room.id} className={`${statusClass} p-4 rounded-lg shadow-md border-2`}>
                     <h5 className="text-xl text-center font-bold">{room.room_name}</h5>
-                    <p className="text-base">Type: {room.room_type}</p>
-                    <p className="text-base">Status: {room.availability_status}</p>
+                    <p className="font-semibold">{room.room_type}</p>
+                    <p className="font-semibold text-base">{room.availability_status}</p>
                     <div className="flex items-center justify-between mt-4">
                       <div className="flex">
                         <Link
                           to="/details"
                           state={{ room }}
+                          im
                           className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
                         >
                           <CgDetailsMore />
@@ -354,8 +355,8 @@ const Room = () => {
                     return (
                       <div key={room.id} className={`${statusClass} p-4 rounded-lg shadow-md border-2`}>
                         <h5 className="text-xl text-center font-bold">{room.room_name}</h5>
-                        <p className="text-base">Type: {room.room_type}</p>
-                        <p className="text-base">Status: {room.availability_status}</p>
+                        <p className="font-semibold text-base">{room.room_type}</p>
+                        <p className="font-semibold text-base">{room.availability_status}</p>
                         <div className="flex items-center justify-between mt-4">
                           <div className="flex">
                             <Link

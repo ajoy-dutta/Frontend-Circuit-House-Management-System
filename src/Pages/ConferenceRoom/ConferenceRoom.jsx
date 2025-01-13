@@ -1,6 +1,8 @@
 
 import img2 from '../../assets/Conference/conference_2.jpg'
 import img3 from '../../assets/Conference/conference_3.jpg'
+import img4 from '../../assets/Conference/DSC_5628.JPG'
+import img5 from '../../assets/Conference/DSC_5632.JPG'
 import { useState,useCallback, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -13,9 +15,12 @@ const ConferenceRoom = () => {
       url:img2,
       caption: "Beautiful view of the room with modern decor.",
     },
-
     {
-      url:img3,
+      url:img4,
+      caption: "Spacious conference area for business meetings.",
+    },
+    {
+      url:img5,
       caption: "Spacious conference area for business meetings.",
     }
   ];
@@ -53,10 +58,10 @@ const ConferenceRoom = () => {
           collaboration, presentations, or executive meetings, we have the perfect room for you.
         </p>
 
-        <div className="grid grid-cols-2 lg:grid-cols-2 gap-6 ">
+        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Carousel Section */}
         <div className="bg-[#D8C4B6] p-2 rounded-tr-2xl rounded-bl-2xl">
-        <div className="relative h-[300px] overflow-hidden">
+        <div className="relative h-[350px] md:h-[400px] overflow-hidden">
           {/* Arrow left */}
           <button
             onClick={prevSlider}
@@ -112,7 +117,7 @@ const ConferenceRoom = () => {
               <img
                 key={slide}
                 src={slide.url}
-                className="min-w-full  rounded-bl-full h-60 bg-black/20 sm:h-96 md:h-[540px] object-cover"
+                className="w-full h-full object-cover bg-black/20 sm:h-96 md:h-[540px]"
                 alt={`Slider - ${idx + 1}`}
               />
               
@@ -132,62 +137,7 @@ const ConferenceRoom = () => {
 
       </div>
 
-        
-       
-
-
-  {/* const conferenceRooms = [
-    {
-      id: 1,
-      title: 'Executive Conference Room',
-      description: 'A spacious and fully equipped conference room suitable for executive meetings and presentations.',
-      image: img2, // Replace with your image URL
-    },
-    {
-      id: 2,
-      title: 'Modern Meeting Space',
-      description: 'Designed for collaborative sessions, our modern meeting room is equipped with the latest technology.',
-      image: img2, // Replace with your image URL
-    },
-    {
-      id: 3,
-      title: 'Premium Boardroom',
-      description: 'An elegant boardroom with a large table, premium seating, and state-of-the-art AV equipment.',
-      image: img3, // Replace with your image URL
-    },
-  ];
-
-  return (
-    <div className="container mx-auto p-8">
-      <h1 className="text-2xl font-bold text-center mb-8 text-gray-800">Conference Rooms</h1>
-      <p className="text-lg text-center text-gray-700 font-semibold mb-12">
-        Discover our range of conference rooms designed to meet your business needs. Whether you need a space for
-        collaboration, presentations, or executive meetings, we have the perfect room for you.
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {conferenceRooms.map((room) => (
-          <div
-            key={room.id}
-            className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 p-2 "
-          >
-            <img
-              src={room.image}
-              alt={room.title}
-              className="w-full h-48 object-cover rounded-lg"
-            />
-            <div className="p-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">
-                {room.title}
-              </h2>
-              <p className="text-gray-600 text-sm mb-4">{room.description}</p>
-              <button className="bg-yellow-500 text-sm text-white font-medium px-2 py-2 rounded hover:bg-yellow-600 transition duration-300">
-                Learn More
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div> */}
+  
 
        {/* card section */}
        <div className="grid ">
@@ -206,8 +156,8 @@ const ConferenceRoom = () => {
               {showContactInfo && (
               <div className="mt-4 text-sm text-gray-700">
                 <p className="font-medium">Please contact for booking:</p>
-                <p>Phone: +880123456789</p>
-                <p>Email: conference@yourdomain.com</p>
+                <p>Phone: +8801733909222</p>
+                <p>Email: chjashore@gmail.com</p>
               </div>
                )}
 

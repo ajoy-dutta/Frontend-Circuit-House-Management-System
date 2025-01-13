@@ -1,6 +1,7 @@
+
 @font-face {
     font-family: 'Badhon Lipi';
-    src: url('/assets/fonts/banglafont.ttf') format('truetype');
+    src: url('../assets/fonts/banglafont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
   }
