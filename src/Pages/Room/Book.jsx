@@ -149,7 +149,7 @@ const Book = () => {
                                 Select Guest Type
                     </option>
                     <option value="Government Official">Govt. Official(Existing/Retd.)</option>
-                        <option value="Reference">Reference</option>
+                        {/* <option value="Reference">Reference</option> */}
                         <option value="Autonomous">Autonomous/Statutary Organization</option>
                         <option value="Private Sector Employee">Private Sector Employee/Others</option>
 
