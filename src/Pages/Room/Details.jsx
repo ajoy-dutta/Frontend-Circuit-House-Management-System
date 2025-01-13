@@ -3,9 +3,11 @@ import AxiosInstance from "../../Components/Axios";
 import { useLocation } from "react-router-dom";
 import { useUser } from "../../Provider/UserProvider";
 
+
 const Details = () => {
   const location = useLocation();
-  const room = location.state?.room;
+  const { room, VVIP } = location.state || {};
+  console.log(VVIP)
 
   if (!room) {
     return <p className="text-center text-lg text-red-600">Room data not found.</p>;
@@ -71,27 +73,36 @@ const Details = () => {
         <h2 className="text-2xl font-extrabold text-center text-teal-700 mb-6">{room.room_name}</h2>
 
         {/* Room Information */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          <div className="p-4 bg-teal-50 rounded-lg shadow-md">
-            <span className="block text-sm font-semibold text-teal-600">Bed:</span>
-            <span className="block text-lg font-medium text-gray-800">{room.room_type}</span>
+
+        <div className="grid grid-cols-2 gap-4 mb-12">
+       
+          <div className="grid  grid-cols-2 gap-4 ">
+            <div className="p-4 bg-teal-50 rounded-lg shadow-md">
+              <span className="block text-sm font-semibold text-teal-600">Bed:</span>
+              <span className="block text-sm font-medium text-gray-800">{room.room_type}</span>
+            </div>
+            <div className="p-4 bg-gray-50 rounded-lg shadow-md">
+              <span className="block text-sm font-semibold text-teal-600">Status:</span>
+              <span className="block text-sm font-medium text-gray-800">{room.availability_status}</span>
+            </div>
+            <div className="p-4 bg-teal-50 rounded-lg shadow-md">
+              <span className="block text-sm font-semibold text-teal-600">Category:</span>
+              <span className="block text-sm font-medium text-gray-800">{room.room_category}</span>
+            </div>
+            <div className="p-4 bg-gray-50 rounded-lg shadow-md">
+              <span className="block text-sm font-semibold text-teal-600">Building:</span>
+              <span className="block text-sm font-medium text-gray-800">{room.building}</span>
+            </div>
+            <div className="p-4 bg-teal-50 rounded-lg shadow-md">
+              <span className="block text-sm font-semibold text-teal-600">Floor:</span>
+              <span className="block text-sm font-medium text-gray-800">{room.floor}</span>
+            </div>
           </div>
-          <div className="p-4 bg-gray-50 rounded-lg shadow-md">
-            <span className="block text-sm font-semibold text-teal-600">Status:</span>
-            <span className="block text-lg font-medium text-gray-800">{room.availability_status}</span>
+
+          <div className="p-1 rounded-lg shadow-lg border border-gray">
+            <img src={VVIP} alt="rgjufgt" />
           </div>
-          <div className="p-4 bg-teal-50 rounded-lg shadow-md">
-            <span className="block text-sm font-semibold text-teal-600">Category:</span>
-            <span className="block text-lg font-medium text-gray-800">{room.room_category}</span>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-lg shadow-md">
-            <span className="block text-sm font-semibold text-teal-600">Building:</span>
-            <span className="block text-lg font-medium text-gray-800">{room.building}</span>
-          </div>
-          <div className="p-4 bg-teal-50 rounded-lg shadow-md">
-            <span className="block text-sm font-semibold text-teal-600">Floor:</span>
-            <span className="block text-lg font-medium text-gray-800">{room.floor}</span>
-          </div>
+
         </div>
 
 

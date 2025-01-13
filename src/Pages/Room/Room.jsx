@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import Details from "./Details";
 import { Link } from "react-router-dom";
 import AxiosInstance from "../../Components/Axios";
 import { useUser } from "../../Provider/UserProvider";
-import { IoMdArrowDroprightCircle } from "react-icons/io";
 import { CgDetailsMore } from "react-icons/cg";
+import VVIP from "../../assets/Rooms/CircuitHouse_11.jpg"
+import tista from "../../assets/Rooms/Tista.JPG";
+import oprajita from "../../assets/Rooms/Oprajita.JPG";
+
 
 const Room = () => {
   const [roomlist, setRoomlist] = useState([]);
   const [showDetails, setShowDetails] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [showForm, setShowForm] = useState(false);
-  const { user } = useUser();
   const [newRoom, setNewRoom] = useState({
     room_name: '',
     room_type: 'One King Size Bed',
@@ -22,6 +23,7 @@ const Room = () => {
     building: 'New Building',
     floor: 'First Floor',
   });
+
   
 
   useEffect(() => {
@@ -277,8 +279,7 @@ const Room = () => {
                       <div className="flex">
                         <Link
                           to="/details"
-                          state={{ room }}
-                          im
+                          state={{ room, VVIP }}
                           className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
                         >
                           <CgDetailsMore />
@@ -326,6 +327,8 @@ const Room = () => {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:grid-cols-3 gap-4 mt-4">
                   {groupedRooms[building][floor].map((room) => {
+
+                    const VVIP = building === "New Building" ? oprajita : tista
                     let statusClass = "";
                     switch (room.availability_status) {
                       case "Vacant":
@@ -361,7 +364,7 @@ const Room = () => {
                           <div className="flex">
                             <Link
                               to="/details"
-                              state={{ room }}
+                              state={{ room, VVIP }}
                               className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
                             >
                               <CgDetailsMore />
