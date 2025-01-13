@@ -1,15 +1,34 @@
-import { PDFViewer, Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import {
+  PDFViewer,
+  PDFDownloadLink,
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Font,
+} from "@react-pdf/renderer";
 import { useLocation } from "react-router-dom";
+
+Font.register({
+  family: "Badhon Lipi",
+  src: "/fonts/banglafont.ttf", 
+});
+
+
 
 // Define styles
 const styles = StyleSheet.create({
   page: {
     padding: 30,
     fontSize: 12,
-    fontFamily: "Helvetica",
-    width: "100%", // Full width
-    height: "100%", 
+    fontFamily: "Helvetica"
   },
+
+  banglaText :{
+    fontFamily: "Badhon Lipi"
+  },
+
   header: {
     textAlign: "center",
     marginBottom: 20,
@@ -89,6 +108,7 @@ const styles = StyleSheet.create({
   },
 });
 
+// PDF Document Component
 const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
   <Document>
     <Page size="A4" style={styles.page}>
@@ -111,7 +131,7 @@ const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Room Name:</Text>
-            <Text style={styles.infoValue}>{guest.room_name}</Text>
+            <Text style={[{ fontFamily: "Badhon Lipi" }, { fontSize: 12 }]}>{guest.room_name}</Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Check-In Date:</Text>
@@ -158,11 +178,15 @@ const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Bill ID:</Text>
-            <Text style={styles.infoValue}>{checkoutsummary.payment_status === "Pending" ? "---" : checkoutsummary.payment_id}</Text>
+            <Text style={styles.infoValue}>
+              {checkoutsummary.payment_status === "Pending" ? "---" : checkoutsummary.payment_id}
+            </Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Bill By:</Text>
-            <Text style={styles.infoValue}>{checkoutsummary.payment_status === "Pending" ? "---" : checkoutsummary.bill_by}</Text>
+            <Text style={styles.infoValue}>
+              {checkoutsummary.payment_status === "Pending" ? "---" : checkoutsummary.bill_by}
+            </Text>
           </View>
         </View>
       </View>
@@ -206,15 +230,29 @@ const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
   </Document>
 );
 
+// Main Component
 const CheckoutSummary = () => {
   const location = useLocation();
   const { checkoutsummary, guest } = location.state || {};
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 py-8">
-      <PDFViewer style={{ width: "80%", height: "90vh" }}>
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 py-8">
+      <PDFViewer style={{ width: "80%", height: "90vh", marginBottom: "20px" }}>
         <CheckoutSummaryPDF checkoutsummary={checkoutsummary} guest={guest} />
       </PDFViewer>
+      <PDFDownloadLink
+        document={<CheckoutSummaryPDF checkoutsummary={checkoutsummary} guest={guest} />}
+        fileName="checkout_invoice.pdf"
+        style={{
+          textDecoration: "none",
+          padding: "10px 20px",
+          color: "#fff",
+          backgroundColor: "#007bff",
+          borderRadius: "5px",
+        }}
+      >
+        {({ loading }) => (loading ? "Generating PDF..." : "Download PDF")}
+      </PDFDownloadLink>
     </div>
   );
 };
