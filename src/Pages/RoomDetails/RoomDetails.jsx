@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import room1 from "../../assets/Rooms/Circuit House_11.jpg";
+import room1 from "../../assets/Rooms/CircuitHouse_11.jpg";
 import room2 from "../../assets/Rooms/Circuit House_12.jpg";
 import room3 from "../../assets/Rooms/Circuit House_13.jpg";
 import room4 from "../../assets/Rooms/Circuit House_15.jpg";

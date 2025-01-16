@@ -100,6 +100,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Home
         </NavLink>
@@ -110,6 +111,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Rooms
         </NavLink>
@@ -120,6 +122,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Conference Hall
         </NavLink>
@@ -130,6 +133,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Visit Jashore
         </NavLink>
@@ -150,6 +154,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Contact
         </NavLink>
@@ -161,6 +166,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Help Line
         </NavLink>
@@ -168,7 +174,7 @@ const Navbar = () => {
       
       
       {user ? (
-        <li className=" hover:text-cyan-400  cursor-pointer">
+        <li className=" hover:text-cyan-400  cursor-pointer">  onClick={handleDropdownToggle}
           <div onClick={signOut}>Sign Out</div>
         </li>
       ) : (
@@ -176,7 +182,9 @@ const Navbar = () => {
           <div
             onClick={() => setShowLoginForm(!showLoginForm)}
             className=" hover:text-cyan-400  cursor-pointer"
+            
           >
+            
             Sign In
           </div>
           {showLoginForm && (

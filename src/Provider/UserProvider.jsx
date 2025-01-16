@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { baseurl } from "../BaseURL";
+import { Navigate } from "react-router-dom";
 
 const UserContext = createContext();
 
@@ -62,10 +63,13 @@ export const UserProvider = ({ children }) => {
 
 
   // Handle Sign Out
-  const signOut = () => {
-    localStorage.removeItem("accessToken");  // Remove token from localStorage
-    setUser(null);  // Clear user state
-  };
+  const navigate = useNavigate();
+
+const signOut = () => {
+  localStorage.removeItem("accessToken");
+  setUser(null);
+
+};
 
   return (
     <UserContext.Provider value={{ user, loading, error, refreshUser, signOut }}>
