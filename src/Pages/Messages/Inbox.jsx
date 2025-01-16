@@ -66,7 +66,7 @@ const Inbox = () => {
                     year: "numeric",
                   })}
                 </td>
-                <td className="border border-gray-200 px-4 py-2">{contact.name}</td>
+                <td className="border border-gray-200 px-4 py-2 whitespace-nowrap">{contact.name}</td>
                 <td className="border border-gray-200 px-4 py-2">{contact.phone}</td>
                 <td className="border border-gray-200 px-4 py-2">{contact.email}</td>
                 <td className="border border-gray-200 px-4 py-2 text-center">

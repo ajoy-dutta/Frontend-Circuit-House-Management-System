@@ -34,7 +34,7 @@ const HelpLine = () => {
   return (
     <div className="container mx-auto my-10 p-4 bg-gray-100 rounded-lg shadow overflow-x-auto">
       <h1 className="text-2xl font-bold text-gray-800 mb-4 text-center">Help Line</h1>
-      <table className="table-auto w-full border-collapse border border-gray-300">
+      <table className="table-auto w-full border-collapse border border-gray-300 text-sm">
         <thead>
           <tr className="bg-gray-200">
             <th className="border border-gray-300 px-4 py-2">#</th>
@@ -43,19 +43,19 @@ const HelpLine = () => {
             <th className="border border-gray-300 px-4 py-2">Office Name</th>
             <th className="border border-gray-300 px-4 py-2">Email</th>
             <th className="border border-gray-300 px-4 py-2">Mobile</th>
-            <th className="border border-gray-300 px-4 py-2">Phone (Office)</th>
+            <th className="border border-gray-300 px-4 py-2">Phone(Office)</th>
           </tr>
         </thead>
         <tbody>
           {helpLineData.map((entry, index) => (
             <tr key={entry.id} className="hover:bg-gray-50">
               <td className="border border-gray-300 px-4 py-2 text-center">{index + 1}</td>
-              <td className="border border-gray-300 px-4 py-2">{entry.name}</td>
-              <td className="border border-gray-300 px-4 py-2">{entry.designation}</td>
-              <td className="border border-gray-300 px-4 py-2">{entry.officeName}</td>
+              <td className="border border-gray-300 px-4 py-2 whitespace-nowrap">{entry.name}</td>
+              <td className="border border-gray-300 px-4 py-2 whitespace-nowrap">{entry.designation}</td>
+              <td className="border border-gray-300 px-4 py-2 whitespace-nowrap">{entry.officeName}</td>
               <td className="border border-gray-300 px-4 py-2">{entry.email}</td>
-              <td className="border border-gray-300 px-4 py-2">{entry.mobile}</td>
-              <td className="border border-gray-300 px-4 py-2">{entry.phoneOffice}</td>
+              <td className="border border-gray-300 px-4 py-2 whitespace-nowrap">{entry.mobile}</td>
+              <td className="border border-gray-300 px-4 py-2 whitespace-nowrap">{entry.phoneOffice}</td>
             </tr>
           ))}
         </tbody>

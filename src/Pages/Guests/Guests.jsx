@@ -89,8 +89,8 @@ const Guests = () => {
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Name</th>
               {/* <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Designation</th> */}
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Room Name</th>
-              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Check-In Date</th>
-              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Check-Out Date</th>
+              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700 whitespace-nowrap">Check-In Date</th>
+              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700 whitespace-nowrap">Check-Out Date</th>
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Update</th>
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Details</th>
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Check out</th>
@@ -103,7 +103,7 @@ const Guests = () => {
                 <td className="py-3 px-4 text-sm font-medium text-gray-800">{guest.name}</td>
                 {/* <td className="py-3 px-4 text-sm font-medium text-gray-800">{guest.designation}</td> */}
                 <td className="py-3 px-4 text-sm font-medium text-gray-800">{guest.room_name}</td>
-                <td className="py-3 px-4 text-sm text-gray-600"> 
+                <td className="py-3 px-4 text-sm text-gray-600 whitespace-nowrap"> 
                   {new Date(guest.check_in_date ).toLocaleString("en-GB", {
                   day: "2-digit",
                   month: "2-digit",
@@ -114,7 +114,7 @@ const Guests = () => {
                 })}
                 </td>
 
-                <td className="py-3 px-4 text-sm text-gray-600">
+                <td className="py-3 px-4 text-sm text-gray-600 whitespace-nowrap">
                   {new Date(guest.check_out_date ).toLocaleString("en-GB", {
                   day: "2-digit",
                   month: "2-digit",

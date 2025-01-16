@@ -87,10 +87,10 @@ const Rooms = () => {
   };
 
   return (
-    <div className="container mb-12 mx-auto p-4 px-4 lg:px-12">
+    <div className="container mb-12 mx-auto p-4 px-4 lg:px-12 ">
       <h2 className="relative text-2xl font-bold text-center mb-6">Room List</h2>
 
-      <table className="min-w-full table-auto border-collapse">
+      <table className="min-w-full table-auto border-collapse overflow-x-auto">
         <thead>
           <tr className="bg-teal-200">
             <th className="border-b px-4 py-2 text-left">SL</th>
@@ -105,10 +105,10 @@ const Rooms = () => {
           {roomList.map((room, index) => (
             <tr key={room.id} className="border-b hover:bg-gray-100">
               <td className="px-4 py-2">{index + 1}</td>
-              <td className="px-4 py-2">{room.room_name}</td>
+              <td className="px-4 py-2 ">{room.room_name}</td>
               {/* <td className="px-4 py-2">{room.room_description}</td> */}
-              <td className="px-4 py-2">{room.room_type}</td>
-              <td className="px-4 py-2">{room.availability_status}</td>
+              <td className="px-4 py-2 whitespace-nowrap">{room.room_type}</td>
+              <td className="px-4 py-2 whitespace-nowrap">{room.availability_status}</td>
               <td className=" px-4 py-2">
                 <button
                   onClick={() => handleEditClick(room)}

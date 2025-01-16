@@ -79,11 +79,11 @@ const CheckoutHistory = () => {
           <thead className="bg-blue-100">
             <tr>
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">SL</th>
-              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Name</th>
+              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700 ">Name</th>
               {/* <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Designation</th> */}
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Room Name</th>
-              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Check-In Date</th>
-              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Check-Out Date</th>
+              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700 whitespace-nowrap">Check-In Date</th>
+              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700 whitespace-nowrap">Check-Out Date</th>
               {/* <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Update</th> */}
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Details</th>
             </tr>
@@ -92,9 +92,9 @@ const CheckoutHistory = () => {
   {filteredHistory.map((checkout, index) => (
     <tr key={checkout.id} className="border-t border-b hover:bg-blue-50">
       <td className="py-3 px-4 text-sm font-medium text-gray-800">{filteredHistory.length - index}</td>
-      <td className="py-3 px-4 text-sm font-medium text-gray-800">{checkout.guest.name}</td>
+      <td className="py-3 px-4 text-sm font-medium text-gray-800 whitespace-nowrap">{checkout.guest.name}</td>
       <td className="py-3 px-4 text-sm font-medium text-gray-800">{checkout.guest.room_name}</td>
-      <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-gray-600 whitespace-nowrap">
         {new Date(checkout.guest.check_in_date).toLocaleString("en-GB", {
           day: "2-digit",
           month: "2-digit",
@@ -104,7 +104,7 @@ const CheckoutHistory = () => {
           hour12: true,
         })}
       </td>
-      <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-gray-600 whitespace-nowrap">
         {new Date(checkout.guest.check_out_date).toLocaleString("en-GB", {
           day: "2-digit",
           month: "2-digit",

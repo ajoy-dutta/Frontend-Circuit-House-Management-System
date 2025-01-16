@@ -11,7 +11,7 @@ export const useUser = () => {
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
 
@@ -21,6 +21,7 @@ export const UserProvider = ({ children }) => {
     if (!token) {
       setError("No token found. Please log in.");
       setUser(null);
+      setLoading(false)
       return;
     }
 
@@ -70,7 +71,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider value={{ user, loading, error, refreshUser, signOut }}>
-      {children}
+       {loading ? <div>Loading...</div> : children} 
     </UserContext.Provider>
   );
 };
