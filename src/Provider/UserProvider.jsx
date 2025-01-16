@@ -10,8 +10,10 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null; // Retrieve user data from localStorage
+  });  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   
 
@@ -43,6 +45,8 @@ export const UserProvider = ({ children }) => {
 
       const data = await response.json();
       setUser(data);
+      localStorage.setItem("user", JSON.stringify(data)); // Save user data to localStorage
+
     } catch (err) {
       console.error(err);
       setError(err.message || "Failed to fetch user data.");
@@ -66,8 +70,10 @@ export const UserProvider = ({ children }) => {
 
 
   useEffect(() => {
-    if (token) fetchUserData();
-  }, [token]);
+    if (token && !user) { // Only fetch if token exists and user is not set
+      fetchUserData();
+    }
+  }, [token, user]);
 
   return (
     <UserContext.Provider value={{ user, loading, error, refreshUser, signOut }}>
