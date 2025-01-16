@@ -50,7 +50,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/visitJahore"
+          to="/visitJashore"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }

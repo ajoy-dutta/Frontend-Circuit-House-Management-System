@@ -25,7 +25,6 @@ import CheckoutSummary from "./Pages/Guests/CheckOutSummary";
 import Appbar from "./Components/Sidebar/Appbar";
 import HonourBoard from "./Pages/Home/HonourBoard";
 import Contact from "./Pages/Home/Contact";
-import VisitJashore from "./Pages/VisitJashore/VisitJashore";
 import ConferenceRoom from "./Pages/ConferenceRoom/ConferenceRoom";
 import Details from "./Pages/Room/Details";
 import CheckoutHistory from "./Pages/Guests/CheckoutHistory";
@@ -74,12 +73,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/visitJahore",
-        element: <VisitJashore />,
-      },
-      {
-        path: "/brandJashore",
-        // element: <BrandJashore></BrandJashore>,
-        element: <Carousels></Carousels>
+        element: <Carousels />,
       },
 
       {
