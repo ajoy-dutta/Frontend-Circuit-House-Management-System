@@ -4,6 +4,7 @@ import "./index.css";
 import {
   createBrowserRouter,
   RouterProvider,
+  useNavigate,
 } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import { UserProvider } from "./Provider/UserProvider";
@@ -25,7 +26,6 @@ import CheckoutSummary from "./Pages/Guests/CheckOutSummary";
 import Appbar from "./Components/Sidebar/Appbar";
 import HonourBoard from "./Pages/Home/HonourBoard";
 import Contact from "./Pages/Home/Contact";
-import VisitJashore from "./Pages/VisitJashore/VisitJashore";
 import ConferenceRoom from "./Pages/ConferenceRoom/ConferenceRoom";
 import Details from "./Pages/Room/Details";
 import CheckoutHistory from "./Pages/Guests/CheckoutHistory";
@@ -35,6 +35,7 @@ import StaffProfile from "./Pages/Staffs Profile/StaffProfile";
 import { Carousels } from "./Pages/BrandJashore/Carousels";
 import ProtectedRoute from "./Provider/ProtectedRoute"; 
 import HelpLine from "./Pages/Home/HelpLine";
+
 
 
 
@@ -48,38 +49,40 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
+      
       {
         path: "/login",
         element: <Login />,
       },
+
       {
         path: "/registers", // Add the registration route
         element: <Registration />,
       },
+
       {
         path: "/room_details",
         element: <RoomDetails />,
       },
+
       {
         path: "/honor-board",
         element: <HonourBoard></HonourBoard>,
       },
+
       {
         path: "/contact",
         element: <Contact></Contact>,
       },
+
       {
         path: "/conferenceRoom",
         element: <ConferenceRoom />,
       },
+
       {
-        path: "/visitJahore",
-        element: <VisitJashore />,
-      },
-      {
-        path: "/brandJashore",
-        // element: <BrandJashore></BrandJashore>,
-        element: <Carousels></Carousels>
+        path: "/visitJashore",
+        element: <Carousels />,
       },
 
       {

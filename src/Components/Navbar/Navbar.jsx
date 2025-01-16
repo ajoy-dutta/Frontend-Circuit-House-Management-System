@@ -13,6 +13,7 @@ const Navbar = () => {
   const handleDropdownToggle = () => {
     setIsDropdownOpen((prev) => !prev);
   };
+  
 
   const navOptions = (
     <>
@@ -50,7 +51,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/visitJahore"
+          to="/visitJashore"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
@@ -105,6 +106,21 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
+
+      {user && (
+        <li>
+          <NavLink
+            to="/room"
+            className={({ isActive }) =>
+              isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+            }
+            onClick={handleDropdownToggle}
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
+
       <li >
         <NavLink
           to="/room_details"
@@ -127,9 +143,10 @@ const Navbar = () => {
           Conference Hall
         </NavLink>
       </li>
+
       <li >
         <NavLink
-          to="/visitJahore"
+          to="/visitJashore"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
@@ -138,6 +155,7 @@ const Navbar = () => {
           Visit Jashore
         </NavLink>
       </li>
+
       {/* <li >
         <NavLink
           to="/honor-board"
@@ -148,6 +166,7 @@ const Navbar = () => {
           Honor Board
         </NavLink>
       </li> */}
+
       <li >
         <NavLink
           to="/contact"
@@ -174,11 +193,14 @@ const Navbar = () => {
       
       
       {user ? (
-        <li className=" hover:text-cyan-400  cursor-pointer">  onClick={handleDropdownToggle}
+        <div onClick={handleDropdownToggle}>
+        <li className=" hover:text-cyan-400  cursor-pointer">
           <div onClick={signOut}>Sign Out</div>
         </li>
+        </div>
       ) : (
         <li className="relative">
+          <div onClick={handleDropdownToggle}>
           <div
             onClick={() => setShowLoginForm(!showLoginForm)}
             className=" hover:text-cyan-400  cursor-pointer"
@@ -187,26 +209,10 @@ const Navbar = () => {
             
             Sign In
           </div>
-          {showLoginForm && (
-            <div
-            style={{
-              position: "fixed",
-              top: "264px", // Adjust based on your navbar height
-              left: "0",
-              right: "0",
-              width: "300px",
-              background: "#E6FFFA", // Equivalent to bg-teal-50
-              zIndex: 9999,
-              padding: "16px",
-              borderRadius: "8px",
-              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <Login setShowLoginForm={setShowLoginForm} />
           </div>
-          )}
         </li>
       )}
+
     </>
   );
 
@@ -244,6 +250,25 @@ const Navbar = () => {
                 {navDropOptions}
               </ul>
             </ul>
+          )}
+
+         {showLoginForm && (
+            <div
+            style={{
+              position: "fixed",
+              top: "50px", // Adjust based on your navbar height
+              left: "0",
+              right: "0",
+              width: "300px",
+              background: "#E6FFFA", // Equivalent to bg-teal-50
+              zIndex: 9999,
+              padding: "16px",
+              borderRadius: "8px",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <Login setShowLoginForm={setShowLoginForm} />
+          </div>
           )}
         </div>
         <div className="flex items-center justify-center">

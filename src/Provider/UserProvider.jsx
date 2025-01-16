@@ -1,18 +1,21 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { baseurl } from "../BaseURL";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext();
+
 
 export const useUser = () => {
   return useContext(UserContext);
 };
 
-// UserProvider component
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);  // Start with loading true
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null; // Retrieve user data from localStorage
+  });  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  
 
   const token = localStorage.getItem("accessToken");
 
@@ -20,7 +23,7 @@ export const UserProvider = ({ children }) => {
     if (!token) {
       setError("No token found. Please log in.");
       setUser(null);
-      setLoading(false);  // Stop loading
+      setLoading(false)
       return;
     }
 
@@ -41,13 +44,15 @@ export const UserProvider = ({ children }) => {
       }
 
       const data = await response.json();
-      setUser(data);  // Set user data
+      setUser(data);
+      localStorage.setItem("user", JSON.stringify(data)); // Save user data to localStorage
+
     } catch (err) {
       console.error(err);
       setError(err.message || "Failed to fetch user data.");
       setUser(null);
     } finally {
-      setLoading(false);  // Stop loading after fetch completes
+      setLoading(false);
     }
   };
 
@@ -56,24 +61,23 @@ export const UserProvider = ({ children }) => {
     fetchUserData();
   };
 
-   
-   useEffect(() => {
-    if (token) fetchUserData();
-  }, [token]);
-
-
   // Handle Sign Out
-  const navigate = useNavigate();
+  const signOut = () => {
+    localStorage.removeItem("accessToken"); 
+    setUser(null);
+    
+  };
 
-const signOut = () => {
-  localStorage.removeItem("accessToken");
-  setUser(null);
 
-};
+  useEffect(() => {
+    if (token && !user) { // Only fetch if token exists and user is not set
+      fetchUserData();
+    }
+  }, [token, user]);
 
   return (
     <UserContext.Provider value={{ user, loading, error, refreshUser, signOut }}>
-      {loading ? <div>Loading...</div> : children} 
+       {loading ? <div>Loading...</div> : children} 
     </UserContext.Provider>
   );
 };

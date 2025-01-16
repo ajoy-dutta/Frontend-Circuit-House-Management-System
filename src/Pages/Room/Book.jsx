@@ -1,5 +1,4 @@
 import { useState } from "react";
-import PropTypes from 'prop-types';
 import { useLocation, useNavigate } from "react-router-dom";
 import AxiosInstance from "../../Components/Axios";
 
@@ -293,13 +292,5 @@ const Book = () => {
 };
 
 
-Book.propTypes = {
-    name: PropTypes.string.isRequired,
-    total_person: PropTypes.number.isRequired,
-    room: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-    ]).isRequired,
-};
 
 export default Book;
