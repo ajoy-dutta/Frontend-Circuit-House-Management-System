@@ -32,7 +32,7 @@ const HelpLine = () => {
   ];
 
   return (
-    <div className="container mx-auto my-10 p-4 bg-gray-100 rounded-lg shadow">
+    <div className="container mx-auto my-10 p-4 bg-gray-100 rounded-lg shadow overflow-x-auto">
       <h1 className="text-2xl font-bold text-gray-800 mb-4 text-center">Help Line</h1>
       <table className="table-auto w-full border-collapse border border-gray-300">
         <thead>

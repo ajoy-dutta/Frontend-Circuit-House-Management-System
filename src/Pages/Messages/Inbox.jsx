@@ -34,7 +34,7 @@ const Inbox = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-4 bg-gray-50 min-h-screen">
       <h1 className="text-3xl text-center font-extrabold text-gray-700 mb-8">
         All Messages
       </h1>

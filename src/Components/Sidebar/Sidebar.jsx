@@ -7,15 +7,21 @@ import { Link, useLocation } from "react-router-dom";
 import { useUser } from "../../Provider/UserProvider";
 import { FaHistory  } from "react-icons/fa";
 import { FaRegMessage } from "react-icons/fa6";
-import { FaUser } from "react-icons/fa";
 
 
-const Sidebar = ({ sidebarToggle }) => {
+const Sidebar = ({ sidebarToggle, setSidebarToggle }) => {
   const { user } = useUser();
   const location = useLocation(); 
 
   // Function to determine if a tab is active
   const isActive = (path) => location.pathname === path;
+
+  const handleLinkClick = () => {
+    if (window.innerWidth <= 768) {
+      setSidebarToggle(true); // Hide the sidebar when a link is clicked on small devices
+    }
+  };
+
 
   return (
     <div
@@ -46,6 +52,7 @@ const Sidebar = ({ sidebarToggle }) => {
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
               isActive("/room") ? "bg-blue-100 text-gray-600" : ""
             }`}
+            onClick={handleLinkClick}
           >
             <div className="px-3">
               <FaHome className="inline-block w-6 h-6 mr-2 -mt-2" />
@@ -59,6 +66,7 @@ const Sidebar = ({ sidebarToggle }) => {
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
               isActive("/food") ? "bg-blue-100 text-gray-600" : ""
             }`}
+            onClick={handleLinkClick}
           >
             <div className="px-3">
               <FaBowlFood className="inline-block w-6 h-6 mr-2 -mt-2" />
@@ -72,6 +80,7 @@ const Sidebar = ({ sidebarToggle }) => {
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
               isActive("/other") ? "bg-blue-100 text-gray-600" : ""
             }`}
+            onClick={handleLinkClick}
           >
             <div className="px-3">
               <FaPoll className="inline-block w-6 h-6 mr-2 -mt-2" />
@@ -87,6 +96,7 @@ const Sidebar = ({ sidebarToggle }) => {
                 ? "bg-blue-100 text-gray-600"
                 : ""
             }`}
+            onClick={handleLinkClick}
           >
             <div className="px-3">
               <FaUsers className="inline-block w-6 h-6 mr-2 -mt-2" />
@@ -102,6 +112,7 @@ const Sidebar = ({ sidebarToggle }) => {
                 ? "bg-blue-100 text-gray-600"
                 : ""
             }`}
+            onClick={handleLinkClick}
           >
             <div className="px-3">
               <FaHistory className="inline-block w-6 h-6 mr-2 -mt-2" />
@@ -112,7 +123,7 @@ const Sidebar = ({ sidebarToggle }) => {
 
         {user?.role === "NDC" && (
           <Link to="/staff-approval">
-          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
+          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2"  onClick={handleLinkClick}>
             <div className="px-3 ">
               <HiUsers className="inline-block w-6 h-6 mr-2 -mt-2 "></HiUsers>
               Staffs
@@ -122,7 +133,7 @@ const Sidebar = ({ sidebarToggle }) => {
       )}
 
         <Link to="/staff-profile">
-          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
+          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2"  onClick={handleLinkClick}>
             <div className="px-3 ">
               <HiUsers className="inline-block w-6 h-6 mr-2 -mt-2 "></HiUsers>
               Staff List
@@ -132,13 +143,14 @@ const Sidebar = ({ sidebarToggle }) => {
 
 
           <Link to="inbox">
-          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2">
+          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2"  onClick={handleLinkClick}>
             <div className="px-3 ">
               <FaRegMessage className="inline-block w-6 text-lg mr-2 "></FaRegMessage>
               Inbox
             </div>
           </li>
         </Link>
+
       </ul>
     </div>
   );
