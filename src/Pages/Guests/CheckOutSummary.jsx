@@ -12,21 +12,23 @@ import { useLocation } from "react-router-dom";
 
 Font.register({
   family: "Badhon Lipi",
-  src: "/fonts/banglafont.ttf", 
+  src: "/fonts/banglafont.ttf",
+   
 });
 
 
 
 // Define styles
 const styles = StyleSheet.create({
-  page: {
-    padding: 30,
-    fontSize: 12,
-    fontFamily: "Helvetica"
+  page :{
+    padding: 50,
+    fontSize: 10,
+    fontFamily: "Helvetica",
+    marginLeft: 30,
   },
 
   banglaText :{
-    fontFamily: "Badhon Lipi"
+    fontFamily: "Badhon Lipi",
   },
 
   header: {
@@ -34,8 +36,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: 14,
     marginBottom: 4,
   },
   subtitle: {
@@ -50,14 +51,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   sectionHeader: {
-    fontSize: 14,
-    fontWeight: "bold",
+    fontSize: 12,
     marginBottom: 10,
+    fontWeight: "bold" ,
   },
   grid: {
     display: "flex",
     flexDirection: "row",
-    gap: 20,
+    gap: 50,
     marginBottom: 20,
   },
   gridItem: {
@@ -79,10 +80,11 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   table: {
-    width: "100%",
+    width: "90%",
     borderWidth: 1,
     borderColor: "#ddd",
     marginBottom: 10,
+
   },
   tableRow: {
     flexDirection: "row",
@@ -90,22 +92,25 @@ const styles = StyleSheet.create({
   tableCellHeader: {
     padding: 5,
     flex: 1,
+    textAlign: "center",
     backgroundColor: "#f0f0f0",
-    fontWeight: "bold",
     borderWidth: 1,
     borderColor: "#ddd",
   },
   tableCell: {
     padding: 5,
-    flex: 1,
+    flex: 2,
     borderWidth: 1,
     borderColor: "#ddd",
   },
   footer: {
+    position: "absolute",
+    bottom: 70,
     textAlign: "center",
-    marginTop: 20,
+    width: "80%",
     fontSize: 10,
   },
+  
 });
 
 // PDF Document Component
@@ -115,9 +120,7 @@ const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.title}>Circuit House, Jashore</Text>
-        <Text style={styles.subtitle}>Room Checkout Invoice</Text>
-        <Text style={styles.contact}>Jashore, Khulna, Bangladesh</Text>
-        <Text style={styles.contact}>Phone: 02477762486 | Email: chjashore@gmail.com</Text>
+        <Text style={styles.subtitle}>Guest House Bill</Text>
       </View>
 
       {/* Guest Details and Payment Info Grid */}
@@ -126,17 +129,17 @@ const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
         <View style={styles.gridItem}>
           <Text style={styles.sectionHeader}>Guest Details</Text>
           <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Guest Name:</Text>
-            <Text style={styles.infoValue}>{guest.name}</Text>
+            <Text style={styles.infoLabel}>Guest Name</Text>
+            <Text style={styles.infoValue}>:  {guest.name}</Text>
           </View>
           <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Room Name:</Text>
-            <Text style={[{ fontFamily: "Badhon Lipi" }, { fontSize: 12 }]}>{guest.room_name}</Text>
+            <Text style={styles.infoLabel}>Room Name</Text>
+            <Text style={{ fontFamily: "Badhon Lipi" }}>:  {guest.room_name}</Text>
           </View>
           <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Check-In Date:</Text>
+            <Text style={styles.infoLabel}>Check-In Date</Text>
             <Text style={styles.infoValue}>
-              {new Date(guest.check_in_date).toLocaleString("en-GB", {
+              :  {new Date(guest.check_in_date).toLocaleString("en-GB", {
                 day: "2-digit",
                 month: "2-digit",
                 year: "numeric",
@@ -147,9 +150,9 @@ const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
             </Text>
           </View>
           <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Check-Out Date:</Text>
-            <Text style={styles.infoValue}>
-              {new Date(guest.check_out_date).toLocaleString("en-GB", {
+            <Text style={styles.infoLabel}>Check-Out Date</Text>
+             <Text style={styles.infoValue}>
+              :  {new Date(guest.check_out_date).toLocaleString("en-GB", {
                 day: "2-digit",
                 month: "2-digit",
                 year: "numeric",
@@ -160,12 +163,12 @@ const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
             </Text>
           </View>
           <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Total Persons:</Text>
-            <Text style={styles.infoValue}>{guest.total_person}</Text>
+            <Text style={styles.infoLabel}>Total Persons</Text>
+            <Text style={styles.infoValue}>:  {guest.total_person}</Text>
           </View>
           <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Total Days:</Text>
-            <Text style={styles.infoValue}>{guest.total_days}</Text>
+            <Text style={styles.infoLabel}>Total Days</Text>
+            <Text style={styles.infoValue}>:  {guest.total_days}</Text>
           </View>
         </View>
 
@@ -173,19 +176,19 @@ const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
         <View style={styles.gridItem}>
           <Text style={styles.sectionHeader}>Payment Information</Text>
           <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Payment Status:</Text>
-            <Text style={styles.infoValue}>{checkoutsummary.payment_status}</Text>
+            <Text style={styles.infoLabel}>Payment Status</Text>
+            <Text style={styles.infoValue}>:  {checkoutsummary.payment_status}</Text>
           </View>
           <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Bill ID:</Text>
+            <Text style={styles.infoLabel}>Bill ID</Text>
             <Text style={styles.infoValue}>
-              {checkoutsummary.payment_status === "Pending" ? "---" : checkoutsummary.payment_id}
+             :  {checkoutsummary.payment_status === "Pending" ? "---" : checkoutsummary.payment_id}
             </Text>
           </View>
           <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Bill By:</Text>
+            <Text style={styles.infoLabel}>Bill By</Text>
             <Text style={styles.infoValue}>
-              {checkoutsummary.payment_status === "Pending" ? "---" : checkoutsummary.bill_by}
+             :  {checkoutsummary.payment_status === "Pending" ? "---" : checkoutsummary.bill_by}
             </Text>
           </View>
         </View>
@@ -220,11 +223,17 @@ const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
 
       {/* Footer */}
       <View style={styles.footer}>
-        <Text>Thank you for staying at Jashore Circuit House.</Text>
-        <Text>You are always welcome at Joyful Jashore.</Text>
-        <Text>Thanks and regards,</Text>
-        <Text>Nezarat Deputy Collector</Text>
-        <Text>Cell: +8801733909222</Text>
+        
+        <Text >Thank you for staying at Jashore Circuit House. You are always welcome at Joyful Jashore.</Text>
+        
+        <Text>Nezarat Deputy Collector |
+        Jashore, Khulna, Bangladesh.</Text>
+        <Text>
+        Cell: +8801733909222,
+          Phone: 02477762486,
+          Email: chjashore@gmail.com,
+          www.chjashore.online.
+         </Text>
       </View>
     </Page>
   </Document>

@@ -44,8 +44,6 @@ const Login = ({ setShowLoginForm }) => {
 
         localStorage.setItem("accessToken", response.data.access);
 
-        // Trigger a manual fetch of user data
-        refreshUser();
 
         // Reset form data and close login form
         setFormData({
