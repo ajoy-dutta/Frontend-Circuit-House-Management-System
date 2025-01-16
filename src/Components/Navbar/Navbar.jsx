@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./navbar.css";
 import Login from "../../Pages/authentication/Login";
+import LoginDrop from "../../Pages/authentication/Login2";
 import { useUser } from "../../Provider/UserProvider";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/Footer/joyful.png";
@@ -9,11 +10,12 @@ const Navbar = () => {
   const { user, signOut } = useUser();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showDropLoginForm, setShowDropLoginForm] = useState(false);
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen((prev) => !prev);
   };
-  
+
 
   const navOptions = (
     <>
@@ -59,16 +61,6 @@ const Navbar = () => {
           Visit Jashore
         </NavLink>
       </li>
-      {/* <li>
-        <NavLink
-          to="/honor-board"
-          className={({ isActive }) =>
-            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
-          }
-        >
-          Honor Board
-        </NavLink>
-      </li> */}
       <li>
         <NavLink
           to="/contact"
@@ -89,13 +81,12 @@ const Navbar = () => {
           Help Line
         </NavLink>
       </li>
-      
     </>
   );
 
   const navDropOptions = (
     <>
-    <li >
+      <li>
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -121,7 +112,7 @@ const Navbar = () => {
         </li>
       )}
 
-      <li >
+      <li>
         <NavLink
           to="/room_details"
           className={({ isActive }) =>
@@ -132,7 +123,8 @@ const Navbar = () => {
           Rooms
         </NavLink>
       </li>
-      <li >
+
+      <li>
         <NavLink
           to="/conferenceRoom"
           className={({ isActive }) =>
@@ -144,7 +136,7 @@ const Navbar = () => {
         </NavLink>
       </li>
 
-      <li >
+      <li>
         <NavLink
           to="/visitJashore"
           className={({ isActive }) =>
@@ -156,18 +148,7 @@ const Navbar = () => {
         </NavLink>
       </li>
 
-      {/* <li >
-        <NavLink
-          to="/honor-board"
-          className={({ isActive }) =>
-            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
-          }
-        >
-          Honor Board
-        </NavLink>
-      </li> */}
-
-      <li >
+      <li>
         <NavLink
           to="/contact"
           className={({ isActive }) =>
@@ -190,27 +171,25 @@ const Navbar = () => {
           Help Line
         </NavLink>
       </li>
-      
-      
+
       {user ? (
         <div onClick={handleDropdownToggle}>
-        <li className=" hover:text-cyan-400  cursor-pointer">
-          <div onClick={signOut}>Sign Out</div>
-        </li>
+          <li className="hover:text-cyan-400 cursor-pointer">
+            <div onClick={signOut}>Sign Out</div>
+          </li>
         </div>
       ) : (
         <li className="relative">
           <div onClick={handleDropdownToggle}>
-          <div
-            onClick={() => setShowLoginForm(!showLoginForm)}
-            className=" hover:text-cyan-400  cursor-pointer"
-          >
-            Sign In
-          </div>
+            <div
+              onClick={() => setShowDropLoginForm(!showDropLoginForm)}
+              className="hover:text-cyan-400 cursor-pointer"
+            >
+              Sign In
+            </div>
           </div>
         </li>
       )}
-
     </>
   );
 
@@ -241,7 +220,7 @@ const Navbar = () => {
           </div>
           {isDropdownOpen && (
             <ul
-              tabIndex={0}
+              tabIndex={handleDropdownToggle}
               className="menu menu-sm dropdown-content bg-slate-200 absolute rounded-box z-[1000] mt-3 w-40 p-2 shadow"
             >
               <ul className="font-serif space-y-4 p-2 text-lg font-semibold">
@@ -250,37 +229,36 @@ const Navbar = () => {
             </ul>
           )}
 
-         {showLoginForm && (
+          {showDropLoginForm && (
             <div
-            style={{
-              position: "fixed",
-              top: "50px", // Adjust based on your navbar height
-              left: "0",
-              right: "0",
-              width: "300px",
-              background: "#E6FFFA", // Equivalent to bg-teal-50
-              zIndex: 9999,
-              padding: "16px",
-              borderRadius: "8px",
-              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <Login setShowLoginForm={setShowLoginForm} />
-          </div>
+              style={{
+                position: "fixed",
+                top: "50px",
+                left: "0",
+                right: "0",
+                width: "300px",
+                background: "#E6FFFA",
+                zIndex: 9999,
+                padding: "16px",
+                borderRadius: "8px",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <LoginDrop setShowDropLoginForm={setShowDropLoginForm} />
+            </div>
           )}
         </div>
+
         <div className="flex items-center justify-center">
           <div className="hidden lg:block text-xl font-bold text-with-gradient md:text-2xl whitespace-nowrap">
             <NavLink to="/">
               <div className="flex items-center justify-center gap-2">
                 <img className="w-[30px]" src={logo} />
-                <div className="text-lg">
-                  Circuit House
-                </div>
+                <div className="text-lg">Circuit House</div>
               </div>
             </NavLink>
           </div>
-          <div className="nav-start px-4  w-3/4">
+          <div className="nav-start px-4 w-3/4">
             <ul className="hidden md:flex lg:flex lg:justify-between items-center font-normal font-serif px-1 gap-8 whitespace-nowrap">
               {navOptions}
             </ul>
@@ -291,17 +269,14 @@ const Navbar = () => {
       <div className="navbar-end w-1/5">
         <ul className="hidden font-normal font-serif text-lg lg:flex menu-horizontal px-1 gap-10 whitespace-nowrap overflow-x-auto">
           {user ? (
-            <div
-              onClick={signOut}
-              className=" hover:text-cyan-400 cursor-pointer"
-            >
+            <div onClick={signOut} className="hover:text-cyan-400 cursor-pointer">
               Sign Out
             </div>
           ) : (
             <li className="relative">
               <div
                 onClick={() => setShowLoginForm(!showLoginForm)}
-                className=" hover:text-cyan-400 px-4 cursor-pointer"
+                className="hover:text-cyan-400 px-4 cursor-pointer"
               >
                 Sign In
               </div>
