@@ -13,6 +13,7 @@ const Navbar = () => {
   const handleDropdownToggle = () => {
     setIsDropdownOpen((prev) => !prev);
   };
+  
 
   const navOptions = (
     <>
@@ -100,16 +101,33 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Home
         </NavLink>
       </li>
+
+      {user && (
+        <li>
+          <NavLink
+            to="/room"
+            className={({ isActive }) =>
+              isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+            }
+            onClick={handleDropdownToggle}
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
+
       <li >
         <NavLink
           to="/room_details"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Rooms
         </NavLink>
@@ -120,20 +138,24 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Conference Hall
         </NavLink>
       </li>
+
       <li >
         <NavLink
-          to="/visitJahore"
+          to="/visitJashore"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Visit Jashore
         </NavLink>
       </li>
+
       {/* <li >
         <NavLink
           to="/honor-board"
@@ -144,12 +166,14 @@ const Navbar = () => {
           Honor Board
         </NavLink>
       </li> */}
+
       <li >
         <NavLink
           to="/contact"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Contact
         </NavLink>
@@ -161,6 +185,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Help Line
         </NavLink>
@@ -168,37 +193,24 @@ const Navbar = () => {
       
       
       {user ? (
+        <div onClick={handleDropdownToggle}>
         <li className=" hover:text-cyan-400  cursor-pointer">
           <div onClick={signOut}>Sign Out</div>
         </li>
+        </div>
       ) : (
         <li className="relative">
+          <div onClick={handleDropdownToggle}>
           <div
             onClick={() => setShowLoginForm(!showLoginForm)}
             className=" hover:text-cyan-400  cursor-pointer"
           >
             Sign In
           </div>
-          {showLoginForm && (
-            <div
-            style={{
-              position: "fixed",
-              top: "264px", // Adjust based on your navbar height
-              left: "0",
-              right: "0",
-              width: "300px",
-              background: "#E6FFFA", // Equivalent to bg-teal-50
-              zIndex: 9999,
-              padding: "16px",
-              borderRadius: "8px",
-              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <Login setShowLoginForm={setShowLoginForm} />
           </div>
-          )}
         </li>
       )}
+
     </>
   );
 
@@ -236,6 +248,25 @@ const Navbar = () => {
                 {navDropOptions}
               </ul>
             </ul>
+          )}
+
+         {showLoginForm && (
+            <div
+            style={{
+              position: "fixed",
+              top: "50px", // Adjust based on your navbar height
+              left: "0",
+              right: "0",
+              width: "300px",
+              background: "#E6FFFA", // Equivalent to bg-teal-50
+              zIndex: 9999,
+              padding: "16px",
+              borderRadius: "8px",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <Login setShowLoginForm={setShowLoginForm} />
+          </div>
           )}
         </div>
         <div className="flex items-center justify-center">

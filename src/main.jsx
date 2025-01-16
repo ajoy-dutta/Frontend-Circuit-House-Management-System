@@ -4,6 +4,7 @@ import "./index.css";
 import {
   createBrowserRouter,
   RouterProvider,
+  useNavigate,
 } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import { UserProvider } from "./Provider/UserProvider";
@@ -37,6 +38,7 @@ import HelpLine from "./Pages/Home/HelpLine";
 
 
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -47,32 +49,39 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
+      
       {
         path: "/login",
         element: <Login />,
       },
+
       {
         path: "/registers", // Add the registration route
         element: <Registration />,
       },
+
       {
         path: "/room_details",
         element: <RoomDetails />,
       },
+
       {
         path: "/honor-board",
         element: <HonourBoard></HonourBoard>,
       },
+
       {
         path: "/contact",
         element: <Contact></Contact>,
       },
+
       {
         path: "/conferenceRoom",
         element: <ConferenceRoom />,
       },
+
       {
-        path: "/visitJahore",
+        path: "/visitJashore",
         element: <Carousels />,
       },
 

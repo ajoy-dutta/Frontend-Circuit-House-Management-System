@@ -1,17 +1,19 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { baseurl } from "../BaseURL";
+import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext();
+
 
 export const useUser = () => {
   return useContext(UserContext);
 };
 
-// UserProvider component
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);  // Start with loading true
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  
 
   const token = localStorage.getItem("accessToken");
 
@@ -19,7 +21,6 @@ export const UserProvider = ({ children }) => {
     if (!token) {
       setError("No token found. Please log in.");
       setUser(null);
-      setLoading(false);  // Stop loading
       return;
     }
 
@@ -40,13 +41,13 @@ export const UserProvider = ({ children }) => {
       }
 
       const data = await response.json();
-      setUser(data);  // Set user data
+      setUser(data);
     } catch (err) {
       console.error(err);
       setError(err.message || "Failed to fetch user data.");
       setUser(null);
     } finally {
-      setLoading(false);  // Stop loading after fetch completes
+      setLoading(false);
     }
   };
 
@@ -55,21 +56,21 @@ export const UserProvider = ({ children }) => {
     fetchUserData();
   };
 
-   
-   useEffect(() => {
+  // Handle Sign Out
+  const signOut = () => {
+    localStorage.removeItem("accessToken"); 
+    setUser(null);
+    
+  };
+
+
+  useEffect(() => {
     if (token) fetchUserData();
   }, [token]);
 
-
-  // Handle Sign Out
-  const signOut = () => {
-    localStorage.removeItem("accessToken");  // Remove token from localStorage
-    setUser(null);  // Clear user state
-  };
-
   return (
     <UserContext.Provider value={{ user, loading, error, refreshUser, signOut }}>
-      {loading ? <div>Loading...</div> : children} 
+      {children}
     </UserContext.Provider>
   );
 };
