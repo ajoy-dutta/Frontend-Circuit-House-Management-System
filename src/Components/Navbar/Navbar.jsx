@@ -220,7 +220,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar sticky top-0 z-[1000] bg-slate-50 flex h-[50px] px-8 items-center justify-between">
+    <div className="navbar sticky top-0 z-[1000] bg-slate-50 flex h-[50px] px-4 items-center justify-between">
       <div className="navbar-start w-full flex items-center gap-2">
         <div className="dropdown">
           <div
