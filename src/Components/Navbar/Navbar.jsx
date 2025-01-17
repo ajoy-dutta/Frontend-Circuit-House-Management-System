@@ -6,11 +6,13 @@ import { NavLink } from "react-router-dom";
 import logo from "../../assets/Footer/joyful.png";
 import LoginDrop from "../../Pages/authentication/Login2";
 
+
 const Navbar = () => {
   const { user, signOut } = useUser();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showDropLoginForm, setShowDropLoginForm] = useState(false);
+  
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen((prev) => !prev);

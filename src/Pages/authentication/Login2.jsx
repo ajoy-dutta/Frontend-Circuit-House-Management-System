@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from "../../Provider/UserProvider";
 import AxiosInstance from '../../Components/Axios';
 import { MdOutlineClose } from "react-icons/md";
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
 
 
 const LoginDrop = ({ setShowDropLoginForm }) => {
@@ -16,6 +17,7 @@ const LoginDrop = ({ setShowDropLoginForm }) => {
   });
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -93,20 +95,33 @@ const LoginDrop = ({ setShowDropLoginForm }) => {
           />
         </div>
 
+
+
         <div className="mb-4">
           <label htmlFor="password" className="block font-semibold mb-2 text-sm">
             Password:
           </label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full px-4 py-1 border rounded"
-            required
-          />
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="w-full px-4 py-1 border rounded"
+              required
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
         </div>
+
+        
+
 
         <button
           type="submit"
