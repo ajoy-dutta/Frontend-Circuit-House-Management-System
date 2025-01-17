@@ -86,7 +86,7 @@ const Registration = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="max-h-screen flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
         className="w-1/2 p-6 shadow-xl mb-4 rounded-lg bg-teal-50"
