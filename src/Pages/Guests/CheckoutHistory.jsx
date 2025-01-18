@@ -74,8 +74,8 @@ const CheckoutHistory = () => {
 
 
       {/* Table for larger screens */}
-      <div className="overflow-x-auto shadow-xl rounded-lg">
-        <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+      <div className="overflow-x-auto overflow-y-auto shadow-xl rounded-lg">
+        <table className="w-full bg-white border border-gray-200 rounded-lg">
           <thead className="bg-blue-100">
             <tr>
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">SL</th>

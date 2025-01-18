@@ -65,7 +65,6 @@ export const UserProvider = ({ children }) => {
   const signOut = () => {
     localStorage.removeItem("accessToken"); 
     localStorage.removeItem("user"); 
-
     setUser(null);
     
   };

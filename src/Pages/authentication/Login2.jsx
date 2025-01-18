@@ -68,8 +68,8 @@ const LoginDrop = ({ setShowDropLoginForm }) => {
 
   return (
     <div className="">
-      <div className='flex items-end justify-end'>
-      <div className=' text-red-500 text-xl font-bold text-center  hover:text-black px-4 py-2' onClick={() => setShowDropLoginForm(true)}><MdOutlineClose /></div>
+      <div className='flex items-end justify-end '>
+      <div className=' text-red-500 text-xl font-bold text-center  hover:text-black px-4 py-2' onClick={() => setShowDropLoginForm(false)}><MdOutlineClose /></div>
       </div>
       <form onSubmit={handleSubmit} className="p-4">
         <h2 className="text-center font-semibold text-lg mb-4">Sign In</h2>
