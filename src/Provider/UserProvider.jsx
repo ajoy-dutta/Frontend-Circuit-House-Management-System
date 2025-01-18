@@ -1,21 +1,21 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { baseurl } from "../BaseURL";
+import { useNavigate } from "react-router-dom";
 
-// Create a Context for user data
 const UserContext = createContext();
 
-// Custom hook to use the UserContext
+
 export const useUser = () => {
   return useContext(UserContext);
 };
 
-// UserProvider component
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null; // Retrieve user data from localStorage
+  });  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  // useNavigate is now available!
+  
 
   const token = localStorage.getItem("accessToken");
 
@@ -23,6 +23,7 @@ export const UserProvider = ({ children }) => {
     if (!token) {
       setError("No token found. Please log in.");
       setUser(null);
+      setLoading(false)
       return;
     }
 
@@ -44,6 +45,8 @@ export const UserProvider = ({ children }) => {
 
       const data = await response.json();
       setUser(data);
+      localStorage.setItem("user", JSON.stringify(data)); // Save user data to localStorage
+
     } catch (err) {
       console.error(err);
       setError(err.message || "Failed to fetch user data.");
@@ -53,25 +56,29 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  // Expose refreshUser method to allow manual fetching of user data
+
   const refreshUser = () => {
     fetchUserData();
   };
 
   // Handle Sign Out
   const signOut = () => {
-    localStorage.removeItem("accessToken"); // Remove token from localStorage
-    setUser(null);// Redirect to the home page
+    localStorage.removeItem("accessToken"); 
+    localStorage.removeItem("user"); 
+    setUser(null);
+    
   };
 
-  // Fetch user data on initial load if token exists
+
   useEffect(() => {
-    if (token) fetchUserData();
-  }, [token]);
+    if (token && !user) { // Only fetch if token exists and user is not set
+      fetchUserData();
+    }
+  }, [token, user]);
 
   return (
     <UserContext.Provider value={{ user, loading, error, refreshUser, signOut }}>
-      {children}
+       {loading ? <div>Loading...</div> : children} 
     </UserContext.Provider>
   );
 };

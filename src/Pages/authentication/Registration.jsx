@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../../Components/Axios";
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,8 @@ const Registration = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
 
 
   // Handle text and file changes
@@ -83,7 +86,7 @@ const Registration = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="max-h-screen flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
         className="w-1/2 p-6 shadow-xl mb-4 rounded-lg bg-teal-50"
@@ -124,40 +127,63 @@ const Registration = () => {
           />
         </div>
 
-        <div className="mb-4">
+
+        <div className="mb-4 relative">
           <label htmlFor="password" className="block font-semibold mb-2 text-sm">
             Password:
           </label>
+          <div className=" relative">
           <input
             id="password"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             name="password"
             value={formData.password}
             onChange={handleChange}
             className="w-full px-4 py-1 border rounded"
             required
           />
+          <span
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+          </div>
         </div>
 
-        <div className="mb-4">
+
+
+
+        <div className="mb-4 relative">
           <label
             htmlFor="confirm_password"
             className="block font-semibold mb-2 text-sm"
           >
             Confirm Password:
           </label>
+
+          <div className=" relative">
           <input
             id="confirm_password"
-            type="password"
+            type={showPassword2 ? 'text' : 'password'}
             name="confirm_password"
             value={formData.confirm_password}
             onChange={handleChange}
             className="w-full px-4 py-1 border rounded"
             required
           />
+
+           <span
+            onClick={() => setShowPassword2(!showPassword2)}
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
+            >
+            {showPassword2 ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
         </div>
 
-        <div className="mb-4">
+
+        <div className="mb-4 ">
           <label
             htmlFor="profile_picture"
             className="block font-semibold mb-2 text-sm"

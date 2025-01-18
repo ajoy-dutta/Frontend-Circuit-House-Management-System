@@ -42,6 +42,10 @@ const Navbar = ({ sidebarToggle, setSidebarToggle }) => {
   const handleDropdownToggle = () => {
     setDropdownOpen((prev) => !prev); // Toggle dropdown visibility
   };
+  const handleProfileClick = () => {
+    setDropdownOpen(false); // Close the dropdown when Profile is clicked
+    navigate("/profile");
+  };
 
   return (
     <div
@@ -67,11 +71,9 @@ const Navbar = ({ sidebarToggle, setSidebarToggle }) => {
           {dropdownOpen && (
             <div className="absolute shadow w-20 right-0 text-center  bg-white rounded">
               <ul className="text-sm">
-                <Link to="/dashboard/profile">
-                  <li className="hover:text-cyan-400 cursor-pointer border-b-2 text-black p-2 font-semibold">
+                  <li onClick={handleProfileClick} className="hover:text-cyan-400 cursor-pointer border-b-2 text-black p-2 font-semibold">
                     Profile
                   </li>
-                </Link>
                 {user ? (
                  
                   <li

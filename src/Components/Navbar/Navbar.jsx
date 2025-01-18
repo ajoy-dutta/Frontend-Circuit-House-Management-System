@@ -4,22 +4,28 @@ import Login from "../../Pages/authentication/Login";
 import { useUser } from "../../Provider/UserProvider";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/Footer/joyful.png";
+import LoginDrop from "../../Pages/authentication/Login2";
+
 
 const Navbar = () => {
   const { user, signOut } = useUser();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showDropLoginForm, setShowDropLoginForm] = useState(false);
+  
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen((prev) => !prev);
   };
+
+  
 
   const navOptions = (
     <>
       {user && (
         <li>
           <NavLink
-            to="/dashboard/room"
+            to="/room"
             className={({ isActive }) =>
               isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
             }
@@ -50,7 +56,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/brandJashore"
+          to="/visitJashore"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
@@ -88,63 +94,73 @@ const Navbar = () => {
           Help Line
         </NavLink>
       </li>
+      
     </>
   );
 
   const navDropOptions = (
     <>
-      <li>
+    <li >
         <NavLink
           to="/"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Home
         </NavLink>
       </li>
+
       {user && (
         <li>
           <NavLink
-            to="/dashboard/room"
+            to="/room"
             className={({ isActive }) =>
               isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
             }
+            onClick={handleDropdownToggle}
           >
             Dashboard
           </NavLink>
         </li>
       )}
-      <li>
+
+      <li >
         <NavLink
           to="/room_details"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Rooms
         </NavLink>
       </li>
-      <li>
+      <li >
         <NavLink
           to="/conferenceRoom"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Conference Hall
         </NavLink>
       </li>
-      <li>
+
+      <li >
         <NavLink
-          to="/brandJashore"
+          to="/visitJashore"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Visit Jashore
         </NavLink>
       </li>
+
       {/* <li >
         <NavLink
           to="/honor-board"
@@ -155,12 +171,14 @@ const Navbar = () => {
           Honor Board
         </NavLink>
       </li> */}
-      <li>
+
+      <li >
         <NavLink
           to="/contact"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Contact
         </NavLink>
@@ -172,59 +190,37 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
+          onClick={handleDropdownToggle}
         >
           Help Line
         </NavLink>
       </li>
-
+      
+      
       {user ? (
+        <div onClick={handleDropdownToggle}>
         <li className=" hover:text-cyan-400  cursor-pointer">
           <div onClick={signOut}>Sign Out</div>
         </li>
+        </div>
       ) : (
         <li className="relative">
           <div
-            onClick={() => setShowLoginForm(!showLoginForm)}
-            className=" hover:text-cyan-400  cursor-pointer"
+            onClick={() => {
+              handleDropdownToggle(); 
+              setShowDropLoginForm(!showDropLoginForm);
+            }}
           >
             Sign In
           </div>
-          {showLoginForm && (
-            <div
-              style={{
-                position: "fixed",
-                top: "264px", // Adjust based on your navbar height
-                left: "0",
-                right: "0",
-                width: "300px",
-                background: "#E6FFFA", // Equivalent to bg-teal-50
-                zIndex: 9999,
-                padding: "16px",
-                borderRadius: "8px",
-                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-              }}
-            >
-              <Login setShowLoginForm={setShowLoginForm} />
-            </div>
-          )}
-
-          {/* {showLoginForm && (
-            <div
-            className="fixed top-16 left-0 z-[9999] w-full p-4 shadow-lg bg-teal-50 rounded-lg lg:max-w-xs lg:left-auto lg:right-4"
-            style={{
-              transform: "translate(0, 0)",
-            }}
-          >
-            <Login setShowLoginForm={setShowLoginForm} />
-          </div>
-          )} */}
         </li>
       )}
+
     </>
   );
 
   return (
-    <div className="navbar sticky top-0 z-[1000] bg-slate-50 flex h-[50px] px-8 items-center justify-between">
+    <div className="navbar sticky top-0 z-[1000] bg-slate-50 flex h-[50px] px-4 items-center justify-between">
       <div className="navbar-start w-full flex items-center gap-2">
         <div className="dropdown">
           <div
@@ -251,12 +247,31 @@ const Navbar = () => {
           {isDropdownOpen && (
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content w-[200px] bg-slate-200 absolute rounded-box z-[1000] mt-3 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-slate-200 absolute rounded-box z-[1000] mt-3 w-40 p-2 shadow"
             >
               <ul className="font-serif space-y-4 p-2 text-lg font-semibold">
                 {navDropOptions}
               </ul>
             </ul>
+          )}
+
+         {showDropLoginForm && (
+            <div
+            style={{
+              position: "fixed",
+              top: "50px",
+              left: "0",
+              right: "0",
+              width: "300px",
+              background: "#E6FFFA", 
+              zIndex: 9999,
+              padding: "16px",
+              borderRadius: "8px",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <LoginDrop setShowDropLoginForm={setShowDropLoginForm} />
+          </div>
           )}
         </div>
         <div className="flex items-center justify-center">
@@ -264,12 +279,14 @@ const Navbar = () => {
             <NavLink to="/">
               <div className="flex items-center justify-center gap-2">
                 <img className="w-[30px]" src={logo} />
-                <div className="text-lg">Circuit House</div>
+                <div className="text-lg">
+                  Circuit House
+                </div>
               </div>
             </NavLink>
           </div>
           <div className="nav-start px-4  w-3/4">
-            <ul className="hidden lg:flex lg:justify-between items-center font-normal font-serif px-1 gap-8 whitespace-nowrap">
+            <ul className="hidden md:flex lg:flex lg:justify-between items-center font-normal font-serif px-1 gap-8 whitespace-nowrap">
               {navOptions}
             </ul>
           </div>

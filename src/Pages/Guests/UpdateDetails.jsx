@@ -76,7 +76,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
 
 
     return (
-        <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-75 z-50">
+        <div className="pt-8 fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-75 z-50">
             {/* <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-lg"> */}
 
             <form
@@ -90,7 +90,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                 )}
 
                 {/* Guest Name */}
-                <div className="mb-4 flex flex-row gap-2">
+                <div className="mt-8 mb-4 grid grid-cols-3 gap-2">
 
                     <div className="mb-4">
                         <label htmlFor="name" className="block font-semibold mb-2 text-sm">
@@ -178,7 +178,7 @@ const UpdateDetails = ({guest,roomlist,toggleUpdate}) => {
                                 Select Guest Type
                         </option>
                         <option value="Government Official">Govt. Official(Existing/Retd.)</option>
-                        <option value="Reference">Reference</option>
+                        {/* <option value="Reference">Reference</option> */}
                         <option value="Autonomous">Autonomous/Statutary Organization</option>
                         <option value="Private Sector Employee">Private Sector Employee/Others</option>
 

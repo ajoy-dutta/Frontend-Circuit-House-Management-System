@@ -1,5 +1,4 @@
 import { useState } from "react";
-import PropTypes from 'prop-types';
 import { useLocation, useNavigate } from "react-router-dom";
 import AxiosInstance from "../../Components/Axios";
 
@@ -64,7 +63,7 @@ const Book = () => {
 
 
             alert("Room Booked Successfully");
-            navigate("/dashboard/guest-list");
+            navigate("/guest-list");
         } catch (error) {
             console.error("Error Book room:", error);
         }
@@ -72,10 +71,10 @@ const Book = () => {
 
 
     return (
-        <div className="flex items-center justify-center mt-8 mb-8">
+        <div className="flex items-center justify-center mt-8 mb-8 ">
             <form
                 onSubmit={handleSubmit}
-                className="p-6 mb-4 rounded-lg bg-teal-50 w-1/2"
+                className="p-6 mb-4 rounded-lg bg-teal-50 lg:w-[90 px] w-[64 px]"
             >
                 <h2 className="text-center font-semibold text-lg mb-8">Guest Booking</h2>
 
@@ -99,7 +98,9 @@ const Book = () => {
                         required
                     />
                 </div>
-                <div className="mb-4">
+
+                <div className="mb-4 grid grid-cols-2 gap-2">
+                <div className="">
                     <label htmlFor="office" className="block font-semibold mb-2 text-sm">
                         Office
                     </label>
@@ -113,6 +114,23 @@ const Book = () => {
                         className="w-full px-4 py-1 border rounded text-sm"
                         
                     />
+                </div>
+
+                <div className="flex-1">
+                    <label htmlFor="nid" className="block font-semibold mb-2 text-sm">
+                        NID
+                    </label>
+                    <input
+                        id="nid"
+                        type="text"
+                        name="nid"
+                        value={bookData.nid}
+                        onChange={handleChange}
+                        placeholder="Enter National ID"
+                        className="w-full px-4 py-1 border rounded text-sm"
+                    />
+                </div>
+
                 </div>
 
 
@@ -149,7 +167,7 @@ const Book = () => {
                                 Select Guest Type
                     </option>
                     <option value="Government Official">Govt. Official(Existing/Retd.)</option>
-                        <option value="Reference">Reference</option>
+                        {/* <option value="Reference">Reference</option> */}
                         <option value="Autonomous">Autonomous/Statutary Organization</option>
                         <option value="Private Sector Employee">Private Sector Employee/Others</option>
 
@@ -157,24 +175,10 @@ const Book = () => {
                     </div>
                 </div>
 
-                {/* NID, Phone, and Email */}
-                <div className="mb-4 flex flex-row gap-2">
-                    <div className="flex-1">
-                        <label htmlFor="nid" className="block font-semibold mb-2 text-sm">
-                            NID
-                    </label>
-                        <input
-                            id="nid"
-                            type="text"
-                            name="nid"
-                            value={bookData.nid}
-                            onChange={handleChange}
-                            placeholder="Enter National ID"
-                            className="w-full px-4 py-1 border rounded text-sm"
-                        />
-                    </div>
-
-                    <div className="flex-1">
+                {/* Phone, and Email */}
+                <div className="mb-4 grid grid-cols-2 gap-2">
+                   
+                    <div >
                         <label htmlFor="phone" className="block font-semibold mb-2 text-sm">
                             Phone <span className="text-red-500">*</span>
                         </label>
@@ -190,7 +194,7 @@ const Book = () => {
                         />
                     </div>
 
-                    <div className="flex-[2]">
+                    <div >
                         <label htmlFor="email" className="block font-semibold mb-2 text-sm">
                             Email
                     </label>
@@ -288,13 +292,5 @@ const Book = () => {
 };
 
 
-Book.propTypes = {
-    name: PropTypes.string.isRequired,
-    total_person: PropTypes.number.isRequired,
-    room: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-    ]).isRequired,
-};
 
 export default Book;

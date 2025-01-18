@@ -1,146 +1,269 @@
+import {
+  PDFViewer,
+  PDFDownloadLink,
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Font,
+} from "@react-pdf/renderer";
 import { useLocation } from "react-router-dom";
-import jsPDF from "jspdf";
 
+Font.register({
+  family: "Badhon Lipi",
+  src: "/fonts/banglafont.ttf",
+   
+});
+
+
+
+// Define styles
+const styles = StyleSheet.create({
+  page :{
+    padding: 50,
+    fontSize: 10,
+    fontFamily: "Helvetica",
+    marginLeft: 30,
+  },
+
+  banglaText :{
+    fontFamily: "Badhon Lipi",
+  },
+
+  header: {
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 14,
+    marginBottom: 4,
+  },
+  subtitle: {
+    fontSize: 12,
+    marginBottom: 4,
+  },
+  contact: {
+    fontSize: 10,
+    marginBottom: 10,
+  },
+  section: {
+    marginBottom: 20,
+  },
+  sectionHeader: {
+    fontSize: 12,
+    marginBottom: 10,
+    fontWeight: "bold" ,
+  },
+  grid: {
+    display: "flex",
+    flexDirection: "row",
+    gap: 50,
+    marginBottom: 20,
+  },
+  gridItem: {
+    flex: 1,
+    alignItems: "flex-start",
+  },
+  infoRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 5,
+  },
+  infoLabel: {
+    fontWeight: "bold",
+    width: "40%",
+    textAlign: "left",
+  },
+  infoValue: {
+    width: "60%",
+    textAlign: "left",
+  },
+  table: {
+    width: "90%",
+    borderWidth: 1,
+    borderColor: "#ddd",
+    marginBottom: 10,
+
+  },
+  tableRow: {
+    flexDirection: "row",
+  },
+  tableCellHeader: {
+    padding: 5,
+    flex: 1,
+    textAlign: "center",
+    backgroundColor: "#f0f0f0",
+    borderWidth: 1,
+    borderColor: "#ddd",
+  },
+  tableCell: {
+    padding: 5,
+    flex: 2,
+    borderWidth: 1,
+    borderColor: "#ddd",
+  },
+  footer: {
+    position: "absolute",
+    bottom: 70,
+    textAlign: "center",
+    width: "80%",
+    fontSize: 10,
+  },
+  
+});
+
+// PDF Document Component
+const CheckoutSummaryPDF = ({ checkoutsummary, guest }) => (
+  <Document>
+    <Page size="A4" style={styles.page}>
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.title}>Circuit House, Jashore</Text>
+        <Text style={styles.subtitle}>Guest House Bill</Text>
+      </View>
+
+      {/* Guest Details and Payment Info Grid */}
+      <View style={styles.grid}>
+        {/* Guest Details */}
+        <View style={styles.gridItem}>
+          <Text style={styles.sectionHeader}>Guest Details</Text>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>Guest Name</Text>
+            <Text style={styles.infoValue}>:  {guest.name}</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>Room Name</Text>
+            <Text style={{ fontFamily: "Badhon Lipi" }}>:  {guest.room_name}</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>Check-In Date</Text>
+            <Text style={styles.infoValue}>
+              :  {new Date(guest.check_in_date).toLocaleString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+                hour12: true,
+              })}
+            </Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>Check-Out Date</Text>
+             <Text style={styles.infoValue}>
+              :  {new Date(guest.check_out_date).toLocaleString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+                hour12: true,
+              })}
+            </Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>Total Persons</Text>
+            <Text style={styles.infoValue}>:  {guest.total_person}</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>Total Days</Text>
+            <Text style={styles.infoValue}>:  {guest.total_days}</Text>
+          </View>
+        </View>
+
+        {/* Payment Information */}
+        <View style={styles.gridItem}>
+          <Text style={styles.sectionHeader}>Payment Information</Text>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>Payment Status</Text>
+            <Text style={styles.infoValue}>:  {checkoutsummary.payment_status}</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>Bill ID</Text>
+            <Text style={styles.infoValue}>
+             :  {checkoutsummary.payment_status === "Pending" ? "---" : checkoutsummary.payment_id}
+            </Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>Bill By</Text>
+            <Text style={styles.infoValue}>
+             :  {checkoutsummary.payment_status === "Pending" ? "---" : checkoutsummary.bill_by}
+            </Text>
+          </View>
+        </View>
+      </View>
+
+      {/* Payment Details Table */}
+      <View style={styles.section}>
+        <Text style={styles.sectionHeader}>Payment Details</Text>
+        <View style={styles.table}>
+          <View style={styles.tableRow}>
+            <Text style={styles.tableCellHeader}>Description</Text>
+            <Text style={styles.tableCellHeader}>Amount (BDT)</Text>
+          </View>
+          <View style={styles.tableRow}>
+            <Text style={styles.tableCell}>Total Rental Price</Text>
+            <Text style={styles.tableCell}>{checkoutsummary.total_rental_cost}</Text>
+          </View>
+          <View style={styles.tableRow}>
+            <Text style={styles.tableCell}>Total Food Price</Text>
+            <Text style={styles.tableCell}>{checkoutsummary.total_food_cost}</Text>
+          </View>
+          <View style={styles.tableRow}>
+            <Text style={styles.tableCell}>Total Other Costs</Text>
+            <Text style={styles.tableCell}>{checkoutsummary.total_other_cost}</Text>
+          </View>
+          <View style={[styles.tableRow, { backgroundColor: "#f0f0f0" }]}>
+            <Text style={styles.tableCell}>Grand Total</Text>
+            <Text style={styles.tableCell}>{checkoutsummary.grand_total}</Text>
+          </View>
+        </View>
+      </View>
+
+      {/* Footer */}
+      <View style={styles.footer}>
+        
+        <Text >Thank you for staying at Jashore Circuit House. You are always welcome at Joyful Jashore.</Text>
+        
+        <Text>Nezarat Deputy Collector |
+        Jashore, Khulna, Bangladesh.</Text>
+        <Text>
+        Cell: +8801733909222,
+          Phone: 02477762486,
+          Email: chjashore@gmail.com,
+          www.chjashore.online.
+         </Text>
+      </View>
+    </Page>
+  </Document>
+);
+
+// Main Component
 const CheckoutSummary = () => {
-    const location = useLocation();
-    const { checkoutsummary, guest } = location.state || {};
+  const location = useLocation();
+  const { checkoutsummary, guest } = location.state || {};
 
-    const handleDownloadPDF = () => {
-    const doc = new jsPDF(); 
-        const content = document.getElementById('content-to-pdf');
-        // Hide the download button
-        const downloadButton = document.getElementById('download-pdf-button');
-        downloadButton.style.display = 'none';
-
-        doc.html(content, {
-            callback: function (doc) {
-                doc.save('booking_invoice.pdf');
-                downloadButton.style.display = 'block';
-            },
-            x: 5,
-            y: 5,
-            width: 180,
-            windowWidth: 650,
-        });
-    }
-
-    if (!checkoutsummary) {
-        return <div>No data available.</div>;
-    }
-
-
-    return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100 py-8">
-
-            <div id="content-to-pdf" className="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full">
-                {/* Header Section */}
-                <div className="text-center mb-8">
-                    <h1 className="text-2xl font-bold text-gray-700">Circuit House, Jashore</h1>
-                    <h2 className="text-lg font-medium text-gray-600">Room Checkout Invoice</h2>
-                    <p className="text-sm text-gray-500">Jashore, Khulna, Bangladesh</p>
-                    <p className="text-sm text-gray-500">Phone: 02477762486 | Email: chjashore@gmail.com</p>
-                </div>
-
-                {/* Grid Layout for Guest Details and Additional Info */}
-                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
-                    <div className="ml-2">
-                        <h3 className="text-lg font-bold text-gray-700 mb-4">Guest Details</h3>
-                        <div className="space-y-2 text-base">
-                            <p><strong className="text-gray-700 font-semibold">Guest Name</strong> <span className="ml-7 ">: {guest.name}</span></p>
-                            <p><strong className="text-gray-700 font-semibold">Room Name:</strong><span className="ml-7">: {guest.room_name}</span></p>
-                            <p><strong className="text-gray-700 font-semibold">Check-In Date</strong><span className="ml-5 mr-1">: </span>
-                                {new Date(guest.check_in_date).toLocaleString("en-GB", {
-                                    day: "2-digit",
-                                    month: "2-digit",
-                                    year: "numeric",
-                                    hour: "numeric",
-                                    minute: "numeric",
-                                    hour12: true,
-                                })}
-                            </p>
-
-                            <p><strong className="text-gray-700 font-semibold">Check-Out Date</strong><span className="ml-2 mr-1">:</span>
-                                {new Date(guest.check_out_date).toLocaleString("en-GB", {
-                                    day: "2-digit",
-                                    month: "2-digit",
-                                    year: "numeric",
-                                    hour: "numeric",
-                                    minute: "numeric",
-                                    hour12: true,
-                                })}
-                            </p>
-
-                            <p><strong className="text-gray-700 font-semibold">Total Persons</strong><span className="ml-7">: {guest.total_person}</span></p>
-                            <p><strong className="text-gray-700 font-semibold">Total Days</strong><span className="ml-12">: {guest.total_days}</span></p>
-                        </div>
-                    </div>
-
-                    {/* Additional Payment Info */}
-                    <div className="ml-2 lg:ml-0">
-                        <h3 className="text-lg font-bold text-gray-700 mb-4 ">Payment Information</h3>
-                        <div className="space-y-2 text-base">
-                            <p><strong className="text-gray-700 font-semibold">Payment Status</strong><span className="ml-3">: {checkoutsummary.payment_status}</span></p>
-                            <p><strong className="text-gray-700 font-semibold">Bill ID</strong><span className="ml-20">: {checkoutsummary.payment_id } </span></p>
-                            <p><strong className="text-gray-700 font-semibold">Bill By</strong><span className="ml-20">: {checkoutsummary.bill_by}</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div className="mt-8">
-                    <h3 className="text-lg font-bold text-gray-700  p-2">Payment Details</h3>
-                    <table className="table-auto w-full text-sm border-separate border-spacing-2">
-                        <thead>
-                            <tr className="bg-gray-200">
-                                <th className="px-4 py-2 text-left text-gray-600">Description</th>
-                                <th className="px-4 py-2 text-right text-gray-600">Amount (BDT)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr className="border-b">
-                                <td className="px-4 py-1 text-gray-800">Total Rental Price</td>
-                                <td className="px-4 py-1 text-right text-gray-800">{checkoutsummary.total_rental_cost}</td>
-                            </tr>
-                            <tr className="border-b">
-                                <td className="px-4 py-1 text-gray-800">Total Food Price</td>
-                                <td className="px-4 py-1 text-right text-gray-800">{checkoutsummary.total_food_cost}</td>
-                            </tr>
-                            <tr className="border-b">
-                                <td className="px-4 py-1 text-gray-800">Total Other Costs</td>
-                                <td className="px-4 py-1 text-right text-gray-800">{checkoutsummary.total_other_cost}</td>
-                            </tr>
-                            <tr className="border-b bg-gray-100">
-                                <td className="px-4 py-1 text-gray-800 font-semibold">Grand Total</td>
-                                <td className="px-4 py-1 text-right text-gray-800 font-semibold">{checkoutsummary.grand_total}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-                <div className="mt-4">
-                    <p>Thank you for staying at Jashore Circuit House. You are always welcome at Joyful Jashore.</p>
-                    <p>
-                        Thanks and regards,<br />
-                        <strong>Nezarat Deputy Collector</strong><br />
-                        Cell: +8801733909222
-                    </p>
-                </div>
-
-
-                {/* Button for Downloading PDF */}
-                <div className="mt-8 flex justify-center">
-                    <button
-                        id="download-pdf-button"
-                        onClick={handleDownloadPDF}
-                        className="bg-blue-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-600"
-                    >
-                        Download PDF
-                    </button>
-                </div>
-            </div>
-        </div>
-
-
-    );
+  return (
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 py-8">
+      <PDFViewer style={{ width: "80%", height: "90vh", marginBottom: "20px" }}>
+        <CheckoutSummaryPDF checkoutsummary={checkoutsummary} guest={guest} />
+      </PDFViewer>
+      <PDFDownloadLink
+        document={<CheckoutSummaryPDF checkoutsummary={checkoutsummary} guest={guest} />}
+        fileName="checkout_invoice.pdf"
+        style={{
+          textDecoration: "none",
+          padding: "10px 20px",
+          color: "#fff",
+          backgroundColor: "#007bff",
+          borderRadius: "5px",
+        }}
+      >
+        {({ loading }) => (loading ? "Generating PDF..." : "Download PDF")}
+      </PDFDownloadLink>
+    </div>
+  );
 };
-
 
 export default CheckoutSummary;

@@ -32,7 +32,7 @@ const Checkout = () => {
       const response = await AxiosInstance.post('/checkout/', { guest_id: guest.id, paymentStatus,username: user.username });
       setCheckOutSummary(response.data)
 
-      navigate("/dashboard/checkout-summary", { state: { checkoutsummary: response.data, guest } });
+      navigate("/checkout-summary", { state: { checkoutsummary: response.data, guest } });
 
       alert(`Guest ${guest.name} has been successfully checked out.`);
 
@@ -52,21 +52,22 @@ const Checkout = () => {
         <table className="table-auto w-full  text-left text-sm md:text-base lg:text-lg">
           <tbody>
             <tr>
-              <td className="text-gray-700 font-semibold">Guest Name:</td>
-              <td>{guest.name}</td>
+              <td className="text-gray-700 font-semibold">Guest Name</td>
+              <td><span className="mr-4 font-semibold">:</span>{guest.name}</td>
             </tr>
            
             <tr>
-              <td className="text-gray-700 font-semibold">Phone No:</td>
-              <td>{guest.phone}</td>
+              <td className="text-gray-700 font-semibold">Phone No</td>
+              <td><span className="mr-4 font-semibold">:</span>{guest.phone}</td>
             </tr>
             <tr>
-              <td className="text-gray-700 font-semibold">Room Name:</td>
-              <td>{guest.room_name}</td>
+              <td className="text-gray-700 font-semibold">Room Name</td>
+              <td><span className="mr-4 font-semibold">:</span>{guest.room_name}</td>
             </tr>
             <tr>
-              <td className="text-gray-700 font-semibold">Check-In Date:</td>
+              <td className="text-gray-700 font-semibold">Check-In Date</td>
               <td>
+              <span className="mr-4 font-semibold">:</span>
                 {new Date(guest.check_in_date ).toLocaleString("en-GB", {
                   day: "2-digit",
                   month: "2-digit",
@@ -78,8 +79,10 @@ const Checkout = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-gray-700 font-semibold">Check-Out Date:</td>
-              <td>{new Date(guest.check_out_date ).toLocaleString("en-GB", {
+              <td className="text-gray-700 font-semibold">Check-Out Date</td>
+              <td>
+              <span className="mr-4 font-semibold">:</span>
+                {new Date(guest.check_out_date ).toLocaleString("en-GB", {
                   day: "2-digit",
                   month: "2-digit",
                   year: "numeric",
@@ -90,40 +93,41 @@ const Checkout = () => {
             </tr>
             
             <tr>
-              <td className="text-gray-700 font-semibold">Guest Type:</td>
-              <td>{guest.user_type}</td>
+              <td className="text-gray-700 font-semibold">Guest Type</td>
+              <td><span className="mr-4 font-semibold">:</span>{guest.user_type}</td>
             </tr>
             <tr>
-              <td className="text-gray-700 font-semibold">NID:</td>
-              <td>{guest.nid}</td>
+              <td className="text-gray-700 font-semibold">NID</td>
+              <td><span className="mr-4 font-semibold">:</span>{guest.nid}</td>
             </tr>
             <tr>
-              <td className="text-gray-700 font-semibold">Email:</td>
-              <td>{guest.email}</td>
+              <td className="text-gray-700 font-semibold">Email</td>
+              <td><span className="mr-4 font-semibold">:</span>{guest.email}</td>
             </tr>
             <tr>
-              <td className="text-gray-700 font-semibold">Total Persons:</td>
-              <td>{guest.total_person}</td>
+              <td className="text-gray-700 font-semibold">Total Persons</td>
+              <td><span className="mr-4 font-semibold">:</span>{guest.total_person}</td>
             </tr>
             <tr>
-              <td className="text-gray-700 font-semibold">Total Days:</td>
-              <td>{guest.total_days}</td>
+              <td className="text-gray-700 font-semibold">Total Days</td>
+              <td><span className="mr-4 font-semibold">:</span>{guest.total_days}</td>
             </tr>
             <tr>
-              <td className="text-gray-700 font-semibold">Total Rental Price:</td>
-              <td>{guest.total_rental_price}</td>
+              <td className="text-gray-700 font-semibold">Total Rental Price</td>
+              <td><span className="mr-4 font-semibold">:</span>{guest.total_rental_price}</td>
             </tr>
             <tr>
-              <td className="text-gray-700 font-semibold">Total Food Cost:</td>
-              <td>{guest.total_food_cost}</td>
+              <td className="text-gray-700 font-semibold">Total Food Cost</td>
+              <td><span className="mr-4 font-semibold">:</span>{guest.total_food_cost}</td>
             </tr>
             <tr>
-              <td className="text-gray-700 font-semibold">Total Other Cost:</td>
-              <td>{guest.total_other_cost}</td>
+              <td className="text-gray-700 font-semibold">Total Other Cost</td>
+              <td><span className="mr-4 font-semibold">:</span>{guest.total_other_cost}</td>
             </tr>
             <tr>
-              <td className="text-gray-700 font-semibold">Grand Total:</td>
+              <td className="text-gray-700 font-semibold">Grand Total</td>
               <td>
+              <span className="mr-4 font-semibold">:</span>
                 {Number(guest.total_rental_price) +
                   Number(guest.total_food_cost) +
                   Number(guest.total_other_cost)}

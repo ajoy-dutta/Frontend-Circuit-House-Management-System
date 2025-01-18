@@ -7,15 +7,21 @@ import { Link, useLocation } from "react-router-dom";
 import { useUser } from "../../Provider/UserProvider";
 import { FaHistory  } from "react-icons/fa";
 import { FaRegMessage } from "react-icons/fa6";
-import { FaUser } from "react-icons/fa";
 
 
-const Sidebar = ({ sidebarToggle }) => {
+const Sidebar = ({ sidebarToggle, setSidebarToggle }) => {
   const { user } = useUser();
   const location = useLocation(); 
 
   // Function to determine if a tab is active
   const isActive = (path) => location.pathname === path;
+
+  const handleLinkClick = () => {
+    if (window.innerWidth <= 768) {
+      setSidebarToggle(true); // Hide the sidebar when a link is clicked on small devices
+    }
+  };
+
 
   return (
     <div
@@ -41,11 +47,12 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
-        <Link to="/dashboard/room">
+        <Link to="/room">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/dashboard/room") ? "bg-blue-100 text-gray-600" : ""
+              isActive("/room") ? "bg-blue-100 text-gray-600" : ""
             }`}
+            onClick={handleLinkClick}
           >
             <div className="px-3">
               <FaHome className="inline-block w-6 h-6 mr-2 -mt-2" />
@@ -54,11 +61,12 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
-        <Link to="/dashboard/food">
+        <Link to="/food">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/dashboard/food") ? "bg-blue-100 text-gray-600" : ""
+              isActive("/food") ? "bg-blue-100 text-gray-600" : ""
             }`}
+            onClick={handleLinkClick}
           >
             <div className="px-3">
               <FaBowlFood className="inline-block w-6 h-6 mr-2 -mt-2" />
@@ -67,11 +75,12 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
-        <Link to="/dashboard/other">
+        <Link to="/other">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/dashboard/other") ? "bg-blue-100 text-gray-600" : ""
+              isActive("/other") ? "bg-blue-100 text-gray-600" : ""
             }`}
+            onClick={handleLinkClick}
           >
             <div className="px-3">
               <FaPoll className="inline-block w-6 h-6 mr-2 -mt-2" />
@@ -80,28 +89,30 @@ const Sidebar = ({ sidebarToggle }) => {
           </li>
         </Link>
 
-        <Link to="/dashboard/guest-list">
+        <Link to="/guest-list">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/dashboard/guest-list")
+              isActive("/guest-list")
                 ? "bg-blue-100 text-gray-600"
                 : ""
             }`}
+            onClick={handleLinkClick}
           >
             <div className="px-3">
               <FaUsers className="inline-block w-6 h-6 mr-2 -mt-2" />
-              Our Guests
+              Current Guests
             </div>
           </li>
         </Link>
 
-        <Link to="/dashboard/checkout-history">
+        <Link to="/checkout-history">
           <li
             className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/dashboard/checkout-history")
+              isActive("/checkout-history")
                 ? "bg-blue-100 text-gray-600"
                 : ""
             }`}
+            onClick={handleLinkClick}
           >
             <div className="px-3">
               <FaHistory className="inline-block w-6 h-6 mr-2 -mt-2" />
@@ -111,49 +122,35 @@ const Sidebar = ({ sidebarToggle }) => {
         </Link>
 
         {user?.role === "NDC" && (
-          <Link to="/dashboard/staff-approval">
-            <li
-              className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-                isActive("/dashboard/staff-approval")
-                  ? "bg-blue-100 text-gray-600"
-                  : ""
-              }`}
-            >
-              <div className="px-3 ">
-                <HiUsers className="inline-block w-6 h-6 mr-2 -mt-2 "></HiUsers>
-                Staffs
-              </div>
-            </li>
-          </Link>
-        )}
-
-        <Link to="/dashboard/staff-profile">
-          <li
-            className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/dashboard/staff-profile")
-                ? "bg-blue-100 text-gray-600"
-                : ""
-            }`}
-          >
+          <Link to="/staff-approval">
+          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2"  onClick={handleLinkClick}>
             <div className="px-3 ">
-              <FaUser className="inline-block w-6 text-lg mr-2 " />
-              Staff Profile
+              <HiUsers className="inline-block w-6 h-6 mr-2 -mt-2 "></HiUsers>
+              Staffs
+            </div>
+          </li>
+        </Link>
+      )}
+
+        <Link to="/staff-profile">
+          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2"  onClick={handleLinkClick}>
+            <div className="px-3 ">
+              <HiUsers className="inline-block w-6 h-6 mr-2 -mt-2 "></HiUsers>
+              Staff List
             </div>
           </li>
         </Link>
 
-        <Link to="/dashboard/inbox">
-          <li className={`mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2 ${
-              isActive("/dashboard/inbox")
-                ? "bg-blue-100 text-gray-600"
-                : ""
-            }`}>
+
+          <Link to="inbox">
+          <li className="mb-2 rounded hover:shadow hover:bg-blue-100 hover:text-gray-600 py-2"  onClick={handleLinkClick}>
             <div className="px-3 ">
               <FaRegMessage className="inline-block w-6 text-lg mr-2 "></FaRegMessage>
               Inbox
             </div>
           </li>
         </Link>
+
       </ul>
     </div>
   );

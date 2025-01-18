@@ -7,7 +7,7 @@ import { MdOutlineClose } from "react-icons/md";
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
 
 
-const Login = ({ setShowLoginForm }) => {
+const LoginDrop = ({ setShowDropLoginForm }) => {
   const navigate = useNavigate();
   const { refreshUser } = useUser();
 
@@ -56,7 +56,7 @@ const Login = ({ setShowLoginForm }) => {
         refreshUser();
         
         navigate("/room"); // Redirect to home page
-        setShowLoginForm(false);
+        setShowDropLoginForm(false);
         alert("Login Successful!");
 
       }
@@ -70,8 +70,8 @@ const Login = ({ setShowLoginForm }) => {
 
   return (
     <div className="">
-      <div className='flex items-end justify-end'>
-      <div className=' text-red-500 text-xl font-bold text-center  hover:text-black px-4 py-2' onClick={() => setShowLoginForm(false)}><MdOutlineClose /></div>
+      <div className='flex items-end justify-end '>
+      <div className=' text-red-500 text-xl font-bold text-center  hover:text-black px-4 py-2' onClick={() => setShowDropLoginForm(false)}><MdOutlineClose /></div>
       </div>
       <form onSubmit={handleSubmit} className="p-4">
         <h2 className="text-center font-semibold text-lg mb-4">Sign In</h2>
@@ -94,6 +94,8 @@ const Login = ({ setShowLoginForm }) => {
             required
           />
         </div>
+
+
 
         <div className="mb-4">
           <label htmlFor="password" className="block font-semibold mb-2 text-sm">
@@ -118,6 +120,9 @@ const Login = ({ setShowLoginForm }) => {
           </div>
         </div>
 
+        
+
+
         <button
           type="submit"
           className="bg-gradient-to-r from-teal-600 to-blue-700 text-white text-sm font-semibold py-2 w-full rounded"
@@ -129,7 +134,7 @@ const Login = ({ setShowLoginForm }) => {
 
       <p className="text-sm font-semibold p-4">
         Do not have an account?{" "}
-        <Link to="/registers" onClick={() => setShowLoginForm(false)} className="text-blue-700 hover:underline">
+        <Link to="/registers" onClick={() => setShowDropLoginForm(false)} className="text-blue-700 hover:underline">
           Sign Up
         </Link>
       </p>
@@ -145,4 +150,4 @@ const Login = ({ setShowLoginForm }) => {
   );
 };
 
-export default Login;
+export default LoginDrop;

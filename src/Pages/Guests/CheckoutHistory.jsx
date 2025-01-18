@@ -8,6 +8,8 @@ const CheckoutHistory = () => {
   const [checkoutHistory, setCheckoutHistory] = useState([]);
   const [selectedGuest, setSelectedGuest] = useState(null);
   const [selectedGuestUpdate, setSelectedGuestUpdate] = useState(null);
+  const [filteredHistory, setFilteredHistory] = useState([]); // Filtered results
+  const [searchQuery, setSearchQuery] = useState(""); // Search query state
 
   console.log(checkoutHistory)
 
@@ -16,6 +18,7 @@ const CheckoutHistory = () => {
       try {
         const response = await AxiosInstance.get('/checkout/');
         setCheckoutHistory(response.data);
+        setFilteredHistory(response.data)
       } catch (error) {
         console.log("Error fetching data", error);
       }
@@ -37,17 +40,21 @@ const CheckoutHistory = () => {
     fetchRooms();
   }, []);
 
-
-  // console.log("roomlist",roomlist)
-
+  useEffect(() => {
+   
+    const results = checkoutHistory.filter((checkout) =>
+    checkout.guest?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    checkout.guest?.phone?.toString().includes(searchQuery.toString())
+  );
+  
+    setFilteredHistory(results);
+  }, [searchQuery, checkoutHistory]);
+  
 
   const toggleDetails = (id) => {
     setSelectedGuest(selectedGuest === id ? null : id);
   };
 
-  const toggleUpdate = (id) => {
-    setSelectedGuestUpdate(selectedGuestUpdate === id ? null : id);
-  };
 
 
 
@@ -55,80 +62,70 @@ const CheckoutHistory = () => {
     <div className="p-8 bg-gray-50 min-h-screen">
       <h2 className="text-3xl font-semibold mb-6 text-center text-gray-800">Guest Information</h2>
 
+      <div className="mb-6">
+      <input
+        type="text"
+        placeholder="Search by name or phone"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="w-80 px-2 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm transition duration-300 ease-in-out"
+      />
+    </div>
+
+
       {/* Table for larger screens */}
-      <div className="overflow-x-auto shadow-xl rounded-lg">
-        <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+      <div className="overflow-x-auto overflow-y-auto shadow-xl rounded-lg">
+        <table className="w-full bg-white border border-gray-200 rounded-lg">
           <thead className="bg-blue-100">
             <tr>
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">SL</th>
-              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Name</th>
+              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700 ">Name</th>
               {/* <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Designation</th> */}
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Room Name</th>
-              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Check-In Date</th>
-              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Check-Out Date</th>
+              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700 whitespace-nowrap">Check-In Date</th>
+              <th className="py-3 px-4 text-left text-sm font-medium text-gray-700 whitespace-nowrap">Check-Out Date</th>
               {/* <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Update</th> */}
               <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">Details</th>
             </tr>
           </thead>
           <tbody>
-            {checkoutHistory.map((checkout, index) => (
-              <tr key={checkout.id} className="border-t border-b hover:bg-blue-50">
-                <td className="py-3 px-4 text-sm font-medium text-gray-800">{checkoutHistory.length - index}</td>
-                <td className="py-3 px-4 text-sm font-medium text-gray-800">{checkout.guest.name}</td>
-                {/* <td className="py-3 px-4 text-sm font-medium text-gray-800">{checkout.designation}</td> */}
-                <td className="py-3 px-4 text-sm font-medium text-gray-800">{checkout.guest.room_name}</td>
-                <td className="py-3 px-4 text-sm text-gray-600"> 
-                  {new Date(checkout.guest.check_in_date ).toLocaleString("en-GB", {
-                  day: "2-digit",
-                  month: "2-digit",
-                  year: "numeric",
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                })}
-                </td>
+  {filteredHistory.map((checkout, index) => (
+    <tr key={checkout.id} className="border-t border-b hover:bg-blue-50">
+      <td className="py-3 px-4 text-sm font-medium text-gray-800">{filteredHistory.length - index}</td>
+      <td className="py-3 px-4 text-sm font-medium text-gray-800 whitespace-nowrap">{checkout.guest.name}</td>
+      <td className="py-3 px-4 text-sm font-medium text-gray-800">{checkout.guest.room_name}</td>
+      <td className="py-3 px-4 text-sm text-gray-600 whitespace-nowrap">
+        {new Date(checkout.guest.check_in_date).toLocaleString("en-GB", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+        })}
+      </td>
+      <td className="py-3 px-4 text-sm text-gray-600 whitespace-nowrap">
+        {new Date(checkout.guest.check_out_date).toLocaleString("en-GB", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+        })}
+      </td>
+      <td className="py-3 px-4 text-sm">
+        <button
+          onClick={() => toggleDetails(checkout.guest.id)}
+          className="px-4 py-2 bg-blue-500 text-white text-xs font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Details
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
 
-                <td className="py-3 px-4 text-sm text-gray-600">
-                  {new Date(checkout.guest.check_out_date ).toLocaleString("en-GB", {
-                  day: "2-digit",
-                  month: "2-digit",
-                  year: "numeric",
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                })}
-                </td>
-
-                {/* <td className="py-3 px-4 text-sm">
-                  <button
-                    onClick={() => toggleUpdate(checkout.guest.id)}
-                    className="px-4 py-2 bg-blue-500 text-white text-xs font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    Update
-                  </button>
-                </td> */}
-
-                {selectedGuestUpdate == checkout.guest.id && (
-                  <div className="mt-4">
-                    <UpdateDetails
-                      checkout={checkout}
-                      roomlist={roomlist}
-                      toggleUpdate={toggleUpdate}
-                    />
-                  </div>
-                )}
-
-                <td className="py-3 px-4 text-sm">
-                  <button
-                    onClick={() => toggleDetails(checkout.guest.id)}
-                    className="px-4 py-2 bg-blue-500 text-white text-xs font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    Details
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
         </table>
       </div>
 

@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import Details from "./Details";
 import { Link } from "react-router-dom";
 import AxiosInstance from "../../Components/Axios";
 import { useUser } from "../../Provider/UserProvider";
 import { CgDetailsMore } from "react-icons/cg";
+import VVIP from "../../assets/Rooms/CircuitHouse_11.jpg"
+import tista from "../../assets/Rooms/Tista.JPG";
+import oprajita from "../../assets/Rooms/Oprajita.JPG";
+import titas from "../../assets/Rooms/Titas_Old.JPG"
+
 
 const Room = () => {
   const [roomlist, setRoomlist] = useState([]);
   const [showDetails, setShowDetails] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [showForm, setShowForm] = useState(false);
-  const { user } = useUser();
   const [newRoom, setNewRoom] = useState({
     room_name: '',
     room_type: 'One King Size Bed',
@@ -21,6 +24,7 @@ const Room = () => {
     building: 'New Building',
     floor: 'First Floor',
   });
+
   
 
   useEffect(() => {
@@ -111,7 +115,7 @@ const Room = () => {
         >
           Add New Room
         </button>
-        <Link to="/dashboard/room-details">
+        <Link to="/rooms">
           <button
             className="bg-gray-500 text-white font-semibold font-sans py-2 px-4 rounded shadow-md border border-gray-100 hover:bg-gray-600"
             onClick={handleDetailsClick}
@@ -209,14 +213,14 @@ const Room = () => {
             <div className="flex justify-between gap-2">
               <button
                 type="submit"
-                className="bg-gradient-to-r from-teal-500 to-blue-500 text-white text-sm font-semibold py-1 px-2 rounded hover:bg-blue-600"
+                className="bg-blue-500 text-white text-sm font-semibold py-0 px-2 rounded hover:bg-blue-600"
               >
                 Add Room
               </button>
 
               <button
                 onClick={() => setShowForm(!showForm)}
-                className="mt-2 px-2 py-2 bg-gray-300 rounded-lg text-sm hover:bg-gray-400"
+                className="mt-2 px-2 py-1 bg-gray-300 rounded-lg text-sm hover:bg-gray-400"
               >
                 Cancel
               </button>
@@ -275,9 +279,8 @@ const Room = () => {
                     <div className="flex items-center justify-between mt-4">
                       <div className="flex">
                         <Link
-                          to="/dashboard/room_details"
-                          state={{ room }}
-                          im
+                          to="/details"
+                          state={{ room, VVIP }}
                           className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
                         >
                           <CgDetailsMore />
@@ -286,7 +289,7 @@ const Room = () => {
                       </div>
                       {room.availability_status === "Vacant" ? (
                         <Link
-                          to="/dashboard/book"
+                          to="/book"
                           state={{ room }}
                           className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
                         >
@@ -325,6 +328,8 @@ const Room = () => {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:grid-cols-3 gap-4 mt-4">
                   {groupedRooms[building][floor].map((room) => {
+
+                    const VVIP = building === "New Building" ? oprajita : tista
                     let statusClass = "";
                     switch (room.availability_status) {
                       case "Vacant":
@@ -359,8 +364,8 @@ const Room = () => {
                         <div className="flex items-center justify-between mt-4">
                           <div className="flex">
                             <Link
-                              to="/dashboard/room_details"
-                              state={{ room }}
+                              to="/details"
+                              state={{ room, VVIP }}
                               className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
                             >
                               <CgDetailsMore />
@@ -370,7 +375,7 @@ const Room = () => {
                           </div>
                           {room.availability_status === "Vacant" ? (
                             <Link
-                              to="/dashboard/book"
+                              to="/book"
                               state={{ room }}
                               className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
                             >

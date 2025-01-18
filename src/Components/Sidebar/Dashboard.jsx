@@ -10,7 +10,7 @@ const Dashboard = ({ sidebarToggle, setSidebarToggle }) => {
           sidebarToggle={sidebarToggle}
           setSidebarToggle={setSidebarToggle}
         />
-        <div className="p-4 ">
+        <div className="p-0 ">
           {/* This renders child routes */}
           <Outlet />
         </div>

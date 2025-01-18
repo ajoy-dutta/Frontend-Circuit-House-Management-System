@@ -4,22 +4,6 @@ import dc from "../../assets/DC.jpg";
 
 const DCinfo = () => {
   const [currentDC, setCurrentDC] = useState(null);
-  // const convertToBanglaDate = (dateString) => {
-  //   if (!dateString) return ""; // Handle empty dates
-  //   const banglaNumerals = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
-  //   return dateString
-  //     .split("-") // Split date into parts (e.g., "YYYY-MM-DD")
-  //     .reverse() // Reorder to DD-MM-YYYY
-  //     .map((part) =>
-  //       part
-  //         .split("")
-  //         .map((digit) =>
-  //           isNaN(parseInt(digit)) ? digit : banglaNumerals[parseInt(digit)] // Convert only numeric digits to Bangla
-  //         )
-  //         .join("")
-  //     )
-  //     .join("-"); // Join the parts back with the separator
-  // };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,7 +71,7 @@ const DCinfo = () => {
                   <table className="table-auto w-full ">
                     <tbody>
                       <tr>
-                        <td className="bg-[#d8c4b6] text-right  w-1/3 text-sm font-bold text-gray-800 px-2 border border-[#c2a896]">
+                        <td className="bg-[#d8c4b6] text-right  w-1/3 text-sm text-gray-600 px-2 border border-[#c2a896]">
                           Name
                         </td>
                         {/* <td className="text-sm text-gray-800 px-2 border border-[#d8c4b6]">
