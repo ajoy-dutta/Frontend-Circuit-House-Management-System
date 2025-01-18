@@ -5,8 +5,6 @@ import { useUser } from "../../Provider/UserProvider";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/Footer/joyful.png";
 import LoginDrop from "../../Pages/authentication/Login2";
-import { IoMdMenu } from "react-icons/io";
-
 
 const Navbar = () => {
   const { user, signOut } = useUser();
@@ -220,17 +218,29 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar sticky top-0 z-[1000] bg-slate-50 flex h-[50px] px-2 items-center justify-between">
+    <div className="navbar sticky top-0 z-[1000] bg-slate-50 flex h-[50px] px-4 items-center justify-between">
       <div className="navbar-start w-full flex items-center gap-2">
         <div className="dropdown">
           <div
             tabIndex={0}
             role="button"
             onClick={handleDropdownToggle}
-            className="btn text-xl  btn-ghost lg:hidden"
+            className="btn btn-ghost lg:hidden"
           >
-            <IoMdMenu >
-            </IoMdMenu>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
           </div>
           {isDropdownOpen && (
             <ul
