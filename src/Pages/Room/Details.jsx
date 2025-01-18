@@ -94,7 +94,7 @@ const Details = () => {
 
         {/* Room Information */}
 
-        <div className="grid md:grid-cols-2 gap-4 mb-12">
+        <div className="grid md:grid-cols-2 gap-4 mb-8">
         <div className="p-1 rounded-lg shadow-lg border border-gray">
             <img src={VVIP} alt="rgjufgt" />
           </div>
@@ -127,54 +127,12 @@ const Details = () => {
 
 
         {/* Price Table */}
-        <h2 className="text-2xl font-bold text-center text-blue-900 mb-4">Price Table</h2>
-        <div className="overflow-x-auto shadow-md rounded-lg border border-gray-200">
-          <table className="w-full text-sm text-gray-700 border-collapse">
-            <thead className="bg-blue-900 text-white">
-              <tr>
-                <th className="px-4 py-1 text-center font-semibold">SL No.</th>
-                <th className="px-4 py-1 text-left font-semibold">Guest Type</th>
-                <th className="px-4 py-1 text-center font-semibold">1-3 days</th>
-                <th className="px-4 py-1 text-center font-semibold">4-7 days</th>
-                <th className="px-4 py-1 text-center font-semibold">8 days or up</th>
-              </tr>
-            </thead>
-            <tbody>
-              {grouped.map(([guestType, prices], index) => (
-                <tr
-                  key={index}
-                  className={`hover:bg-blue-50 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}
-                >
-                  <td className="px-4 py-1 text-center font-medium">{index + 1}</td>
-                  <td className="px-4 py-1">
-                    {guestTypeMap[guestType] || guestType}
-                  </td >
-                  {prices.price_per_day ? (
-                    <td
-                      className="px-4 py-1 text-center align-middle text-blue-400"
-                      colSpan={3}
-                    >
-                      {prices.price_per_day}
-                    </td>
-                  ) : (
-                      <>
-                        <td className="px-4 py-1 text-center align-middle">{prices["1-3"]}</td>
-                        <td className="px-4 py-1 text-center align-middle">{prices["4-7"]}</td>
-                        <td className="px-4 py-1 text-center align-middle">{prices["7+"]}</td>
-                      </>
-                    )}
 
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
       {user && (
-        <div className="relative p-6 w-full max-w-4xl bg-white shadow-lg rounded-lg">
-          <h2 className="text-2xl font-bold text-center text-blue-900 mb-4">Current Guest</h2>
+        <div className="relative p-2 w-full max-w-4xl bg-white shadow-lg rounded-lg">
+          <h2 className="text-2xl font-bold text-center text-blue-900 mb-2">Current Guest</h2>
           <div className="overflow-x-auto">
-            <table className="text-center w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
+            <table className="text-center mb-6 w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
               <thead className="bg-blue-900  text-white">
                 <tr>
                   {/* <th className="px-2 py-2 border">SL No.</th> */}
@@ -220,17 +178,60 @@ const Details = () => {
                     </tr>
                   ))
                 ) : (
-                    <tr>
-                      <td colSpan={4} className="px-2 py-2 border text-center text-gray-500">
-                        No current guest available.
+                  <tr className="border">
+                  <td colSpan="6" className="px-2 py-2 text-center text-gray-500 align-middle">
+                    Currently, no guest is available.
                   </td>
-                    </tr>
+                </tr>
                   )}
               </tbody>
             </table>
           </div>
         </div>
       )}
+              <h2 className="text-2xl font-bold text-center text-blue-900 mb-2 mt-4">Price Table</h2>
+        <div className="overflow-x-auto shadow-md rounded-lg border border-gray-200">
+          <table className="w-full text-sm text-gray-700 border-collapse">
+            <thead className="bg-blue-900 text-white">
+              <tr>
+                <th className="px-4 py-1 text-center font-semibold">SL No.</th>
+                <th className="px-4 py-1 text-left font-semibold">Guest Type</th>
+                <th className="px-4 py-1 text-center font-semibold">1-3 days</th>
+                <th className="px-4 py-1 text-center font-semibold">4-7 days</th>
+                <th className="px-4 py-1 text-center font-semibold">8 days or up</th>
+              </tr>
+            </thead>
+            <tbody>
+              {grouped.map(([guestType, prices], index) => (
+                <tr
+                  key={index}
+                  className={`hover:bg-blue-50 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}
+                >
+                  <td className="px-4 py-1 text-center font-medium">{index + 1}</td>
+                  <td className="px-4 py-1">
+                    {guestTypeMap[guestType] || guestType}
+                  </td >
+                  {prices.price_per_day ? (
+                    <td
+                      className="px-4 py-1 text-center align-middle text-blue-400"
+                      colSpan={3}
+                    >
+                      {prices.price_per_day}
+                    </td>
+                  ) : (
+                      <>
+                        <td className="px-4 py-1 text-center align-middle">{prices["1-3"]}</td>
+                        <td className="px-4 py-1 text-center align-middle">{prices["4-7"]}</td>
+                        <td className="px-4 py-1 text-center align-middle">{prices["7+"]}</td>
+                      </>
+                    )}
+
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       {/* Guest History Section */}
       {user && (
@@ -284,7 +285,7 @@ const Details = () => {
                   ))
                 ) : (
                     <tr>
-                      <td colSpan={4} className="px-2 py-2 border text-center text-gray-500">
+                      <td colSpan={7} className="px-2 py-2 border text-center text-gray-500">
                         No guest history available.
                   </td>
                     </tr>
