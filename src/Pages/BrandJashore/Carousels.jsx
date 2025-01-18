@@ -190,10 +190,6 @@ export const Carousels = () => {
                   {slide.des}
                 </div>
               </div>
-              {/* <div className="absolute right-0 text-[#213555] space-y-5 font-serif text-justify p-4 px-10  w-1/2">
-                <p className="font-bold text-xl">{slide.heading}</p>
-                <div>{slide.des}</div>
-              </div> */}
             </div>
           ))}
         </div>
