@@ -103,6 +103,17 @@ const Navbar = () => {
           Media
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/calender"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+          onClick={handleDropdownToggle}
+        >
+          Tourism Calender
+        </NavLink>
+      </li>
       
     </>
   );
