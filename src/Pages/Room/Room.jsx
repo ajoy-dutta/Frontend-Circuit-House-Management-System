@@ -289,20 +289,27 @@ const Room = () => {
                       </div>
                       
                       <Link
-                      to="/book"
-                      state={{ room }}
-                      className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
-                    >
+                     to="/book"
+                     state={{ room }}
+                     className={`py-1 px-3 rounded text-sm flex items-center gap-1 ${
+                       room.availability_status === "Locked"
+                         ? "bg-gray-400 text-gray-700 cursor-not-allowed pointer-events-none"
+                         : "bg-teal-600 hover:bg-teal-700 text-white"
+                     }`}
+                   
+                     >
                       {room.availability_status === "Vacant" ? (
-                        <>
-                          <span>Book</span>
-                          <FontAwesomeIcon icon={faArrowRight} />
-                        </>
-                      ) : (
-                        <>
-                          <span>Future Book</span>
-                          <FontAwesomeIcon icon={faArrowRight} />
-                        </>
+                         <>
+                         <span>Book</span>
+                         <FontAwesomeIcon icon={faArrowRight} />
+                       </>
+                     ) : room.availability_status === "Locked" ? (
+                       <span>Locked</span>
+                     ) : (
+                       <>
+                         <span>Future Book</span>
+                         <FontAwesomeIcon icon={faArrowRight} />
+                       </>
                       )}
                     </Link>
 
@@ -378,18 +385,24 @@ const Room = () => {
                           <Link
                       to="/book"
                       state={{ room }}
-                      className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
-                    >
+                      className={`py-1 px-3 rounded text-sm flex items-center gap-1 ${
+                        room.availability_status === "Locked"
+                          ? "bg-gray-400 text-gray-700 cursor-not-allowed pointer-events-none"
+                          : "bg-teal-600 hover:bg-teal-700 text-white"
+                      }`}
+                      >
                       {room.availability_status === "Vacant" ? (
                         <>
-                          <span>Book</span>
-                          <FontAwesomeIcon icon={faArrowRight} />
-                        </>
-                      ) : (
-                        <>
-                          <span>Future Book</span>
-                          <FontAwesomeIcon icon={faArrowRight} />
-                        </>
+                        <span>Book</span>
+                        <FontAwesomeIcon icon={faArrowRight} />
+                      </>
+                    ) : room.availability_status === "Locked" ? (
+                      <span>Locked</span>
+                    ) : (
+                      <>
+                        <span>Future Book</span>
+                        <FontAwesomeIcon icon={faArrowRight} />
+                      </>
                       )}
                     </Link>
                         </div>

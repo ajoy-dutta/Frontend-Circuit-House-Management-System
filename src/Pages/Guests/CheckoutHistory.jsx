@@ -135,7 +135,7 @@ const CheckoutHistory = () => {
       {/* Modal for guest details */}
       {selectedGuest && (
             <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-75 z-50">
-            <div className="bg-white p-6 rounded-lg shadow-xl w-2/3 max-w-4xl max-h-screen overflow-y-auto">
+            <div className="bg-white p-6 rounded-lg shadow-xl w-4/5 max-w-3xl max-h-screen overflow-y-auto">
               {checkoutHistory
                 .filter((checkout) => checkout.guest.id === selectedGuest)
                 .map((checkout) => (
@@ -146,28 +146,28 @@ const CheckoutHistory = () => {
                         <table className="table-auto w-full text-base border-separate border-spacing-2">
                           <tbody>
                             <tr>
-                              <td className="text-gray-700 font-medium w-1/3">Guest Name:</td>
-                              <td className="text-gray-700">{checkout.guest.name}</td>
+                              <td className="text-gray-700 font-medium w-1/3">Guest Name</td>
+                              <td className="text-gray-700"><span className="mr-2">:</span>{checkout.guest.name}</td>
                             </tr>
                             <tr>
-                              <td className="text-gray-700 font-medium w-1/3">Designation:</td>
-                              <td className="text-gray-700">{checkout.guest.designation}</td>
+                              <td className="text-gray-700 font-medium w-1/3">Designation</td>
+                              <td className="text-gray-700"><span className="mr-2">:</span>{checkout.guest.designation}</td>
                             </tr>
                             <tr>
-                              <td className="text-gray-700 font-medium w-1/3">Room Name:</td>
-                              <td className="text-gray-700">{checkout.guest.room_name}</td>
+                              <td className="text-gray-700 font-medium w-1/3">Room Name</td>
+                              <td className="text-gray-700"><span className="mr-2">:</span>{checkout.guest.room_name}</td>
                             </tr>
                             <tr>
-                              <td className="text-gray-700 font-medium w-1/3">Phone:</td>
-                              <td className="text-gray-700">{checkout.guest.phone}</td>
+                              <td className="text-gray-700 font-medium w-1/3">Phone</td>
+                              <td className="text-gray-700"><span className="mr-2">:</span>{checkout.guest.phone}</td>
                             </tr>
                             <tr>
-                              <td className="text-gray-700 font-medium w-1/3">Email:</td>
-                              <td className="text-gray-700">{checkout.guest.email}</td>
+                              <td className="text-gray-700 font-medium w-1/3">Email</td>
+                              <td className="text-gray-700"><span className="mr-2">:</span>{checkout.guest.email}</td>
                             </tr>
                             <tr>
-                              <td className="text-gray-700 font-medium w-1/3">Check-In Date:</td>
-                              <td className="text-gray-700">
+                              <td className="text-gray-700 font-medium w-1/3">Check-In Date</td>
+                              <td className="text-gray-700"><span className="mr-2">:</span>
                                 {new Date(checkout.guest.check_in_date).toLocaleString("en-GB", {
                                   day: "2-digit",
                                   month: "2-digit",
@@ -179,8 +179,8 @@ const CheckoutHistory = () => {
                               </td>
                             </tr>
                             <tr>
-                              <td className="text-gray-700 font-medium w-1/3">Check-Out Date:</td>
-                              <td className="text-gray-700">
+                              <td className="text-gray-700 font-medium w-1/3">Check-Out Date</td>
+                              <td className="text-gray-700"><span className="mr-2">:</span>
                                 {new Date(checkout.guest.check_out_date).toLocaleString("en-GB", {
                                   day: "2-digit",
                                   month: "2-digit",
@@ -192,12 +192,12 @@ const CheckoutHistory = () => {
                               </td>
                             </tr>
                             <tr>
-                              <td className="text-gray-700 font-medium w-1/3">Total Persons:</td>
-                              <td className="text-gray-700">{checkout.guest.total_person}</td>
+                              <td className="text-gray-700 font-medium w-1/3">Total Persons</td>
+                              <td className="text-gray-700"><span className="mr-2">:</span>{checkout.guest.total_person}</td>
                             </tr>
                             <tr>
-                              <td className="text-gray-700 font-medium w-1/3">Total Days:</td>
-                              <td className="text-gray-700">{checkout.guest.total_days}</td>
+                              <td className="text-gray-700 font-medium w-1/3">Total Days</td>
+                              <td className="text-gray-700"><span className="mr-2">:</span>{checkout.guest.total_days}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -209,16 +209,17 @@ const CheckoutHistory = () => {
                         <table className="table-auto w-full text-base border-separate border-spacing-2">
                           <tbody>
                             <tr>
-                              <td className="text-gray-700 font-medium w-1/3">Payment Status:</td>
-                              <td className="text-gray-700">{checkout.payment_status}</td>
+                              <td className="text-gray-700 font-medium w-1/3">Payment Status</td>
+
+                              <td className="text-gray-700"><span className="mr-2">:</span>{checkout.payment_status}</td>
                             </tr>
                             <tr>
                               <td className="text-gray-700 font-medium w-1/3">Bill ID:</td>
-                              <td className="text-gray-700">{checkout.payment_id}</td>
+                              <td className="text-gray-700"><span className="mr-2">:</span>{checkout.payment_id}</td>
                             </tr>
                             <tr>
                               <td className="text-gray-700 font-medium w-1/3">Bill By:</td>
-                              <td className="text-gray-700">{checkout.bill_by}</td>
+                              <td className="text-gray-700"><span className="mr-2">:</span>{checkout.bill_by}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -257,7 +258,7 @@ const CheckoutHistory = () => {
                       </table>
                     </div>
           
-                    <div className="mt-2 ml-2">
+                    <div className="mt-2 text-center">
                       <button
                         onClick={() => toggleDetails(null)}
                         className="px-4 py-2 bg-red-500 text-white text-xs font-semibold rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"

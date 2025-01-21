@@ -92,6 +92,17 @@ const Navbar = () => {
           Help Line
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/media"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+          onClick={handleDropdownToggle}
+        >
+          Media
+        </NavLink>
+      </li>
       
     </>
   );
@@ -193,6 +204,7 @@ const Navbar = () => {
           Help Line
         </NavLink>
       </li>
+     
       
       
       {user ? (
