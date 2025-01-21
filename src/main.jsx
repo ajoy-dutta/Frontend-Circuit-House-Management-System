@@ -36,6 +36,7 @@ import { Carousels } from "./Pages/BrandJashore/Carousels";
 import ProtectedRoute from "./Provider/ProtectedRoute"; 
 import HelpLine from "./Pages/Home/HelpLine";
 import Media from "./Pages/Media/Media";
+import AddMedia from "./Pages/Media/AddMedia";
 
 
 
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
       {
         path: "/media",
         element: <Media></Media>,
+      },
+      {
+        path: "/addMedia",
+        element: <AddMedia></AddMedia>,
       },
      
     ],
