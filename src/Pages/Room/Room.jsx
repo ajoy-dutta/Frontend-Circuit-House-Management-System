@@ -287,24 +287,33 @@ const Room = () => {
                           <span>Details</span>
                         </Link>
                       </div>
+                      
+                      <Link
+                     to="/book"
+                     state={{ room }}
+                     className={`py-1 px-3 rounded text-sm flex items-center gap-1 ${
+                       room.availability_status === "Locked"
+                         ? "bg-gray-400 text-gray-700 cursor-not-allowed pointer-events-none"
+                         : "bg-teal-600 hover:bg-teal-700 text-white"
+                     }`}
+                   
+                     >
                       {room.availability_status === "Vacant" ? (
-                        <Link
-                          to="/book"
-                          state={{ room }}
-                          className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
-                        >
-                          <span>Book</span>
-                          <FontAwesomeIcon icon={faArrowRight} />
-                        </Link>
-                      ) : (
-                          <button
-                            disabled
-                            className="bg-gray-300 text-gray-500 py-1 px-4 rounded text-sm cursor-not-allowed"
-                          >
-                            Book
-                          </button>
+                         <>
+                         <span>Book</span>
+                         <FontAwesomeIcon icon={faArrowRight} />
+                       </>
+                     ) : room.availability_status === "Locked" ? (
+                       <span>Locked</span>
+                     ) : (
+                       <>
+                         <span>Future Book</span>
+                         <FontAwesomeIcon icon={faArrowRight} />
+                       </>
+                      )}
+                    </Link>
 
-                        )}
+
                     </div>
 
                   </div>
@@ -373,23 +382,29 @@ const Room = () => {
 
                             </Link>
                           </div>
-                          {room.availability_status === "Vacant" ? (
-                            <Link
-                              to="/book"
-                              state={{ room }}
-                              className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded text-sm flex items-center gap-1"
-                            >
-                              <span>Book</span>
-                              <FontAwesomeIcon icon={faArrowRight} />
-                            </Link>
-                          ) : (
-                              <button
-                                disabled
-                                className="bg-gray-300 text-gray-500 py-1 px-4 rounded text-sm cursor-not-allowed"
-                              >
-                                Book
-                              </button>
-                            )}
+                          <Link
+                      to="/book"
+                      state={{ room }}
+                      className={`py-1 px-3 rounded text-sm flex items-center gap-1 ${
+                        room.availability_status === "Locked"
+                          ? "bg-gray-400 text-gray-700 cursor-not-allowed pointer-events-none"
+                          : "bg-teal-600 hover:bg-teal-700 text-white"
+                      }`}
+                      >
+                      {room.availability_status === "Vacant" ? (
+                        <>
+                        <span>Book</span>
+                        <FontAwesomeIcon icon={faArrowRight} />
+                      </>
+                    ) : room.availability_status === "Locked" ? (
+                      <span>Locked</span>
+                    ) : (
+                      <>
+                        <span>Future Book</span>
+                        <FontAwesomeIcon icon={faArrowRight} />
+                      </>
+                      )}
+                    </Link>
                         </div>
 
                       </div>
