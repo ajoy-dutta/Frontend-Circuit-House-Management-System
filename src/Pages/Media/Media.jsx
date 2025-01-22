@@ -6,42 +6,54 @@ import AxiosInstance from "../../Components/Axios";
 
 const Media = () => {
   const { user } = useUser();
-  const [mediaData, setMediaData] = useState([]);  // Corrected state initialization
+  const [mediaData, setMediaData] = useState([]);
+  const [selectedMedia, setSelectedMedia] = useState(null); // For storing selected media for the modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = (item) => {
+    setSelectedMedia(item);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedMedia(null);
+  };
 
   useEffect(() => {
-    const fetchEvents = async () => {
+    const fetchMedia = async () => {
       try {
         const response = await AxiosInstance.get("/media/");
         setMediaData(response.data);
-        console.log(mediaData)
       } catch (error) {
-        console.error("Error fetching calendar events:", error);
+        console.error("Error fetching media:", error);
       }
     };
 
-    fetchEvents();
+    fetchMedia();
   }, []);
-  
+
   return (
     <div className="bg-[#D8C4B6]">
       <div
         className="hero h-[500px]"
         style={{
           backgroundImage: `url(${img})`,
-          backgroundSize: "cover", // Ensures the image covers the full area
-          backgroundPosition: "center", // Centers the image within the div
-          backgroundRepeat: "no-repeat", // Ensures the image doesn't repeat
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-neutral-content text-center">
           <div className="max-w-2xl">
-            <h1 className="mb-5 text-4xl font-semibold italic">Discover Moments, Captured in Time</h1>
-            
+            <h1 className="mb-5 text-4xl font-semibold italic">
+              Discover Moments, Captured in Time
+            </h1>
           </div>
         </div>
       </div>
-      
+
       {user && (
         <div className="flex justify-end p-6 items-end">
           <Link
@@ -53,30 +65,53 @@ const Media = () => {
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 text-black lg:grid-cols-3 gap-4">
+      <div className="max-w-7xl py-10 mx-auto grid grid-cols-1 md:grid-cols-2 text-black lg:grid-cols-3 gap-6">
         {mediaData.map((item) => (
-          <div key={item.id} className="bg-[#F5EFE7] rounded-none shadow-lg">  {/* Use unique key */}
-            <div className="">
-            {item.image ? (
-                  <img src={item.image} alt="media" className="w-full h-64 object-cover" />
+          <div key={item.id} className="bg-[#F5EFE7] rounded-none shadow-lg">
+            <div>
+              <div className="h-64">
+                {item.image ? (
+                  <img
+                    src={item.image}
+                    alt="media"
+                    className="w-full h-64 object-cover"
+                  />
                 ) : item.video ? (
                   <video controls className="w-full h-64 object-cover">
                     <source src={item.video} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 ) : null}
+              </div>
               <div className="px-4 py-2">
-                <h2 className="card-title">{item.title}</h2> {/* Use media title */}
-                <div className="flex items-end justify-end">
-                  <Link className="btn bg-[#213555] hover:bg-[#3E5879] text-white btn-xs px-0 rounded-full w-[80px]">
+                <h2 className="card-title">{item.title}</h2>
+                <div className="flex justify-end">
+                  <button
+                    onClick={() => openModal(item)}
+                    className="btn bg-[#213555] hover:bg-[#3E5879] text-white btn-xs px-4 rounded-full"
+                  >
                     Details
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         ))}
-      </div>  
+
+        {isModalOpen && selectedMedia && (
+          <div className="modal modal-open" role="dialog">
+            <div className="modal-box">
+              <h3 className="text-lg font-bold">{selectedMedia.title}</h3>
+              <p className="py-4 text-justify">{selectedMedia.description}</p>
+              <div className="modal-action">
+                <button onClick={closeModal} className="btn">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

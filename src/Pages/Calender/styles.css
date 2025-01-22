@@ -1,0 +1,9 @@
+.custom-tile {
+    background-color: #3e5879; /* Your custom background color */
+    color: white;
+    border-radius: 50%; /* Optional for circular styling */
+  }
+  
+  .custom-tile:hover {
+    background-color: #2d4059;
+  }
