@@ -77,8 +77,8 @@ const AddMedia = () => {
                   <label className="text-sm font-medium text-[#213555]" htmlFor="title">
                     Title
                   </label>
-                  <input
-                    className="flex h-10 w-full px-3 py-2 text-sm bg-gray-100 border border-gray-300 rounded-md"
+                  <textarea
+                    className="flex h-20 w-full px-3 py-2 text-sm bg-gray-100 border border-gray-300 rounded-md"
                     placeholder="Enter Media Title"
                     id="title"
                     name="title"
@@ -119,6 +119,20 @@ const AddMedia = () => {
                 )}
               </div>
               <div className="space-y-4">
+              <div className="space-y-2">
+                  <label className="text-sm font-medium text-[#213555]" htmlFor="description">
+                    Description
+                  </label>
+                  <textarea
+                    className="flex w-full h-20 px-3 py-2 text-sm bg-gray-100 border border-gray-300 rounded-md"
+                    placeholder="Enter Description For Media"
+                    id="description"
+                    name="description"
+                    value={mediaData.description}
+                    onChange={handleChange}
+                    required  
+                  />
+                </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-[#213555]" htmlFor="type">
                     Media Type
@@ -159,20 +173,7 @@ const AddMedia = () => {
                     )}
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-[#213555]" htmlFor="description">
-                    Description
-                  </label>
-                  <textarea
-                    className="flex w-full h-10 px-3 py-2 text-sm bg-gray-100 border border-gray-300 rounded-md"
-                    placeholder="Enter Description For Media"
-                    id="description"
-                    name="description"
-                    value={mediaData.description}
-                    onChange={handleChange}
-                    required  
-                  />
-                </div>
+               
               </div>
             </div>
             <button

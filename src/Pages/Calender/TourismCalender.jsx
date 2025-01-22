@@ -68,7 +68,8 @@ const TourismCalendar = () => {
      
   
       setEvents((prevEvents) => [...prevEvents, response.data]);
-   
+      alert("Media uploaded successfully!");
+
       setIsModalOpen(false); 
     } catch (error) {
       console.error("Error adding event:", error);
@@ -77,9 +78,9 @@ const TourismCalendar = () => {
   
 
   return (
-    <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between  my-14">
+    <div className="max-w-7xl mx-auto flex flex-col md:flex-row flex-wrap items-start justify-between my-14 gap-6">
       {/* Left Section: Calendar */}
-      <div className="w-1/4 ml-6">
+      <div className="w-full md:w-1/4 px-4">
         <h1 className="text-xl font-semibold">Tourism Calendar</h1>
         <Calendar
           className="text-sm w-full flex flex-col items-center justify-center border border-red-300"
@@ -87,35 +88,31 @@ const TourismCalendar = () => {
           value={selectedDate}
           tileContent={({ date }) => {
             const dailyEvents = getEventsForDate(date);
-            return dailyEvents.length > 0 ? (<span className="bg-green-500 flex flex-col items-center justify-center ml-3  p-1 h-[4px] w-[4px] rounded-full text-xs"></span>): null;
+            return dailyEvents.length > 0 ? (
+              <span className="bg-green-500 flex flex-col items-center justify-center ml-3 p-1 h-[4px] w-[4px] rounded-full text-xs"></span>
+            ) : null;
           }}
         />
-          {/* <Calendar
-      onChange={(date) => console.log(date)}
-      tileClassName={({ date }) => {
-        const events = getEventsForDate(date);
-        return events.length > 0 ? "custom-tile" : ""; // Add custom class if events exist
-      }}
-        /> */}
+  
         {user && (
           <button
             onClick={() => setIsModalOpen(true)}
-            className="mb-4 p-2 bg-green-500 text-white rounded-md mt-6"
+            className="mb-4 p-2 bg-green-500 text-white rounded-md mt-6 w-full"
           >
             Add New Event
           </button>
         )}
       </div>
-
+  
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-gray-200 p-10 rounded-md w-1/3">
+          <div className="bg-gray-200 p-6 rounded-md w-11/12 max-w-md md:max-w-lg">
             <div className="flex justify-between mb-4">
               <h2 className="text-xl font-bold">Add New Event</h2>
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="btn btn-square btn-sm bg-red-500  text-white p-2 rounded-md"
+                className="p-2 bg-red-500 text-white rounded-md"
               >
                 <RxCross2 />
               </button>
@@ -172,15 +169,15 @@ const TourismCalendar = () => {
                 <input
                   type="file"
                   id="picture"
-                  name="picture" // Make sure you set the 'name' attribute
+                  name="picture"
                   className="w-full p-2 border border-gray-300 rounded-md"
                   onChange={(e) =>
                     setNewEvent({ ...newEvent, picture: e.target.files[0] })
                   }
                 />
               </div>
-
-              <div className="flex items-center justify-center ">
+  
+              <div className="flex items-center justify-center">
                 <button
                   type="submit"
                   className="bg-blue-400 text-white p-2 w-full rounded-md"
@@ -192,16 +189,16 @@ const TourismCalendar = () => {
           </div>
         </div>
       )}
-
+  
       {/* Right Section: Events Grid */}
-      <div className="w-2/3 mr-8 bg-[#84A7E0] p-4 rounded-md shadow-md text-[#3E5879]">
+      <div className="w-full md:w-2/3 bg-[#84A7E0] p-4 rounded-md shadow-md text-[#3E5879]">
         <h2 className="text-xl text-center font-semibold mb-4">
           Events on {selectedDate.toDateString()}
         </h2>
         {getEventsForDate(selectedDate).length === 0 ? (
           <p>No events on this date.</p>
         ) : (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {getEventsForDate(selectedDate).map((event) => (
               <div
                 key={event.id}
@@ -210,13 +207,10 @@ const TourismCalendar = () => {
                 <div className="text-center">
                   <strong>{event.title}</strong>
                 </div>
-                <br />
-                {/* <span className="p-4">{event.date}</span> */}
-                <br />
                 <img
                   src={event.picture}
                   alt={event.title}
-                  className="w-full h-auto object-cover rounded-md mb-2"
+                  className="w-full h-auto object-cover rounded-md my-2"
                 />
                 <p>{event.description}</p>
               </div>
@@ -226,6 +220,7 @@ const TourismCalendar = () => {
       </div>
     </div>
   );
+  
 };
 
 export default TourismCalendar;
