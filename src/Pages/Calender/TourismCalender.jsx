@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import AxiosInstance from "../../Components/Axios";
 import { useUser } from "../../Provider/UserProvider";
+import { RxCross2 } from "react-icons/rx";
+import "./styles.css"
+import 'react-calendar/dist/Calendar.css';
+
 
 const TourismCalendar = () => {
   const { user } = useUser();
@@ -73,36 +77,49 @@ const TourismCalendar = () => {
   
 
   return (
-    <div className="flex items-start justify-between  mt-8 mb-8">
+    <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between  my-14">
       {/* Left Section: Calendar */}
       <div className="w-1/4 ml-6">
         <h1 className="text-xl font-semibold">Tourism Calendar</h1>
         <Calendar
-        className="text-sm w-full border border-red-300"
+          className="text-sm w-full flex flex-col items-center justify-center border border-red-300"
           onChange={setSelectedDate}
           value={selectedDate}
           tileContent={({ date }) => {
             const dailyEvents = getEventsForDate(date);
-            return dailyEvents.length > 0 ? (
-              <span className="text-green-600 text-xs flex">
-                ({dailyEvents.length} Event{dailyEvents.length > 1 ? "s" : ""})
-              </span>
-            ) : null;
+            return dailyEvents.length > 0 ? (<span className="bg-green-500 flex flex-col items-center justify-center ml-3  p-1 h-[4px] w-[4px] rounded-full text-xs"></span>): null;
           }}
         />
-        {user &&(<button
-          onClick={() => setIsModalOpen(true)}
-          className="mb-4 p-2 bg-green-500 text-white rounded-md mt-6"
-        >
-          Add New Event
-        </button>
+          {/* <Calendar
+      onChange={(date) => console.log(date)}
+      tileClassName={({ date }) => {
+        const events = getEventsForDate(date);
+        return events.length > 0 ? "custom-tile" : ""; // Add custom class if events exist
+      }}
+        /> */}
+        {user && (
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="mb-4 p-2 bg-green-500 text-white rounded-md mt-6"
+          >
+            Add New Event
+          </button>
         )}
       </div>
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-gray-200 p-4 rounded-md w-1/3">
-            <h2 className="text-xl font-semibold">Add New Event</h2>
+          <div className="bg-gray-200 p-10 rounded-md w-1/3">
+            <div className="flex justify-between mb-4">
+              <h2 className="text-xl font-bold">Add New Event</h2>
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+                className="btn btn-square btn-sm bg-red-500  text-white p-2 rounded-md"
+              >
+                <RxCross2 />
+              </button>
+            </div>
             <form onSubmit={handleAddEvent}>
               <div className="mb-4">
                 <label htmlFor="title" className="block">
@@ -150,31 +167,25 @@ const TourismCalendar = () => {
               </div>
               <div className="mb-4">
                 <label htmlFor="picture" className="block">
-                    Event Picture
+                  Event Picture
                 </label>
                 <input
-                    type="file"
-                    id="picture"
-                    name="picture" // Make sure you set the 'name' attribute
-                    className="w-full p-2 border border-gray-300 rounded-md"
-                    onChange={(e) => setNewEvent({ ...newEvent, picture: e.target.files[0] })}
+                  type="file"
+                  id="picture"
+                  name="picture" // Make sure you set the 'name' attribute
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  onChange={(e) =>
+                    setNewEvent({ ...newEvent, picture: e.target.files[0] })
+                  }
                 />
-                </div>
+              </div>
 
-
-              <div className="flex justify-between">
+              <div className="flex items-center justify-center ">
                 <button
                   type="submit"
-                  className="bg-blue-400 text-white p-2 rounded-md"
+                  className="bg-blue-400 text-white p-2 w-full rounded-md"
                 >
-                  Add Event
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="bg-gray-500 text-white p-2 rounded-md"
-                >
-                  Cancel
+                  Confirm
                 </button>
               </div>
             </form>
@@ -214,7 +225,6 @@ const TourismCalendar = () => {
         )}
       </div>
     </div>
-    
   );
 };
 
