@@ -76,26 +76,6 @@ const Navbar = () => {
       </li> */}
       <li>
         <NavLink
-          to="/contact"
-          className={({ isActive }) =>
-            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
-          }
-        >
-          Contact
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/help-line"
-          className={({ isActive }) =>
-            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
-          }
-        >
-          Help Line
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
           to="/media"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
@@ -116,6 +96,27 @@ const Navbar = () => {
           Tourism Calender
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Contact
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/help-line"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+        >
+          Help Line
+        </NavLink>
+      </li>
+      
       
     </>
   );
@@ -194,6 +195,30 @@ const Navbar = () => {
         </NavLink>
       </li> */}
 
+        <li >
+        <NavLink
+          to="/media"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+          onClick={handleDropdownToggle}
+        >
+          Media
+        </NavLink>
+      </li>
+      
+      <li >
+        <NavLink
+          to="/calender"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+          onClick={handleDropdownToggle}
+        >
+          Calender
+        </NavLink>
+      </li>
+      
       <li >
         <NavLink
           to="/contact"

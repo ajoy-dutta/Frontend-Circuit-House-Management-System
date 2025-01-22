@@ -31,10 +31,9 @@ const TourismCalendar = () => {
   }, []);
 
   const formatDate = (date) => {
-    // Create a new Date object based on the selected date to ensure it's in local time
     const newDate = new Date(date);
-    newDate.setMinutes(newDate.getMinutes() - newDate.getTimezoneOffset()); // Adjusts the date for timezone offset
-    return newDate.toISOString().split("T")[0]; // Only get the date part in YYYY-MM-DD format
+    newDate.setMinutes(newDate.getMinutes() - newDate.getTimezoneOffset()); 
+    return newDate.toISOString().split("T")[0];
   };
   
 
@@ -57,7 +56,6 @@ const TourismCalendar = () => {
       formData.append("description", newEvent.description);
       formData.append("date", formattedDate);
   
-      // Only append the file if one is selected
       if (newEvent.picture) {
         formData.append("picture", newEvent.picture);
       }
@@ -67,7 +65,7 @@ const TourismCalendar = () => {
   
       setEvents((prevEvents) => [...prevEvents, response.data]);
    
-      setIsModalOpen(false); // Close the modal after submitting the form
+      setIsModalOpen(false); 
     } catch (error) {
       console.error("Error adding event:", error);
     }
@@ -86,7 +84,7 @@ const TourismCalendar = () => {
           tileContent={({ date }) => {
             const dailyEvents = getEventsForDate(date);
             return dailyEvents.length > 0 ? (
-              <span className="text-red-600 text-xs flex">
+              <span className="text-green-600 text-xs flex">
                 ({dailyEvents.length} Event{dailyEvents.length > 1 ? "s" : ""})
               </span>
             ) : null;
@@ -185,7 +183,7 @@ const TourismCalendar = () => {
       )}
 
       {/* Right Section: Events Grid */}
-      <div className="w-2/3 mr-8 bg-[#D8C4B6] p-4 rounded-md shadow-md text-[#3E5879]">
+      <div className="w-2/3 mr-8 bg-[#84A7E0] p-4 rounded-md shadow-md text-[#3E5879]">
         <h2 className="text-xl text-center font-semibold mb-4">
           Events on {selectedDate.toDateString()}
         </h2>
@@ -196,13 +194,13 @@ const TourismCalendar = () => {
             {getEventsForDate(selectedDate).map((event) => (
               <div
                 key={event.id}
-                className="p-4 bg-[#F5EFE7] border border-gray-300 rounded-md"
+                className="p-4 bg-[#ACC2E2] border border-gray-300 rounded-md"
               >
                 <div className="text-center">
                   <strong>{event.title}</strong>
                 </div>
                 <br />
-                <span>{event.date}</span>
+                {/* <span className="p-4">{event.date}</span> */}
                 <br />
                 <img
                   src={event.picture}
