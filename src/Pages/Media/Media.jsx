@@ -5,7 +5,7 @@ import img from "../../assets/Slider/Jessore Road_01.jpg";
 const Media = () => {
   const { user } = useUser();
   return (
-    <div>
+    <div className="bg-[#D8C4B6]">
       <div
         className="hero h-[500px]"
         style={{
@@ -17,13 +17,8 @@ const Media = () => {
       >
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-neutral-content text-center">
-          <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">Discover Moments, Captured in Time</h1>
-            <p className="mb-5">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
+          <div className="max-w-2xl">
+            <h1 className="mb-5 text-4xl font-semibold italic">Discover Moments, Captured in Time</h1>
             
           </div>
         </div>
@@ -39,7 +34,7 @@ const Media = () => {
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 text-black lg:grid-cols-3 gap-4">
+      <div className="max-w-7xl mx-auto py-10 grid grid-cols-1 md:grid-cols-2 text-black lg:grid-cols-3 gap-4">
         <div className="bg-[#F5EFE7] rounded-none shadow-lg">
           <div className="">
             <img src={img} alt="media" className="w-full h-64 object-cover" />
@@ -54,7 +49,7 @@ const Media = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-none shadow-lg">
+        <div className="bg-[#F5EFE7] rounded-none shadow-lg">
           <div className="">
             <img src={img} alt="media" className="w-full h-64 object-cover" />
             <div className="px-4 py-2">
@@ -67,7 +62,7 @@ const Media = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white rounded-none shadow-lg">
+        <div className="bg-[#F5EFE7] rounded-none shadow-lg">
           <div className="">
             <img src={img} alt="media" className="w-full h-64 object-cover" />
             <div className="px-4 py-2">
