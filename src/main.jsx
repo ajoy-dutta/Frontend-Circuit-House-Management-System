@@ -36,6 +36,7 @@ import { Carousels } from "./Pages/BrandJashore/Carousels";
 import ProtectedRoute from "./Provider/ProtectedRoute"; 
 import HelpLine from "./Pages/Home/HelpLine";
 import Media from "./Pages/Media/Media";
+import TourismCalender from "./Pages/Calender/TourismCalender";
 import AddMedia from "./Pages/Media/AddMedia";
 
 
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
       {
         path: "/media",
         element: <Media></Media>,
+      },
+      {
+        path: "/calender",
+        element: <TourismCalender></TourismCalender>,
       },
       {
         path: "/addMedia",
