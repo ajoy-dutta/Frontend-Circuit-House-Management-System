@@ -20,6 +20,20 @@ const TourismCalendar = () => {
     picture: null,
   });
 
+  const [selectedMedia, setSelectedMedia] = useState(null); // For storing selected media for the modal
+  const [isModal, setIsModal] = useState(false);
+
+  const openModal = (item) => {
+    setSelectedMedia(item);
+    setIsModal(true);
+  };
+
+  const closeModal = () => {
+    setIsModal(false);
+    setSelectedMedia(null);
+  };
+
+
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -77,26 +91,19 @@ const TourismCalendar = () => {
   
 
   return (
-    <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between  my-14">
+    <div className="w-full md:max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between gap-10">
       {/* Left Section: Calendar */}
       <div className="w-1/4 ml-6">
         <h1 className="text-xl font-semibold">Tourism Calendar</h1>
         <Calendar
-          className="text-sm w-full flex flex-col items-center justify-center border border-red-300"
+          className="text-sm w-full"
           onChange={setSelectedDate}
           value={selectedDate}
           tileContent={({ date }) => {
             const dailyEvents = getEventsForDate(date);
-            return dailyEvents.length > 0 ? (<span className="bg-green-500 flex flex-col items-center justify-center ml-3  p-1 h-[4px] w-[4px] rounded-full text-xs"></span>): null;
+            return dailyEvents.length > 0 ? (<span className="bg-green-700 flex flex-col items-center justify-center ml-3  p-1 h-[4px] w-[4px] rounded-full text-xs"></span>): null;
           }}
         />
-          {/* <Calendar
-      onChange={(date) => console.log(date)}
-      tileClassName={({ date }) => {
-        const events = getEventsForDate(date);
-        return events.length > 0 ? "custom-tile" : ""; // Add custom class if events exist
-      }}
-        /> */}
         {user && (
           <button
             onClick={() => setIsModalOpen(true)}
@@ -201,26 +208,47 @@ const TourismCalendar = () => {
         {getEventsForDate(selectedDate).length === 0 ? (
           <p>No events on this date.</p>
         ) : (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {getEventsForDate(selectedDate).map((event) => (
               <div
                 key={event.id}
-                className="p-4 bg-[#ACC2E2] border border-gray-300 rounded-md"
+                className="p-4 bg-[#ACC2E2] border border-gray-400"
               >
-                <div className="text-center">
-                  <strong>{event.title}</strong>
-                </div>
-                <br />
-                {/* <span className="p-4">{event.date}</span> */}
-                <br />
+                
+          
                 <img
                   src={event.picture}
                   alt={event.title}
-                  className="w-full h-auto object-cover rounded-md mb-2"
+                  className="w-full h-auto object-cover mb-2"
                 />
-                <p>{event.description}</p>
+                <div className="text-start">
+                  <strong>{event.title}</strong>
+                </div>
+                 <div className="flex justify-end">
+                  <button
+                    onClick={() => openModal(event)}
+                    className="btn bg-[#213555] hover:bg-[#3E5879] text-white btn-xs px-4 rounded-full"
+                  >
+                    Details
+                  </button>
+                </div>
+                {/* <p>{event.description}</p> */}
               </div>
             ))}
+            
+        {isModal && selectedMedia && (
+          <div className="modal modal-open" role="dialog">
+            <div className="modal-box">
+              <h3 className="text-lg font-bold">{selectedMedia.title}</h3>
+              <p className="py-4 text-justify">{selectedMedia.description}</p>
+              <div className="modal-action">
+                <button onClick={closeModal} className="btn">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
           </div>
         )}
       </div>
