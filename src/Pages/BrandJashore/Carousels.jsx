@@ -8,10 +8,10 @@ import homeImage6 from "../../assets/Branding/Khejur Guur_19.jpg";
 import airport from "../../assets/Branding/airport.jpg";
 import oldDC from "../../assets/DC Old Bunglow_02.jpg";
 import collectrorate from "../../assets/Slider/Collectorate Bhaban_01.jpg";
-import RetreatSirimoni from "../../assets/Border Check Port_06.jpg";
+import Jashore from "../../assets/Branding/explore Jashore.jpg";
 import MichaelMadhusudanDutt from "../../assets/Michael Modhusudhan Home Premises_06.jpg";
 import PirMeheruddinMazar from "../../assets/Pir Meheruddin Mazar_01.jpg";
-import preface from "../../assets/Branding/Boddhyovumi sankarpur_02.jpg";
+import stitch from "../../assets/Stich Work_14.jpg"
 import imambara from "../../assets/Branding/Imam Bara_04.jpg";
 import kaloMhuk from "../../assets/Branding/Kalomukh Honuman_02.jpg";
 import collectroate from "../../assets/Branding/Collectorate Bhaban_05.jpg";
@@ -22,85 +22,85 @@ export const Carousels = () => {
 
   const data = [
     {
-      img: preface, //Boddhyovumi sankarpur_02
-      heading: "Preface",
-      des: "Favourite motherland is Bangladesh which is diversified in case of beauty. History and tradition are very enriched. The diversity can be potential for economics.Present government has adopted very important initiative like potential traditions of different districts are tried to broaden through branding activities all over the world. District branding will help in order to achieve Vision 2021,SDG 2030, and Vision 2041.After considering history and tradition of Jashore different types of colourful flowers and date molasses have been selected as branding.",
+      img: collectroate, //Boddhyovumi sankarpur_02
+      heading: "At a Glance",
+      des: "Jashore stands out as a district where history, culture, and progress converge. It holds a unique place in history as the first district officially established under British rule in India, marking the beginning of colonial administrative organization in the subcontinent. Renowned as the birthplace of poet Michael Madhusudan Dutt, it carries the legacy of Bengal’s literary awakening. Jashore was also the first district liberated in the 1971 Liberation War, a milestone that cements its role in Bangladesh’s national identity. Today, Jashore thrives with fertile lands, a flourishing flower economy, and strategic trade access through Benapole Land Port, standing as a proud symbol of heritage, progress, and resilience.",
     },
-    {
-      img: collectroate, //colectrorate building
-      heading: "Branding of Jashore district",
-      des: "District branding is selected after considering history and tradition, In the same, Jashore district branding has been selected. Jashore district branding is mainly in two cases like flower and molasses. Firstly, cultivation of different coloured flowers has been initiated from eighty decades. Different kinds of flowers  are cultivated in almost 100 villages in more than 3,500(Hector). Flowers are like Rose,Tuberose,Sunflower, Merrigold,Gardenea,Dahlia etc.Secondly, Date Juice in Jashore, Jashore is famous for Date Juice.  There are 4,62,525 date palms and 2,31,26,250 litres date juice is collected from date palms of 486.20 (Hector) land and from the juice 37,00,200 KG molasses is made.",
-    },
+    // {
+    //   img: collectroate, //colectrorate building
+    //   heading: "Branding of Jashore district",
+    //   des: "District branding is selected after considering history and tradition, In the same, Jashore district branding has been selected. Jashore district branding is mainly in two cases like flower and molasses. Firstly, cultivation of different coloured flowers has been initiated from eighty decades. Different kinds of flowers  are cultivated in almost 100 villages in more than 3,500(Hector). Flowers are like Rose,Tuberose,Sunflower, Merrigold,Gardenea,Dahlia etc.Secondly, Date Juice in Jashore, Jashore is famous for Date Juice.  There are 4,62,525 date palms and 2,31,26,250 litres date juice is collected from date palms of 486.20 (Hector) land and from the juice 37,00,200 KG molasses is made.",
+    // },
     {
       img: homeImage1,
-      heading: "History of Jashore",
-      des: "The region now called Bangladesh was divided into small zones in ancient times, known as Vanga, Pandu, Samatata, Tamralipti, Banga, and others in history. It is assumed that Jashore was part of the Tamralipti and Vanga zones. Over time, Jashore's political, social, cultural, and geographical history underwent many transformations. Jashore district, formed from the fertile soil of the Ganga River, appears on ancient maps by Ptolemy. The region is also mentioned in historical texts such as the Mahabharata, Puranas, Vedas, and Ain-E-Akbari. Once, it was a dense jungle, later settled by the Anarya community, who cleared the forests for habitation.There are various theories regarding the origin of the name 'Jashore.' Some historians suggest it comes from the Arabic word 'Jesinrey,' meaning bamboo or wooden bridge. Jashore is one of the oldest districts in Bangladesh, established in 1786 during the British colonial period. The British created it as a distinct administrative unit to manage its intransigent and rebellious population. Initially, the district included areas now part of Khulna, Kushtia, Faridpur, Chuadanga, and parts of West Bengal in India.",
+      heading: "Jashore Through History",
+      des: "Jashore’s history is deeply entwined with the political and cultural evolution of Bengal. It was the first district formally established by the British East India Company in 1781, marking a foundational moment in the administrative structuring of British India. Under British administration, Jashore became a significant center for governance, education, and intellectual discourse, laying the groundwork for its cultural prominence. It later emerged as a stronghold of nationalist sentiment, and in 1971, it earned historical distinction as the first district to be liberated during the Bangladesh Liberation War. In the post-independence era, Jashore has evolved into a dynamic hub of agriculture, trade, and education. The establishment of the Jashore Export Processing Zone (EPZ) and the strategic importance of Benapole Land Port, the largest in Bangladesh, have positioned the district as a critical gateway for cross-border commerce with India. Today, Jashore continues to balance its rich historical legacy with a forward-looking vision, playing a vital role in the socio-economic landscape of modern Bangladesh.",
     },
-    {
-      img: homeImage,
-      heading: "Liberation War in Jashore",
-      des: "First enemy- free district is Jashore across the country,Pakistani army became defeated in Jashore on 6 December 1971.Jashore has played an effective role in liberation war.The flag of independent Bangladesh is first hoisted from Jashore.",
-    },
-    {
-      img: imambara, //imam bara
-      heading: "Imam Bara",
-      des: "300 years old Murali Imam Bara is located in Ramnagar union under sadar Upazila. It was established by Hazi Muhammad Muhasin.It was made of bricks and this rectangle building is in north -south 60 feet,in east-west 50 feet and it is divided  in three rows with 10 pillars.",
-    },
-    {
-      img: airport,
-      heading: "Jashore Air Port",
-      des: "The construction of Jashore air port was started during second world war in 1942. It was built on 25( acre) land in 1946 but it was completely launched in1960.At present, non -government 4 air flights are available in this port.",
-    },
+    // {
+    //   img: homeImage,
+    //   heading: "Liberation War in Jashore",
+    //   des: "First enemy- free district is Jashore across the country,Pakistani army became defeated in Jashore on 6 December 1971.Jashore has played an effective role in liberation war.The flag of independent Bangladesh is first hoisted from Jashore.",
+    // },
+    // {
+    //   img: imambara, //imam bara
+    //   heading: "Imam Bara",
+    //   des: "300 years old Murali Imam Bara is located in Ramnagar union under sadar Upazila. It was established by Hazi Muhammad Muhasin.It was made of bricks and this rectangle building is in north -south 60 feet,in east-west 50 feet and it is divided  in three rows with 10 pillars.",
+    // },
+    // {
+    //   img: airport,
+    //   heading: "Jashore Air Port",
+    //   des: "The construction of Jashore air port was started during second world war in 1942. It was built on 25( acre) land in 1946 but it was completely launched in1960.At present, non -government 4 air flights are available in this port.",
+    // },
     {
       img: homeImage2,
-      heading: "First Flower Cultivation",
-      des: "cultivation of different coloured flowers has been initiated from eighty decades.Basically, Sher Ali of Godthkhali village, Jikhorgacha Upazila, first started to cultivate commercially after bringing seeds from India in 1983. Different kinds of flowers  are cultivated in almost 100 villages in more than 3,500(Hector). Flowers are like Rose,Tuberose,Sunflower, Merrigold,Gardenea,Dahlia etc",
+      heading: "The Land of Flowers",
+      des: "Known as the 'Land of Flowers,' Jashore enchants visitors with its vibrant, blooming fields—especially in Jhikargacha, where sprawling farms of marigolds, roses, gladiolus, and seasonal blooms paint the landscape in vivid hues. Each morning, the Jhikargacha flower market bursts to life as local cultivators and traders gather to auction fresh blossoms destined for festivals, homes, and national export. Tourists can stroll through flower farms at sunrise, engage with the passionate growers, and witness the lively marketplace in full swing. With fragrant air, colorful vistas, and the warm hospitality of flower farmers, Jashore offers a serene escape perfect for photography, relaxation, and an immersive floral experience.",
     },
     {
       img: homeImage6,
       heading: "Date Molasses",
-      des: "Jashore is famous for Date molasses.   There are 4,62,525 date palms and 2,31,26,250 litres date juice is collected from date palms of 486.20 (Hector) land and from the juice 37,00,200 KG molasses is made.It is known from Jashore Khulna history by Satish Chandra Mitra that Date Molasses was made in East Bengal before 1900-1901 21 lakh 80 thousand 550 Mon(40 KG).17 lakh 9 thousand 960 Mon molasses was made in Jashore among them.New House of England made brown sugar from molasses of Chowgacha, Taherpur and created agitation.",
+      des: "Jashore is widely famous for its traditional date molasses (khejur gur), a winter delicacy deeply rooted in the region’s rural heritage. Produced by extracting sap from date palm trees during the cold months, this rich, dark syrup is carefully boiled in clay ovens to preserve its natural flavor and aroma. High-quality molasses is widely used in making pithas (rice cakes), sweets, and desserts. Tourists in Winter can witness the age-old process firsthand, savor the warm, earthy taste of fresh molasses, and take home a delicious symbol of Bengali tradition.",
+    },
+    // {
+    //   img: collectrorate,
+    //   heading: "Collectorate Building",
+    //   des: "Jashore Collectorate was started in 1786 as the first Collectorate in sub -continent  .The name of Jashore Collectorate  is organically involved with history and tradition.It is located at Doratana in Jashore. The building is at present the office of DC(Deputy Commissioner).First floor of the present building was founded in 1885 and second floor in 1980.",
+    // },
+    {
+      img: stitch,
+      heading: "Jashore Stitch: Weaving Stories",
+      des: "Delicate yet bold, Jashore Stitch is one of Bengal’s best-kept artistic secrets—a centuries-old embroidery tradition quietly thriving in the rural heartlands of Jashore. Characterized by bold, geometric and floral motifs, this artisanal craft is typically embroidered on cotton or silk using vibrant threads. Practiced primarily by rural women, Jashore Stitch is more than decorative—it is a form of storytelling and heritage preservation passed down through generations.",
     },
     {
-      img: collectrorate,
-      heading: "Collectorate Building",
-      des: "Jashore Collectorate was started in 1786 as the first Collectorate in sub -continent  .The name of Jashore Collectorate  is organically involved with history and tradition.It is located at Doratana in Jashore. The building is at present the office of DC(Deputy Commissioner).First floor of the present building was founded in 1885 and second floor in 1980.",
+      img: Jashore,
+      heading: "Explore Jashore",
+      des: "To visit Bangladesh without exploring Jashore is to miss the soul of the country. Here, history breathes through colonial relics, poetry flows by the banks of the Kopotakkho, and fields bloom with a thousand colors. From the birthplace of Michael Madhusudan Dutt to the vibrant flower markets of Jhikargacha, Jashore offers an experience that is raw, beautiful, and deeply human. It’s not just a destination—it’s the heart of Bengal’s story. Book your package now.",
     },
-    {
-      img: oldDC,
-      heading: "Old DC Residence",
-      des: "First residence  of Collector which is acquainted with Satkhira House was built in 1895.There is a yeard of 24.75(acre) adjacent to two storeyed building. It is very familiar and the biggest DC residence in Bangladesh. Then emperor of India toke lease two terms for 25 years from 1921.Local Public Works Department practically visits and declares it to be uninhabitable on 11 May 1995.",
-    },
-    {
-      img: RetreatSirimoni,
-      heading: "Retreat Sirimoni",
-      des: "Retreat Sirimoni is an attractive parade of Benapole port.Two countries'protective teams an excellent parade display with national anthem and flag at the time of sunset.",
-    },
-    {
-      img: MichaelMadhusudanDutt,
-      heading: "House of Michael Madhusudan Dutt",
-      des: "House of Michael Madhusudan  Dutt is situated on the bank of Copotakho river, Sagordari village, Keshobpur Upazila. There are some ancient one and two storeyed buildings in the house.",
-    },
-    {
-      img: hammamkana,
-      heading: "Mirzanagar Hammamkhana",
-      des: "Hammamkhana was built in 1649  by Sopsi Khan who is Sha Suza's brother in law's son during emperor Akber.",
-    },
-    {
-      img: Modhumela,
-      heading: "Modhu Mela",
-      des: "Modhumela is an important  part of traditional Jashore. The fair is organised by district administration at the end of January. Poetess Mankumari Basu, niece of Michael first started to commemorate in 1890 at Sagordari after poet's death.After that, the fair begins.",
-    },
-    {
-      img: PirMeheruddinMazar,
-      heading: "Grave of Saint Meheruddin (Ra:)",
-      des: "The grave is almost  300 years old.It is said that saint Meheruddin (Ra:)is contemporary of saint Khan Jahan Ali(Ra:).It is established on 3.21(acre) land.",
-    },
-    {
-      img: kaloMhuk,
-      heading: "Blackmouth Hanuman",
-      des: "Blackmouth Hanuman of rare species is almost vanished in Bangladesh. It is seen in Keshobpur, Ramchandrapur,Baliadanga.There are almost 500 Hanumans.",
-    },
+    // {
+    //   img: MichaelMadhusudanDutt,
+    //   heading: "House of Michael Madhusudan Dutt",
+    //   des: "House of Michael Madhusudan  Dutt is situated on the bank of Copotakho river, Sagordari village, Keshobpur Upazila. There are some ancient one and two storeyed buildings in the house.",
+    // },
+    // {
+    //   img: hammamkana,
+    //   heading: "Mirzanagar Hammamkhana",
+    //   des: "Hammamkhana was built in 1649  by Sopsi Khan who is Sha Suza's brother in law's son during emperor Akber.",
+    // },
+    // {
+    //   img: Modhumela,
+    //   heading: "Modhu Mela",
+    //   des: "Modhumela is an important  part of traditional Jashore. The fair is organised by district administration at the end of January. Poetess Mankumari Basu, niece of Michael first started to commemorate in 1890 at Sagordari after poet's death.After that, the fair begins.",
+    // },
+    // {
+    //   img: PirMeheruddinMazar,
+    //   heading: "Grave of Saint Meheruddin (Ra:)",
+    //   des: "The grave is almost  300 years old.It is said that saint Meheruddin (Ra:)is contemporary of saint Khan Jahan Ali(Ra:).It is established on 3.21(acre) land.",
+    // },
+    // {
+    //   img: kaloMhuk,
+    //   heading: "Blackmouth Hanuman",
+    //   des: "Blackmouth Hanuman of rare species is almost vanished in Bangladesh. It is seen in Keshobpur, Ramchandrapur,Baliadanga.There are almost 500 Hanumans.",
+    // },
   ];
 
   const prevSlider = () =>
@@ -116,12 +116,7 @@ export const Carousels = () => {
     [data.length]
   );
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      nextSlider();
-    }, 5000);
-    return () => clearInterval(intervalId);
-  }, [nextSlider]);
+
 
   return (
     <div>

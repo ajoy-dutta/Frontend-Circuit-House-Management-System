@@ -61,7 +61,7 @@ const Navbar = () => {
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
         >
-          Visit Jashore
+          Attractions 
         </NavLink>
       </li>
       {/* <li>
@@ -180,7 +180,7 @@ const Navbar = () => {
           }
           onClick={handleDropdownToggle}
         >
-          Visit Jashore
+          Attractions 
         </NavLink>
       </li>
 
