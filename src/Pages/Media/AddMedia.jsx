@@ -71,8 +71,8 @@ const AddMedia = ({setMediaData, setIsAddMediaModalOpen}) => {
   };
 
   return (
-    <div className="bg-[#F5EFE7] bg-transparent flex justify-center items-center">
-      <div className="bg-[#D8C4B6] mx-auto my-2 max-w-3xl border border-gray-200 rounded-lg shadow-lg p-6 hover:shadow-xl">
+    // <div className="bg-[#F5EFE7] bg-transparent flex justify-center items-center">
+      <div className="bg-[#D8C4B6]  mx-auto my-2 max-w-3xl  rounded-lg shadow-lg p-6 hover:shadow-xl">
         <div className="flex flex-col px-6 mt-4">
           <h3 className="tracking-tight text-2xl py-2 font-bold text-[#213555]">
             Add Media
@@ -195,7 +195,7 @@ const AddMedia = ({setMediaData, setIsAddMediaModalOpen}) => {
           </form>
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 

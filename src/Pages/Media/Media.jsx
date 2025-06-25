@@ -127,12 +127,12 @@ const Media = () => {
           className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
           role="dialog"
         >
-          <div className="bg-white rounded-lg max-w-3xl w-full mx-4 p-6 shadow-xl overflow-y-auto">
+          <div className="bg-white bg-opacity-50 rounded-lg max-w-3xl w-full mx-4 p-6 shadow-xl overflow-y-auto">
             <AddMedia setMediaData={setMediaData} setIsAddMediaModalOpen={setIsAddMediaModalOpen}/>
             <div className="flex justify-end mt-4">
               <button
                 onClick={() => setIsAddMediaModalOpen(false)}
-                className="px-4 py-2 bg-[#213555] hover:bg-[#3E5879] text-white rounded-md"
+                className="px-4 py-2 bg-red-700 hover:bg-red-500 text-white rounded-md"
               >
                 Close
               </button>
