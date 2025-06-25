@@ -1,201 +1,169 @@
 import { useState } from "react";
-import img1 from "../../assets/Benapole Gate_02.jpg";
-import img2 from "../../assets/Birsresto Nur Mohammad Graveyard_02.jpg";
-import img3 from "../../assets/Border Check Port_06.jpg";
-import img4 from "../../assets/Cacra Shib Mondir_04.jpg";
-import img5 from "../../assets/Collectorate Park_04.jpg";
-import img6 from "../../assets/DC Old Bunglow_02.jpg";
-import img8 from "../../assets/Egaro Shiv Mondir_03.jpg";
-import img9 from "../../assets/Flower Cultivation_Godkhali_09.jpg";
-import img10 from "../../assets/Hammam Khana_01.jpg";
-import img11 from "../../assets/IT Park_03.jpg";
-import img12 from "../../assets/Jashore Medical College_01.jpg";
-import img13 from "../../assets/Jess Garden_01.jpg";
-import img14 from "../../assets/Jhapa Baor_03.jpg";
-import img17 from "../../assets/MM College_05.jpg"
-import img18 from "../../assets/Science & Tech Uni_06.jpg"
-import img19 from "../../assets/Samsulhuda Stadium_01.jpg"
-// import { Link } from "react-router-dom";
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  
+} from "react-icons/fa";
+
+// Import images
+import chachramondir from "../../assets/Attraction/Sadar/Cacra Shib Mondir/Cacra Shib Mondir_01.jpg";
+import chachramondir1 from "../../assets/Attraction/Sadar/Cacra Shib Mondir/Cacra Shib Mondir_03.jpg";
+import chachramondir2 from "../../assets/Attraction/Sadar/Cacra Shib Mondir//Cacra Shib Mondir_05.jpg";
+import collectorate from "../../assets/Attraction/Sadar/Collectorate Building/Collectorate Bhaban_01.jpg";
+import collectorate1 from "../../assets/Attraction/Sadar/Collectorate Building/Collectorate Bhaban_05.jpg";
+import collectorate2 from "../../assets/Attraction/Sadar/Collectorate Building/Collectorate Bhaban_08.jpg";
+import dcOldBuilding from "../../assets/Attraction/Sadar/DC Old Bungalow/DC Old Bunglow_02.jpg";
+import dcOldBuilding1 from "../../assets/Attraction/Sadar/DC Old Bungalow/DC Old Bunglow_03.jpg";
+import itPark from "../../assets/Attraction/Sadar/Jashore IT Park/IT Park_01.jpg";
+import itPark1 from "../../assets/Attraction/Sadar/Jashore IT Park/IT Park_03.jpg";
+import itPark2 from "../../assets/Attraction/Sadar/Jashore IT Park/IT Park_04.jpg";
+import pouroPark from "../../assets/Attraction/Sadar/Poura Park/Pouro Park_03.jpg";
+import pouroPark1 from "../../assets/Attraction/Sadar/Poura Park/Pouro Park_05.jpg";
+import pouroPark2 from "../../assets/Attraction/Sadar/Poura Park/Pouro Park_09.jpg";
+import ramkrisno from "../../assets/Attraction/Sadar/Ram Krishna Ashram/Ramkrisno Mission_01.jpg";
+import ramkrisno1 from "../../assets/Attraction/Sadar/Ram Krishna Ashram/Ramkrisno Mission_04.jpg";
 
 const VisitJashore = () => {
-  const images = [
-    {
-      src: img1,
-      title: "Benapole Gate",
-      des: "Benapole  Municipality  constructed  this  56.5  feet  high gate in 2016. This gate has a significance as it is used as the gateway to Bangladesh.",
-    },
-    {
-      src: img2,
-      title: "Birsresto Nur Mohammad Graveyard",
-      des: "Birsreshtha Lance Nayek Nur Mohammad Sheikh, along with six of his fellow freedom  ghters, was laid   to   rest   in   Kashipur,   a   small   village   near   Bangladesh-India  border  under  Sharsha  Upazilla  of Jashore district.",
-    },
-    {
-      src: img9,
-      title: "Flower Cultivation Godkhali",
-      des: "At  present,  in  nearly  3000  hectares  of  land  at    Godkhali  of  Jhikorgacha  Upazilla  and  in  more  than one hundred other adjacent villages,  owers are being cultivated on a commercial basis. Local  ower  cultivators  are  producing  various  species  of     owers    such    as    rose,    tuberose,    orchid, gladiolas, gerbera, etc. Having met the domestic needs,   the    owers   of   Jashore   are   now   being   exported too.",
-    },
-    {
-      src: img12,
-      title: "Jashore Medical College",
-      des: "Jashore Medical College was established in 2010 in the Chanchra area of Jashore. It has 25 acres of land.  Every  year  it  o ers  70  students  for  having  MBBS   degree.     There   are   72   teachers   in   22 faculties   in   this   college.   Currently,   a   hospital   having  500  bed  is  under  construction  in  it’s  own  campus.",
-    },
-    {
-      src: img5,
-      title: "Collectorate Park",
-      des: "In 1939, District Magistrate Niaj Mohammad Khan took  the  initiative  to  construct  this  park.  For  a  long  time  the  beautiful  park  has  been  known  to  the   people   of   Jashore   as   a   centre   of   pure entertainment and repose.",
-    },
-    {
-      src: img6,
-      title: "DC Old Bunglow",
-      des: "Formerly known as Satkhira House, this residence was  built  in  1895  on  24.75  acres  of  land  as  the  residence   of   the    rst   district   collector   of   this   subcontinent.  Now  dilapidated,  this  house  is  an  example   of   architectural   excellence.   Recently,   initiatives  have  been  taken  to  convert  this  silent  witness of time into a museum.",
-    },
-    { src: img18, title: "Jashore University of Science and Technology", des: "This university started its journey in 2007. It is situated on 35 acres of land. 6213 students are studying here in 36 departments" },
-    {
-      src: img8,
-      title: "Egaro Shiv Mondir",
-      des: "Local  Zamindar  Nilkontho  Roy  built  Egaro  Shiva  Mandir   by   the   side   of   the   river   Bhairab   at Abhaynagar  in  the  middle  of  the  17th  century.  This  establishment  consists  of  eleven  separate  temples  and  has  a  great  architectural  value.  The  terracotta  artistry  of  the  walls  of  the  temples  is  magni cent.",
-    },
-    {
-      src: img3,
-      title: "Border Check Port",
-      des: "Benapole   Check   Port   plays   a   vital   role   in   the economy   of   Bangladesh.   It   is   situated   near   Bangladesh-India  border  at  Benapole  village  of  Sharsha  Upazilla.  90  percent  of  the  total  land  trade  between  Bangladesh  and  India  is  done  via  this port",
-    },
-    {
-      src: img10,
-      title: "Hammam Khana",
-      des: "Mirzanagar     Hammamkhana     is     situated     at     Mirzanagar   village   of   Keshobpur   Upazilla.   In   1649, the then Fauzdar [administrator] of Jashore, Mirza   Safsi   Khan,   built   this   hammamkhana.         Modelled   on   Mughal   Architectural   style,   this   building has for domes.",
-    },
-    {
-      src: img11,
-      title: "IT Park",
-      des: "This park is situated in the Najir Shonkorpur area of Jashore town. It has been built to provide the IT entrepreneurs with all kinds of world-class facilities. Besides, an earthquake-and  disaster-proof  backup  server  section  has  been  built  to  save  the  data  of  the  national  server.Honorable Prime Minister Sheikh Hasina inaugurated it on 10 December, 2017.",
-    },
-    {
-      src: img4,
-      title: "Cacra Shib Mondir",
-      des: "Raja  Manohar  Roy  built  this  temple  in  1696.  The  walls    of    the    temple    are    ornamented  with terracotta tiles.",
-    },
-    {
-      src: img13,
-      title: "Jess Garden",
-      des: "This  park  is  located  at  Bahadurpur  near  Jashore  town.  There  are  various  rides  for  the  children  in  the park.",
-    },
-    {
-      src: img14,
-      title: "Jhapa Baor",
-      des: "Jhanpa  Baor  is  situated  at  Rajgonj  of  Manirampur  Upazilla  and  is  9  kilometers  in  length.Local  people  have  shown  unique  entrepreneurship  and  engineer-ing  skill  by  building  a   oating  bridge  over  this  Baor.  One   can   have   exciting   boat   rides   along   the   vast   expanse of Baor water. ",
-    },
-    { src: img17, title: "MM College", des: "Generally referred to as M M College, this institution was established in 1941 and is now famous in the south-west region of Bangladesh." },
-    { src: img19, title: "Samsulhuda Stadium", des: "Shamsul Huda Stadium of Jashore is more commonly known as Jashore Stadium. Since 2000 it has been used as a venue for first class domestic cricket league on a regular basis" },
-  ];
+const images = [
+  {
+    src: collectorate,
+    subImg1: collectorate1 ,
+    subImg2: collectorate2,
+    title: "Collectorate Building ",
+    upazila: "Jashore Sadar",
+    description: "The Jashore Collectorate Building stands as a remarkable symbol of colonial-era architecture and administrative heritage in Bangladesh. Built during the British period, it is one of the oldest collectorate buildings in the country, reflecting neoclassical design with grand columns, high ceilings, and spacious courtyards. Visitors are drawn not only to its architectural elegance but also to its role in shaping regional governance. Preserved with care, the Collectorate remains a compelling site for history enthusiasts and cultural tourists alike.",
+    mapLink: "https://maps.app.goo.gl/d8MS483uwbUNWVZQ8 "
+  },
+  {
+    src: chachramondir,
+    subImg1: chachramondir1,
+    subImg2: chachramondir2,
+    title: "Chanchra Shib Mondir",
+    upazila: "Jashore Sadar",
+    description: "Nestled about 4 km from Jessore’s Bhairab Chattar, the Chanchra Shiv Mandir is a beautifully preserved 17th‑century temple built in 1696 AD by Raja Manohar Roy. Its facade boasts three graceful arched entrances and richly decorated terracotta plaques that depict mythological and local motifs.",
+    mapLink: "https://maps.app.goo.gl/yir8XvwMBuBF1MX87 "
+  },
+  {
+    src: dcOldBuilding,
+    subImg1: dcOldBuilding1,
+    subImg2: dcOldBuilding,
+    title: "DC Old Bungalow",
+    upazila: "Benapole",
+    description: "Major customs and immigration checkpoint on the Bangladesh-India border.",
+    mapLink: "https://goo.gl/maps/bordercheck"
+  },
+  {
+    src: itPark,
+    subImg1: itPark1,
+    subImg2: itPark2,
+    title: "Jashore IT Park",
+    upazila: "Jashore Sadar",
+    description: "The Jashore IT Park, established in 2017, stands not only as a center of innovation but also as an architectural and environmental gem in southwestern Bangladesh. The park’s modern glass-and-steel structures rise gracefully above landscaped gardens, water features, and tree-lined walkways, offering a rare fusion of technology and natural beauty. The lakeside amphitheater, scenic courtyards, and open plazas provide serene spaces for reflection, collaboration, and events. ",
+    mapLink: "https://maps.app.goo.gl/eNvTm3Ssj4wGchcb9"
+  },
+  {
+    src: pouroPark,
+    subImg1: pouroPark1,
+    subImg2: pouroPark2,
+    title: "Paura Park",
+    upazila: "Jashore Sadar",
+    description: "Paura Park or Jashore Municipal Park is located at the very heart of Jashore town. Known for its scenic beauty and safe envionment, this park hosts Baishakhi Festival (celebration of Bengali New Year) every year.",
+    mapLink: "https://maps.app.goo.gl/xCsV67pfcgSqm7pRA"
+  },
+  {
+    src: ramkrisno,
+    subImg1: ramkrisno1,
+    subImg2: ramkrisno,
+    title: "Ram Krishna Ashram",
+    upazila: "Jashore Sadar",
+    description: "The Ramakrishna Ashrama & Mission in Jashore is a serene spiritual retreat and active community center.  Located at 2, Ashrama Road, it features a temple complex where daily worship, bhajans, and religious classes are held, alongside celebrations of key festivals honoring Sri Ramakrishna, Sarada Devi, and Swami Vivekananda.",
+    mapLink: "https://maps.app.goo.gl/j5ybDnCALbPbr3uB9 "
+  },
+]
 
-  // const itemsPerPage = 8;
-  // const [currentPage, setCurrentPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 4;
 
-  // const totalPages = Math.ceil(images.length / itemsPerPage);
-  // const startIndex = (currentPage - 1) * itemsPerPage;
-  // const currentImages = images.slice(startIndex, startIndex + itemsPerPage);
+  const totalPages = Math.ceil(images.length / itemsPerPage);
 
-  // const handlePrevPage = () => {
-  //   if (currentPage > 1) setCurrentPage(currentPage - 1);
-  // };
+  const currentImages = images.slice(
+    currentPage * itemsPerPage,
+    currentPage * itemsPerPage + itemsPerPage
+  );
 
-  // const handleNextPage = () => {
-  //   if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-  // };
-
-  // const openModal = (image) => {
-  //   setSelectedImage(image);
-  //   document.getElementById("dynamic_modal").showModal();
-  // };
   const openModal = (image) => {
     setSelectedImage(image);
-    setIsModalOpen(true); // Open modal
+    setIsModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false); // Close modal
-  };
+
 
   return (
-    <div className="mb-16 mx-5">
-      {/* <div className="text-3xl font-bold italic text-center my-8">
-        Meet Our Jashore
-      </div>
-      <div className="max-w-7xl mx-auto my-6">
-        <Link
-          to="/brandJashore"
-          className="text-xl font-serif font-semibold italic hover:text-cyan-700 hover:underline"
-        >
-          Branding Jashore
-        </Link>
-      </div> */}
+    <div className="flex items-center justify-between gap-2 w-full">
+  {/* Sadar Button */}
+  <div className="shrink-0">
+    <button className="flex flex-col justify-center items-center px-2 py-[70px] gap-5 border rounded bg-white hover:bg-gray-100">
+      <FaChevronLeft className="rotate-180 text-gray-600" />
+      <span className="[writing-mode:vertical-rl] rotate-180 text-base font-medium">
+       Jashore Sadar
+      </span>
+    </button>
+  </div>
 
-      <div className="max-w-7xl mx-auto grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center rounded-tl-3xl rounded-br-3xl bg-[#f3cdba5d]"
+  {/* Prev Button */}
+  <div className="shrink-0 flex items-center">
+    <button
+      onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
+      disabled={currentPage === 0}
+      className="px-[6px] py-[6px] bg-gray-500 rounded-full disabled:opacity-50"
+    >
+      <FaChevronLeft className="text-white" />
+    </button>
+  </div>
+
+  {/* Card Grid */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 flex-grow">
+    {currentImages.map((image, index) => (
+      <div
+        key={index}
+        className="flex flex-col items-center rounded-tl-3xl rounded-br-3xl bg-[#f3cdba5d]"
+      >
+        <img
+          className="rounded-tl-3xl bg-[#FEB38D] p-1"
+          src={image.src}
+          alt={image.title}
+        />
+        <div className="py-5">
+          <button
+            className="btn uppercase btn-ghost text-base font-semibold"
+            onClick={() => openModal(image)}
           >
-            <img
-              className="rounded-tl-3xl bg-[#FEB38D] p-1"
-              src={image.src}
-              alt={image.title}
-            />
-            <div className="py-5">
-              <button
-                className="btn uppercase btn-ghost text-base font-semibold"
-                onClick={() => openModal(image)}
-              >
-                {image.title}
-              </button>
-            </div>
-          </div>
-        ))}
+            {image.title}
+          </button>
+        </div>
       </div>
+    ))}
+  </div>
 
-      {/* Dynamic Modal */}
-      <div>
-        {selectedImage && isModalOpen && (
-          <dialog id="dynamic_modal" className="modal" open>
-            <div className="modal-box">
-              <h3 className="font-bold uppercase text-lg">
-                {selectedImage.title}
-              </h3>
-              <p className="py-4 text-justify">{selectedImage.des}</p>
-              <div className="modal-action">
-                <button className="btn" onClick={closeModal}>
-                  Close
-                </button>
-              </div>
-            </div>
-          </dialog>
-        )}
-      </div>
+  {/* Next Button */}
+  <div className="shrink-0 flex items-center">
+    <button
+      onClick={() =>
+        setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1))
+      }
+      disabled={currentPage === totalPages - 1}
+      className="px-[6px] py-[6px] bg-sky-900 rounded-full disabled:opacity-50"
+    >
+      <FaChevronRight className="text-white" />
+    </button>
+  </div>
+</div>
 
-      {/* Pagination */}
-      {/* <div className="flex justify-center items-center my-10">
-        <button
-          onClick={handlePrevPage}
-          disabled={currentPage === 1}
-          className="btn btn-outline mx-2"
-        >
-          Previous
-        </button>
-        <span className="font-bold text-lg">
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-          className="btn btn-outline mx-2"
-        >
-          Next
-        </button>
-      </div> */}
-    </div>
+
+
+
   );
 };
 
