@@ -56,7 +56,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/visitJashore"
+          to="/attractions"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
@@ -76,24 +76,24 @@ const Navbar = () => {
       </li> */}
       <li>
         <NavLink
-          to="/media"
+          to="/visitJashore"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
           onClick={handleDropdownToggle}
         >
-          Media
+          Visit Jashore
         </NavLink>
       </li>
       <li>
         <NavLink
-          to="/calender"
+          to="/ourStore"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
           onClick={handleDropdownToggle}
         >
-          Tourism Calender
+          Our Store
         </NavLink>
       </li>
       <li>
@@ -174,7 +174,7 @@ const Navbar = () => {
 
       <li >
         <NavLink
-          to="/visitJashore"
+          to="/attractions"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
@@ -197,25 +197,25 @@ const Navbar = () => {
 
         <li >
         <NavLink
-          to="/media"
+          to="/visitJashore"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
           onClick={handleDropdownToggle}
         >
-          Media
+          Visit Jashore
         </NavLink>
       </li>
       
       <li >
         <NavLink
-          to="/calender"
+          to="/ourStore"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
           }
           onClick={handleDropdownToggle}
         >
-          Calender
+          Our Store
         </NavLink>
       </li>
       

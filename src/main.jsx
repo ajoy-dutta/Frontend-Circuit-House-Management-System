@@ -36,7 +36,7 @@ import { Carousels } from "./Pages/BrandJashore/Carousels";
 import ProtectedRoute from "./Provider/ProtectedRoute"; 
 import HelpLine from "./Pages/Home/HelpLine";
 import Media from "./Pages/Media/Media";
-import TourismCalender from "./Pages/Calender/TourismCalender";
+import Store from "./Pages/store/Store";
 import AddMedia from "./Pages/Media/AddMedia";
 
 
@@ -85,7 +85,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/visitJashore",
+        path: "/attractions",
         element: <Carousels />,
       },
 
@@ -94,12 +94,12 @@ const router = createBrowserRouter([
         element: <HelpLine></HelpLine>,
       },
       {
-        path: "/media",
+        path: "/visitJashore",
         element: <Media></Media>,
       },
       {
-        path: "/calender",
-        element: <TourismCalender></TourismCalender>,
+        path: "/ourStore",
+        element: <Store></Store>,
       },
       {
         path: "/addMedia",
