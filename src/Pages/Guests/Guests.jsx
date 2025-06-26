@@ -171,41 +171,41 @@ const Guests = () => {
 
       {/* Modal for guest details */}
       {selectedGuest && (
-        <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-75 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-lg">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">Guest Details</h3>
+        <div className=" fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-75 z-50">
+          <div className=" bg-white p-6 ml-6 rounded-lg shadow-xl w-full max-w-lg overflow-x-auto overflow-y-auto">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4 ml-6">Guest Details</h3>
             {guests
               .filter((guest) => guest.id === selectedGuest)
               .map((guest) => (
-                <table key={guest.id} className="table-auto w-full text-left">
+                <table key={guest.id} className="whitespace-nowrap table-auto w-3/4 ml-6 text-left">
                   <tbody>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Guest Name:</td>
-                      <td>{guest.name}</td>
+                      <td className="text-gray-700 font-semibold">Guest Name</td>
+                      <td> <span className="mr-2">:</span>{guest.name}</td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Guest's Office:</td>
-                      <td>{guest.office}</td>
+                      <td className="text-gray-700 font-semibold">Guest's Office</td>
+                      <td><span className="mr-2">:</span>{guest.office}</td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Designation:</td>
-                      <td>{guest.designation}</td>
+                      <td className="text-gray-700 font-semibold">Designation</td>
+                      <td><span className="mr-2">:</span>{guest.designation}</td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Phone No:</td>
-                      <td>{guest.phone}</td>
+                      <td className="text-gray-700 font-semibold">Phone No</td>
+                      <td><span className="mr-2">:</span>{guest.phone}</td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Room Name:</td>
-                      <td>{guest.room_name}</td>
+                      <td className="text-gray-700 font-semibold">Room Name</td>
+                      <td><span className="mr-2">:</span>{guest.room_name}</td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Motive of Visiting:</td>
-                      <td>{guest.motive_of_visiting}</td>
+                      <td className="text-gray-700 font-semibold">Motive of Visiting</td>
+                      <td><span className="mr-2">:</span>{guest.motive_of_visiting}</td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Check-In Date:</td>
-                      <td>
+                      <td className="text-gray-700 font-semibold">Check-In Date</td>
+                      <td><span className="mr-2">:</span>
                         {new Date(guest.check_in_date).toLocaleString("en-GB", {
                           day: "2-digit",
                           month: "2-digit",
@@ -217,8 +217,9 @@ const Guests = () => {
                       </td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Check-Out Date:</td>
-                      <td>{new Date(guest.check_out_date).toLocaleString("en-GB", {
+                      <td className="text-gray-700 font-semibold">Check-Out Date</td>
+                      <td><span className="mr-2">:</span>
+                      {new Date(guest.check_out_date).toLocaleString("en-GB", {
                           day: "2-digit",
                           month: "2-digit",
                           year: "numeric",
@@ -229,40 +230,40 @@ const Guests = () => {
                       </td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Guest Type:</td>
-                      <td>{guest.user_type}</td>
+                      <td className="text-gray-700 font-semibold">Guest Type</td>
+                      <td><span className="mr-2">:</span>{guest.user_type}</td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">NID:</td>
-                      <td>{guest.nid}</td>
+                      <td className="text-gray-700 font-semibold">NID</td>
+                      <td><span className="mr-2">:</span>{guest.nid}</td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Email:</td>
-                      <td>{guest.email}</td>
+                      <td className="text-gray-700 font-semibold">Email</td>
+                      <td><span className="mr-2">:</span>{guest.email}</td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Total Persons:</td>
-                      <td>{guest.total_person}</td>
+                      <td className="text-gray-700 font-semibold">Total Persons</td>
+                      <td><span className="mr-2">:</span>{guest.total_person}</td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Total Days:</td>
-                      <td>{guest.total_days}</td>
+                      <td className="text-gray-700 font-semibold">Total Days</td>
+                      <td><span className="mr-2">:</span>{guest.total_days}</td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Total Rental Cost:</td>
-                      <td>{guest.total_rental_price}</td>
+                      <td className="text-gray-700 font-semibold">Total Rental Cost</td>
+                      <td><span className="mr-2">:</span>{guest.total_rental_price}</td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Total Food Cost:</td>
-                      <td>{guest.total_food_cost}</td>
+                      <td className="text-gray-700 font-semibold">Total Food Cost</td>
+                      <td><span className="mr-2">:</span>{guest.total_food_cost}</td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Total Other Cost:</td>
-                      <td>{guest.total_other_cost}</td>
+                      <td className="text-gray-700 font-semibold">Total Other Cost</td>
+                      <td><span className="mr-2">:</span>{guest.total_other_cost}</td>
                     </tr>
                     <tr>
-                      <td className="text-gray-700 font-semibold">Grand Total:</td>
-                      <td>
+                      <td className="text-gray-700 font-semibold">Grand Total</td>
+                      <td><span className="mr-2">:</span>
                         {Number(guest.total_rental_price) +
                           Number(guest.total_food_cost) +
                           Number(guest.total_other_cost)}
@@ -271,7 +272,7 @@ const Guests = () => {
                   </tbody>
                 </table>
               ))}
-            <div className="mt-4">
+            <div className="mt-4 text-center">
               <button
                 onClick={() => toggleDetails(null)}
                 className="px-4 py-2 bg-red-500 text-white text-xs font-semibold rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"

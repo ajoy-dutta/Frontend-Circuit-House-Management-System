@@ -76,6 +76,28 @@ const Navbar = () => {
       </li> */}
       <li>
         <NavLink
+          to="/media"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+          onClick={handleDropdownToggle}
+        >
+          Media
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/calender"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+          onClick={handleDropdownToggle}
+        >
+          Tourism Calender
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/contact"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
@@ -94,6 +116,7 @@ const Navbar = () => {
           Help Line
         </NavLink>
       </li>
+      
       
     </>
   );
@@ -172,6 +195,30 @@ const Navbar = () => {
         </NavLink>
       </li> */}
 
+        <li >
+        <NavLink
+          to="/media"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+          onClick={handleDropdownToggle}
+        >
+          Media
+        </NavLink>
+      </li>
+      
+      <li >
+        <NavLink
+          to="/calender"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+          onClick={handleDropdownToggle}
+        >
+          Calender
+        </NavLink>
+      </li>
+      
       <li >
         <NavLink
           to="/contact"
@@ -195,6 +242,7 @@ const Navbar = () => {
           Help Line
         </NavLink>
       </li>
+     
       
       
       {user ? (

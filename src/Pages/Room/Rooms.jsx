@@ -98,7 +98,7 @@ const Rooms = () => {
             {/* <th className="border-b px-4 py-2 text-left">Room Description</th> */}
             <th className="border-b px-4 py-2 text-left">Room Type</th>
             <th className="border-b px-4 py-2 text-left">Availability Status</th>
-            <th className="border-b px-4 py-2 text-left">Actions</th>
+            <th className="border-b px-4 py-2 text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -109,19 +109,14 @@ const Rooms = () => {
               {/* <td className="px-4 py-2">{room.room_description}</td> */}
               <td className="px-4 py-2 whitespace-nowrap">{room.room_type}</td>
               <td className="px-4 py-2 whitespace-nowrap">{room.availability_status}</td>
-              <td className=" px-4 py-2">
+              <td className=" px-4 py-2 text-center">
                 <button
                   onClick={() => handleEditClick(room)}
                   className="text-teal-600 hover:text-teal-800 mr-2"
                 >
                   <RiEditFill></RiEditFill>
                 </button>
-                <button
-                  onClick={() => handleDelete(room.id)}
-                  className="text-red-600 hover:text-red-800"
-                >
-                  <RiDeleteBin5Fill></RiDeleteBin5Fill>
-                </button>
+                
               </td>
             </tr>
           ))}
