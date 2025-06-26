@@ -4,7 +4,6 @@ import "./index.css";
 import {
   createBrowserRouter,
   RouterProvider,
-  useNavigate,
 } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import { UserProvider } from "./Provider/UserProvider";
@@ -35,8 +34,8 @@ import StaffProfile from "./Pages/Staffs Profile/StaffProfile";
 import { Carousels } from "./Pages/BrandJashore/Carousels";
 import ProtectedRoute from "./Provider/ProtectedRoute"; 
 import HelpLine from "./Pages/Home/HelpLine";
-import Media from "./Pages/Media/Media";
-import TourismCalender from "./Pages/Calender/TourismCalender";
+// import Media from "./Pages/Media/Media";
+import Store from "./Pages/store/Store";
 import AddMedia from "./Pages/Media/AddMedia";
 import JashoreDeluxe from "./Pages/VisitJashore/JashoreDelux";
 
@@ -86,7 +85,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/visitJashore",
+        path: "/attractions",
         element: <Carousels />,
       },
 
@@ -99,8 +98,8 @@ const router = createBrowserRouter([
         element: <JashoreDeluxe></JashoreDeluxe>,
       },
       {
-        path: "/calender",
-        element: <TourismCalender></TourismCalender>,
+        path: "/ourStore",
+        element: <Store></Store>,
       },
       {
         path: "/addMedia",

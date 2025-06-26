@@ -1,119 +1,57 @@
-import { Link } from "react-router-dom";
-import { useUser } from "../../Provider/UserProvider";
-import img from "../../assets/Slider/Jessore Road_01.jpg";
-import { useEffect, useState } from "react";
-import AxiosInstance from "../../Components/Axios";
+import React from "react";
+import januaryImg from "../../assets/Slider/Khejur Guur_06.jpg";
+import deluxeImg from "../../assets/Rooms/CircuitHouse_11.jpg";
 
-const Media = () => {
-  const { user } = useUser();
-  const [mediaData, setMediaData] = useState([]);
-  const [selectedMedia, setSelectedMedia] = useState(null); // For storing selected media for the modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = (item) => {
-    setSelectedMedia(item);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedMedia(null);
-  };
-
-  useEffect(() => {
-    const fetchMedia = async () => {
-      try {
-        const response = await AxiosInstance.get("/media/");
-        setMediaData(response.data);
-      } catch (error) {
-        console.error("Error fetching media:", error);
-      }
-    };
-
-    fetchMedia();
-  }, []);
-
+export default function Media() {
   return (
-    <div className="bg-[#D8C4B6]">
-      <div
-        className="hero h-[500px]"
-        style={{
-          backgroundImage: `url(${img})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <div className="hero-overlay bg-opacity-60"></div>
-        <div className="hero-content text-neutral-content text-center">
-          <div className="max-w-2xl">
-            <h1 className="mb-5 text-4xl font-semibold italic">
-              Discover Moments, Captured in Time
-            </h1>
+    <div className="min-h-screen bg-gradient-to-br from-white via-purple-50 to-blue-100 p-6">
+      <h1 className="text-4xl font-bold text-center text-indigo-700 mb-6">Visit Jashore</h1>
+      <p className="text-center text-lg text-gray-700 mb-10">
+        Select one of our two tour packages:
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+        {/* Jashore in January */}
+        <div className="bg-white shadow-lg rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
+          <img
+            src={januaryImg}
+            alt="Jashore in January"
+            className="w-full h-64 object-cover"
+          />
+          <div className="p-4">
+            <h2 className="text-xl font-semibold text-indigo-700">Jashore in January</h2>
+            <p className="text-gray-600 mt-2">
+              Enjoy flower festivals, winter scenery, and peaceful village life.
+            </p>
+          </div>
+        </div>
+
+        {/* Jashore Deluxe */}
+        <div className="bg-white shadow-lg rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
+          <img
+            src={deluxeImg}
+            alt="Jashore Deluxe"
+            className="w-full h-64 object-cover"
+          />
+          <div className="p-4">
+            <h2 className="text-xl font-semibold text-indigo-700">Jashore Deluxe</h2>
+            <p className="text-gray-600 mt-2">
+              A luxury tour with premium hospitality, cuisine, and guided site visits.
+            </p>
           </div>
         </div>
       </div>
 
-      {user && (
-        <div className="flex justify-end p-6 items-end">
-          <Link
-            to="/addMedia"
-            className="btn btn-outline hover:bg-[#3E5879] border-[#3E5879]"
-          >
-            Add Media
-          </Link>
-        </div>
-      )}
-
-      <div className="max-w-7xl py-10 mx-auto grid grid-cols-1 md:grid-cols-2 text-black lg:grid-cols-3 gap-6">
-        {mediaData.map((item) => (
-          <div key={item.id} className="bg-[#F5EFE7] rounded-none shadow-lg">
-            <div>
-              <div className="h-64">
-                {item.image ? (
-                  <img
-                    src={item.image}
-                    alt="media"
-                    className="w-full h-64 object-cover"
-                  />
-                ) : item.video ? (
-                  <video controls className="w-full h-64 object-cover">
-                    <source src={item.video} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                ) : null}
-              </div>
-              <div className="px-4 py-2">
-                <h2 className="card-title">{item.title}</h2>
-                <div className="flex justify-end">
-                  <button
-                    onClick={() => openModal(item)}
-                    className="btn bg-[#213555] hover:bg-[#3E5879] text-white btn-xs px-4 rounded-full"
-                  >
-                    Details
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-
-        {isModalOpen && selectedMedia && (
-          <div className="modal modal-open" role="dialog">
-            <div className="modal-box">
-              <h3 className="text-lg font-bold">{selectedMedia.title}</h3>
-              <p className="py-4 text-justify">{selectedMedia.description}</p>
-              <div className="modal-action">
-                <button onClick={closeModal} className="btn">
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+      {/* 📌 Detailed description BELOW the cards */}
+      <div className="mt-12 max-w-4xl mx-auto text-center text-gray-700 text-base leading-relaxed bg-white p-6 rounded-xl shadow-md">
+        <p>
+          Discover the essence of Jashore with two beautifully curated tour packages. 
+          Whether you prefer the rustic charm of January’s blooming flower fields and molasses huts, 
+          or the elegance of a deluxe experience with historical site visits, fine dining, and comfortable stays — 
+          we have something perfect for every traveler. Both packages offer guided support, local cuisine, and 
+          memorable experiences rooted in the heart of southwestern Bangladesh.
+        </p>
       </div>
     </div>
   );
-};
-
-export default Media;
+}
