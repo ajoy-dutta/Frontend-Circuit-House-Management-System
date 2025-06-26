@@ -34,10 +34,11 @@ import StaffProfile from "./Pages/Staffs Profile/StaffProfile";
 import { Carousels } from "./Pages/BrandJashore/Carousels";
 import ProtectedRoute from "./Provider/ProtectedRoute"; 
 import HelpLine from "./Pages/Home/HelpLine";
-// import Media from "./Pages/Media/Media";
+import Media from "./Pages/Media/Media";
 import Store from "./Pages/store/Store";
 import AddMedia from "./Pages/Media/AddMedia";
 import JashoreDeluxe from "./Pages/VisitJashore/JashoreDelux";
+import JashoreWinter from "./Pages/VisitJashore/JashoreWinter";
 
 
 
@@ -97,9 +98,17 @@ const router = createBrowserRouter([
         path: "/jashore-delux",
         element: <JashoreDeluxe></JashoreDeluxe>,
       },
+         {
+        path: "/jashore-winter",
+        element: <JashoreWinter></JashoreWinter>,
+      },
       {
         path: "/ourStore",
         element: <Store></Store>,
+      },
+      {
+        path: "/visitJashore",
+        element: <Media></Media>,
       },
       {
         path: "/addMedia",
