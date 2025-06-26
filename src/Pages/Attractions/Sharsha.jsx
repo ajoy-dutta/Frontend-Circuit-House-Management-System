@@ -89,7 +89,7 @@ export default function Sharsha() {
           <div className="shrink-0">
             <button className="bg-black text-white flex flex-col justify-center items-center px-2 py-[70px] gap-5 border rounded-r-xl hover:bg-gray-100 hover:text-gray-950">
               <FaChevronLeft className="rotate-180" />
-              <span className="[writing-mode:vertical-rl] rotate-180 text-base font-semibold">
+              <span className="[writing-mode:vertical-rl] rotate-180 text-xl font-semibold">
                 Sharsha
               </span>
             </button>

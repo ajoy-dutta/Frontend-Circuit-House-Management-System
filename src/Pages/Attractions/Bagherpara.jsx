@@ -1,69 +1,48 @@
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 // Import images
-import flowerGarden from "../../assets/Attraction/Jhikargacha/Flower Garden Godkhali/Flower Cultivation_Godkhali_01.jpg";
-import flowerGarden1 from "../../assets/Attraction/Jhikargacha/Flower Garden Godkhali/Flower Cultivation_Godkhali_12.jpg";
-import flowerGarden2 from "../../assets/Attraction/Jhikargacha/Flower Garden Godkhali/Flower Cultivation_Godkhali_11.jpg";
-import flowerMarket from "../../assets/Attraction/Jhikargacha/Flower Market/Flower Market_06.jpg";
-import flowerMarket1 from "../../assets/Attraction/Jhikargacha/Flower Market/Flower Market_01.jpg";
-import flowerMarket9 from "../../assets/Attraction/Jhikargacha/Flower Market/Flower Market_06.jpg";
-import jsroad from "../../assets/Attraction/Jhikargacha/Jashore Road/Jessore Road_01.jpg";
-import jsroad1 from "../../assets/Attraction/Jhikargacha/Jashore Road/Jessore Road_02.jpg";
-import jsroad4 from "../../assets/Attraction/Jhikargacha/Jashore Road/Jessore Road_04.jpg";
+import tree from "../../assets/Attraction/Bagherpara/Johorpur Banyan Tree/Johorpur Bot Gacher Mela_02.jpg"
+import tree1 from "../../assets/Attraction/Bagherpara/Johorpur Banyan Tree/Johorpur Bot Gacher Mela_01.jpg"
+import tree2 from "../../assets/Attraction/Bagherpara/Johorpur Banyan Tree/Johorpur Bot Gacher Mela_05.jpg"
+import mandir from "../../assets/Attraction/Bagherpara/Kaluadanga Shiv Mandir/Kaludanga Shib Mondir_01.jpg"
+import mandir1 from "../../assets/Attraction/Bagherpara/Kaluadanga Shiv Mandir/Kaludanga Shib Mondir_04.jpg"
+import mandir2 from "../../assets/Attraction/Bagherpara/Kaluadanga Shiv Mandir/Kaludanga Shib Mondir_06.jpg"
 
-export default function Jhikargacha() {
+
+
+export default function Bagherpara() {
   const images = [
     {
-      src: flowerGarden,
-      subImg1: flowerGarden1,
-      subImg2: flowerGarden2,
-      title: "Flower Garden of Godkhali ",
-      upazila: "Jhikargacha",
+      src: tree,
+      subImg1: tree1,
+      subImg2: tree2,
+      title: "Johorpur Banyan Tree ",
+      upazila: "Bagherpara",
       description:
-        "Step into the mesmerizing flower fields of Godkhali, Jhikargacha, where vast seas of marigolds, roses, gladiolus, tuberoses, and more carpet the land in brilliant hues. Sprawling across hundreds of hectares in nearly 90 villages, this is Bangladesh’s true “flower capital,” supplying over 70–80 % of the nation’s blooms. Visiting in peak season (December–February) means witnessing this breathtaking floral spectacle and supporting the livelihoods of thousands of local farming families thriving through this vibrant economy.",
+        "The century-old Banyan Tree, located in Johorpur Union of Bagherpara Upazila, Jashore, stands as a monumental testament to nature's resilience and the rich cultural tapestry of the region.This century-old tree has become a central figure in local folklore and daily life. The tree's unique fruit, resembling dried grapes, attracts a myriad of birds, adding to the area's biodiversity. ",
       mapLink: (
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.8026103891907!2d89.05458377983504!3d23.0676971608834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff3e5e42a8d48d%3A0xfc29da49e31f09c3!2sGodkhali%20Flower%20Garden!5e0!3m2!1sen!2sbd!4v1750921276231!5m2!1sen!2sbd" width="100%"
+       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d938294.172054896!2d87.791657878125!3d23.271759499999987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff25000c570675%3A0xb73fcb9ceb9d60b9!2zQmFueWFuIHRyZWUsIOCmrOCmn-Cml-CmvuCmmw!5e0!3m2!1sen!2sbd!4v1750931916803!5m2!1sen!2sbd" width="100%"
           height="80%"
-          style={{ border: 0 }} 
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      ),
+          style={{ border: 0 }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    ),
     },
     {
-      src: flowerMarket,
-      subImg1: flowerMarket1,
-      subImg2: flowerMarket9,
-      title: "Flower Market of Godkhali ",
-      upazila: "Jhikargacha",
+      src: mandir,
+      subImg1: mandir1,
+      subImg2: mandir2,
+      title: "Kaluadanga Shiv Mandir ",
+      upazila: "Bagherpara",
       description:
-        "The Godkhali flower market in Jhikargacha is a soul-stirring spectacle, where each dawn unveils a riot of color and fragrance across sprawling stalls. Here, vibrant roses, gerberas, tuberoses, gladioli, chrysanthemums, and marigolds are traded in bulk—supplying roughly 65–80 % of Bangladesh’s flower needs  ",
+        "The Kaluadanga Shiv Mandir, also known as the Kaluadanga Temple, stands as a testament to Jashore’s ancient religious and architectural heritage. Located in Bagharpara, the temple remains a cherished local pilgrimage site. Pilgrims and visitors gather especially during Shivaratri and full/new moons, while the peaceful rural setting, dotted with neem, coconut, and betel-nut trees, lends the temple a serene atmosphere.",
       mapLink: (
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.4485780908967!2d89.05576727505385!3d23.08066931415814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff3fe2e4685d4d%3A0x4430a45ab3101a37!2sGodkhali%20Flower%20Market!5e0!3m2!1sen!2sbd!4v1750921429933!5m2!1sen!2sbd" width="100%"
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d234776.12850663826!2d89.19773123364637!3d23.156436341368988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ffa8274d7280b9%3A0x8992d286a519bf79!2sKaludanga%20Temple!5e0!3m2!1sen!2sbd!4v1750932039147!5m2!1sen!2sbd" width="100%"
           height="80%"
           style={{ border: 0 }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       ),
     },
-    {
-      src: jsroad,
-      subImg1: jsroad1,
-      subImg2: jsroad4,
-      title: "Jashore Road",
-      upazila: "Jhikargacha",
-      description:
-        "Jashore Road—often referred to by its historic name—forms a vital artery in the region, stretching from Jessore town to the Benapole border on the N706 highway. As the eastern extension of India’s iconic Jessore Road (part of AH1 and NH 112/N 12), it connects Kolkata to Jessore via Petrapole–Benapole . Beyond commerce, the road carries deep heritage: lined with centuries-old trees planted during the British era by Zamindar Kali Poddar’s family, the road’s canopy once shaded thousands of 1971 refugees and inspired Allen Ginsberg’s poem “September on Jessore Road”. These iconic tree-lined stretches are now proud symbols of national memory.",
-      mapLink: (
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.4838035233!2d88.73194357504981!3d22.93240291968756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0276006740e057%3A0xd6f15542578173e9!2sJessore%20Rd!5e0!3m2!1sen!2sbd!4v1750921184449!5m2!1sen!2sbd"
-          width="100%"
-          height="80%"
-          style={{ border: 0 }}
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
-      ),
-    },
+  
   ];
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -97,7 +76,7 @@ export default function Jhikargacha() {
             <button className="bg-black text-white flex flex-col justify-center items-center px-2 py-[70px] gap-5 border rounded-r-xl hover:bg-gray-100 hover:text-gray-950">
               <FaChevronLeft className="rotate-180" />
               <span className="[writing-mode:vertical-rl] rotate-180 text-xl font-semibold">
-                Jhikargacha
+                Bagherpara
               </span>
             </button>
           </div>

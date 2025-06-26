@@ -1,69 +1,31 @@
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 // Import images
-import flowerGarden from "../../assets/Attraction/Jhikargacha/Flower Garden Godkhali/Flower Cultivation_Godkhali_01.jpg";
-import flowerGarden1 from "../../assets/Attraction/Jhikargacha/Flower Garden Godkhali/Flower Cultivation_Godkhali_12.jpg";
-import flowerGarden2 from "../../assets/Attraction/Jhikargacha/Flower Garden Godkhali/Flower Cultivation_Godkhali_11.jpg";
-import flowerMarket from "../../assets/Attraction/Jhikargacha/Flower Market/Flower Market_06.jpg";
-import flowerMarket1 from "../../assets/Attraction/Jhikargacha/Flower Market/Flower Market_01.jpg";
-import flowerMarket9 from "../../assets/Attraction/Jhikargacha/Flower Market/Flower Market_06.jpg";
-import jsroad from "../../assets/Attraction/Jhikargacha/Jashore Road/Jessore Road_01.jpg";
-import jsroad1 from "../../assets/Attraction/Jhikargacha/Jashore Road/Jessore Road_02.jpg";
-import jsroad4 from "../../assets/Attraction/Jhikargacha/Jashore Road/Jessore Road_04.jpg";
+import jhapa from "../../assets/Attraction/Manirampur/Jhanpa Baor/Jhapa Baor_03.jpg";
+import jhapa1 from "../../assets/Attraction/Manirampur/Jhanpa Baor/Jhapa Baor_05.jpg";
+import jhapa2 from "../../assets/Attraction/Manirampur/Jhanpa Baor/Jhapa Baor_08.jpg";
 
-export default function Jhikargacha() {
+
+export default function Monirampur() {
   const images = [
     {
-      src: flowerGarden,
-      subImg1: flowerGarden1,
-      subImg2: flowerGarden2,
-      title: "Flower Garden of Godkhali ",
-      upazila: "Jhikargacha",
+      src: jhapa,
+      subImg1: jhapa1,
+      subImg2: jhapa2,
+      title: "Jhapa Baor",
+      upazila: "Monirampur",
       description:
-        "Step into the mesmerizing flower fields of Godkhali, Jhikargacha, where vast seas of marigolds, roses, gladiolus, tuberoses, and more carpet the land in brilliant hues. Sprawling across hundreds of hectares in nearly 90 villages, this is Bangladesh’s true “flower capital,” supplying over 70–80 % of the nation’s blooms. Visiting in peak season (December–February) means witnessing this breathtaking floral spectacle and supporting the livelihoods of thousands of local farming families thriving through this vibrant economy.",
+        "Jhapa Baor (Jhanpa Baor) is a stunning crescent-shaped oxbow lake nestled near Rajganj Bazaar in Monirampur, just a 30‑minute journey from Jashore town. Stretching approximately 6 km, this serene waterbody offers a peaceful escape framed by lush greenery. Visitors can enjoy gentle boat rides, observe local fishermen at work, and capture tranquil reflections of sky and trees—perfect for photographers and nature lovers. A unique feature here is the floating bridges—built by local youth using plastic drums and iron sheets, connecting villages and easing travel across the lake..",
       mapLink: (
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.8026103891907!2d89.05458377983504!3d23.0676971608834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff3e5e42a8d48d%3A0xfc29da49e31f09c3!2sGodkhali%20Flower%20Garden!5e0!3m2!1sen!2sbd!4v1750921276231!5m2!1sen!2sbd" width="100%"
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29385.44317595649!2d89.1138048596954!3d22.980392929030753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff6ae0d1c8ab03%3A0x5dfa26a289a4debb!2sJhanpa%20Baor!5e0!3m2!1sen!2sbd!4v1750928748069!5m2!1sen!2sbd" width="100%"
           height="80%"
-          style={{ border: 0 }} 
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          style={{ border: 0 }}  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       ),
     },
-    {
-      src: flowerMarket,
-      subImg1: flowerMarket1,
-      subImg2: flowerMarket9,
-      title: "Flower Market of Godkhali ",
-      upazila: "Jhikargacha",
-      description:
-        "The Godkhali flower market in Jhikargacha is a soul-stirring spectacle, where each dawn unveils a riot of color and fragrance across sprawling stalls. Here, vibrant roses, gerberas, tuberoses, gladioli, chrysanthemums, and marigolds are traded in bulk—supplying roughly 65–80 % of Bangladesh’s flower needs  ",
-      mapLink: (
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.4485780908967!2d89.05576727505385!3d23.08066931415814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff3fe2e4685d4d%3A0x4430a45ab3101a37!2sGodkhali%20Flower%20Market!5e0!3m2!1sen!2sbd!4v1750921429933!5m2!1sen!2sbd" width="100%"
-          height="80%"
-          style={{ border: 0 }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      ),
-    },
-    {
-      src: jsroad,
-      subImg1: jsroad1,
-      subImg2: jsroad4,
-      title: "Jashore Road",
-      upazila: "Jhikargacha",
-      description:
-        "Jashore Road—often referred to by its historic name—forms a vital artery in the region, stretching from Jessore town to the Benapole border on the N706 highway. As the eastern extension of India’s iconic Jessore Road (part of AH1 and NH 112/N 12), it connects Kolkata to Jessore via Petrapole–Benapole . Beyond commerce, the road carries deep heritage: lined with centuries-old trees planted during the British era by Zamindar Kali Poddar’s family, the road’s canopy once shaded thousands of 1971 refugees and inspired Allen Ginsberg’s poem “September on Jessore Road”. These iconic tree-lined stretches are now proud symbols of national memory.",
-      mapLink: (
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.4838035233!2d88.73194357504981!3d22.93240291968756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0276006740e057%3A0xd6f15542578173e9!2sJessore%20Rd!5e0!3m2!1sen!2sbd!4v1750921184449!5m2!1sen!2sbd"
-          width="100%"
-          height="80%"
-          style={{ border: 0 }}
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
-      ),
-    },
+  
   ];
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -97,7 +59,7 @@ export default function Jhikargacha() {
             <button className="bg-black text-white flex flex-col justify-center items-center px-2 py-[70px] gap-5 border rounded-r-xl hover:bg-gray-100 hover:text-gray-950">
               <FaChevronLeft className="rotate-180" />
               <span className="[writing-mode:vertical-rl] rotate-180 text-xl font-semibold">
-                Jhikargacha
+                Monirampur
               </span>
             </button>
           </div>
