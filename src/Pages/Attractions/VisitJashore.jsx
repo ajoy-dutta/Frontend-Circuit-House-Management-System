@@ -19,6 +19,7 @@ import ramkrisno from "../../assets/Attraction/Sadar/Ram Krishna Ashram/Ramkrisn
 import ramkrisno1 from "../../assets/Attraction/Sadar/Ram Krishna Ashram/Ramkrisno Mission_04.jpg";
 import Keshobpur from "./Keshobpur";
 import Jhikargacha from "./Jhirgacha";
+import Sharsha from "./Sharsha";
 
 const VisitJashore = () => {
   const images = [
@@ -303,6 +304,7 @@ const VisitJashore = () => {
 
       <Keshobpur></Keshobpur>
       <Jhikargacha></Jhikargacha>
+      <Sharsha></Sharsha>
 
     </div>
   );
