@@ -38,6 +38,7 @@ import HelpLine from "./Pages/Home/HelpLine";
 import Media from "./Pages/Media/Media";
 import TourismCalender from "./Pages/Calender/TourismCalender";
 import AddMedia from "./Pages/Media/AddMedia";
+import JashoreDeluxe from "./Pages/VisitJashore/JashoreDelux";
 
 
 
@@ -94,8 +95,8 @@ const router = createBrowserRouter([
         element: <HelpLine></HelpLine>,
       },
       {
-        path: "/media",
-        element: <Media></Media>,
+        path: "/jashore-delux",
+        element: <JashoreDeluxe></JashoreDeluxe>,
       },
       {
         path: "/calender",
