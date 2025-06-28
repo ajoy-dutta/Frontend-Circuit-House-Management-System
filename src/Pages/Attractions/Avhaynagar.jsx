@@ -10,6 +10,7 @@ import shib2 from "../../assets/Attraction/Abhaynagar/Egaro Shiv Mandir/Egaro Sh
 import rivarport from "../../assets/Attraction/Abhaynagar/River Port/Industry Zone_01.jpg";
 import rivarport1 from "../../assets/Attraction/Abhaynagar/River Port/Industry Zone_02.jpg";
 import rivarport2 from "../../assets/Attraction/Abhaynagar/River Port/Industry Zone_03.jpg";
+import LazyLoad from "react-lazyload";
 
 
 
@@ -29,9 +30,9 @@ export default function Abhaynagar() {
           style={{ border: 0 }}  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>     ),
     },
     {
-      src: rivarport,
+      src: rivarport2,
       subImg1: rivarport1,
-      subImg2: rivarport2,
+      subImg2: rivarport,
       title: "River Port",
       upazila: "Abhaynagar",
       description:
@@ -93,7 +94,6 @@ export default function Abhaynagar() {
           </div>
 
           {/* Card Grid */}
-          {/* Card Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 flex-grow">
             {currentImages.map((image, index) => (
               <motion.div
@@ -104,11 +104,21 @@ export default function Abhaynagar() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <img
-                  className="rounded-tl-3xl bg-[#FEB38D] p-1"
-                  src={image.src}
-                  alt={image.title}
-                />
+               <LazyLoad
+  offset={100}
+  once
+ 
+  placeholder={
+    <div className="rounded-tl-3xl  p-1 h-48 bg-gray-200 animate-pulse" />
+  }
+>
+  <img
+    className="rounded-tl-3xl bg-[#FEB38D] p-1"
+    src={image.src}
+    alt={image.title}
+  />
+</LazyLoad>
+
                 <div className="py-5">
                   <button
                     className="btn uppercase btn-ghost text-base font-semibold"
@@ -136,65 +146,88 @@ export default function Abhaynagar() {
         </div>
 
         {/* Modal */}
-        <AnimatePresence>
+              <AnimatePresence>
           {isModalOpen && selectedImage && (
             <motion.div
-              className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center mt-10 z-50"
+              className="fixed inset-0 bg-black bg-opacity-60 flex justify-center mt-16 items-center z-50 overflow-auto p-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeModal}
             >
               <motion.div
-                className="bg-white rounded-lg shadow-lg w-full  md:max-w-5xl p-10"
+                className="bg-white rounded-lg shadow-lg w-[90%] max-w-2xl p-6 md:p-8"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Title */}
-                <h2 className="text-xl font-bold text-center mb-4 uppercase">
+                <h2 className="text-lg md:text-xl font-bold text-center mb-4 uppercase">
                   {selectedImage.title}
                 </h2>
 
                 {/* Images with animation */}
-                <div className="flex items-center justify-center gap-4 mb-4">
-                  <motion.img
-                    src={selectedImage.subImg1}
-                    alt="Main"
-                    className="w-1/3 rounded border"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    whileHover={{ scale: 1.05 }}
-                  />
-                  <motion.img
-                    src={selectedImage.subImg2}
-                    alt="Sub 1"
-                    className="w-1/3 rounded border"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    whileHover={{ scale: 1.05 }}
-                  />
-                </div>
+               <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
 
-                <div className="grid grid-cols-3 gap-4 mb-4 p-4">
-                  {/* Description */}
+  <LazyLoad
+   
+    offset={100}
+    once
+    placeholder={
+      <div className="w-full  h-48 bg-gray-200 animate-pulse rounded border" />
+    }
+  >
+    <motion.img
+      src={selectedImage.subImg1}
+      alt="Main"
+      className="w-full  rounded border"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+      whileHover={{ scale: 1.05 }}
+    />
+  </LazyLoad>
+
+  <LazyLoad
+   
+    offset={100}
+    once
+    placeholder={
+      <div className="w-full  h-48 bg-gray-200 animate-pulse rounded border" />
+    }
+  >
+    <motion.img
+      src={selectedImage.subImg2}
+      alt="Sub 1"
+      className="w-full  rounded border"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+      whileHover={{ scale: 1.05 }}
+    />
+  </LazyLoad>
+
+</div>
+
+
+                {/* Description and Map */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                   <textarea
-                    rows={8}
-                    className="col-span-2 px-3 text-justify mb-4"
-                  >
-                    {selectedImage.description}
-                  </textarea>
-                  {/* Map */}
-                  <div>{selectedImage.mapLink}</div>
+                    rows={6}
+                    className="md:col-span-2 px-3 py-2 text-sm text-justify resize-none"
+                    readOnly
+                    value={selectedImage.description}
+                  />
+                  <div className=" p-2 overflow-auto">
+                    {selectedImage.mapLink}
+                  </div>
                 </div>
 
                 {/* Close Button */}
-                <div className="flex justify-end mt-4">
+                <div className="flex justify-end mt-2">
                   <button
-                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                    className="px-3 py-1 bg-red-500 text-sm text-white rounded hover:bg-red-600"
                     onClick={closeModal}
                   >
                     Close

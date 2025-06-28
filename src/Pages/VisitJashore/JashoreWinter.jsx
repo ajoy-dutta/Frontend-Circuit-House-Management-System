@@ -33,7 +33,7 @@ export default function JashoreWinter() {
         variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
       >
         <motion.section
-          className="relative h-[350px] mb-14 text-white text-center bg-cover bg-center flex items-center justify-center"
+          className="relative h-[500px] mb-14 text-white text-center bg-cover bg-center flex items-center justify-center"
           style={{ backgroundImage: `url(${januaryImg})` }}
           variants={fadeInUp}
         >

@@ -10,7 +10,7 @@ import BNM1 from "../../assets/Attraction/Sharsha/Birsresto Nur Mohammad Graveya
 import BNM2 from "../../assets/Attraction/Sharsha/Birsresto Nur Mohammad Graveyard/Birsresto Nur Mohammad Graveyard_02.jpg";
 import BCP from "../../assets/Attraction/Sharsha/Border Checkpoint/Border Check Port_01.jpg";
 import BCP1 from "../../assets/Attraction/Sharsha/Border Checkpoint/Border Check Port_05.jpg";
-
+import LazyLoad from "react-lazyload";
 
 export default function Sharsha() {
   const images = [
@@ -23,24 +23,35 @@ export default function Sharsha() {
       description:
         "Benapole Municipality constructed this 56.5 feet high gate in 2016. This gate has a significance as it is used as the gateway to India. It is located in the Benapole port area of Sharsha Upazila, Jashore District, Bangladesh. The gate is a symbol of the friendship between Bangladesh and India, and it serves as a reminder of the historical ties between the two countries.",
       mapLink: (
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3532.5927271353794!2d88.9289828!3d23.0524128!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff377cae5826c5%3A0xa2bf574c3fb07c33!2zU2hhaGlkIEFiZHVsbGFoIEdhdGUt4Ka24Ka54KeA4KamIOCmhuCmrOCnjeCmpuCngeCmsuCnjeCmsuCmvuCmuSDgppfgp4fgpofgpp8!5e1!3m2!1sen!2sbd!4v1750923940289!5m2!1sen!2sbd" width="100%"
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3532.5927271353794!2d88.9289828!3d23.0524128!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff377cae5826c5%3A0xa2bf574c3fb07c33!2zU2hhaGlkIEFiZHVsbGFoIEdhdGUt4Ka24Ka54KeA4KamIOCmhuCmrOCnjeCmpuCngeCmsuCnjeCmsuCmvuCmuSDgppfgp4fgpofgpp8!5e1!3m2!1sen!2sbd!4v1750923940289!5m2!1sen!2sbd"
+          width="100%"
           height="80%"
-          style={{ border: 0 }}  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          style={{ border: 0 }}
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       ),
     },
     {
-      src: BNM,
+      src: BNM2,
       subImg1: BNM1,
-      subImg2: BNM2,
+      subImg2: BNM1,
       title: "Graveyard of Bir Shrestha Lance Naik Nur Mohammad Sheikh ",
       upazila: "Sharsha",
       description:
         "The Graveyard of Bir Shrestha Lance Naik Nur Mohammad Sheikh, located in Sharsha Upazila of Jashore, is a solemn tribute to Bangladesh’s highest military hero. Lance Naik Nur Mohammad sacrificed his life on September 5, 1971, providing covering fire at Goalhati in Jessore  to ensure his comrades’ escape during a pivotal moment of the Liberation War of Bangladesh—his bravery earning him the nation’s esteemed Bir Sreshtho (Valiant of Highest Order) honor . His final resting place, marked by a simple yet dignified grave and serene surroundings, is a place of national reverence.",
       mapLink: (
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d469410.6832928545!2d88.37955888906247!3d23.19679379999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff24ce280ca2d3%3A0xb224043879c10c59!2sBirshrestha%20Lance%20Naik%20Nur%20Mohammad%20Sheikh%20Grave!5e0!3m2!1sen!2sbd!4v1750924119857!5m2!1sen!2sbd" width="100%"
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d469410.6832928545!2d88.37955888906247!3d23.19679379999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff24ce280ca2d3%3A0xb224043879c10c59!2sBirshrestha%20Lance%20Naik%20Nur%20Mohammad%20Sheikh%20Grave!5e0!3m2!1sen!2sbd!4v1750924119857!5m2!1sen!2sbd"
+          width="100%"
           height="80%"
-          style={{ border: 0 }} 
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          style={{ border: 0 }}
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       ),
     },
     {
@@ -52,9 +63,15 @@ export default function Sharsha() {
       description:
         "The Benapole Border Checkpoint, located in Sharsha Upazila of Jashore, is the largest and busiest land port in Bangladesh and a vital gateway for trade and people-to-people contact with India, linking to Petrapole on the Indian side. Every day, thousands of travelers and cargo trucks pass through this critical point, making it a lifeline for economic exchange between the two nations. But beyond commerce, Benapole holds symbolic significance. Since 2013, it hosts a daily retreat ceremony, modeled after the Wagah Border ceremony, where border guards from both countries lower their national flags in a synchronized display of discipline, dignity, and mutual respect. This ceremonial event, full of marching, music, and patriotic fervor, draws spectators and tourists alike, adding a unique cultural experience to this strategic frontier.",
       mapLink: (
-       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.588070651022!2d88.87923628091814!3d23.038892334301234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff37eec2be9985%3A0xb780646e30327ca3!2sBenapole-Petrapole%20Border!5e0!3m2!1sen!2sbd!4v1750924238159!5m2!1sen!2sbd" width="100%"
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.588070651022!2d88.87923628091814!3d23.038892334301234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff37eec2be9985%3A0xb780646e30327ca3!2sBenapole-Petrapole%20Border!5e0!3m2!1sen!2sbd!4v1750924238159!5m2!1sen!2sbd"
+          width="100%"
           height="80%"
-          style={{ border: 0 }}  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          style={{ border: 0 }}
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       ),
     },
   ];
@@ -107,7 +124,6 @@ export default function Sharsha() {
           </div>
 
           {/* Card Grid */}
-          {/* Card Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 flex-grow">
             {currentImages.map((image, index) => (
               <motion.div
@@ -118,11 +134,21 @@ export default function Sharsha() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <img
-                  className="rounded-tl-3xl bg-[#FEB38D] p-1"
-                  src={image.src}
-                  alt={image.title}
-                />
+                <LazyLoad
+                  offset={100}
+                  once
+                  height={200}
+                  placeholder={
+                    <div className="rounded-tl-3xl  p-1 h-48 bg-gray-200 animate-pulse" />
+                  }
+                >
+                  <img
+                    className="rounded-tl-3xl bg-[#FEB38D] p-1"
+                    src={image.src}
+                    alt={image.title}
+                  />
+                </LazyLoad>
+
                 <div className="py-5">
                   <button
                     className="btn uppercase btn-ghost text-base font-semibold"
@@ -153,62 +179,82 @@ export default function Sharsha() {
         <AnimatePresence>
           {isModalOpen && selectedImage && (
             <motion.div
-              className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center mt-10 z-50"
+              className="fixed inset-0 bg-black bg-opacity-60 flex justify-center mt-16 items-center z-50 overflow-auto p-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeModal}
             >
               <motion.div
-                className="bg-white rounded-lg shadow-lg w-full  md:max-w-5xl p-10"
+                className="bg-white rounded-lg shadow-lg w-[90%] max-w-2xl p-6 md:p-8"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Title */}
-                <h2 className="text-xl font-bold text-center mb-4 uppercase">
+                <h2 className="text-lg md:text-xl font-bold text-center mb-4 uppercase">
                   {selectedImage.title}
                 </h2>
 
                 {/* Images with animation */}
-                <div className="flex items-center justify-center gap-4 mb-4">
-                  <motion.img
-                    src={selectedImage.subImg1}
-                    alt="Main"
-                    className="w-1/3 rounded border"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    whileHover={{ scale: 1.05 }}
-                  />
-                  <motion.img
-                    src={selectedImage.subImg2}
-                    alt="Sub 1"
-                    className="w-1/3 rounded border"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    whileHover={{ scale: 1.05 }}
-                  />
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+                  <LazyLoad
+                    offset={100}
+                    once
+                    
+                    placeholder={
+                      <div className="w-full  h-48 bg-gray-200 animate-pulse rounded border" />
+                    }
+                  >
+                    <motion.img
+                      src={selectedImage.subImg1}
+                      alt="Main"
+                      className="w-full  rounded border"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.05 }}
+                    />
+                  </LazyLoad>
+
+                  <LazyLoad
+                    offset={100}
+                    once
+                    
+                    placeholder={
+                      <div className="w-full  h-48 bg-gray-200 animate-pulse rounded border" />
+                    }
+                  >
+                    <motion.img
+                      src={selectedImage.subImg2}
+                      alt="Sub 1"
+                      className="w-full  rounded border"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                      whileHover={{ scale: 1.05 }}
+                    />
+                  </LazyLoad>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4 mb-4 p-4">
-                  {/* Description */}
+                {/* Description and Map */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                   <textarea
-                    rows={8}
-                    className="col-span-2 px-3 text-justify mb-4"
-                  >
-                    {selectedImage.description}
-                  </textarea>
-                  {/* Map */}
-                  <div>{selectedImage.mapLink}</div>
+                    rows={6}
+                    className="md:col-span-2 px-3 py-2 text-sm text-justify resize-none"
+                    readOnly
+                    value={selectedImage.description}
+                  />
+                  <div className=" p-2 overflow-auto">
+                    {selectedImage.mapLink}
+                  </div>
                 </div>
 
                 {/* Close Button */}
-                <div className="flex justify-end mt-4">
+                <div className="flex justify-end mt-2">
                   <button
-                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                    className="px-3 py-1 bg-red-500 text-sm text-white rounded hover:bg-red-600"
                     onClick={closeModal}
                   >
                     Close

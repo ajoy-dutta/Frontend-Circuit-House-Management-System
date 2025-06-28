@@ -24,7 +24,7 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-export default function JashoreDeluxe() {
+export default function JashoreDeluxe() { 
   return (
     <div className="space-y-4 bg-gradient-to-br from-white to-blue-50 text-gray-800 font-sans">
       {/* Hero Section */}
@@ -35,7 +35,7 @@ export default function JashoreDeluxe() {
       variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
     >
       <motion.section
-        className="relative h-[350px] mb-14 text-white text-center bg-cover bg-center flex items-center justify-center"
+        className="relative h-[500px] mb-14 text-white text-center bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: `url(${deluxeImg})` }}
         variants={fadeInUp}
       >
