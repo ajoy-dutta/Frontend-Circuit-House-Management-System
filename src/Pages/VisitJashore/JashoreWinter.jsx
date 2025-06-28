@@ -45,7 +45,7 @@ export default function JashoreWinter() {
             </p>
             <p className="mt-2 italic text-sm">
               (A journey of petals, poetry, and the wintery sweetness of
-              Bengal's most festive district)
+              Bengal&apos;s most festive district)
             </p>
           </div>
         </motion.section>
@@ -97,7 +97,7 @@ export default function JashoreWinter() {
           <p className="mb-4">
             Proudly organized by the District Administration, Jashore, this
             public tour guarantees safety, transparency, and cultural integrity.
-            You'll enjoy 24/7 support from the Nezarat Deputy Collector, no
+            You&apos;ll enjoy 24/7 support from the Nezarat Deputy Collector, no
             commercial markup, and access to exclusive local experiences.
           </p>
         </motion.section>
