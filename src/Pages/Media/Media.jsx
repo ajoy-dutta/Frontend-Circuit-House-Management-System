@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
-
 import januaryImg from "../../assets/winter.jpg";
 import deluxeImg from "../../assets/Jashore Deluxe.jpg";
 import background from "../../assets/Branding/Collectorate Bhaban_05.jpg";

@@ -20,6 +20,20 @@ const TourismCalendar = () => {
     picture: null,
   });
 
+  const [selectedMedia, setSelectedMedia] = useState(null); // For storing selected media for the modal
+  const [isModal, setIsModal] = useState(false);
+
+  const openModal = (item) => {
+    setSelectedMedia(item);
+    setIsModal(true);
+  };
+
+  const closeModal = () => {
+    setIsModal(false);
+    setSelectedMedia(null);
+  };
+
+
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -83,7 +97,7 @@ const TourismCalendar = () => {
       <div className="w-full md:w-1/4 px-4">
         <h1 className="text-xl font-semibold">Tourism Calendar</h1>
         <Calendar
-          className="text-sm w-full flex flex-col items-center justify-center border border-red-300"
+          className="text-sm w-full"
           onChange={setSelectedDate}
           value={selectedDate}
           tileContent={({ date }) => {
@@ -198,23 +212,47 @@ const TourismCalendar = () => {
         {getEventsForDate(selectedDate).length === 0 ? (
           <p>No events on this date.</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
             {getEventsForDate(selectedDate).map((event) => (
               <div
                 key={event.id}
-                className="p-4 bg-[#ACC2E2] border border-gray-300 rounded-md"
+                className="p-4 bg-[#ACC2E2] border border-gray-400"
               >
-                <div className="text-center">
+                {/* <div className="text-center">
                   <strong>{event.title}</strong>
-                </div>
+                </div> */}
                 <img
                   src={event.picture}
                   alt={event.title}
-                  className="w-full h-auto object-cover rounded-md my-2"
+                  className="w-full h-[280px] md:h-[250px] object-cover rounded-md my-2"
                 />
-                <p>{event.description}</p>
+                <div className="text-start ">
+                  <strong>{event.title}</strong>
+                </div>
+                 <div className="flex justify-end">
+                  <button
+                    onClick={() => openModal(event)}
+                    className="btn bg-[#213555] hover:bg-[#3E5879] text-white btn-xs px-4 rounded-full"
+                  >
+                    Details
+                  </button>
+                </div>
               </div>
             ))}
+            
+        {isModal && selectedMedia && (
+          <div className="modal modal-open" role="dialog">
+            <div className="modal-box">
+              <h3 className="text-lg font-bold">{selectedMedia.title}</h3>
+              <p className="py-4 text-justify">{selectedMedia.description}</p>
+              <div className="modal-action">
+                <button onClick={closeModal} className="btn">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
           </div>
         )}
       </div>

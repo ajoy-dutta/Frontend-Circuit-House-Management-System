@@ -1,10 +1,12 @@
 import { useState } from "react";
 import AxiosInstance from "../../Components/Axios";
+import { useNavigate } from "react-router-dom";
 
-const AddMedia = () => {
+const AddMedia = ({setMediaData, setIsAddMediaModalOpen}) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("Image");
-  const [mediaData, setMediaData] = useState({
+  const [newMediadata, setnewMediadata] = useState({
     title: "",
     image: null,
     video: null,
@@ -18,7 +20,7 @@ const AddMedia = () => {
 
   const handleDropdown = (value) => {
     setInputValue(value);
-    setMediaData((data) => ({
+    setnewMediadata((data) => ({
       ...data,
       media_type: value,
       image: "", // Reset media and video when switching types
@@ -29,7 +31,7 @@ const AddMedia = () => {
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
-    setMediaData((data) => ({
+    setnewMediadata((data) => ({
       ...data,
       [name]: type === "file" ? files[0] : value,
     }));
@@ -37,32 +39,40 @@ const AddMedia = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(setMediaData)
+    console.log(setIsAddMediaModalOpen)
 
     const formData = new FormData();
-    formData.append("title", mediaData.title);
-    formData.append("description", mediaData.description);
-    formData.append("media_type", mediaData.media_type);
+    formData.append("title", newMediadata.title);
+    formData.append("description", newMediadata.description);
+    formData.append("media_type", newMediadata.media_type);
 
-    if (mediaData.media_type === "Image") {
-      formData.append("image", mediaData.image);
-    } else if (mediaData.media_type === "Video") {
-      formData.append("video", mediaData.video);
+    if (newMediadata.media_type === "Image") {
+      formData.append("image", newMediadata.image);
+    } else if (newMediadata.media_type === "Video") {
+      formData.append("video", newMediadata.video);
     }
 
     try {
       const response = await AxiosInstance.post("/media/", formData);
-      console.log(response.data); // Log the response data for debugging
-
+      console.log(response.data); 
       alert("Media uploaded successfully!");
+      setMediaData((prevData) => [...prevData, response.data]);
+      setIsAddMediaModalOpen(false);
+      navigate("/media");
+     
     } catch (error) {
       console.error("Error uploading media:", error.response || error.message);
-      alert("Error uploading media.");
+    
+      // Provide a clear error message to the user
+      alert("Error uploading media. Please try again.");
     }
+    
   };
 
   return (
-    <div className="bg-[#F5EFE7] flex justify-center items-center min-h-screen">
-      <div className="bg-[#D8C4B6] mx-auto my-2 max-w-3xl border border-gray-200 rounded-lg shadow-lg p-6 hover:shadow-xl">
+    // <div className="bg-[#F5EFE7] bg-transparent flex justify-center items-center">
+      <div className="bg-[#D8C4B6]  mx-auto my-2 max-w-3xl  rounded-lg shadow-lg p-6 hover:shadow-xl">
         <div className="flex flex-col px-6 mt-4">
           <h3 className="tracking-tight text-2xl py-2 font-bold text-[#213555]">
             Add Media
@@ -82,12 +92,12 @@ const AddMedia = () => {
                     placeholder="Enter Media Title"
                     id="title"
                     name="title"
-                    value={mediaData.title}
+                    value={newMediadata.title}
                     onChange={handleChange}
                     required
                   />
                 </div>
-                {mediaData.media_type === "Image" && (
+                {newMediadata.media_type === "Image" && (
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-[#213555]" htmlFor="image">
                       Image File
@@ -102,7 +112,7 @@ const AddMedia = () => {
                     />
                   </div>
                 )}
-                {mediaData.media_type === "Video" && (
+                {newMediadata.media_type === "Video" && (
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-[#213555]" htmlFor="video">
                       Video File
@@ -128,7 +138,7 @@ const AddMedia = () => {
                     placeholder="Enter Description For Media"
                     id="description"
                     name="description"
-                    value={mediaData.description}
+                    value={newMediadata.description}
                     onChange={handleChange}
                     required  
                   />
@@ -185,7 +195,7 @@ const AddMedia = () => {
           </form>
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 
