@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 // Import images
-import chachramondir from "../../assets/Attraction/Sadar/Cacra Shib Mondir/Cacra Shib Mondir_01.jpg";
-import chachramondir1 from "../../assets/Attraction/Sadar/Cacra Shib Mondir/Cacra Shib Mondir_05.jpg";
+import chachramondir from "../../assets/Attraction/Sadar/Chanchra Shiv Mandir/Cacra Shib Mondir_01.jpg";
+import chachramondir1 from "../../assets/Attraction/Sadar/Chanchra Shiv Mandir/Cacra Shib Mondir_05.jpg";
 import collectorate from "../../assets/Attraction/Sadar/Collectorate Building/Collectorate Bhaban_01.jpg";
 import collectorate1 from "../../assets/Attraction/Sadar/Collectorate Building/Collectorate Bhaban_05.jpg";
 import dcOldBuilding from "../../assets/Attraction/Sadar/DC Old Bungalow/DC Old Bunglow_02.jpg";
