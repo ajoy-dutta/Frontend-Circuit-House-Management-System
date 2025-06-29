@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Helmet } from 'react-helmet';
+// import { Helmet } from 'react-helmet';
 
 function App() {
   const [message, setMessage] = useState('');
@@ -30,7 +30,7 @@ function App() {
         <meta name="twitter:title" content="React + Django Integration" />
         <meta name="twitter:description" content="This is my React-Django integration project." />
         <meta name="twitter:image" content="https://chjashore.online/thumbnail.png" />
-      </Helmet> */} */}
+      </Helmet> */} 
 
 
 
