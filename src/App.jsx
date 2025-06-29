@@ -32,6 +32,8 @@ function App() {
         <meta name="twitter:image" content="https://chjashore.online/thumbnail.png" />
       </Helmet>
 
+      
+
       <h1>React + Django Integration</h1>
       <p>{message}</p>
     </div>
