@@ -29,7 +29,7 @@ function App() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="React + Django Integration" />
         <meta name="twitter:description" content="This is my React-Django integration project." />
-        <meta name="twitter:image" content="https://chjashore.online/thumbnail.jpg" />
+        <meta name="twitter:image" content="https://chjashore.online/thumbnail.png" />
       </Helmet>
 
       <h1>React + Django Integration</h1>
