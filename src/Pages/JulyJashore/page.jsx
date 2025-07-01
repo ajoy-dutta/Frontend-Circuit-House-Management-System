@@ -42,11 +42,11 @@ export default function Page() {
         <h2 className="text-3xl font-bold text-center mb-6">Watch The Protest Coverage</h2>
         <div className="max-w-4xl mx-auto aspect-video shadow-lg rounded overflow-hidden">
        <iframe
-  src="https://www.youtube.com/embed/46ALvk6jJXg"
-  title="July Revolution Video"
-  className="w-full h-full"
-  allowFullScreen
-></iframe>
+    src="https://www.youtube.com/embed/46ALvk6jJXg"
+    title="July Revolution Video"
+    className="w-full h-full"
+    allowFullScreen
+    ></iframe>
 
         </div>
         <p className="text-center text-slate-500 mt-2">
