@@ -74,6 +74,17 @@ const Navbar = () => {
           Honor Board
         </NavLink>
       </li> */}
+        <li>
+        <NavLink
+          to="/julyInJashore"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+          onClick={handleDropdownToggle}
+        >
+          July in Jashore
+        </NavLink>
+      </li>
       <li>
         <NavLink
           to="/visitJashore"
@@ -195,6 +206,17 @@ const Navbar = () => {
         </NavLink>
       </li> */}
 
+  <li>
+        <NavLink
+          to="/julyInJashore"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+          onClick={handleDropdownToggle}
+        >
+          July in Jashore
+        </NavLink>
+      </li>
         <li >
         <NavLink
           to="/visitJashore"

@@ -38,6 +38,7 @@ import HelpLine from "./Pages/Home/HelpLine";
 import Media from "./Pages/Media/Media";
 import Store from "./Pages/store/Store";
 import AddMedia from "./Pages/Media/AddMedia";
+import JulyJashore from "./Pages/JulyJashore/page";
 
 
 
@@ -96,6 +97,10 @@ const router = createBrowserRouter([
       {
         path: "/visitJashore",
         element: <Media></Media>,
+      },
+        {
+        path: "/julyInJashore",
+        element: <JulyJashore></JulyJashore>,
       },
       {
         path: "/ourStore",
