@@ -1,55 +1,119 @@
-import React from "react";
-import januaryImg from "../../assets/Slider/Khejur Guur_06.jpg";
-import deluxeImg from "../../assets/Rooms/CircuitHouse_11.jpg";
+import { motion } from "framer-motion";
+import LazyLoad from "react-lazyload";
+import { Link } from "react-router-dom";
+
+import januaryImg from "../../assets/winter.jpg";
+import deluxeImg from "../../assets/Jashore Deluxe.jpg";
+import background from "../../assets/Branding/Collectorate Bhaban_05.jpg";
 
 export default function Media() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-purple-50 to-blue-100 p-6">
-      <h1 className="text-4xl font-bold text-center text-indigo-700 mb-6">Visit Jashore</h1>
-      <p className="text-center text-lg text-gray-700 mb-10">
-        Select one of our two tour packages:
-      </p>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-        {/* Jashore in January */}
-        <div className="bg-white shadow-lg rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img
-            src={januaryImg}
-            alt="Jashore in January"
-            className="w-full h-64 object-cover"
-          />
-          <div className="p-4">
-            <h2 className="text-xl font-semibold text-indigo-700">Jashore in January</h2>
-            <p className="text-gray-600 mt-2">
-              Enjoy flower festivals, winter scenery, and peaceful village life.
-            </p>
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-blue-100">
+      {/* Heading */}
+      <section
+        className="relative h-[350px] mb-14 text-white text-center bg-cover bg-center flex items-center justify-center"
+        style={{
+          backgroundImage: `url(${background})`,
+        }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div className="relative z-10 flex flex-col items-center justify-center h-full px-4">
+          <h1 className="text-4xl font-bold mb-4">Visit Jashore</h1>
+          <p className="text-lg">
+            Choose your dream escape — rustic winter magic or cultural luxury
+          </p>
         </div>
+      </section>
 
-        {/* Jashore Deluxe */}
-        <div className="bg-white shadow-lg rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img
-            src={deluxeImg}
-            alt="Jashore Deluxe"
-            className="w-full h-64 object-cover"
-          />
-          <div className="p-4">
-            <h2 className="text-xl font-semibold text-indigo-700">Jashore Deluxe</h2>
-            <p className="text-gray-600 mt-2">
-              A luxury tour with premium hospitality, cuisine, and guided site visits.
+      {/* Tour Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+
+        {/* January Tour Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.03 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="bg-white shadow-xl rounded-2xl overflow-hidden transition-all duration-300"
+        >
+          <LazyLoad
+            height={240}
+            offset={100}
+            once
+            placeholder={
+              <div className="w-full h-60 bg-gray-200 animate-pulse" />
+            }
+          >
+            <img
+              src={januaryImg}
+              alt="Jashore in January"
+              className="w-full h-60 object-cover object-center"
+            />
+          </LazyLoad>
+          <div className="p-6">
+            <h2 className="text-2xl font-bold text-sky-700 mb-2">
+              Jashore in January
+            </h2>
+            <p className="text-gray-600">
+              Immerse in blooming flower fields, winter delicacies, and the poetic spirit of rural Bengal.
             </p>
+            <Link
+              to="/jashore-winter"
+              className="inline-block mt-6 text-white bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 px-6 py-2 rounded-full font-semibold transition-all"
+            >
+              Show Details
+            </Link>
           </div>
-        </div>
+        </motion.div>
+
+        {/* Deluxe Tour Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.03 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+          viewport={{ once: true }}
+          className="bg-white shadow-xl rounded-2xl overflow-hidden transition-all duration-300"
+        >
+          <LazyLoad
+            height={240}
+            offset={100}
+            once
+            placeholder={
+              <div className="w-full h-60 bg-gray-200 animate-pulse" />
+            }
+          >
+            <img
+              src={deluxeImg}
+              alt="Jashore Deluxe"
+              className="w-full h-60 object-cover object-center"
+            />
+          </LazyLoad>
+          <div className="p-6">
+            <h2 className="text-2xl font-bold text-sky-700 mb-2">Jashore Deluxe</h2>
+            <p className="text-gray-600">
+              Enjoy a premium heritage experience with luxury dining, guided
+              visits, and top-tier hospitality.
+            </p>
+            <Link
+              to="/jashore-delux"
+              className="inline-block mt-6 text-white bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 px-6 py-2 rounded-full font-semibold transition-all"
+            >
+              Show Details
+            </Link>
+          </div>
+        </motion.div>
       </div>
 
-      {/* 📌 Detailed description BELOW the cards */}
-      <div className="mt-12 max-w-4xl mx-auto text-center text-gray-700 text-base leading-relaxed bg-white p-6 rounded-xl shadow-md">
+      {/* Footer Description */}
+      <div className="mt-16 max-w-4xl mx-auto text-center text-gray-700 text-lg leading-relaxed bg-white p-8 rounded-2xl shadow-lg">
         <p>
-          Discover the essence of Jashore with two beautifully curated tour packages. 
-          Whether you prefer the rustic charm of January’s blooming flower fields and molasses huts, 
-          or the elegance of a deluxe experience with historical site visits, fine dining, and comfortable stays — 
-          we have something perfect for every traveler. Both packages offer guided support, local cuisine, and 
-          memorable experiences rooted in the heart of southwestern Bangladesh.
+          Discover the charm of Jashore with two beautifully curated tour
+          packages. Whether you love the vibrant spirit of winter festivals and
+          flower fields or the elegance of a high-end cultural retreat, both
+          experiences are deeply rooted in Jashore’s heritage, hospitality, and
+          heart.
         </p>
       </div>
     </div>

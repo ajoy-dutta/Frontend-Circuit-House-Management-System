@@ -4,7 +4,6 @@ import "./index.css";
 import {
   createBrowserRouter,
   RouterProvider,
-  useNavigate,
 } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import { UserProvider } from "./Provider/UserProvider";
@@ -39,6 +38,8 @@ import Media from "./Pages/Media/Media";
 import Store from "./Pages/store/Store";
 import AddMedia from "./Pages/Media/AddMedia";
 import JulyJashore from "./Pages/JulyJashore/page";
+import JashoreDeluxe from "./Pages/VisitJashore/JashoreDelux";
+import JashoreWinter from "./Pages/VisitJashore/JashoreWinter";
 
 
 
@@ -95,8 +96,12 @@ const router = createBrowserRouter([
         element: <HelpLine></HelpLine>,
       },
       {
-        path: "/visitJashore",
-        element: <Media></Media>,
+        path: "/jashore-delux",
+        element: <JashoreDeluxe></JashoreDeluxe>,
+      },
+         {
+        path: "/jashore-winter",
+        element: <JashoreWinter></JashoreWinter>,
       },
         {
         path: "/julyInJashore",
@@ -105,6 +110,10 @@ const router = createBrowserRouter([
       {
         path: "/ourStore",
         element: <Store></Store>,
+      },
+      {
+        path: "/visitJashore",
+        element: <Media></Media>,
       },
       {
         path: "/addMedia",

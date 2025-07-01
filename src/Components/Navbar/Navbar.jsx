@@ -74,17 +74,7 @@ const Navbar = () => {
           Honor Board
         </NavLink>
       </li> */}
-        <li>
-        <NavLink
-          to="/julyInJashore"
-          className={({ isActive }) =>
-            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
-          }
-          onClick={handleDropdownToggle}
-        >
-          July in Jashore
-        </NavLink>
-      </li>
+       
       <li>
         <NavLink
           to="/visitJashore"
@@ -96,6 +86,19 @@ const Navbar = () => {
           Visit Jashore
         </NavLink>
       </li>
+      
+       <li>
+        <NavLink
+          to="/julyInJashore"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+          onClick={handleDropdownToggle}
+        >
+          July in Jashore
+        </NavLink>
+      </li>
+
       <li>
         <NavLink
           to="/ourStore"
@@ -206,17 +209,7 @@ const Navbar = () => {
         </NavLink>
       </li> */}
 
-  <li>
-        <NavLink
-          to="/julyInJashore"
-          className={({ isActive }) =>
-            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
-          }
-          onClick={handleDropdownToggle}
-        >
-          July in Jashore
-        </NavLink>
-      </li>
+
         <li >
         <NavLink
           to="/visitJashore"
@@ -226,6 +219,18 @@ const Navbar = () => {
           onClick={handleDropdownToggle}
         >
           Visit Jashore
+        </NavLink>
+      </li>
+
+        <li>
+        <NavLink
+          to="/julyInJashore"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+          onClick={handleDropdownToggle}
+        >
+          July in Jashore
         </NavLink>
       </li>
       

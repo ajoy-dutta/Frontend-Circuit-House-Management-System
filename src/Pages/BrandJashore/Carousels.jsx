@@ -1,21 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
-import homeImage from "../../assets/Branding/Bijoy Stomvo Monihar Area_02.jpg";
 import homeImage1 from "../../assets/Branding/Bijoy Vaskorjo Dhormotola_02.jpg";
 import homeImage2 from "../../assets/Branding/Flower Cultivation_Godkhali_01.jpg";
-import hammamkana from "../../assets/Hammam Khana_01.jpg";
-import Modhumela from "../../assets/Branding/Michael Modhusudhan Home Premises_02.jpg";
 import homeImage6 from "../../assets/Branding/Khejur Guur_19.jpg";
-import airport from "../../assets/Branding/airport.jpg";
-import oldDC from "../../assets/DC Old Bunglow_02.jpg";
-import collectrorate from "../../assets/Slider/Collectorate Bhaban_01.jpg";
 import Jashore from "../../assets/Branding/explore Jashore.jpg";
-import MichaelMadhusudanDutt from "../../assets/Michael Modhusudhan Home Premises_06.jpg";
-import PirMeheruddinMazar from "../../assets/Pir Meheruddin Mazar_01.jpg";
 import stitch from "../../assets/Stich Work_14.jpg"
-import imambara from "../../assets/Branding/Imam Bara_04.jpg";
-import kaloMhuk from "../../assets/Branding/Kalomukh Honuman_02.jpg";
 import collectroate from "../../assets/Branding/Collectorate Bhaban_05.jpg";
-import VisitJashore from "../VisitJashore/VisitJashore";
+import VisitJashore from "../Attractions/VisitJashore";
 
 export const Carousels = () => {
   const [currentSlider, setCurrentSlider] = useState(0);
