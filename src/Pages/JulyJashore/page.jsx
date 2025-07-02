@@ -1,20 +1,20 @@
-import React from "react";
 
 // Import all images like variables
-import july1 from "../../assets/july1.webp";
-import july2 from "../../assets/july2.jpg";
-import july3 from "../../assets/july3.avif";
-import july4 from "../../assets/july4.webp";
-import july5 from "../../assets/july5.jpg";
-import july6 from "../../assets/july6.jpg";
+import july1 from "../../assets/JuLy/july1.webp";
+import july7 from "../../assets/JuLy/WhatsApp Image 2025-07-02 at 09.57.07.jpeg";
+import july8 from "../../assets/JuLy/WhatsApp Image 2025-07-02 at 09.57.08.jpeg";
+import july9 from "../../assets/JuLy/WhatsApp Image 2025-07-02 at 09.57.09.jpeg";
+import july10 from "../../assets/JuLy/WhatsApp Image 2025-07-02 at 09.57.11 (1).jpeg";
+import july11 from "../../assets/JuLy/WhatsApp Image 2025-07-02 at 09.57.11.jpeg";
+import july12 from "../../assets/JuLy/WhatsApp Image 2025-07-02 at 09.57.12.jpeg";
 
 export default function Page() {
   return (
     <div className="text-slate-800 font-sans">
       {/* HERO SECTION */}
       <section
-        className="relative bg-cover bg-center h-96 flex items-center justify-center"
-        style={{ backgroundImage: `url(${july3})` }}
+        className="relative bg-cover bg-center h-[600px] flex items-center justify-center"
+        style={{ backgroundImage: `url(${july7})` }}
       >
         <div className="bg-black/60 w-full h-full absolute" />
         <div className="relative z-10 text-center text-white px-4">
@@ -43,7 +43,7 @@ export default function Page() {
       <section className="max-w-6xl mx-auto px-4 py-12">
         <h2 className="text-3xl font-bold text-center mb-6">Scenes from the Streets</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {[july3, july2, july5].map((src, i) => (
+          {[july10, july11, july12].map((src, i) => (
             <div
               key={i}
               className="rounded overflow-hidden shadow hover:shadow-lg transition"
@@ -87,12 +87,12 @@ export default function Page() {
             {
               title: "Organizers",
               desc: "Leaders coordinated marches, sit-ins, and media outreach to highlight injustice and ensure their message was heard nationwide.",
-              img: july6,
+              img: july9,
             },
             {
               title: "Community Reaction",
               desc: "Local residents watched, some joined, some worried, but all witnessed history as youth demanded accountability.",
-              img: july4,
+              img: july8,
             },
           ].map((item, i) => (
             <div
