@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
@@ -150,7 +150,26 @@ export default function Keshobpur() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 4;
+  const [itemsPerPage, setItemsPerPage] = useState(() => {
+    if (window.innerWidth < 640) return 1;
+    if (window.innerWidth < 1024) return 3;
+    return 4;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerPage(1);
+      } else if (window.innerWidth < 1024) {
+        setItemsPerPage(3);
+      } else {
+        setItemsPerPage(4);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const totalPages = Math.ceil(images.length / itemsPerPage);
 
@@ -205,22 +224,22 @@ export default function Keshobpur() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-              ><LazyLoad
-  height={200}
-  offset={100}
-  once
-  placeholder={
-    <div className="rounded-tl-3xl  p-1 bg-gray-200 animate-pulse" />
-  }
->
-  <img
-    className="rounded-tl-3xl bg-[#FEB38D] p-1"
-    src={image.src}
-    alt={image.title}
-  />
-</LazyLoad>
+              >
+                <LazyLoad
+                  height={200}
+                  offset={100}
+                  once
+                  placeholder={
+                    <div className="rounded-tl-3xl  p-1 bg-gray-200 animate-pulse" />
+                  }
+                >
+                  <img
+                    className="rounded-tl-3xl bg-[#FEB38D] p-1"
+                    src={image.src}
+                    alt={image.title}
+                  />
+                </LazyLoad>
 
-                
                 <div className="py-5">
                   <button
                     className="btn uppercase btn-ghost text-base font-semibold"
@@ -248,7 +267,7 @@ export default function Keshobpur() {
         </div>
 
         {/* Modal */}
-             <AnimatePresence>
+        <AnimatePresence>
           {isModalOpen && selectedImage && (
             <motion.div
               className="fixed inset-0 bg-black bg-opacity-60 flex justify-center mt-16 items-center z-50 overflow-auto p-4"
@@ -270,45 +289,45 @@ export default function Keshobpur() {
                 </h2>
 
                 {/* Images with animation */}
-                <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
-  <LazyLoad
-    offset={100}
-    once
-    height={200}
-    placeholder={
-      <div className="w-full  h-48 bg-gray-200 animate-pulse rounded border" />
-    }
-  >
-    <motion.img
-      src={selectedImage.subImg1}
-      alt="Main"
-      className="w-full  rounded border"
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ scale: 1.05 }}
-    />
-  </LazyLoad>
+                <div className="flex flex-row items-center justify-center gap-4 mb-4">
+                  <LazyLoad
+                    offset={100}
+                    once
+                    height={200}
+                    placeholder={
+                      <div className="w-full  h-48 bg-gray-200 animate-pulse rounded border" />
+                    }
+                  >
+                    <motion.img
+                      src={selectedImage.subImg1}
+                      alt="Main"
+                      className="w-full  rounded border"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.05 }}
+                    />
+                  </LazyLoad>
 
-  <LazyLoad
-    offset={100}
-    once
-    height={200}
-    placeholder={
-      <div className="w-full  h-48 bg-gray-200 animate-pulse rounded border" />
-    }
-  >
-    <motion.img
-      src={selectedImage.subImg2}
-      alt="Sub 1"
-      className="w-full  rounded border"
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-      whileHover={{ scale: 1.05 }}
-    />
-  </LazyLoad>
-</div>
+                  <LazyLoad
+                    offset={100}
+                    once
+                    height={200}
+                    placeholder={
+                      <div className="w-full  h-48 bg-gray-200 animate-pulse rounded border" />
+                    }
+                  >
+                    <motion.img
+                      src={selectedImage.subImg2}
+                      alt="Sub 1"
+                      className="w-full  rounded border"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                      whileHover={{ scale: 1.05 }}
+                    />
+                  </LazyLoad>
+                </div>
 
                 {/* Description and Map */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">

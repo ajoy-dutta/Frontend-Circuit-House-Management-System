@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
@@ -12,8 +11,6 @@ import rivarport1 from "../../assets/Attraction/Abhaynagar/River Port/Industry Z
 import rivarport2 from "../../assets/Attraction/Abhaynagar/River Port/Industry Zone_03.jpg";
 import LazyLoad from "react-lazyload";
 
-
-
 export default function Abhaynagar() {
   const images = [
     {
@@ -25,9 +22,16 @@ export default function Abhaynagar() {
       description:
         "Local Zamindar Nilkontho Roy built Egaro Shiva Mandir by the side of the river Bhairab at Abhaynagar in the middle of the 17th century. This establishment consists of eleven separate temples and has a great architectural value. The terracotta artistry of the walls of the temples is magnificent. These at-chala temples feature elegant terracotta carvings and symmetrical layouts, with the central shrine unifying the ensemble. Today, visitors wander the serene grounds, marveling at the delicate clay motifs and the poignant story of love, loss, and devotion that echoes through these silent sanctuaries. ",
       mapLink: (
-       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.7090881863855!2d89.4332299!3d23.0098277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ffa028940b0835%3A0x73179639a7d29600!2sEgaro%20Shiva%20Temple!5e1!3m2!1sen!2sbd!4v1750929267863!5m2!1sen!2sbd"width="100%"
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.7090881863855!2d89.4332299!3d23.0098277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ffa028940b0835%3A0x73179639a7d29600!2sEgaro%20Shiva%20Temple!5e1!3m2!1sen!2sbd!4v1750929267863!5m2!1sen!2sbd"
+          width="100%"
           height="80%"
-          style={{ border: 0 }}  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>     ),
+          style={{ border: 0 }}
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      ),
     },
     {
       src: rivarport2,
@@ -38,18 +42,42 @@ export default function Abhaynagar() {
       description:
         "The Port of Noapara, situated in Abhaynagar Upazila of Jessore District, is a pivotal river port in southwestern Bangladesh. Located on the west bank of the Bhairab River, this port facilitates the transportation of goods from the Ports of Mongla and Khulna, alleviating congestion at the latter. The port serves as a crucial node for importing various commodities, including fertilizers, cement, coal, wheat, and bhutra, which are then distributed to different parts of the country.  ",
       mapLink: (
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29385.44317595649!2d89.1138048596954!3d22.980392929030753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff6ae0d1c8ab03%3A0x5dfa26a289a4debb!2sJhanpa%20Baor!5e0!3m2!1sen!2sbd!4v1750928748069!5m2!1sen!2sbd" width="100%"
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29385.44317595649!2d89.1138048596954!3d22.980392929030753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff6ae0d1c8ab03%3A0x5dfa26a289a4debb!2sJhanpa%20Baor!5e0!3m2!1sen!2sbd!4v1750928748069!5m2!1sen!2sbd"
+          width="100%"
           height="80%"
-          style={{ border: 0 }}  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          style={{ border: 0 }}
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       ),
     },
-  
   ];
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 4;
+   const [itemsPerPage, setItemsPerPage] = useState(() => {
+    if (window.innerWidth < 640) return 1;
+    if (window.innerWidth < 1024) return 3;
+    return 4;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerPage(1);
+      } else if (window.innerWidth < 1024) {
+        setItemsPerPage(3);
+      } else {
+        setItemsPerPage(4);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const totalPages = Math.ceil(images.length / itemsPerPage);
 
@@ -104,20 +132,19 @@ export default function Abhaynagar() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
               >
-               <LazyLoad
-  offset={100}
-  once
- 
-  placeholder={
-    <div className="rounded-tl-3xl  p-1 h-48 bg-gray-200 animate-pulse" />
-  }
->
-  <img
-    className="rounded-tl-3xl bg-[#FEB38D] p-1"
-    src={image.src}
-    alt={image.title}
-  />
-</LazyLoad>
+                <LazyLoad
+                  offset={100}
+                  once
+                  placeholder={
+                    <div className="rounded-tl-3xl  p-1 h-48 bg-gray-200 animate-pulse" />
+                  }
+                >
+                  <img
+                    className="rounded-tl-3xl bg-[#FEB38D] p-1"
+                    src={image.src}
+                    alt={image.title}
+                  />
+                </LazyLoad>
 
                 <div className="py-5">
                   <button
@@ -146,7 +173,7 @@ export default function Abhaynagar() {
         </div>
 
         {/* Modal */}
-              <AnimatePresence>
+        <AnimatePresence>
           {isModalOpen && selectedImage && (
             <motion.div
               className="fixed inset-0 bg-black bg-opacity-60 flex justify-center mt-16 items-center z-50 overflow-auto p-4"
@@ -168,48 +195,43 @@ export default function Abhaynagar() {
                 </h2>
 
                 {/* Images with animation */}
-               <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+                <div className="flex flex-row items-center justify-center gap-4 mb-4">
+                  <LazyLoad
+                    offset={100}
+                    once
+                    placeholder={
+                      <div className="w-full  h-48 bg-gray-200 animate-pulse rounded border" />
+                    }
+                  >
+                    <motion.img
+                      src={selectedImage.subImg1}
+                      alt="Main"
+                      className="w-full  rounded border"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.05 }}
+                    />
+                  </LazyLoad>
 
-  <LazyLoad
-   
-    offset={100}
-    once
-    placeholder={
-      <div className="w-full  h-48 bg-gray-200 animate-pulse rounded border" />
-    }
-  >
-    <motion.img
-      src={selectedImage.subImg1}
-      alt="Main"
-      className="w-full  rounded border"
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ scale: 1.05 }}
-    />
-  </LazyLoad>
-
-  <LazyLoad
-   
-    offset={100}
-    once
-    placeholder={
-      <div className="w-full  h-48 bg-gray-200 animate-pulse rounded border" />
-    }
-  >
-    <motion.img
-      src={selectedImage.subImg2}
-      alt="Sub 1"
-      className="w-full  rounded border"
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-      whileHover={{ scale: 1.05 }}
-    />
-  </LazyLoad>
-
-</div>
-
+                  <LazyLoad
+                    offset={100}
+                    once
+                    placeholder={
+                      <div className="w-full  h-48 bg-gray-200 animate-pulse rounded border" />
+                    }
+                  >
+                    <motion.img
+                      src={selectedImage.subImg2}
+                      alt="Sub 1"
+                      className="w-full  rounded border"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                      whileHover={{ scale: 1.05 }}
+                    />
+                  </LazyLoad>
+                </div>
 
                 {/* Description and Map */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">

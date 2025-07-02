@@ -1,10 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import { UserProvider } from "./Provider/UserProvider";
 import Root from "./Components/Root/Root";
@@ -32,17 +29,14 @@ import RoomDetails from "./Pages/RoomDetails/RoomDetails";
 import Inbox from "./Pages/Messages/Inbox";
 import StaffProfile from "./Pages/Staffs Profile/StaffProfile";
 import { Carousels } from "./Pages/BrandJashore/Carousels";
-import ProtectedRoute from "./Provider/ProtectedRoute"; 
+import ProtectedRoute from "./Provider/ProtectedRoute";
 import HelpLine from "./Pages/Home/HelpLine";
 import Media from "./Pages/Media/Media";
 import Store from "./Pages/store/Store";
 import AddMedia from "./Pages/Media/AddMedia";
+import JulyJashore from "./Pages/JulyJashore/page";
 import JashoreDeluxe from "./Pages/VisitJashore/JashoreDelux";
 import JashoreWinter from "./Pages/VisitJashore/JashoreWinter";
-
-
-
-
 
 const router = createBrowserRouter([
   {
@@ -54,7 +48,7 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
-      
+
       {
         path: "/login",
         element: <Login />,
@@ -98,9 +92,13 @@ const router = createBrowserRouter([
         path: "/jashore-delux",
         element: <JashoreDeluxe></JashoreDeluxe>,
       },
-         {
+      {
         path: "/jashore-winter",
         element: <JashoreWinter></JashoreWinter>,
+      },
+      {
+        path: "/julyInJashore",
+        element: <JulyJashore></JulyJashore>,
       },
       {
         path: "/ourStore",
@@ -114,7 +112,6 @@ const router = createBrowserRouter([
         path: "/addMedia",
         element: <AddMedia></AddMedia>,
       },
-     
     ],
   },
   {
@@ -124,31 +121,54 @@ const router = createBrowserRouter([
     children: [
       {
         path: "room",
-        element: <ProtectedRoute><Room /></ProtectedRoute>, // Protected route
-
+        element: (
+          <ProtectedRoute>
+            <Room />
+          </ProtectedRoute>
+        ), // Protected route
       },
       {
         path: "rooms",
-        element: <ProtectedRoute><Rooms /></ProtectedRoute>, // Protected route
+        element: (
+          <ProtectedRoute>
+            <Rooms />
+          </ProtectedRoute>
+        ), // Protected route
       },
       {
         path: "details",
-        element: <ProtectedRoute><Details /></ProtectedRoute>, // Protected route
+        element: (
+          <ProtectedRoute>
+            <Details />
+          </ProtectedRoute>
+        ), // Protected route
       },
 
       {
         path: "profile", // Add the registration route
-        element: <ProtectedRoute><Profile /></ProtectedRoute>, // Protected route
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ), // Protected route
       },
 
       {
         path: "staff-approval", // Add the registration route
-        element: <ProtectedRoute><NDCApproval /></ProtectedRoute>, // Protected route
+        element: (
+          <ProtectedRoute>
+            <NDCApproval />
+          </ProtectedRoute>
+        ), // Protected route
       },
 
       {
         path: "book",
-        element: <ProtectedRoute><Book /></ProtectedRoute>, // Protected route
+        element: (
+          <ProtectedRoute>
+            <Book />
+          </ProtectedRoute>
+        ), // Protected route
       },
 
       {
@@ -158,52 +178,83 @@ const router = createBrowserRouter([
 
       {
         path: "guest-list",
-        element: <ProtectedRoute><Guests /></ProtectedRoute>, // Protected route
+        element: (
+          <ProtectedRoute>
+            <Guests />
+          </ProtectedRoute>
+        ), // Protected route
       },
 
       {
         path: "checkout-history",
-        element: <ProtectedRoute><CheckoutHistory /></ProtectedRoute>, // Protected route
+        element: (
+          <ProtectedRoute>
+            <CheckoutHistory />
+          </ProtectedRoute>
+        ), // Protected route
       },
 
       {
         path: "checkout",
-        element: <ProtectedRoute><Checkout /></ProtectedRoute>, // Protected route
+        element: (
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        ), // Protected route
       },
 
       {
         path: "checkout-summary",
-        element: <ProtectedRoute><CheckoutSummary /></ProtectedRoute>, // Protected route
+        element: (
+          <ProtectedRoute>
+            <CheckoutSummary />
+          </ProtectedRoute>
+        ), // Protected route
       },
 
       {
         path: "food",
-        element: <ProtectedRoute><Food /></ProtectedRoute>, // Protected route
+        element: (
+          <ProtectedRoute>
+            <Food />
+          </ProtectedRoute>
+        ), // Protected route
       },
 
       {
         path: "other",
-        element: <ProtectedRoute><Other /></ProtectedRoute>, // Protected route
+        element: (
+          <ProtectedRoute>
+            <Other />
+          </ProtectedRoute>
+        ), // Protected route
       },
       {
         path: "inbox",
-        element: <ProtectedRoute><Inbox/></ProtectedRoute>, // Protected route
+        element: (
+          <ProtectedRoute>
+            <Inbox />
+          </ProtectedRoute>
+        ), // Protected route
       },
 
       {
         path: "staff-profile",
-        element: <ProtectedRoute><StaffProfile/></ProtectedRoute>, // Protected route
+        element: (
+          <ProtectedRoute>
+            <StaffProfile />
+          </ProtectedRoute>
+        ), // Protected route
       },
     ],
   },
-]
-);
+]);
 
 // Render your app with RouterProvider
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode> 
-      <UserProvider>
-        <RouterProvider router={router} />
-      </UserProvider>
+  <React.StrictMode>
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   </React.StrictMode>
 );

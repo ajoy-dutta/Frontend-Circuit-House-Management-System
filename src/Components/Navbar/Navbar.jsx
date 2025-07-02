@@ -74,6 +74,7 @@ const Navbar = () => {
           Honor Board
         </NavLink>
       </li> */}
+       
       <li>
         <NavLink
           to="/visitJashore"
@@ -85,6 +86,19 @@ const Navbar = () => {
           Visit Jashore
         </NavLink>
       </li>
+      
+       <li>
+        <NavLink
+          to="/julyInJashore"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+          onClick={handleDropdownToggle}
+        >
+          July Memorial
+        </NavLink>
+      </li>
+
       <li>
         <NavLink
           to="/ourStore"
@@ -195,6 +209,7 @@ const Navbar = () => {
         </NavLink>
       </li> */}
 
+
         <li >
         <NavLink
           to="/visitJashore"
@@ -204,6 +219,18 @@ const Navbar = () => {
           onClick={handleDropdownToggle}
         >
           Visit Jashore
+        </NavLink>
+      </li>
+
+        <li>
+        <NavLink
+          to="/julyInJashore"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-bold" : "hover:text-cyan-400"
+          }
+          onClick={handleDropdownToggle}
+        >
+          July Memorial
         </NavLink>
       </li>
       
@@ -323,7 +350,7 @@ const Navbar = () => {
           )}
         </div>
         <div className="flex items-center justify-center">
-          <div className="hidden lg:block text-xl font-bold text-with-gradient md:text-2xl whitespace-nowrap">
+          <div className="hidden md:block text-xl font-bold text-with-gradient md:text-2xl whitespace-nowrap">
             <NavLink to="/">
               <div className="flex items-center justify-center gap-2">
                 <img className="w-[30px]" src={logo} />
@@ -334,7 +361,7 @@ const Navbar = () => {
             </NavLink>
           </div>
           <div className="nav-start px-4  w-3/4">
-            <ul className="hidden md:flex lg:flex lg:justify-between items-center font-normal font-serif px-1 gap-8 whitespace-nowrap">
+            <ul className="hidden lg:flex lg:justify-between items-center font-normal font-serif px-1 gap-8 whitespace-nowrap">
               {navOptions}
             </ul>
           </div>

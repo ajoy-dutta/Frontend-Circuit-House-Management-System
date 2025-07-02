@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
@@ -79,7 +79,27 @@ export default function Sharsha() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 4;
+  const [itemsPerPage, setItemsPerPage] = useState(() => {
+    if (window.innerWidth < 640) return 1;
+    if (window.innerWidth < 1024) return 3;
+    return 4;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerPage(1);
+      } else if (window.innerWidth < 1024) {
+        setItemsPerPage(3);
+      } else {
+        setItemsPerPage(4);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
 
   const totalPages = Math.ceil(images.length / itemsPerPage);
 
@@ -198,7 +218,7 @@ export default function Sharsha() {
                 </h2>
 
                 {/* Images with animation */}
-                <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+                <div className="flex flex-row items-center justify-center gap-4 mb-4">
                   <LazyLoad
                     offset={100}
                     once

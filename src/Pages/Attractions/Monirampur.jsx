@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
@@ -8,7 +7,6 @@ import jhapa from "../../assets/Attraction/Manirampur/Jhanpa Baor/Jhapa Baor_03.
 import jhapa1 from "../../assets/Attraction/Manirampur/Jhanpa Baor/Jhapa Baor_05.jpg";
 import jhapa2 from "../../assets/Attraction/Manirampur/Jhanpa Baor/Jhapa Baor_08.jpg";
 import LazyLoad from "react-lazyload";
-
 
 export default function Monirampur() {
   const images = [
@@ -21,19 +19,42 @@ export default function Monirampur() {
       description:
         "Jhapa Baor (Jhanpa Baor) is a stunning crescent-shaped oxbow lake nestled near Rajganj Bazaar in Monirampur, just a 30‑minute journey from Jashore town. Stretching approximately 6 km, this serene waterbody offers a peaceful escape framed by lush greenery. Visitors can enjoy gentle boat rides, observe local fishermen at work, and capture tranquil reflections of sky and trees—perfect for photographers and nature lovers. A unique feature here is the floating bridges—built by local youth using plastic drums and iron sheets, connecting villages and easing travel across the lake..",
       mapLink: (
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29385.44317595649!2d89.1138048596954!3d22.980392929030753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff6ae0d1c8ab03%3A0x5dfa26a289a4debb!2sJhanpa%20Baor!5e0!3m2!1sen!2sbd!4v1750928748069!5m2!1sen!2sbd" width="100%"
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29385.44317595649!2d89.1138048596954!3d22.980392929030753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff6ae0d1c8ab03%3A0x5dfa26a289a4debb!2sJhanpa%20Baor!5e0!3m2!1sen!2sbd!4v1750928748069!5m2!1sen!2sbd"
+          width="100%"
           height="80%"
-          style={{ border: 0 }}  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          style={{ border: 0 }}
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       ),
     },
-  
   ];
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 4;
+  const [itemsPerPage, setItemsPerPage] = useState(() => {
+    if (window.innerWidth < 640) return 1;
+    if (window.innerWidth < 1024) return 3;
+    return 4;
+  });
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerPage(1);
+      } else if (window.innerWidth < 1024) {
+        setItemsPerPage(3);
+      } else {
+        setItemsPerPage(4);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const totalPages = Math.ceil(images.length / itemsPerPage);
 
   const currentImages = images.slice(
@@ -87,20 +108,20 @@ export default function Monirampur() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
               >
-              <LazyLoad
-  offset={100}
-  once
-  height={200}
-  placeholder={
-    <div className="rounded-tl-3xl p-1 h-48 bg-gray-200 animate-pulse" />
-  }
->
-  <img
-    className="rounded-tl-3xl bg-[#FEB38D] p-1"
-    src={image.src}
-    alt={image.title}
-  />
-</LazyLoad>
+                <LazyLoad
+                  offset={100}
+                  once
+                  height={200}
+                  placeholder={
+                    <div className="rounded-tl-3xl p-1 h-48 bg-gray-200 animate-pulse" />
+                  }
+                >
+                  <img
+                    className="rounded-tl-3xl bg-[#FEB38D] p-1"
+                    src={image.src}
+                    alt={image.title}
+                  />
+                </LazyLoad>
 
                 <div className="py-5">
                   <button
@@ -129,7 +150,7 @@ export default function Monirampur() {
         </div>
 
         {/* Modal */}
-            <AnimatePresence>
+        <AnimatePresence>
           {isModalOpen && selectedImage && (
             <motion.div
               className="fixed inset-0 bg-black bg-opacity-60 flex justify-center mt-16 items-center z-50 overflow-auto p-4"
@@ -150,49 +171,45 @@ export default function Monirampur() {
                   {selectedImage.title}
                 </h2>
 
+                
                 {/* Images with animation */}
-             {/* Images with animation */}
-<div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+                <div className="flex flex-row items-center justify-center gap-4 mb-4">
+                  <LazyLoad
+                    offset={100}
+                    once
+                    placeholder={
+                      <div className="w-full h-48 bg-gray-200 animate-pulse rounded border" />
+                    }
+                  >
+                    <motion.img
+                      src={selectedImage.subImg1}
+                      alt="Main"
+                      className="w-full rounded border"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.05 }}
+                    />
+                  </LazyLoad>
 
-  <LazyLoad
-    offset={100}
-    once
-   
-    placeholder={
-      <div className="w-full h-48 bg-gray-200 animate-pulse rounded border" />
-    }
-  >
-    <motion.img
-      src={selectedImage.subImg1}
-      alt="Main"
-      className="w-full rounded border"
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ scale: 1.05 }}
-    />
-  </LazyLoad>
-
-  <LazyLoad
-    offset={100}
-    once
-   
-    placeholder={
-      <div className="w-full h-48 bg-gray-200 animate-pulse rounded border" />
-    }
-  >
-    <motion.img
-      src={selectedImage.subImg2}
-      alt="Sub 1"
-      className="w-full rounded border"
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-      whileHover={{ scale: 1.05 }}
-    />
-  </LazyLoad>
-
-</div>
+                  <LazyLoad
+                    offset={100}
+                    once
+                    placeholder={
+                      <div className="w-full h-48 bg-gray-200 animate-pulse rounded border" />
+                    }
+                  >
+                    <motion.img
+                      src={selectedImage.subImg2}
+                      alt="Sub 1"
+                      className="w-full rounded border"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                      whileHover={{ scale: 1.05 }}
+                    />
+                  </LazyLoad>
+                </div>
 
                 {/* Description and Map */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
